@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Tokens de design MS Nettoyage
+   Palette reprise de la charte : bleu #0B4EDB, encre #0E1A3A, surface #F6F8FB.
+   Toute couleur du site vient d'ici — aucune valeur hexadécimale en dur
+   dans les composants.
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-brand: #0b4edb;
+  --color-brand-dark: #063aab;
+  --color-brand-deep: #062e8c;
+  --color-brand-soft: #e8effd;
+
+  --color-ink: #0e1a3a;
+  --color-ink-soft: #1e2735;
+  --color-muted: #646b7a;
+  --color-muted-light: #8892a4;
+
+  --color-line: #e4e8ef;
+  --color-line-soft: #eef1f6;
+  --color-surface: #f6f8fb;
+
+  --color-success: #0f7b47;
+  --color-danger: #c0392b;
+
+  --font-sans:
+    var(--font-urbanist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-card: 0 10px 28px rgba(20, 45, 90, 0.08);
+  --shadow-float: 0 18px 50px rgba(4, 25, 70, 0.22);
+
+  --animate-fade-up: fade-up 600ms ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: white;
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus visible homogène et contrasté sur tout le site (WCAG 2.4.7). */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Respect de la préférence système « animations réduites ». */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Mise en forme des pages légales et éditoriales. */
+  .prose-legal {
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+
+  .prose-legal h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .prose-legal h3 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .prose-legal p,
+  .prose-legal ul {
+    margin-bottom: 1rem;
+  }
+
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .prose-legal a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
