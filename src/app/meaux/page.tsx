@@ -6,7 +6,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
-import { MediaSlot } from "@/components/ui/MediaSlot";
 import { Section } from "@/components/ui/Section";
 import { getService } from "@/data/services";
 import { getZone } from "@/data/zones";
@@ -20,6 +19,14 @@ const fil = [
 ];
 
 const zone = getZone("meaux");
+
+/** Repères locaux affichés en tête de colonne latérale. */
+const reperes: readonly { valeur: string; libelle: string }[] = [
+  { valeur: site.address.postalCode, libelle: `Code postal de ${site.address.city}` },
+  { valeur: `${zone?.communes.length ?? 0}`, libelle: "Communes desservies autour" },
+  { valeur: "0 €", libelle: "Frais de déplacement sur les communes limitrophes" },
+  { valeur: site.delaiReponse, libelle: "Délai de réponse à une demande de devis" },
+];
 
 const titre = zone?.metaTitle ?? `Entreprise de nettoyage à ${site.address.city} | ${site.name}`;
 
@@ -80,11 +87,26 @@ export default function Page() {
           </div>
 
           <aside className="flex flex-col gap-6">
-            <MediaSlot
-              alt={`${zone.name}, ville d'implantation de ${site.name}`}
-              className="aspect-4/3 rounded-2xl"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-            />
+            {/*
+              Cet emplacement portait une photo de Meaux. Faute de visuel réel,
+              il accueille des repères chiffrés : ils informent davantage qu'une
+              vue de ville générique, et n'ont rien à attendre d'un photographe.
+            */}
+            <dl className="bg-brand-soft border-brand/20 grid grid-cols-2 gap-5 rounded-2xl border p-6">
+              {reperes.map((repere) => (
+                <div key={repere.libelle} className="flex flex-col gap-1">
+                  <dt className="sr-only">{repere.libelle}</dt>
+                  <dd>
+                    <span className="text-brand block text-xl leading-tight font-bold">
+                      {repere.valeur}
+                    </span>
+                    <span className="text-muted mt-1 block text-xs leading-snug">
+                      {repere.libelle}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
 
             <div className="border-line bg-surface rounded-2xl border p-6">
               <h2 className="text-ink text-sm font-semibold">Communes desservies</h2>
