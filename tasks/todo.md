@@ -48,3 +48,58 @@ Ce qui a bien marché :
 
 Ce qui reste ouvert : voir la checklist de `DEPLOIEMENT.md`, informations légales, photos,
 avis clients, configuration DNS Resend, fiche Google Business Profile.
+
+---
+
+## Tâche : architecture de référencement local (26 juillet 2026)
+
+**Demande.** Le client veut ressortir sur huit recherches, toutes suffixées « à Meaux » :
+nettoyage de maison, nettoyage de bureau, prestation de nettoyage, société de nettoyage, ménage
+après travaux, ménage après déménagement, ménage Airbnb, ménage particulier. Extension à d'autres
+villes plus tard.
+
+### Réalisé
+
+- [x] Cartographie requête → page. Deux requêtes génériques (« société » et « prestation de
+      nettoyage ») confiées à la page d'accueil, six requêtes spécifiques à leur page dédiée
+- [x] `src/data/landings.ts` : 6 pages, contenu intégralement distinct (chapeau, corps, FAQ, faits)
+- [x] `src/app/[prestation]/page.tsx` : segment dynamique à la racine, `dynamicParams = false`
+- [x] Suppression de `/meaux`, qui cannibalisait la page d'accueil. Contenu local absorbé par la
+      section `#zones`, URL redirigée en 301
+- [x] Page d'accueil retitrée « Société de nettoyage à Meaux », 52 caractères
+- [x] Maillage interne : section `PrestationsLocales`, colonne du pied de page, menu mobile. Texte
+      de lien = la requête, jamais « en savoir plus »
+- [x] JSON-LD : `Service` + `areaServed: City` par page, `WebSite`, `LocalBusiness` porté à
+      22 propriétés, `serviceJsonLd` mort supprimé, URLs `/services/...` devenues 404 corrigées
+- [x] Sitemap : 9 URLs, 26 visuels déclarés
+- [x] Variables de vérification Search Console et Bing dans le layout
+- [x] `tests/landings.test.ts` : 18 tests anti-duplication et anti-régression SEO
+- [x] `SEO-HORS-CODE.md` : fiche Google Business Profile, avis clients, Search Console, annuaires
+- [x] Correctif WCAG : suppression de `--color-muted-light`, non conforme sur fond teinté
+- [x] Durées corrigées à la demande du client : nettoyage en profondeur 2 à 6 h, rotation Airbnb 2 h
+
+### Vérifications passées
+
+| Contrôle                    | Résultat                                                    |
+| --------------------------- | ----------------------------------------------------------- |
+| `npm run verify`            | lint, types, 100 tests, build : tout au vert                 |
+| 9 URLs en production        | 200, titres et canoniques uniques et corrects                |
+| Redirections                | `/meaux`, `/services`, `/faq`, `/devis`… en 308 vers la cible |
+| Slug inconnu                | 404, pas de page vide                                        |
+| `sitemap.xml` en production | 9 `<loc>`, 26 `<image:loc>`                                  |
+| JSON-LD en production       | 5 blocs valides sur une page de prestation                   |
+| Lighthouse mobile           | 100 en SEO, bonnes pratiques et navigation agent             |
+
+### Revue
+
+Ce qui a bien marché :
+
+- Partir de la liste de requêtes du client plutôt que d'une arborescence supposée : la structure du
+  site en découle mécaniquement, sans arbitrage.
+- Traiter la cannibalisation avant d'ajouter des pages. Supprimer `/meaux` était contre-intuitif,
+  c'est pourtant ce qui débloque la page d'accueil sur sa requête principale.
+- Verrouiller l'unicité du contenu par des tests : c'est la seule protection contre la tentation du
+  chercher-remplacer le jour où il faudra couvrir Chelles ou Melun.
+
+Ce qui reste ouvert : la fiche Google Business Profile et les avis clients, hors du dépôt, qui
+pèsent plus que tout le reste. Voir `SEO-HORS-CODE.md`.
