@@ -15,7 +15,14 @@
   --color-ink: #0e1a3a;
   --color-ink-soft: #1e2735;
   --color-muted: #646b7a;
-  --color-muted-light: #8892a4;
+  /*
+    Ton secondaire le plus clair du site. Sa valeur d'origine (#8892a4) ne
+    donnait que 3,14:1 sur fond blanc, sous le seuil WCAG AA de 4,5:1 exigé pour
+    du texte de petite taille, et c'est précisément l'usage qu'on en fait :
+    libellés de chiffres clés, mentions du pied de page, textes de contexte.
+    #6c7484 monte à 4,70:1 tout en restant distinct de --color-muted.
+  */
+  --color-muted-light: #6c7484;
 
   --color-line: #e4e8ef;
   --color-line-soft: #eef1f6;

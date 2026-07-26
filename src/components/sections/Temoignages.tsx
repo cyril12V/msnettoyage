@@ -49,11 +49,14 @@ export function Temoignages() {
                 </blockquote>
 
                 <div className="mt-auto">
+                  {/*
+                    `aria-label` est interdit sur un élément sans rôle propre.
+                    Les étoiles restent donc décoratives, et la note est portée
+                    par un texte réservé aux lecteurs d'écran.
+                  */}
                   {avis.note ? (
-                    <p
-                      className="text-brand mb-2 flex items-center gap-0.5"
-                      aria-label={`Note : ${avis.note} sur 5`}
-                    >
+                    <p className="text-brand mb-2 flex items-center gap-0.5">
+                      <span className="sr-only">Note : {avis.note} sur 5</span>
                       {Array.from({ length: avis.note }, (_, index) => (
                         <Icon key={index} name="star" className="size-3.5" />
                       ))}

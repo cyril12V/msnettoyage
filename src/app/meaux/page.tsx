@@ -21,11 +21,19 @@ const fil = [
 
 const zone = getZone("meaux");
 
-export const metadata: Metadata = buildMetadata({
-  title: zone?.metaTitle ?? `Entreprise de nettoyage à ${site.address.city}`,
-  description: zone?.metaDescription ?? site.description,
-  path: "/meaux",
-});
+const titre = zone?.metaTitle ?? `Entreprise de nettoyage à ${site.address.city} | ${site.name}`;
+
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: titre,
+    description: zone?.metaDescription ?? site.description,
+    path: "/meaux",
+  }),
+  // Les titres de `data/zones.ts` portent déjà le nom de la marque, écrit pour
+  // s'afficher tel quel en résultat de recherche. Sans `absolute`, le gabarit du
+  // layout l'ajouterait une seconde fois.
+  title: { absolute: titre },
+};
 
 /**
  * Page locale de Meaux.

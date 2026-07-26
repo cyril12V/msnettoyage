@@ -55,7 +55,12 @@ export function ZonesSection() {
                   className="bg-surface text-ink-soft inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm"
                 >
                   {zone.name}
-                  <span className="text-muted-light text-xs">{zone.departement}</span>
+                  {/*
+                    `muted-light` est calibré pour le fond blanc. Sur le fond
+                    teinté de cette pastille, il retombe à 4,42:1, sous le seuil
+                    AA : on passe donc au ton `muted`, qui tient 5,03:1.
+                  */}
+                  <span className="text-muted text-xs">{zone.departement}</span>
                 </li>
               ))}
             </ul>

@@ -2,6 +2,17 @@ import { z } from "zod";
 import { services } from "@/data/services";
 
 /**
+ * Zod compile ses validateurs avec le constructeur `Function`, ce que la
+ * politique de sécurité du site interdit. Sans ce réglage, la sonde de Zod
+ * déclenche une violation CSP à chaque chargement de page : la validation
+ * fonctionne quand même, via le chemin de repli, mais l'erreur est journalisée
+ * par le navigateur. On désactive donc la compilation à la volée explicitement.
+ *
+ * L'appel doit précéder la création du moindre schéma.
+ */
+z.config({ jitless: true });
+
+/**
  * Schéma de la demande de devis, partagé par le formulaire client et la route
  * API. Une seule définition, donc aucune divergence possible entre la
  * validation affichée à l'utilisateur et celle qui protège le serveur.
