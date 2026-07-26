@@ -89,7 +89,7 @@ export const services: readonly Service[] = [
       "Locaux professionnels avant une visite ou un audit",
     ],
     facts: [
-      { label: "Durée type", value: "4 à 8 h pour un T3" },
+      { label: "Durée type", value: "2 à 6 h pour un T3" },
       { label: "Produits", value: "Professionnels, adaptés au support" },
       { label: "Format", value: "Intervention unique" },
     ],

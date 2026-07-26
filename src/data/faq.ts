@@ -79,7 +79,7 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Combien de temps dure une intervention de nettoyage en profondeur ?",
     answer:
-      "Entre 4 et 8 heures pour un logement de type T3, selon l'état de départ et le nombre de pièces d'eau. Une remise en état après travaux sur 120 m² représente en général une journée complète d'intervention.",
+      "Entre 2 et 6 heures pour un logement de type T3, selon l'état de départ et le nombre de pièces d'eau. Une remise en état après travaux sur 120 m² représente en général une journée complète d'intervention.",
     categorie: "Prestations",
   },
   {

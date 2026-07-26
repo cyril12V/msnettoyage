@@ -30,7 +30,7 @@ export const casClients: readonly CasClient[] = [
     titre: "Rotation Airbnb express",
     description: "Nettoyage complet et préparation d'un T2 entre deux locations.",
     chiffres: [
-      { valeur: "4 h", libelle: "Délai moyen" },
+      { valeur: "2 h", libelle: "Délai moyen" },
       { valeur: "5 étoiles", libelle: "Avis voyageurs" },
     ],
     photo: "Chambre d'un logement Airbnb prête pour l'arrivée",
