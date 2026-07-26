@@ -1,57 +1,113 @@
 # Brief photo
 
-Document destiné au graphiste et au photographe. Il liste chaque visuel attendu, son format, son
-cadrage et l'emplacement qu'il occupe sur le site.
+Document destiné au graphiste et au photographe. Il liste ce qui est en place, ce qui manque, et
+les contraintes de production.
 
 Contact projet : msnettoyage211@gmail.com
 
 ---
 
-## 1. Ce qui existe déjà
+## 1. État des lieux
 
-14 photos ont été fournies, toutes prises dans **un seul et même lieu** : un grand gîte de groupe
-avec chambres, dortoir, salles de bains, cuisine collective, salle de séminaire et salle de jeux.
+**20 visuels sur 23 sont en place.** Tous les emplacements du site sont donc pourvus, sauf trois.
 
-| Fichier                               | Sujet                                    | Utilisable pour                        |
-| ------------------------------------- | ---------------------------------------- | -------------------------------------- |
-| `salle-de-bain-baignoire-ilot.jpeg`   | Grande salle de bains, baignoire îlot    | Visuel principal, nettoyage profondeur |
-| `salle-de-bain-douche-italienne.jpeg` | Salle de bains, douche italienne         | Nettoyage en profondeur                |
-| `salle-de-bain-meuble-bois.jpeg`      | Salle de bains, meuble bois              | Entretien régulier                     |
-| `salle-de-bain-combles-chevrons.jpeg` | Salle de bains sous combles, sol ardoise | Nettoyage en profondeur                |
-| `salle-de-bain-combles-velux.jpeg`    | Salle de bains sous combles, velux       | Rotation location                      |
-| `chambre-lit-double-prepare.jpeg`     | Lit fait, serviettes pliées              | Ménage Airbnb                          |
-| `chambre-sous-combles-poutres.jpeg`   | Chambre mansardée, poutres               | Ménage Airbnb                          |
-| `chambre-familiale-sous-combles.jpeg` | Grande chambre, tapis                    | Ménage Airbnb                          |
-| `chambre-lits-superposes.jpeg`        | Lits superposés préparés                 | Hébergement de groupe                  |
-| `dortoir-trois-lits-charpente.jpeg`   | Dortoir 3 lits sous charpente            | Hébergement de groupe                  |
-| `cuisine-equipee-buanderie.jpeg`      | Cuisine collective et buanderie          | Nettoyage en profondeur                |
-| `salle-de-jeux-billard-babyfoot.jpeg` | Salle de jeux, billard, babyfoot         | Locaux collectifs                      |
-| `salle-seminaire-table-reunion.jpeg`  | Salle de séminaire, table de réunion     | Bureaux et séminaires (réserve)        |
-| `salle-seminaire-vue-ensemble.jpeg`   | Même salle, vue d'ensemble               | Bureaux et séminaires (réserve)        |
-
-### Limites de ce lot
-
-- **Toutes les photos sont au format portrait** (1152 × 2048, ratio 9:16). Le site a besoin de
-  visuels **paysage** pour les cartes, les vignettes et les bandeaux. Recadrer un 9:16 en 16:9 fait
-  perdre 70 % de l'image.
-- **Un seul lieu représenté.** Un visiteur qui cherche du nettoyage de bureaux ou de fin de chantier
-  ne se reconnaît pas dans des photos de gîte.
-- **Aucune photo « avant ».** La section de comparaison avant / après reste vide : c'est pourtant
-  l'argument le plus convaincant du métier.
-- **Aucune photo d'intervention** : ni équipe au travail, ni matériel, ni véhicule.
-- Les deux photos de salle de séminaire montrent des **plinthes arrachées et des murs abîmés**.
-  Elles sont inutilisables telles quelles sur un site de propreté : le regard va sur le défaut.
-- La photo de cuisine est prise de nuit, lumière jaune et reflets marqués sur le carrelage.
+| Emplacement                | Fichier                                        | Format       | État         |
+| -------------------------- | ---------------------------------------------- | ------------ | ------------ |
+| Visuel d'accroche          | `hero-accueil.jpg`                             | Portrait 4:5 | En place     |
+| Mosaïque, vitre            | `expertise-vitre.jpg`                          | Portrait 3:4 | En place     |
+| Mosaïque, lit préparé      | `expertise-lit-prepare.jpg`                    | Portrait 3:4 | En place     |
+| Mosaïque, salle de réunion | `expertise-salle-reunion.jpg`                  | Portrait 3:4 | En place     |
+| Univers, appartement       | `univers-appartement.jpg`                      | Paysage 16:9 | En place     |
+| Univers, bureau            | `univers-bureau.jpg`                           | Paysage 16:9 | En place     |
+| Univers, commerce          | `univers-commerce.jpg`                         | Paysage 16:9 | En place     |
+| Univers, Airbnb            | `univers-airbnb.jpg`                           | Paysage 16:9 | En place     |
+| Univers, industriel        | `univers-industriel.jpg`                       | Paysage 16:9 | En place     |
+| Univers, fin de chantier   | `univers-fin-chantier.jpg`                     | Paysage 16:9 | En place     |
+| Avant / après, séjour      | `avant-apres-sejour-avant.jpg` + `-apres.jpg`  | Paysage 4:3  | En place     |
+| Avant / après, cuisine     | `avant-apres-cuisine-avant.jpg` + `-apres.jpg` | Paysage 4:3  | En place     |
+| Avant / après, sol         | `avant-apres-sol-avant.jpg` + `-apres.jpg`     | Paysage 4:3  | En place     |
+| Cas client, Airbnb         | `cas-airbnb.jpg`                               | Portrait 3:4 | En place     |
+| Cas client, après travaux  | `cas-apres-travaux.jpg`                        | Portrait 3:4 | En place     |
+| Cas client, bureaux        | `cas-bureaux.jpg`                              | Portrait 3:4 | En place     |
+| Bloc contact, véhicule     | `vehicule.jpg`                                 | Paysage 4:3  | En place     |
+| Bloc à propos, équipe      | `equipe.jpg`                                   | Paysage 4:3  | **Manquant** |
+| Matériel professionnel     | `materiel.jpg`                                 | Paysage 4:3  | **Manquant** |
+| Page Meaux                 | `meaux.jpg`                                    | Paysage 16:9 | **Manquant** |
 
 ---
 
-## 2. Règles techniques, valables pour tout le lot
+## 2. Les trois visuels manquants
+
+### 2.1 L'équipe, priorité haute
+
+| Champ  | Valeur                                                                         |
+| ------ | ------------------------------------------------------------------------------ |
+| Format | Paysage 4:3, minimum 1600 × 1200 px                                            |
+| Nom    | `equipe.jpg`                                                                   |
+| Sujet  | L'équipe en tenue, sur un lieu d'intervention. Visages nets, sourires naturels |
+
+C'est le visuel le plus rentable du site. Un visiteur qui voit une vraie équipe identifie une
+entreprise structurée, pas un particulier qui bricole. Aucun autre visuel ne remplit ce rôle.
+
+**Autorisation à recueillir** : toute personne reconnaissable doit signer une autorisation de droit
+à l'image avant publication.
+
+### 2.2 Le matériel
+
+| Champ  | Valeur                                                  |
+| ------ | ------------------------------------------------------- |
+| Format | Paysage 4:3, minimum 1600 × 1200 px                     |
+| Nom    | `materiel.jpg`                                          |
+| Sujet  | Chariot, autolaveuse ou produits professionnels alignés |
+
+Le matériel professionnel distingue visuellement une entreprise d'un service à la personne.
+
+### 2.3 Meaux
+
+| Champ  | Valeur                                                                               |
+| ------ | ------------------------------------------------------------------------------------ |
+| Format | Paysage 16:9, minimum 1600 × 900 px                                                  |
+| Nom    | `meaux.jpg`                                                                          |
+| Sujet  | Un repère identifiable de Meaux : la cathédrale, les bords de Marne, le centre-ville |
+
+Cette photo ancre la page locale et rassure sur la proximité réelle de l'entreprise. C'est la seule
+du lot qui doit impérativement être une **vraie photo** : une vue générée ne ressemblerait à aucun
+lieu réel, et un habitant de Meaux le verrait immédiatement.
+
+---
+
+## 3. Point de vigilance sur le lot actuel
+
+Les 20 visuels en place sont **générés par intelligence artificielle**. Ils sont cohérents,
+correctement cadrés et au bon format, mais ils ne montrent aucune intervention réelle de
+l'entreprise.
+
+Trois conséquences à connaître :
+
+1. **Le logo sur le véhicule n'est pas le vrai logo.** L'image `vehicule.jpg` affiche un logotype
+   inventé, « MS Nettoyage » en lettres bleues avec une virgule graphique, qui ne correspond pas au
+   monogramme MS du site. Un visiteur attentif voit l'incohérence. À reprendre en priorité, soit par
+   retouche du visuel, soit par une photo du véritable utilitaire.
+2. **Les comparatifs avant / après ne documentent aucun chantier réel.** Tant que la section affiche
+   des visuels générés, elle illustre une promesse plutôt qu'elle ne prouve un résultat. Les
+   remplacer par de vraies paires reste l'action qui augmente le plus la crédibilité du site.
+3. **Aucune contrainte légale n'est enfreinte** par ces images tant qu'elles illustrent une
+   prestation sans prétendre documenter une intervention précise. En revanche, les présenter comme
+   des réalisations de l'entreprise le serait.
+
+Les 14 photos réellement fournies par le client sont conservées dans `design/photos-client/`. Elles
+ne sont plus affichées, car toutes en portrait 9:16 et prises dans un seul lieu, mais elles restent
+la seule matière authentique disponible.
+
+---
+
+## 4. Règles techniques, valables pour toute nouvelle photo
 
 | Critère           | Consigne                                                                        |
 | ----------------- | ------------------------------------------------------------------------------- |
 | Format de fichier | JPEG qualité 85, ou WebP. Le site reconvertit automatiquement en AVIF/WebP      |
-| Largeur minimale  | 2000 px sur le grand côté                                                       |
-| Poids             | Moins de 600 Ko par fichier avant intégration                                   |
+| Largeur minimale  | 1600 px sur le grand côté, 2000 px de préférence                                |
+| Poids             | Moins de 400 Ko par fichier après compression                                   |
 | Colorimétrie      | Balance des blancs neutre, pas de dominante jaune ni bleue                      |
 | Retouche          | Correction d'exposition et de perspective autorisée, pas de suppression d'objet |
 | Nommage           | Minuscules, sans accent ni espace, mots séparés par des tirets                  |
@@ -67,137 +123,19 @@ avec chambres, dortoir, salles de bains, cuisine collective, salle de séminaire
 5. **Un point de netteté clair**, pas de flou de bougé.
 6. Éviter le grand-angle du téléphone à moins de 1 m d'un mur : il courbe les perspectives.
 
----
+### Cas particulier des paires avant / après
 
-## 3. Photos à produire
-
-### 3.1 Visuel principal, en haut de page
-
-| Champ    | Valeur                                                                   |
-| -------- | ------------------------------------------------------------------------ |
-| Quantité | 1                                                                        |
-| Format   | Portrait 4:5, minimum 1600 × 2000 px                                     |
-| Sujet    | Un intérieur clair et impeccable, lumière naturelle, profondeur de champ |
-| Nom      | `hero-accueil.jpg`                                                       |
-
-C'est la première image vue par le visiteur. Elle doit donner une impression d'espace, de clarté et
-de calme. Un séjour ou une grande salle de bains conviennent mieux qu'une chambre.
-
-### 3.2 Bandeau d'expertise, mosaïque de 3 photos
-
-| Champ    | Valeur                                                  |
-| -------- | ------------------------------------------------------- |
-| Quantité | 3                                                       |
-| Format   | Portrait 3:4, minimum 1200 × 1600 px                    |
-| Noms     | `expertise-1.jpg`, `expertise-2.jpg`, `expertise-3.jpg` |
-
-Les trois s'affichent côte à côte, légèrement inclinées. Elles doivent se répondre visuellement.
-
-1. Une intervenante en train de nettoyer une vitre ou une surface, gestes visibles.
-2. Un lit fait au carré, serviettes pliées.
-3. Un espace de travail propre, bureau ou salle de réunion.
-
-### 3.3 Univers d'intervention, 6 vignettes
-
-| Champ    | Valeur                                  |
-| -------- | --------------------------------------- |
-| Quantité | 6                                       |
-| Format   | **Paysage 16:9**, minimum 1600 × 900 px |
-
-| Fichier                    | Sujet attendu                                             |
-| -------------------------- | --------------------------------------------------------- |
-| `univers-appartement.jpg`  | Séjour d'appartement rangé, lumière du jour               |
-| `univers-bureau.jpg`       | Open space ou bureau, postes dégagés, corbeilles vidées   |
-| `univers-commerce.jpg`     | Boutique ou vitrine, sol brillant, vitrage sans trace     |
-| `univers-airbnb.jpg`       | Chambre prête à l'arrivée, lit fait, serviettes disposées |
-| `univers-industriel.jpg`   | Entrepôt ou atelier, sol dégagé et propre                 |
-| `univers-fin-chantier.jpg` | Pièce rénovée, débarrassée, prête à livrer                |
-
-### 3.4 Comparatifs avant / après, 3 paires
-
-| Champ    | Valeur                              |
-| -------- | ----------------------------------- |
-| Quantité | 6 photos, soit 3 paires             |
-| Format   | Paysage 4:3, minimum 1600 × 1200 px |
-
-**La contrainte principale est le cadrage identique.** Les deux prises de vue doivent être faites
-du même point, à la même hauteur, avec la même focale et si possible la même lumière. Repérer la
-position au sol avant de commencer, ou marquer l'emplacement du trépied.
-
-| Paire | Fichiers                                                          | Sujet                                          |
-| ----- | ----------------------------------------------------------------- | ---------------------------------------------- |
-| 1     | `avant-apres-sejour-avant.jpg` / `avant-apres-sejour-apres.jpg`   | Pièce en fin de chantier, puis livrée          |
-| 2     | `avant-apres-cuisine-avant.jpg` / `avant-apres-cuisine-apres.jpg` | Cuisine encrassée, puis dégraissée             |
-| 3     | `avant-apres-sol-avant.jpg` / `avant-apres-sol-apres.jpg`         | Carrelage terne et joints noircis, puis traité |
+Les deux prises de vue doivent être faites **du même point, à la même hauteur, avec la même
+focale**, et si possible sous la même lumière. Repérer la position au sol avant de commencer, ou
+marquer l'emplacement du trépied.
 
 Une paire dont une seule photo est fournie est refusée automatiquement par les tests du site : une
 comparaison à moitié illustrée ne démontre rien.
-
-### 3.5 Cas clients, 3 photos
-
-| Champ    | Valeur                               |
-| -------- | ------------------------------------ |
-| Quantité | 3                                    |
-| Format   | Portrait 3:4, minimum 1200 × 1600 px |
-
-| Fichier                 | Sujet                                            |
-| ----------------------- | ------------------------------------------------ |
-| `cas-airbnb.jpg`        | Logement prêt entre deux séjours                 |
-| `cas-apres-travaux.jpg` | Appartement rénové, livré propre                 |
-| `cas-bureaux.jpg`       | Open space en fin de journée, après intervention |
-
-### 3.6 Équipe et entreprise
-
-| Fichier        | Format      | Sujet                                                                          |
-| -------------- | ----------- | ------------------------------------------------------------------------------ |
-| `equipe.jpg`   | Paysage 4:3 | L'équipe en tenue, sur un lieu d'intervention. Visages nets, sourires naturels |
-| `vehicule.jpg` | Paysage 4:3 | L'utilitaire de l'entreprise, marquage visible, de trois quarts avant          |
-| `materiel.jpg` | Paysage 4:3 | Chariot, autolaveuse ou produits professionnels alignés                        |
-
-Ces trois photos sont les plus rentables du lot. Un visiteur qui voit une vraie équipe et un vrai
-véhicule identifie une entreprise structurée, pas un particulier qui bricole.
-
-**Autorisation à recueillir** : toute personne reconnaissable doit signer une autorisation de droit
-à l'image avant publication.
-
-### 3.7 Meaux
-
-| Fichier     | Format       | Sujet                                                                                |
-| ----------- | ------------ | ------------------------------------------------------------------------------------ |
-| `meaux.jpg` | Paysage 16:9 | Un repère identifiable de Meaux : la cathédrale, les bords de Marne, le centre-ville |
-
-Cette photo ancre la page locale. Elle rassure le visiteur sur la proximité réelle de l'entreprise.
-
----
-
-## 4. Récapitulatif
-
-| Lot                        | Nombre | Format dominant | Priorité |
-| -------------------------- | ------ | --------------- | -------- |
-| Visuel principal           | 1      | Portrait 4:5    | Haute    |
-| Mosaïque d'expertise       | 3      | Portrait 3:4    | Haute    |
-| Univers d'intervention     | 6      | Paysage 16:9    | Haute    |
-| Avant / après              | 6      | Paysage 4:3     | Haute    |
-| Cas clients                | 3      | Portrait 3:4    | Moyenne  |
-| Équipe, véhicule, matériel | 3      | Paysage 4:3     | Haute    |
-| Meaux                      | 1      | Paysage 16:9    | Moyenne  |
-| **Total**                  | **23** |                 |          |
-
-### Si le budget impose de choisir
-
-Trois lots suffisent pour un site crédible :
-
-1. **Équipe, véhicule, matériel** (3 photos) : la preuve que l'entreprise existe.
-2. **Avant / après** (6 photos) : la preuve que le travail est fait.
-3. **Univers d'intervention** (6 photos) : la preuve que l'entreprise couvre le besoin du visiteur.
-
-Le reste peut attendre : les photos déjà fournies couvrent temporairement le visuel principal et la
-mosaïque d'expertise.
 
 ---
 
 ## 5. Livraison
 
-Déposer les fichiers dans `public/images/`, en respectant exactement les noms indiqués ci-dessus.
-Chaque emplacement non pourvu affiche un aplat graphique aux couleurs de la marque, jamais une
-image cassée : le site reste présentable pendant toute la durée de production.
+Déposer les fichiers dans `public/images/`, en respectant exactement les noms indiqués. Chaque
+emplacement non pourvu affiche un aplat graphique aux couleurs de la marque, jamais une image
+cassée : le site reste présentable pendant toute la durée de production.

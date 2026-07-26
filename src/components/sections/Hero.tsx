@@ -56,8 +56,8 @@ export function Hero() {
         </div>
 
         <MediaSlot
-          src="/images/salle-de-bain-baignoire-ilot.jpeg"
-          alt="Grande salle de bains lumineuse remise en état par MS Nettoyage"
+          src="/images/hero-accueil.jpg"
+          alt="Séjour lumineux et impeccable après le passage de MS Nettoyage"
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="aspect-4/3 rounded-2xl lg:aspect-4/5"

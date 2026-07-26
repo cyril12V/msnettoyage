@@ -46,6 +46,7 @@ export function CtaDevis({
           >
             {avecVisuel ? (
               <MediaSlot
+                src="/images/vehicule.jpg"
                 alt={`Véhicule utilitaire ${site.name}`}
                 className="hidden min-h-56 rounded-2xl sm:block"
                 sizes="(max-width: 1024px) 50vw, 25vw"

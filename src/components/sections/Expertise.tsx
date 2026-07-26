@@ -6,16 +6,16 @@ import { services } from "@/data/services";
 /** Les trois visuels de la mosaïque, du plus grand au plus petit. */
 const visuels = [
   {
-    src: "/images/chambre-lit-double-prepare.jpeg",
+    src: "/images/expertise-vitre.jpg",
+    alt: "Intervenante MS Nettoyage nettoyant une baie vitrée",
+  },
+  {
+    src: "/images/expertise-lit-prepare.jpg",
     alt: "Chambre préparée, lit fait et serviettes disposées",
   },
   {
-    src: "/images/salle-de-bain-douche-italienne.jpeg",
-    alt: "Salle de bains nettoyée, douche italienne sans trace",
-  },
-  {
-    src: "/images/cuisine-equipee-buanderie.jpeg",
-    alt: "Cuisine équipée dégraissée après intervention",
+    src: "/images/expertise-salle-reunion.jpg",
+    alt: "Salle de réunion entretenue, table dégagée",
   },
 ] as const;
 

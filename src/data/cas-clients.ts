@@ -34,7 +34,7 @@ export const casClients: readonly CasClient[] = [
       { valeur: "5 étoiles", libelle: "Avis voyageurs" },
     ],
     photo: "Chambre d'un logement Airbnb prête pour l'arrivée",
-    src: "/images/dortoir-trois-lits-charpente.jpeg",
+    src: "/images/cas-airbnb.jpg",
   },
   {
     id: "remise-en-etat",
@@ -45,7 +45,7 @@ export const casClients: readonly CasClient[] = [
       { valeur: "3 passes", libelle: "Lavage des sols" },
     ],
     photo: "Appartement rénové, livré propre",
-    src: "/images/salle-de-bain-combles-velux.jpeg",
+    src: "/images/cas-apres-travaux.jpg",
   },
   {
     id: "entretien-bureaux",
@@ -56,5 +56,6 @@ export const casClients: readonly CasClient[] = [
       { valeur: "Après 19 h", libelle: "Créneau d'intervention" },
     ],
     photo: "Open space propre en fin de journée",
+    src: "/images/cas-bureaux.jpg",
   },
 ] as const;

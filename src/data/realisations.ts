@@ -27,21 +27,27 @@ export const realisations: readonly Realisation[] = [
   {
     id: "sejour-apres-travaux",
     titre: "Séjour après travaux",
-    avant: "Pièce en fin de chantier, poussière de plâtre et protections au sol",
+    avant: "Pièce en fin de chantier, voile de plâtre sur le carrelage",
     apres: "Même pièce livrée, sols lavés et vitres nettoyées",
+    avantSrc: "/images/avant-apres-sejour-avant.jpg",
+    apresSrc: "/images/avant-apres-sejour-apres.jpg",
     principale: true,
   },
   {
     id: "cuisine",
     titre: "Cuisine",
-    avant: "Cuisine encrassée, plan de travail et crédence marqués",
-    apres: "Cuisine dégraissée, inox et crédence remis à neuf",
+    avant: "Crédence et hotte encrassées par la graisse de cuisson",
+    apres: "Crédence et hotte dégraissées, inox remis à neuf",
+    avantSrc: "/images/avant-apres-cuisine-avant.jpg",
+    apresSrc: "/images/avant-apres-cuisine-apres.jpg",
   },
   {
     id: "sol-carrele",
     titre: "Sol carrelé",
-    avant: "Carrelage terne, joints noircis",
+    avant: "Carrelage terne et joints noircis",
     apres: "Carrelage détaché, joints éclaircis",
+    avantSrc: "/images/avant-apres-sol-avant.jpg",
+    apresSrc: "/images/avant-apres-sol-apres.jpg",
   },
 ] as const;
 
