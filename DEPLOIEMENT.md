@@ -68,21 +68,32 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
 
 ## 1. Informations à récupérer auprès du client (BLOQUANT)
 
-Ces champs sont vides dans `src/lib/site.ts`. Tant qu'ils le sont, la page **Mentions légales**
-affiche « Information à compléter » en rouge, ce qui est visible par tous.
+Ces champs vivent dans `src/lib/site.ts`, bloc `legal`. Tant qu'ils sont vides, la page **Mentions
+légales** affiche « Information à compléter » en rouge, ce qui est visible par tous les visiteurs.
 
 Les mentions légales sont obligatoires (art. 6-III de la LCEN). Leur absence est passible d'une
 amende pouvant atteindre 75 000 € pour une personne morale.
 
-- [ ] **Forme juridique** : SASU, EURL, auto-entrepreneur… → `legal.formeJuridique`
-- [ ] **SIRET** (14 chiffres) → `legal.siret`
-- [ ] **RCS** : ville + numéro d'immatriculation → `legal.rcs`
-- [ ] **N° TVA intracommunautaire** : si assujetti → `legal.tvaIntracommunautaire`
-- [ ] **Capital social** : si société → `legal.capitalSocial`
-- [ ] **Directeur de la publication** : nom du gérant → `legal.directeurPublication`
-- [ ] **Assurance RC professionnelle** : assureur + n° de contrat → `legal.assuranceRcPro`
-- [ ] **Adresse du siège** → `address.streetAddress`
-      _Tant qu'elle est vide, le JSON-LD omet la rue plutôt que d'en publier une fausse._
+### Reçu du client le 26 juillet 2026, déjà saisi
+
+- [x] **SIRET** : 944 486 562 00019. Clé de contrôle vérifiée, un test la revalide à chaque build.
+- [x] **Adresse du siège** : 2 square Courbet, 77100 Meaux. Publiée sur cette page et transmise à
+      Google dans le JSON-LD `PostalAddress`.
+- [x] **Responsable de la publication** : Mezouar Sabri.
+- [x] **Capital social** : sans objet pour un entrepreneur individuel, affiché comme tel.
+
+### Reste à obtenir
+
+- [ ] **Forme juridique** → `legal.formeJuridique`
+      Laissée vide à la demande du client, qui prépare un passage en SARL. **La mention reste
+      obligatoire** et la page affiche un encart rouge visible par tous. En attendant le changement
+      de statut, la valeur exacte est « Entrepreneur individuel (EI) ».
+- [ ] **RCS ou RM** : ville et numéro d'immatriculation → `legal.rcs`
+- [ ] **TVA intracommunautaire** si assujetti → `legal.tvaIntracommunautaire`
+      En franchise en base, saisir plutôt « TVA non applicable, article 293 B du CGI ».
+- [ ] **Assurance responsabilité civile professionnelle** : assureur et numéro de contrat →
+      `legal.assuranceRcPro`. Le site affirme que le personnel est « déclaré et assuré » : cette
+      affirmation doit pouvoir être justifiée.
 
 ### À confirmer également
 

@@ -100,7 +100,7 @@ export default function Page() {
             <h2>Propriété intellectuelle</h2>
             <p>
               L&apos;ensemble des contenus présents sur {siteUrl}, à savoir les textes, visuels,
-              logo, arborescence et mise en forme, est la propriété de {site.legalName} ou fait
+              logo, arborescence et mise en forme, est la propriété de {site.legalName}, ou fait
               l&apos;objet d&apos;une autorisation d&apos;utilisation. Toute reproduction,
               représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable
               est interdite et constitue une contrefaçon au sens des articles L335-2 et suivants du
