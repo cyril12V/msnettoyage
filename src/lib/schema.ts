@@ -1,5 +1,5 @@
 import { faq } from "@/data/faq";
-import type { Service } from "@/data/services";
+import { services, type Service } from "@/data/services";
 import { zones } from "@/data/zones";
 import { absoluteUrl, site } from "@/lib/site";
 

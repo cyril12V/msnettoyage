@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { entrepriseJsonLd } from "@/lib/schema";
+import { entrepriseJsonLd, siteWebJsonLd } from "@/lib/schema";
 import { site, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -99,7 +99,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Footer />
         <MobileCallBar />
 
-        <JsonLd data={entrepriseJsonLd()} />
+        <JsonLd data={[entrepriseJsonLd(), siteWebJsonLd()]} />
       </body>
     </html>
   );
