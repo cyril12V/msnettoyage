@@ -15,12 +15,13 @@ export function Hero() {
     <section id="accueil" className="scroll-mt-20 border-b border-line-soft bg-white">
       <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20">
         <div className="flex animate-[var(--animate-fade-up)] flex-col">
-          <p className="text-sm font-semibold text-brand">
-            {`${site.address.city} et toute l'Île-de-France`}
-          </p>
-
-          <h1 className="mt-4 text-[2.6rem] leading-[1.05] font-bold tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.4rem]">
-            Entreprise de nettoyage en <span className="text-brand">Île-de-France</span> et à{" "}
+          {/*
+            « Île-de-France » ne doit jamais se couper sur ses traits d'union :
+            une coupure y laisse un « Île-de- » orphelin en fin de ligne.
+          */}
+          <h1 className="text-[2.6rem] leading-[1.05] font-bold tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.4rem]">
+            Entreprise de nettoyage en{" "}
+            <span className="whitespace-nowrap text-brand">Île-de-France</span> et à{" "}
             {site.address.city}
           </h1>
 
