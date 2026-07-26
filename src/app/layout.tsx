@@ -51,6 +51,20 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   formatDetection: { telephone: true, email: true, address: false },
+
+  /**
+   * Codes de validation de propriété, à coller depuis Search Console et Bing
+   * Webmaster Tools. La méthode par balise `meta` évite de déposer un fichier à
+   * la racine et survit à tous les redéploiements.
+   *
+   * Les variables absentes ne produisent aucune balise.
+   */
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 
 export const viewport: Viewport = {

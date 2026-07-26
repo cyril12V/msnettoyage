@@ -41,7 +41,22 @@ function reseauxSociaux(): string[] {
   return urls.filter((url) => url.length > 0);
 }
 
-/** Fiche entreprise, à inclure une seule fois, dans le layout racine. */
+/** Lien Google Maps construit à partir de l'adresse publiée. */
+function lienCarte(): string {
+  const adresse = [site.address.streetAddress, site.address.postalCode, site.address.city]
+    .filter(Boolean)
+    .join(" ");
+
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adresse)}`;
+}
+
+/**
+ * Fiche entreprise, à inclure une seule fois, dans le layout racine.
+ *
+ * C'est le bloc que Google exploite pour le pack local et que les moteurs
+ * génératifs citent en priorité : il concentre tout ce qui identifie
+ * l'entreprise, sa zone et ce qu'elle propose.
+ */
 export function entrepriseJsonLd(): JsonLdObject {
   const sameAs = reseauxSociaux();
 
@@ -52,13 +67,28 @@ export function entrepriseJsonLd(): JsonLdObject {
     name: site.name,
     legalName: site.legalName,
     description: site.description,
+    slogan: site.tagline,
     url: site.url,
     telephone: site.contact.phone,
     email: site.contact.email,
-    image: absoluteUrl("/opengraph-image"),
+    // Déclarer les dimensions évite à Google de télécharger l'image pour les deviner.
+    image: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/opengraph-image"),
+      width: 1200,
+      height: 630,
+    },
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/logo-ms-nettoyage.png"),
+      width: 546,
+      height: 271,
+    },
     priceRange: "€€",
     currenciesAccepted: "EUR",
+    paymentAccepted: "Virement bancaire, chèque, espèces",
     address: adressePostale(),
+    hasMap: lienCarte(),
     geo: {
       "@type": "GeoCoordinates",
       latitude: site.geo.latitude,
@@ -68,6 +98,17 @@ export function entrepriseJsonLd(): JsonLdObject {
       { "@type": "AdministrativeArea", name: "Île-de-France" },
       ...zones.map((zone) => ({ "@type": "City" as const, name: zone.name })),
     ],
+    // Domaines d'expertise : ce sont les intitulés que les moteurs génératifs
+    // rapprochent d'une question posée en langage naturel.
+    knowsAbout: services.map((service) => service.shortName),
+    makesOffer: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.lede,
+      },
+    })),
     openingHoursSpecification: site.openingHours.map((creneau) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: creneau.days,
@@ -75,6 +116,25 @@ export function entrepriseJsonLd(): JsonLdObject {
       closes: creneau.closes,
     })),
     ...(sameAs.length > 0 ? { sameAs } : {}),
+  };
+}
+
+/**
+ * Identité du site lui-même, distincte de l'entreprise qu'il présente.
+ *
+ * Google s'en sert pour rattacher toutes les pages à une même entité et pour
+ * afficher le nom du site plutôt que le nom de domaine dans les résultats.
+ */
+export function siteWebJsonLd(): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#site`,
+    name: site.name,
+    alternateName: `${site.name} ${site.address.city}`,
+    url: site.url,
+    inLanguage: site.lang,
+    publisher: { "@id": idEntreprise },
   };
 }
 
