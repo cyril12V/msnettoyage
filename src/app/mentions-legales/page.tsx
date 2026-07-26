@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { buildMetadata } from "@/lib/seo";
-import { mailtoHref, site, siteUrl, telHref } from "@/lib/site";
+import { mailtoHref, SANS_OBJET, site, siteUrl, telHref } from "@/lib/site";
 
 const fil = [
   { label: "Accueil", href: "/" },
@@ -18,17 +18,21 @@ export const metadata: Metadata = buildMetadata({
 });
 
 /**
- * Affiche une information légale, ou signale visiblement qu'elle manque.
+ * Affiche une information légale.
  *
  * Ces mentions sont obligatoires (art. 6-III de la LCEN) : un champ vide doit
- * sauter aux yeux plutôt que disparaître silencieusement de la page.
+ * sauter aux yeux plutôt que disparaître silencieusement de la page. Une mention
+ * qui ne s'applique pas au statut de l'entreprise s'affiche en revanche
+ * sobrement, sans alerte : elle n'appelle aucune action.
  */
 function InfoLegale({ label, valeur }: { label: string; valeur: string }) {
+  const sansObjet = valeur === SANS_OBJET;
+
   return (
     <li>
       <span className="text-ink font-semibold">{label} :</span>{" "}
       {valeur ? (
-        <span>{valeur}</span>
+        <span className={sansObjet ? "text-muted-light" : undefined}>{valeur}</span>
       ) : (
         <span className="bg-danger/10 text-danger rounded px-1.5 py-0.5">
           Information à compléter

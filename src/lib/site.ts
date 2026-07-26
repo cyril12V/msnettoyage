@@ -12,6 +12,12 @@
 
 const RAW_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.msnettoyage.fr";
 
+/**
+ * Marque une mention légale qui ne s'applique pas au statut de l'entreprise,
+ * par opposition à une information simplement manquante.
+ */
+export const SANS_OBJET = "Sans objet";
+
 /** URL canonique sans slash final, quel que soit le format saisi en variable d'env. */
 export const siteUrl = RAW_SITE_URL.replace(/\/+$/, "");
 
@@ -38,12 +44,14 @@ export const site = {
   },
 
   /**
-   * Adresse postale. `streetAddress` est volontairement vide : l'adresse exacte
-   * n'a pas été communiquée. Le JSON-LD l'omet tant qu'elle est vide plutôt que
-   * de publier une adresse inventée.
+   * Adresse postale, communiquée par le client le 26 juillet 2026.
+   *
+   * Elle est publiée sur les mentions légales, où elle est obligatoire, et
+   * transmise à Google dans le JSON-LD `PostalAddress`. Le NAP est donc complet :
+   * il doit être repris à l'identique sur la fiche Google Business Profile.
    */
   address: {
-    streetAddress: "",
+    streetAddress: "2 square Courbet",
     postalCode: "77100",
     city: "Meaux",
     region: "Île-de-France",
@@ -76,15 +84,26 @@ export const site = {
 
   /**
    * Informations légales obligatoires sur les mentions légales (art. 6-III LCEN).
-   * Laisser vide affiche « Information à compléter » sur la page dédiée.
+   *
+   * Trois états possibles pour chaque champ :
+   *  - une valeur, affichée telle quelle ;
+   *  - `SANS_OBJET`, affiché en gris, pour ce qui ne s'applique pas au statut ;
+   *  - une chaîne vide, signalée en rouge sur la page comme information manquante.
    */
   legal: {
+    /**
+     * Vide à la demande du client, le 26 juillet 2026 : il est aujourd'hui
+     * auto-entrepreneur et prépare un passage en SARL. La mention reste pourtant
+     * obligatoire, et « Entrepreneur individuel (EI) » serait la valeur exacte
+     * en attendant le changement de statut.
+     */
     formeJuridique: "",
-    siret: "",
+    siret: "944 486 562 00019",
     rcs: "",
     tvaIntracommunautaire: "",
-    capitalSocial: "",
-    directeurPublication: "",
+    /** Un entrepreneur individuel n'a pas de capital social. */
+    capitalSocial: SANS_OBJET,
+    directeurPublication: "Mezouar Sabri",
     assuranceRcPro: "",
     hebergeur: {
       name: "Vercel Inc.",

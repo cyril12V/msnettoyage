@@ -219,6 +219,46 @@ describe("témoignages", () => {
   });
 });
 
+/**
+ * Contrôle de Luhn appliqué au SIREN et au SIRET.
+ *
+ * Les deux numéros portent une clé de contrôle : une faute de frappe change la
+ * somme et devient détectable sans rien interroger d'extérieur.
+ */
+function luhnValide(numero: string): boolean {
+  const chiffres = numero.replace(/\s/g, "").split("").map(Number);
+
+  const somme = chiffres.reduce((total, chiffre, index) => {
+    // Les positions paires en partant de la gauche sont doublées.
+    if ((index + 1) % 2 !== 0) return total + chiffre;
+    const double = chiffre * 2;
+    return total + (double > 9 ? double - 9 : double);
+  }, 0);
+
+  return somme % 10 === 0;
+}
+
+describe("mentions légales", () => {
+  it("expose un SIRET à 14 chiffres dont la clé est correcte", () => {
+    const siret = site.legal.siret.replace(/\s/g, "");
+
+    expect(siret, "SIRET absent").not.toBe("");
+    expect(siret).toMatch(/^\d{14}$/);
+    expect(luhnValide(siret), "clé de contrôle du SIRET invalide").toBe(true);
+    expect(luhnValide(siret.slice(0, 9)), "clé de contrôle du SIREN invalide").toBe(true);
+  });
+
+  it("publie une adresse de siège complète", () => {
+    expect(site.address.streetAddress, "rue du siège absente").not.toBe("");
+    expect(site.address.postalCode).toMatch(/^\d{5}$/);
+    expect(site.address.city).not.toBe("");
+  });
+
+  it("désigne un responsable de la publication", () => {
+    expect(site.legal.directeurPublication).not.toBe("");
+  });
+});
+
 describe("configuration du site", () => {
   it("expose un téléphone au format E.164", () => {
     expect(site.contact.phone).toMatch(/^\+33[1-9]\d{8}$/);
