@@ -10,7 +10,7 @@ import { contactSchema, DELAI_MINIMAL_SOUMISSION_MS } from "@/schemas/contact";
  * Défenses appliquées, dans cet ordre :
  *  1. limitation de débit par IP ;
  *  2. rejet des corps trop volumineux ;
- *  3. validation Zod stricte — aucun champ inconnu n'est transmis plus loin ;
+ *  3. validation Zod stricte, aucun champ inconnu n'est transmis plus loin ;
  *  4. leurre anti-robot (honeypot) et contrôle de vitesse de soumission.
  *
  * Les réponses d'erreur ne divulguent jamais d'information technique : le

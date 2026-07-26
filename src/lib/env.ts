@@ -6,7 +6,7 @@ import { z } from "zod";
  *
  * La validation est volontairement PARESSEUSE : elle s'exécute à la première
  * requête, pas à l'import. Un `next build` sur une machine sans secrets doit
- * réussir — c'est le cas sur Vercel, où les variables ne sont injectées qu'au
+ * réussir, c'est le cas sur Vercel, où les variables ne sont injectées qu'au
  * runtime pour les fonctions serveur.
  *
  * Ces valeurs ne sont jamais exposées au client : ce module importe

@@ -1,4 +1,4 @@
-# Suivi — MS Nettoyage
+# Suivi, MS Nettoyage
 
 ## Tâche : création du site vitrine (25 juillet 2026)
 
@@ -7,7 +7,7 @@
 - [x] Archivage de la maquette et du flyer dans `design/`
 - [x] Initialisation Next.js 16 + TypeScript strict + Tailwind v4
 - [x] Configuration : ESLint (zéro `any`, zéro `console`), Prettier, Vitest, en-têtes de sécurité
-- [x] `src/lib/site.ts` — source unique du NAP et des mentions légales
+- [x] `src/lib/site.ts`, source unique du NAP et des mentions légales
 - [x] Données métier : 7 prestations, 9 zones d'intervention, 12 questions de FAQ
 - [x] Design system : tokens Tailwind, `Icon` (30 icônes inlinées), `Button`, `Field`, `Card`,
       `Section`, `Container`, `MediaSlot`
@@ -46,5 +46,5 @@ Ce qui a bien marché :
 - Lire la documentation embarquée de Next.js 16 avant de coder : les `params` asynchrones et la
   suppression de `next lint` auraient produit du code faux.
 
-Ce qui reste ouvert : voir la checklist de `DEPLOIEMENT.md` — informations légales, photos,
+Ce qui reste ouvert : voir la checklist de `DEPLOIEMENT.md`, informations légales, photos,
 avis clients, configuration DNS Resend, fiche Google Business Profile.

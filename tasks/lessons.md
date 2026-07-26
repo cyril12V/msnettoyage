@@ -1,10 +1,10 @@
-# Leçons — MS Nettoyage
+# Leçons, MS Nettoyage
 
 _Lu au début de chaque session. Une entrée = une erreur commise et la règle qui en découle._
 
 ---
 
-## 2026-07-25 — Ne pas coder Next.js de mémoire
+## 2026-07-25, Ne pas coder Next.js de mémoire
 
 **Contexte.** `create-next-app` a installé Next.js **16.2.12**, pas la 15 supposée. Le scaffold
 affiche d'ailleurs un avertissement explicite : « This is NOT the Next.js you know ».
@@ -14,7 +14,7 @@ affiche d'ailleurs un avertissement explicite : « This is NOT the Next.js you k
 
 **Ce qui a changé en 16 et qui aurait cassé le code :**
 
-- `params` et `searchParams` sont des `Promise` — l'accès synchrone est **supprimé**, plus
+- `params` et `searchParams` sont des `Promise`, l'accès synchrone est **supprimé**, plus
   seulement déprécié.
 - Idem pour les props de `opengraph-image`, `icon`, `apple-icon`.
 - `next lint` est supprimé : appeler `eslint` directement.
@@ -28,7 +28,7 @@ fait autorité, pas la version supposée.
 
 ---
 
-## 2026-07-25 — Un honeypot ne doit pas échouer à la validation
+## 2026-07-25, Un honeypot ne doit pas échouer à la validation
 
 **Erreur.** Le champ leurre était déclaré `z.string().max(0)`. Rempli, il produisait une **422**
 accompagnée du message Zod par défaut, en anglais : `Too big: expected string to have <=0
@@ -41,17 +41,17 @@ une interface entièrement française.
 qui l'écarte en répondant **200 « Demande enregistrée »** sans rien envoyer.
 
 **Règle.** Un piège anti-robot doit être indiscernable d'un succès. Et tout message d'erreur d'un
-schéma de validation destiné à l'utilisateur porte un `message` explicite — les valeurs par défaut
+schéma de validation destiné à l'utilisateur porte un `message` explicite, les valeurs par défaut
 d'une librairie ne sont jamais traduites.
 
 ---
 
-## 2026-07-25 — `setState` dans un effet pour réagir à la navigation
+## 2026-07-25, `setState` dans un effet pour réagir à la navigation
 
 **Erreur.** Le menu mobile se fermait via `useEffect(() => setMenuOuvert(false), [pathname])`.
 ESLint (`react-hooks/set-state-in-effect`) l'a rejeté : cascade de rendus inutile.
 
-**Correction.** Fermer le menu dans le `onClick` des liens — l'événement qui provoque réellement
+**Correction.** Fermer le menu dans le `onClick` des liens, l'événement qui provoque réellement
 la fermeture.
 
 **Règle.** Un effet synchronise React avec un système **externe**. Réagir à un événement
@@ -59,7 +59,7 @@ utilisateur se fait dans le gestionnaire d'événement, pas dans un effet.
 
 ---
 
-## 2026-07-25 — `role="alert"` sur chaque champ en erreur
+## 2026-07-25, `role="alert"` sur chaque champ en erreur
 
 **Erreur.** Chaque message d'erreur de champ portait `role="alert"`. Résultat : plusieurs régions
 d'alerte simultanées, annoncées en rafale par les lecteurs d'écran, et des tests incapables de
@@ -73,15 +73,15 @@ s'associent à leur champ, elles ne s'annoncent pas d'elles-mêmes.
 
 ---
 
-## 2026-07-25 — `ImageResponse` n'est pas un moteur de rendu HTML
+## 2026-07-25, `ImageResponse` n'est pas un moteur de rendu HTML
 
 **Erreur.** Le build a échoué sur `/opengraph-image` :
 `Expected <div> to have explicit "display: flex" ... if it has more than one child node`.
 
-La cause : un `<div>` contenant `{ville} ({cp}) · texte {variable}` — soit plusieurs nœuds enfants
+La cause : un `<div>` contenant `{ville} ({cp}) · texte {variable}`, soit plusieurs nœuds enfants
 aux yeux de satori, alors que cela ressemble à une simple ligne de texte.
 
 **Correction.** Un unique littéral de gabarit comme enfant.
 
 **Règle.** Dans `ImageResponse` : flexbox uniquement (pas de grid), et tout élément à plus d'un
-enfant — **les fragments de texte comptent** — déclare `display: flex`.
+enfant, **les fragments de texte comptent** : déclare `display: flex`.

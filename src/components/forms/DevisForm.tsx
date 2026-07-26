@@ -175,7 +175,7 @@ export function DevisForm({ prestationParDefaut, className, id }: DevisFormProps
       <div>
         <h2 className="text-ink text-lg font-bold tracking-tight uppercase">Demander un devis</h2>
         <p className="text-muted mt-1.5 text-sm">
-          Gratuit et sans engagement — réponse sous {site.delaiReponse}.
+          Gratuit et sans engagement, réponse sous {site.delaiReponse}.
         </p>
       </div>
 

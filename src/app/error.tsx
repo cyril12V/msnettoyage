@@ -14,8 +14,8 @@ type ErrorProps = {
 /**
  * Écran d'erreur générique.
  *
- * Aucun détail technique n'est montré au visiteur : seul le `digest` — un
- * identifiant opaque produit par Next.js — est journalisé, ce qui permet de
+ * Aucun détail technique n'est montré au visiteur : seul le `digest`, un
+ * identifiant opaque produit par Next.js, est journalisé, ce qui permet de
  * retrouver la trace complète côté serveur sans rien divulguer côté client.
  */
 export default function Error({ error, reset }: ErrorProps) {

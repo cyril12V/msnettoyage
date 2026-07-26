@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * dessinées sur une grille 24×24 et héritent de `currentColor`.
  */
 
-/** Icônes au trait — épaisseur 1.5, sans remplissage. */
+/** Icônes au trait, épaisseur 1.5, sans remplissage. */
 const strokeIcons = {
   calendar: (
     <>
@@ -138,7 +138,7 @@ const strokeIcons = {
   ),
 } satisfies Record<string, ReactElement>;
 
-/** Icônes pleines — remplissage `currentColor`, sans contour. */
+/** Icônes pleines, remplissage `currentColor`, sans contour. */
 const filledIcons = {
   checkCircle: (
     <>

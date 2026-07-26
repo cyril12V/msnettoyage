@@ -34,7 +34,7 @@ function cleIdempotence(donnees: ContactFormValues, maintenant: number): string 
 }
 
 function construireSujet(donnees: ContactFormValues): string {
-  return `Demande de devis — ${libellePrestation(donnees.prestation)} — ${donnees.ville} — ${donnees.nom}`;
+  return `Demande de devis : ${libellePrestation(donnees.prestation)}, ${donnees.ville}, ${donnees.nom}`;
 }
 
 function construireTexte(donnees: ContactFormValues): string {
@@ -124,7 +124,7 @@ export type ResultatEnvoi = { ok: true; id: string } | { ok: false; erreur: stri
  * Transmet une demande de devis à la boîte de l'entreprise.
  *
  * `replyTo` pointe sur l'email du client : répondre depuis la boîte de
- * réception suffit, sans copier-coller d'adresse — c'est ce qui réduit le plus
+ * réception suffit, sans copier-coller d'adresse, c'est ce qui réduit le plus
  * le délai de réponse en pratique.
  */
 export async function envoyerDemandeDevis(

@@ -11,16 +11,16 @@
  *
  * Pour saisir un vrai avis : reprendre le texte mot pour mot, se limiter au
  * prénom et à l'initiale du nom, indiquer la commune. Passer `demonstration` à
- * `false` une fois la section alimentée par de vrais avis — le bandeau
+ * `false` une fois la section alimentée par de vrais avis, le bandeau
  * d'avertissement affiché en développement disparaît alors.
  */
 
 export type Temoignage = {
   /** Texte de l'avis, repris sans reformulation. */
   citation: string;
-  /** Prénom et initiale — jamais le nom complet sans accord écrit. */
+  /** Prénom et initiale, jamais le nom complet sans accord écrit. */
   auteur: string;
-  /** Qualité de l'auteur et commune, par exemple « Propriétaire — Meaux ». */
+  /** Qualité de l'auteur et commune, par exemple « Propriétaire, Meaux ». */
   contexte: string;
   /** Note sur 5, si l'avis provient d'une plateforme qui en attribue une. */
   note?: 1 | 2 | 3 | 4 | 5;
@@ -36,21 +36,21 @@ export const temoignages: readonly Temoignage[] = [
     citation:
       "Service irréprochable pour nos locations Airbnb. L'équipe est rapide, fiable et toujours aux petits soins.",
     auteur: "Laura M.",
-    contexte: "Propriétaire — Paris 11ᵉ",
+    contexte: "Propriétaire, Paris 11ᵉ",
     note: 5,
   },
   {
     citation:
       "Nos bureaux sont toujours impeccables. Réactivité et professionnalisme au rendez-vous.",
     auteur: "Julien D.",
-    contexte: "Responsable administratif — Meaux",
+    contexte: "Responsable administratif, Meaux",
     note: 5,
   },
   {
     citation:
       "Après notre chantier, l'appartement était comme neuf. Travail minutieux et très sérieux.",
     auteur: "Sophie T.",
-    contexte: "Architecte d'intérieur — Seine-et-Marne",
+    contexte: "Architecte d'intérieur, Seine-et-Marne",
     note: 5,
   },
 ] as const;

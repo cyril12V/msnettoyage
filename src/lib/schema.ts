@@ -41,7 +41,7 @@ function reseauxSociaux(): string[] {
   return urls.filter((url) => url.length > 0);
 }
 
-/** Fiche entreprise — à inclure une seule fois, dans le layout racine. */
+/** Fiche entreprise, à inclure une seule fois, dans le layout racine. */
 export function entrepriseJsonLd(): JsonLdObject {
   const sameAs = reseauxSociaux();
 
@@ -83,7 +83,7 @@ export function catalogueServicesJsonLd(services: readonly Service[]): JsonLdObj
   return {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
-    name: `Prestations de nettoyage — ${site.name}`,
+    name: `Prestations de nettoyage, ${site.name}`,
     url: absoluteUrl("/services"),
     itemListElement: services.map((service, index) => ({
       "@type": "Offer",
@@ -112,7 +112,7 @@ export function serviceJsonLd(service: Service): JsonLdObject {
     areaServed: { "@type": "AdministrativeArea", name: "Île-de-France" },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: `Prestations incluses — ${service.shortName}`,
+      name: `Prestations incluses : ${service.shortName}`,
       itemListElement: service.includes.map((intitule, index) => ({
         "@type": "Offer",
         position: index + 1,
@@ -125,7 +125,7 @@ export function serviceJsonLd(service: Service): JsonLdObject {
 /**
  * Questions/réponses extractibles.
  *
- * @param items Sous-ensemble de la FAQ effectivement affiché sur la page —
+ * @param items Sous-ensemble de la FAQ effectivement affiché sur la page :
  * publier un JSON-LD qui ne correspond pas au contenu visible est considéré
  * comme du balisage trompeur par Google.
  */

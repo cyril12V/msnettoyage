@@ -88,11 +88,11 @@ export default function Page() {
             </p>
             <ul>
               <li>
-                <strong>{site.legal.hebergeur.name}</strong> — hébergement du site et exécution du
+                <strong>{site.legal.hebergeur.name}</strong> : hébergement du site et exécution du
                 formulaire.
               </li>
               <li>
-                <strong>Resend</strong> — acheminement de l&apos;email de notification vers notre
+                <strong>Resend</strong> : acheminement de l&apos;email de notification vers notre
                 boîte de réception.
               </li>
             </ul>
@@ -111,7 +111,7 @@ export default function Page() {
             <p>
               Pour les exercer, écrivez à <a href={mailtoHref}>{site.contact.email}</a> en précisant
               votre demande. Une réponse vous est apportée sous un mois. Si vous estimez, après nous
-              avoir contactés, que vos droits ne sont pas respectés, vous pouvez saisir la CNIL —{" "}
+              avoir contactés, que vos droits ne sont pas respectés, vous pouvez saisir la CNIL,{" "}
               <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">
                 www.cnil.fr
               </a>

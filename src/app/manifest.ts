@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${site.name} — Nettoyage professionnel en Île-de-France`,
+    name: `${site.name}, nettoyage professionnel en Île-de-France`,
     short_name: site.name,
     description: site.description,
     start_url: "/",

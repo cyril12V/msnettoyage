@@ -17,7 +17,7 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} — Nettoyage professionnel en Île-de-France et à Meaux`,
+    default: `${site.name}, nettoyage professionnel en Île-de-France et à Meaux`,
     // Chaque page fournit son titre court ; le suffixe assure la cohérence en SERP.
     template: `%s | ${site.name}`,
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: siteUrl,
     siteName: site.name,
-    title: `${site.name} — Nettoyage professionnel en Île-de-France`,
+    title: `${site.name}, nettoyage professionnel en Île-de-France`,
     description: site.description,
   },
   twitter: { card: "summary_large_image" },

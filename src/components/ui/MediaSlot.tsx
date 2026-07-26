@@ -5,7 +5,7 @@ type MediaSlotProps = {
   /**
    * Chemin de la photo dans `public/`, par exemple `/images/hero-salon.jpg`.
    * Tant qu'il vaut `undefined`, un aplat graphique de marque est rendu à la
-   * place — jamais une image cassée.
+   * place, jamais une image cassée.
    */
   src?: string;
   /** Texte alternatif. Obligatoire : il décrit la photo attendue. */

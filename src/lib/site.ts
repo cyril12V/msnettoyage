@@ -7,7 +7,7 @@
  *
  * Les champs marqués « à compléter » sont obligatoires légalement (mentions
  * légales) ou fortement recommandés (horaires, note Google) et doivent être
- * renseignés avant la mise en ligne — voir la checklist de DEPLOIEMENT.md.
+ * renseignés avant la mise en ligne, voir la checklist de DEPLOIEMENT.md.
  */
 
 const RAW_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.msnettoyage.fr";
@@ -26,7 +26,7 @@ export const site = {
   lang: "fr",
 
   contact: {
-    /** Format E.164 — utilisé par les liens tel: et le JSON-LD. */
+    /** Format E.164, utilisé par les liens tel: et le JSON-LD. */
     phone: "+33620460703",
     /** Format d'affichage français. */
     phoneDisplay: "06 20 46 07 03",
@@ -50,7 +50,7 @@ export const site = {
     country: "FR",
   },
 
-  /** Coordonnées du centre-ville de Meaux — point de référence du rayon d'intervention. */
+  /** Coordonnées du centre-ville de Meaux, point de référence du rayon d'intervention. */
   geo: {
     latitude: 48.9603,
     longitude: 2.8783,
@@ -93,7 +93,7 @@ export const site = {
     },
   },
 
-  /** Réseaux sociaux — laisser vide masque l'icône correspondante. */
+  /** Réseaux sociaux : laisser vide masque l'icône correspondante. */
   social: {
     facebook: "",
     instagram: "",

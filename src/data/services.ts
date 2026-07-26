@@ -32,8 +32,8 @@ export const services: readonly Service[] = [
     shortName: "Entretien régulier",
     listLabel: "Entretien régulier (quotidien, hebdomadaire, mensuel)",
     title: "Entretien régulier de locaux en Île-de-France",
-    lede: "L'entretien régulier est un contrat de nettoyage récurrent — quotidien, hebdomadaire ou mensuel — assuré par la même équipe, selon un cahier des charges défini avec vous.",
-    metaTitle: "Entretien régulier de locaux — Île-de-France | MS Nettoyage",
+    lede: "L'entretien régulier est un contrat de nettoyage récurrent (quotidien, hebdomadaire ou mensuel) assuré par la même équipe, selon un cahier des charges défini avec vous.",
+    metaTitle: "Entretien régulier de locaux en Île-de-France | MS Nettoyage",
     metaDescription:
       "Contrat de nettoyage récurrent en Île-de-France : passage quotidien, hebdomadaire ou mensuel, même équipe à chaque intervention. Devis gratuit sous 24 h.",
     icon: "calendar",
@@ -60,7 +60,7 @@ export const services: readonly Service[] = [
     ],
     body: [
       "Un contrat d'entretien régulier repose sur un cahier des charges écrit : liste des zones, opérations à réaliser, fréquence de chacune et créneau d'intervention. Ce document sert de référence lors des contrôles qualité et évite les malentendus sur ce qui est inclus.",
-      "Nous affectons les mêmes intervenants à votre site. Ils connaissent la configuration des lieux, les codes d'accès, les contraintes de sécurité et les points sensibles — ce qui réduit le temps d'intervention et améliore la régularité du résultat.",
+      "Nous affectons les mêmes intervenants à votre site. Ils connaissent la configuration des lieux, les codes d'accès, les contraintes de sécurité et les points sensibles, ce qui réduit le temps d'intervention et améliore la régularité du résultat.",
       "Les horaires s'adaptent à votre activité : avant l'ouverture, après la fermeture ou pendant les heures creuses. Pour les bureaux, l'intervention en soirée reste la formule la plus courante car elle évite toute gêne pour vos équipes.",
     ],
   },
@@ -70,7 +70,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage en profondeur",
     title: "Nettoyage en profondeur (grand ménage)",
     lede: "Le nettoyage en profondeur est une intervention ponctuelle qui traite ce que l'entretien courant ne couvre pas : détartrage, dégraissage, intérieur des équipements, plinthes, encadrements et zones difficiles d'accès.",
-    metaTitle: "Nettoyage en profondeur — grand ménage | MS Nettoyage",
+    metaTitle: "Nettoyage en profondeur, grand ménage | MS Nettoyage",
     metaDescription:
       "Grand ménage en Île-de-France : dégraissage cuisine, détartrage sanitaires, intérieur des placards et électroménager, plinthes et encadrements. Devis gratuit.",
     icon: "sparkle",
@@ -105,7 +105,7 @@ export const services: readonly Service[] = [
     listLabel: "Remise en état après travaux",
     title: "Remise en état après travaux",
     lede: "La remise en état après travaux est le nettoyage final qui rend un local habitable après une rénovation : élimination des résidus de chantier, des traces de peinture, de colle et d'enduit, et des poussières fines déposées partout.",
-    metaTitle: "Remise en état après travaux — Île-de-France | MS Nettoyage",
+    metaTitle: "Remise en état après travaux en Île-de-France | MS Nettoyage",
     metaDescription:
       "Nettoyage après rénovation en Île-de-France : dépose des traces de peinture, colle et enduit, dépoussiérage complet, vitrerie. Livraison prête à l'emploi.",
     icon: "trowel",
@@ -174,7 +174,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage de bureaux et commerces",
     title: "Nettoyage de bureaux et de commerces",
     lede: "Le nettoyage de bureaux et de commerces couvre l'entretien des espaces de travail et des surfaces recevant du public, en dehors des heures d'activité, avec un niveau d'exigence adapté aux zones vues par vos clients.",
-    metaTitle: "Nettoyage de bureaux et commerces — IDF | MS Nettoyage",
+    metaTitle: "Nettoyage de bureaux et commerces en IDF | MS Nettoyage",
     metaDescription:
       "Entretien de bureaux, boutiques et locaux recevant du public en Île-de-France. Intervention hors heures d'ouverture, équipe déclarée, devis gratuit sous 24 h.",
     icon: "briefcase",
@@ -198,7 +198,7 @@ export const services: readonly Service[] = [
       { label: "Contrôle", value: "Visites qualité planifiées" },
     ],
     body: [
-      "Dans un commerce, la propreté fait partie de l'expérience client au même titre que l'accueil ou la présentation des produits. Une vitrine marquée ou un sanitaire négligé produit un effet disproportionné sur la perception du lieu — c'est souvent ce que les clients retiennent.",
+      "Dans un commerce, la propreté fait partie de l'expérience client au même titre que l'accueil ou la présentation des produits. Une vitrine marquée ou un sanitaire négligé produit un effet disproportionné sur la perception du lieu, c'est souvent ce que les clients retiennent.",
       "Dans un bureau, l'enjeu est différent : il porte sur l'hygiène collective et sur le confort quotidien des équipes. La désinfection des points de contact et l'entretien des espaces de restauration sont les deux postes qui pèsent le plus.",
       "Nous intervenons en dehors des heures d'activité. Les accès, alarmes et consignes de sécurité sont formalisés au démarrage du contrat, et nos intervenants sont déclarés et couverts par notre responsabilité civile professionnelle.",
     ],
@@ -234,7 +234,7 @@ export const services: readonly Service[] = [
     ],
     body: [
       "Un site industriel impose ses propres règles : port des équipements de protection, zones interdites, plages horaires compatibles avec la production, procédures de consignation. Nous partons de votre protocole existant plutôt que d'imposer le nôtre.",
-      "Les salissures rencontrées — huile, graisse technique, poussière métallique, résidus de production — ne se traitent pas avec des produits d'entretien courants. Le choix du dégraissant et de la méthode se décide sur site, après constat.",
+      "Les salissures rencontrées (huile, graisse technique, poussière métallique, résidus de production) ne se traitent pas avec des produits d'entretien courants. Le choix du dégraissant et de la méthode se décide sur site, après constat.",
       "Un chiffrage sérieux suppose une visite préalable. La surface seule ne dit rien du temps réel d'intervention : la hauteur sous plafond, l'encombrement et la nature des salissures pèsent davantage.",
     ],
   },
@@ -244,7 +244,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage de fin de chantier",
     title: "Nettoyage de fin de chantier",
     lede: "Le nettoyage de fin de chantier est la première passe réalisée juste après les travaux : évacuation des déchets résiduels, dépoussiérage grossier et dégagement des surfaces, avant la remise en état finale.",
-    metaTitle: "Nettoyage de fin de chantier — Île-de-France | MS Nettoyage",
+    metaTitle: "Nettoyage de fin de chantier en Île-de-France | MS Nettoyage",
     metaDescription:
       "Nettoyage de fin de chantier en Île-de-France : évacuation des résidus, dépoussiérage grossier, dégagement des surfaces avant livraison. Intervention rapide.",
     icon: "hardhat",
@@ -280,5 +280,5 @@ export function getService(slug: string): Service | undefined {
   return services.find((service) => service.slug === slug);
 }
 
-/** Slugs de tous les services — utilisé par `generateStaticParams` et le sitemap. */
+/** Slugs de tous les services, utilisés par `generateStaticParams` et le sitemap. */
 export const serviceSlugs = services.map((service) => service.slug);

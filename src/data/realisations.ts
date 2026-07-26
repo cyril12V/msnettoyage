@@ -6,7 +6,7 @@
  * « après » prise sous un autre angle ne prouve rien et se voit immédiatement.
  *
  * Tant que `avantSrc` et `apresSrc` sont vides, les emplacements affichent un
- * aplat de marque — la section reste en place, prête à recevoir les visuels.
+ * aplat de marque, la section reste en place, prête à recevoir les visuels.
  */
 
 export type Realisation = {

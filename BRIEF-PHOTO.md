@@ -1,4 +1,4 @@
-# Brief photo, site MS Nettoyage
+# Brief photo
 
 Document destiné au graphiste et au photographe. Il liste chaque visuel attendu, son format, son
 cadrage et l'emplacement qu'il occupe sur le site.

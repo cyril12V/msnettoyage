@@ -10,7 +10,7 @@ export type Zone = {
   lede: string;
   /** Communes réellement desservies, listées pour la recherche locale. */
   communes: readonly string[];
-  /** Contenu spécifique à la zone — jamais dupliqué d'une page à l'autre. */
+  /** Contenu spécifique à la zone, jamais dupliqué d'une page à l'autre. */
   body: readonly string[];
   /** Slugs des services les plus demandés sur cette zone. */
   servicesPhares: readonly string[];
@@ -150,7 +150,7 @@ export const zones: readonly Zone[] = [
     ],
     body: [
       "Le Val-de-Marne mêle habitat pavillonnaire, copropriétés et zones tertiaires. Nos interventions y sont réparties entre l'entretien de parties communes, le grand ménage de logements et l'entretien de commerces de proximité.",
-      "Les communes de la boucle de la Marne — Saint-Maur, Nogent, Champigny — concentrent une demande de nettoyage en profondeur et de remise en état liée aux rénovations de maisons individuelles.",
+      "Les communes de la boucle de la Marne (Saint-Maur, Nogent, Champigny) concentrent une demande de nettoyage en profondeur et de remise en état liée aux rénovations de maisons individuelles.",
       "Nous établissons les devis pour les copropriétés sur la base d'un état des lieux des parties communes : surfaces, nombre de niveaux, présence d'ascenseur et fréquence souhaitée.",
     ],
     servicesPhares: ["entretien-regulier", "nettoyage-en-profondeur", "bureaux-et-commerces"],
@@ -258,7 +258,7 @@ export const zones: readonly Zone[] = [
     ],
     body: [
       "Les Yvelines constituent la limite ouest de notre zone d'intervention. Comme pour l'Essonne, nous y travaillons sur planification et non en intervention d'urgence.",
-      "Le parc immobilier ancien de Versailles et Saint-Germain-en-Laye génère une demande spécifique de nettoyage en profondeur et de remise en état après rénovation, sur des supports parfois délicats — parquets anciens, marbre, boiseries — qui imposent des produits adaptés.",
+      "Le parc immobilier ancien de Versailles et Saint-Germain-en-Laye génère une demande spécifique de nettoyage en profondeur et de remise en état après rénovation, sur des supports parfois délicats (parquets anciens, marbre, boiseries) qui imposent des produits adaptés.",
       "Pour toute demande dans ce secteur, nous confirmons la faisabilité et le créneau avant d'établir le devis, afin de ne jamais engager un délai que nous ne pourrions pas tenir.",
     ],
     servicesPhares: [
@@ -274,5 +274,5 @@ export function getZone(slug: string): Zone | undefined {
   return zones.find((zone) => zone.slug === slug);
 }
 
-/** Slugs de toutes les zones — utilisé par `generateStaticParams` et le sitemap. */
+/** Slugs de toutes les zones, utilisés par `generateStaticParams` et le sitemap. */
 export const zoneSlugs = zones.map((zone) => zone.slug);

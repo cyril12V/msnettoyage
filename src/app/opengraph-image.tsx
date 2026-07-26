@@ -7,13 +7,13 @@ import { site } from "@/lib/site";
  * Image de partage social, générée au build.
  *
  * `ImageResponse` ne rend qu'un sous-ensemble de CSS : flexbox uniquement, pas
- * de grid, et tout élément à plusieurs enfants — les fragments de texte comptent —
+ * de grid, et tout élément à plusieurs enfants (les fragments de texte comptent)
  * doit déclarer `display: flex`.
  *
  * Le logo est lu depuis le disque et intégré en data URI : les URL distantes ne
  * sont pas résolues au moment de la génération statique.
  */
-export const alt = `${site.name} — Nettoyage professionnel en Île-de-France et à ${site.address.city}`;
+export const alt = `${site.name}, nettoyage professionnel en Île-de-France et à ${site.address.city}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

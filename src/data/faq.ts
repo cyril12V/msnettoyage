@@ -36,7 +36,7 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Faut-il fournir les produits et le matériel ?",
     answer:
-      "Non. MS Nettoyage vient avec son propre matériel et ses produits professionnels, adaptés à chaque type de support. Si vous souhaitez que des produits spécifiques soient utilisés — allergies, label écologique, protocole interne — il suffit de le préciser lors de la demande de devis.",
+      "Non. MS Nettoyage vient avec son propre matériel et ses produits professionnels, adaptés à chaque type de support. Si vous souhaitez que des produits spécifiques soient utilisés (allergies, label écologique, protocole interne), il suffit de le préciser lors de la demande de devis.",
     categorie: "Prestations",
   },
   {
@@ -73,7 +73,7 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Intervenez-vous pour des particuliers ou uniquement pour des professionnels ?",
     answer:
-      "Les deux. MS Nettoyage travaille pour des particuliers — grand ménage, remise en état après travaux, ménage de location saisonnière — comme pour des professionnels : bureaux, commerces, copropriétés, entrepôts et locaux techniques.",
+      "Les deux. MS Nettoyage travaille pour des particuliers (grand ménage, remise en état après travaux, ménage de location saisonnière) comme pour des professionnels : bureaux, commerces, copropriétés, entrepôts et locaux techniques.",
     categorie: "Prestations",
   },
   {
@@ -90,7 +90,7 @@ export const faq: readonly FaqItem[] = [
   },
 ] as const;
 
-/** Sous-ensemble affiché sur la page d'accueil — les questions les plus fréquentes. */
+/** Sous-ensemble affiché sur la page d'accueil : les questions les plus fréquentes. */
 export const faqAccueil = faq.slice(0, 6);
 
 /** Catégories dans l'ordre d'affichage de la page /faq. */

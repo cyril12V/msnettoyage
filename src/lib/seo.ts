@@ -6,7 +6,7 @@ type MetadataOptions = {
   description: string;
   /** Chemin interne de la page, par exemple `/services/entretien-regulier`. */
   path: string;
-  /** Empêche l'indexation — réservé aux pages sans valeur pour la recherche. */
+  /** Empêche l'indexation, réservé aux pages sans valeur pour la recherche. */
   noindex?: boolean;
 };
 
@@ -14,7 +14,7 @@ type MetadataOptions = {
  * Construit les métadonnées d'une page.
  *
  * Centraliser la construction garantit qu'aucune page ne parte en production
- * sans URL canonique ni carte Open Graph — les deux oublis les plus coûteux en
+ * sans URL canonique ni carte Open Graph, les deux oublis les plus coûteux en
  * référencement.
  */
 export function buildMetadata({ title, description, path, noindex }: MetadataOptions): Metadata {

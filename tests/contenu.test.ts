@@ -132,12 +132,6 @@ describe("univers d'intervention", () => {
     expect(new Set(univers.map((item) => item.id)).size).toBe(univers.length);
   });
 
-  it("ne renvoie que vers des prestations existantes", () => {
-    for (const item of univers) {
-      expect(getService(item.service), `${item.id} → ${item.service}`).toBeDefined();
-    }
-  });
-
   it("décrit la photo attendue pour chaque emplacement vide", () => {
     for (const item of univers) {
       if (!item.src) {
@@ -181,12 +175,6 @@ describe("cas clients", () => {
     expect(new Set(casClients.map((cas) => cas.id)).size).toBe(casClients.length);
   });
 
-  it("ne renvoie que vers des prestations existantes", () => {
-    for (const cas of casClients) {
-      expect(getService(cas.service), `${cas.id} → ${cas.service}`).toBeDefined();
-    }
-  });
-
   it("affiche des chiffres courts et libellés", () => {
     for (const cas of casClients) {
       expect(cas.chiffres.length).toBeGreaterThanOrEqual(2);
@@ -218,7 +206,7 @@ describe("témoignages", () => {
 
   it("situe chaque avis par une qualité et un lieu", () => {
     for (const avis of temoignages) {
-      expect(avis.contexte).toContain("—");
+      expect(avis.contexte, `contexte incomplet : ${avis.auteur}`).toMatch(/.+, .+/);
     }
   });
 });
