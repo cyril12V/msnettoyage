@@ -12,9 +12,12 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#0b4edb",
     lang: site.lang,
     categories: ["business", "productivity"],
+    // Servies depuis `public/` : les icônes de `src/app/` sont exposées sous une
+    // URL hachée, qu'un manifeste statique ne peut pas référencer.
     icons: [
-      { src: "/icon", sizes: "192x192", type: "image/png" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icon-maskable.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }
