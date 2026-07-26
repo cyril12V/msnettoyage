@@ -66,10 +66,32 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
 
+  /**
+   * Le site tient sur une seule page. Ces redirections rattrapent les adresses
+   * des sections quand elles sont saisies à la main ou partagées en lien.
+   * L'ancre n'est jamais transmise au serveur : la redirection la réintroduit.
+   */
   async redirects() {
+    const versAncre = (source: string, ancre: string) => ({
+      source,
+      destination: `/#${ancre}`,
+      permanent: true,
+    });
+
     return [
-      { source: "/contact", destination: "/devis", permanent: true },
-      { source: "/nos-services", destination: "/services", permanent: true },
+      versAncre("/services", "services"),
+      versAncre("/services/:slug", "services"),
+      versAncre("/nos-services", "services"),
+      versAncre("/univers", "univers"),
+      versAncre("/realisations", "realisations"),
+      versAncre("/cas-clients", "cas"),
+      versAncre("/a-propos", "apropos"),
+      versAncre("/faq", "faq"),
+      versAncre("/devis", "contact"),
+      versAncre("/contact", "contact"),
+      { source: "/zones-d-intervention", destination: "/meaux", permanent: true },
+      { source: "/zones-d-intervention/meaux", destination: "/meaux", permanent: true },
+      { source: "/zones-d-intervention/:slug", destination: "/#contact", permanent: true },
     ];
   },
 };

@@ -12,6 +12,9 @@ import { cn } from "@/lib/utils";
 const controlClasses =
   "w-full rounded-md border bg-white px-3.5 text-sm text-ink transition-colors placeholder:text-muted-light focus:border-brand focus:outline-none";
 
+/** Un libellé de champ se lit en casse normale : c'est un mot, pas une étiquette décorative. */
+const labelClasses = "text-sm font-medium text-ink-soft";
+
 type FieldShellProps = {
   id: string;
   label: string;
@@ -25,25 +28,22 @@ type FieldShellProps = {
 function FieldShell({ id, label, error, hint, required, className, children }: FieldShellProps) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label
-        htmlFor={id}
-        className="text-ink-soft text-xs font-semibold tracking-[0.04em] uppercase"
-      >
+      <label htmlFor={id} className={labelClasses}>
         {label}
         {required ? (
-          <span className="text-brand ml-1" aria-hidden="true">
+          <span className="ml-1 text-brand" aria-hidden="true">
             *
           </span>
         ) : null}
       </label>
       {children}
       {hint && !error ? (
-        <p id={`${id}-hint`} className="text-muted text-xs">
+        <p id={`${id}-hint`} className="text-xs text-muted">
           {hint}
         </p>
       ) : null}
       {error ? (
-        <p id={`${id}-error`} className="text-danger text-xs font-medium">
+        <p id={`${id}-error`} className="text-xs font-medium text-danger">
           {error}
         </p>
       ) : null}
@@ -180,10 +180,7 @@ export function TextareaField({
   );
 }
 
-type CheckboxFieldProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  "id" | "className" | "type"
-> & {
+type CheckboxFieldProps = Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "className" | "type"> & {
   label: ReactNode;
   error?: string;
   className?: string;
@@ -202,17 +199,17 @@ export function CheckboxField({ label, error, className, required, ...props }: C
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
           className={cn(
-            "accent-brand mt-0.5 size-4.5 shrink-0 rounded border",
+            "mt-0.5 size-4.5 shrink-0 rounded border accent-brand",
             error ? "border-danger" : "border-line",
           )}
           {...props}
         />
-        <label htmlFor={id} className="text-muted text-xs leading-relaxed">
+        <label htmlFor={id} className="text-xs leading-relaxed text-muted">
           {label}
         </label>
       </div>
       {error ? (
-        <p id={`${id}-error`} className="text-danger text-xs font-medium">
+        <p id={`${id}-error`} className="text-xs font-medium text-danger">
           {error}
         </p>
       ) : null}

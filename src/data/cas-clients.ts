@@ -1,8 +1,9 @@
 /**
- * Cas clients — exemples de missions réalisées.
+ * Cas clients, exemples de missions réalisées.
  *
- * ⚠️ CONTENU DE DÉMONSTRATION, repris de la maquette. Les intitulés décrivent
- * des missions plausibles, mais les chiffres affichés n'ont pas été mesurés.
+ * ATTENTION : contenu de démonstration, repris de la maquette. Les intitulés
+ * décrivent des missions plausibles, mais les chiffres affichés n'ont pas été
+ * mesurés.
  *
  * Avant la mise en ligne, chaque cas doit être remplacé par une mission
  * réellement effectuée, avec des chiffres vérifiables. Annoncer « 100 % de
@@ -21,8 +22,6 @@ export type CasClient = {
   /** Description de la photo attendue. */
   photo: string;
   src?: string;
-  /** Prestation concernée, pour le lien contextuel. */
-  service: string;
 };
 
 export const casClients: readonly CasClient[] = [
@@ -32,10 +31,10 @@ export const casClients: readonly CasClient[] = [
     description: "Nettoyage complet et préparation d'un T2 entre deux locations.",
     chiffres: [
       { valeur: "4 h", libelle: "Délai moyen" },
-      { valeur: "5★", libelle: "Avis voyageurs" },
+      { valeur: "5 étoiles", libelle: "Avis voyageurs" },
     ],
     photo: "Chambre d'un logement Airbnb prête pour l'arrivée",
-    service: "menage-airbnb",
+    src: "/images/dortoir-trois-lits-charpente.jpeg",
   },
   {
     id: "remise-en-etat",
@@ -46,17 +45,16 @@ export const casClients: readonly CasClient[] = [
       { valeur: "3 passes", libelle: "Lavage des sols" },
     ],
     photo: "Appartement rénové, livré propre",
-    service: "remise-en-etat-apres-travaux",
+    src: "/images/salle-de-bain-combles-velux.jpeg",
   },
   {
     id: "entretien-bureaux",
     titre: "Entretien de bureaux",
     description: "Entretien régulier de 200 m² de bureaux, trois fois par semaine.",
     chiffres: [
-      { valeur: "3×/sem.", libelle: "Fréquence" },
+      { valeur: "3 fois", libelle: "Par semaine" },
       { valeur: "Après 19 h", libelle: "Créneau d'intervention" },
     ],
     photo: "Open space propre en fin de journée",
-    service: "bureaux-et-commerces",
   },
 ] as const;

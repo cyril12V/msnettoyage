@@ -1,11 +1,19 @@
 import { Container } from "@/components/ui/Container";
 import { MediaSlot } from "@/components/ui/MediaSlot";
+import { Section, SectionHeading } from "@/components/ui/Section";
 import { realisationPrincipale, realisationsSecondaires } from "@/data/realisations";
 import type { Realisation } from "@/data/realisations";
 import { cn } from "@/lib/utils";
 
 type EtiquetteProps = { children: string; ton: "avant" | "apres" };
 
+/**
+ * Étiquette « avant » ou « après ».
+ *
+ * Seul endroit du site où les capitales sont conservées : sur un mot de cinq
+ * lettres posé en surimpression, elles servent à distinguer l'étiquette de la
+ * photo, pas à décorer un titre.
+ */
 function Etiquette({ children, ton }: EtiquetteProps) {
   return (
     <span
@@ -55,16 +63,13 @@ function Paire({ realisation, taille }: PaireProps) {
           <Etiquette ton="apres">Après</Etiquette>
         </div>
 
-        {/* Séparateur central, repris de la maquette. */}
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-white"
         />
       </div>
 
-      <figcaption className="text-ink-soft mt-3 text-sm font-medium">
-        {realisation.titre}
-      </figcaption>
+      <figcaption className="mt-3 text-sm font-medium text-ink-soft">{realisation.titre}</figcaption>
     </figure>
   );
 }
@@ -72,30 +77,21 @@ function Paire({ realisation, taille }: PaireProps) {
 /**
  * Section « Des résultats qui parlent d'eux-mêmes ».
  *
- * Les paires avant/après sont l'argument le plus convaincant d'une entreprise de
- * nettoyage : elles montrent l'écart plutôt que de le décrire. La section reste
- * en place tant que les photos ne sont pas fournies, avec des emplacements
- * décrits, pour que le client sache exactement quoi photographier.
+ * Les paires avant / après sont l'argument le plus convaincant du métier :
+ * elles montrent l'écart plutôt que de le décrire. La section reste en place
+ * tant que les photos ne sont pas fournies, avec des emplacements décrits, pour
+ * que le photographe sache exactement quoi cadrer.
  */
 export function AvantApres() {
   if (!realisationPrincipale) return null;
 
   return (
-    <section id="realisations" className="scroll-mt-20 bg-white py-16 sm:py-20 lg:py-24">
-      <Container className="grid gap-10 lg:grid-cols-[minmax(0,26%)_minmax(0,74%)] lg:gap-12">
-        <div className="flex flex-col gap-4">
-          <p className="text-brand text-xs font-bold tracking-[0.16em] uppercase">Réalisations</p>
-          <h2 className="text-ink text-3xl leading-[1.05] font-bold tracking-tight uppercase sm:text-4xl">
-            Des résultats
-            <br />
-            qui parlent
-            <br />
-            d&apos;eux-mêmes
-          </h2>
-          <p className="text-muted leading-relaxed">
-            Mêmes lieux, même cadrage, avant et après notre passage.
-          </p>
-        </div>
+    <Section id="realisations" tone="white">
+      <Container className="grid gap-10 lg:grid-cols-[minmax(0,28%)_minmax(0,72%)] lg:gap-12">
+        <SectionHeading
+          title="Des résultats qui parlent d'eux-mêmes"
+          description="Mêmes lieux, même cadrage, avant et après notre passage."
+        />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
           <Paire realisation={realisationPrincipale} taille="grande" />
@@ -107,6 +103,6 @@ export function AvantApres() {
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

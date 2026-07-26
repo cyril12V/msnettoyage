@@ -4,35 +4,30 @@ export type NavLink = {
 };
 
 /**
- * Navigation principale — reprise à l'identique de la maquette.
+ * Navigation principale.
  *
- * Deux entrées pointent vers des ancres de la page d'accueil : les univers
- * d'intervention et les cas clients n'ont pas de page dédiée, ils illustrent
- * l'offre plutôt qu'ils ne la décrivent.
+ * Le site tient sur une seule page : chaque entrée pointe vers une ancre.
+ * Les liens sont écrits en absolu (`/#services` et non `#services`) afin de
+ * fonctionner aussi depuis la page Meaux et les pages légales.
  */
 export const mainNav: readonly NavLink[] = [
-  { href: "/", label: "Accueil" },
-  { href: "/services", label: "Nos services" },
+  { href: "/#accueil", label: "Accueil" },
+  { href: "/#services", label: "Nos services" },
   { href: "/#univers", label: "Nos univers" },
-  { href: "/a-propos", label: "À propos" },
+  { href: "/#apropos", label: "À propos" },
   { href: "/#cas", label: "Cas clients" },
-  { href: "/devis", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
-/**
- * Navigation du pied de page.
- *
- * Plus complète que l'en-tête : elle expose les zones d'intervention et la FAQ,
- * deux pages importantes pour le référencement local qui alourdiraient une barre
- * de navigation déjà remplie.
- */
+/** Navigation du pied de page, complétée des pages autonomes. */
 export const footerNav: readonly NavLink[] = [
-  { href: "/", label: "Accueil" },
-  { href: "/services", label: "Nos services" },
-  { href: "/zones-d-intervention", label: "Zones d'intervention" },
-  { href: "/a-propos", label: "À propos" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/devis", label: "Demander un devis" },
+  { href: "/#services", label: "Nos services" },
+  { href: "/#univers", label: "Nos univers" },
+  { href: "/#realisations", label: "Réalisations" },
+  { href: "/#cas", label: "Cas clients" },
+  { href: "/#faq", label: "Questions fréquentes" },
+  { href: "/meaux", label: "Nettoyage à Meaux" },
+  { href: "/#contact", label: "Demander un devis" },
 ] as const;
 
 /** Liens légaux du pied de page. */

@@ -29,7 +29,6 @@ export function Process() {
     <Section tone="surface">
       <Container>
         <SectionHeading
-          eyebrow="Comment ça se passe"
           title="De la demande à l'intervention, en quatre étapes"
           description="Aucun engagement avant la signature du devis, aucun frais de déplacement pour l'établir."
         />
@@ -38,16 +37,16 @@ export function Process() {
           {etapes.map((etape, index) => (
             <li
               key={etape.titre}
-              className="border-line flex flex-col gap-3 rounded-xl border bg-white p-6"
+              className="flex flex-col gap-3 rounded-xl border border-line bg-white p-6"
             >
               <span
                 aria-hidden="true"
-                className="bg-brand inline-flex size-9 items-center justify-center rounded-lg text-sm font-bold text-white"
+                className="inline-flex size-9 items-center justify-center rounded-lg bg-brand text-sm font-bold text-white"
               >
                 {index + 1}
               </span>
-              <h3 className="text-ink text-base font-semibold">{etape.titre}</h3>
-              <p className="text-muted text-sm leading-relaxed">{etape.texte}</p>
+              <h3 className="text-base font-semibold text-ink">{etape.titre}</h3>
+              <p className="text-sm leading-relaxed text-muted">{etape.texte}</p>
             </li>
           ))}
         </ol>

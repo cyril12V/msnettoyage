@@ -36,7 +36,7 @@ export function Section({
     <section
       id={id}
       aria-label={ariaLabel}
-      className={cn(toneClasses[tone], spacingClasses[spacing], className)}
+      className={cn(id && "scroll-mt-20", toneClasses[tone], spacingClasses[spacing], className)}
     >
       {children}
     </section>
@@ -44,20 +44,25 @@ export function Section({
 }
 
 type SectionHeadingProps = {
-  /** Sur-titre en petites capitales, au-dessus du titre. */
-  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   className?: string;
   align?: "left" | "center";
-  /** Niveau de titre — `h2` par défaut, `h1` sur les pages de tête. */
+  /** Niveau de titre. `h2` par défaut. */
   as?: "h1" | "h2";
   /** Inverse les couleurs pour un fond bleu. */
   inverted?: boolean;
 };
 
+/**
+ * Titre de section.
+ *
+ * Volontairement en casse normale. Un titre long tout en capitales perd la
+ * silhouette des mots, que l'œil utilise pour lire vite, et les accents
+ * français (É, À, Î) y sont mal rendus. Les capitales restent réservées aux
+ * étiquettes très courtes.
+ */
 export function SectionHeading({
-  eyebrow,
   title,
   description,
   className,
@@ -67,25 +72,11 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={cn(
-        "flex flex-col gap-4",
-        align === "center" && "items-center text-center",
-        className,
-      )}
+      className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}
     >
-      {eyebrow ? (
-        <p
-          className={cn(
-            "text-xs font-bold tracking-[0.16em] uppercase",
-            inverted ? "text-white/80" : "text-brand",
-          )}
-        >
-          {eyebrow}
-        </p>
-      ) : null}
       <Tag
         className={cn(
-          "text-3xl leading-[1.08] font-bold tracking-tight uppercase sm:text-4xl lg:text-[2.75rem]",
+          "text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl",
           inverted ? "text-white" : "text-ink",
         )}
       >
