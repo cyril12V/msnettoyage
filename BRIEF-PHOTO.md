@@ -1,7 +1,7 @@
 # Brief photo
 
-Document de suivi interne. Il liste ce qui est en place, ce qui manque, et les contraintes de
-production. Le document à transmettre au graphiste est **[BRIEF-3-VISUELS.md](./BRIEF-3-VISUELS.md)**.
+Suivi des visuels du site : ce qui est en place, où chaque fichier est utilisé, et les contraintes à
+respecter pour toute nouvelle photo.
 
 ---
 
@@ -9,61 +9,40 @@ production. Le document à transmettre au graphiste est **[BRIEF-3-VISUELS.md](.
 
 **Tous les emplacements du site sont pourvus.** 21 visuels en place.
 
-| Emplacement                | Fichier                                        | Format       | État            |
-| -------------------------- | ---------------------------------------------- | ------------ | --------------- |
-| Visuel d'accroche          | `hero-accueil.jpg`                             | Portrait 4:5 | En place        |
-| Mosaïque, vitre            | `expertise-vitre.jpg`                          | Portrait 3:4 | En place        |
-| Mosaïque, lit préparé      | `expertise-lit-prepare.jpg`                    | Portrait 3:4 | En place        |
-| Mosaïque, matériel         | `materiel.jpg`                                 | Paysage 4:3  | En place        |
-| Univers, appartement       | `univers-appartement.jpg`                      | Paysage 16:9 | En place        |
-| Univers, bureau            | `univers-bureau.jpg`                           | Paysage 16:9 | En place        |
-| Univers, commerce          | `univers-commerce.jpg`                         | Paysage 16:9 | En place        |
-| Univers, Airbnb            | `univers-airbnb.jpg`                           | Paysage 16:9 | En place        |
-| Univers, industriel        | `univers-industriel.jpg`                       | Paysage 16:9 | En place        |
-| Univers, fin de chantier   | `univers-fin-chantier.jpg`                     | Paysage 16:9 | En place        |
-| Avant / après, séjour      | `avant-apres-sejour-avant.jpg` + `-apres.jpg`  | Paysage 4:3  | En place        |
-| Avant / après, cuisine     | `avant-apres-cuisine-avant.jpg` + `-apres.jpg` | Paysage 4:3  | En place        |
-| Avant / après, sol         | `avant-apres-sol-avant.jpg` + `-apres.jpg`     | Paysage 4:3  | En place        |
-| Cas client, Airbnb         | `cas-airbnb.jpg`                               | Portrait 3:4 | En place        |
-| Cas client, après travaux  | `cas-apres-travaux.jpg`                        | Portrait 3:4 | En place        |
-| Cas client, bureaux        | `cas-bureaux.jpg`                              | Portrait 3:4 | En place        |
-| Bloc contact, véhicule     | `vehicule.jpg`                                 | Paysage 4:3  | En place        |
-| Page Meaux                 | `meaux.jpg`                                    | Paysage 16:9 | **Manquant**    |
-| Sans emplacement, équipe   | `equipe.jpg`                                   | Paysage 4:3  | **Manquant**    |
+| Emplacement               | Fichier                                        | Format       | État     |
+| ------------------------- | ---------------------------------------------- | ------------ | -------- |
+| Visuel d'accroche         | `hero-accueil.jpg`                             | Portrait 4:5 | En place |
+| Mosaïque, vitre           | `expertise-vitre.jpg`                          | Portrait 3:4 | En place |
+| Mosaïque, lit préparé     | `expertise-lit-prepare.jpg`                    | Portrait 3:4 | En place |
+| Mosaïque, matériel        | `materiel.jpg`                                 | Paysage 4:3  | En place |
+| Univers, appartement      | `univers-appartement.jpg`                      | Paysage 16:9 | En place |
+| Univers, bureau           | `univers-bureau.jpg`                           | Paysage 16:9 | En place |
+| Univers, commerce         | `univers-commerce.jpg`                         | Paysage 16:9 | En place |
+| Univers, Airbnb           | `univers-airbnb.jpg`                           | Paysage 16:9 | En place |
+| Univers, industriel       | `univers-industriel.jpg`                       | Paysage 16:9 | En place |
+| Univers, fin de chantier  | `univers-fin-chantier.jpg`                     | Paysage 16:9 | En place |
+| Avant / après, séjour     | `avant-apres-sejour-avant.jpg` + `-apres.jpg`  | Paysage 4:3  | En place |
+| Avant / après, cuisine    | `avant-apres-cuisine-avant.jpg` + `-apres.jpg` | Paysage 4:3  | En place |
+| Avant / après, sol        | `avant-apres-sol-avant.jpg` + `-apres.jpg`     | Paysage 4:3  | En place |
+| Cas client, Airbnb        | `cas-airbnb.jpg`                               | Portrait 3:4 | En place |
+| Cas client, après travaux | `cas-apres-travaux.jpg`                        | Portrait 3:4 | En place |
+| Cas client, bureaux       | `cas-bureaux.jpg`                              | Portrait 3:4 | En place |
+| Bloc contact, véhicule    | `vehicule.jpg`                                 | Paysage 4:3  | En place |
 
+Deux visuels envisagés au départ ont été abandonnés, et le site a été adapté en conséquence :
 
----
+- **`equipe.jpg`**, une photo de l'équipe. Aucun emplacement ne lui était réservé, il n'y a donc
+  rien à combler.
+- **`meaux.jpg`**, une vue de la ville. L'emplacement de la page locale a été remplacé par quatre
+  repères chiffrés : code postal, nombre de communes desservies, absence de frais de déplacement et
+  délai de réponse. Ils informent davantage qu'une vue de ville générique.
 
-## 2. Ce qui reste à obtenir
-
-### 2.1 `equipe.jpg`, priorité la plus haute
-
-L'équipe en tenue, sur un lieu d'intervention réel. C'est le seul visuel qui montrerait des
-personnes réelles. Sans lui, le site reste une suite de belles pièces vides.
-
-Aucun emplacement ne lui est encore réservé dans la mise en page : il sera intégré au bloc de
-présentation de l'entreprise dès sa livraison.
-
-### 2.2 `meaux.jpg`
-
-Un repère identifiable de Meaux, pour la page locale. C'est le seul visuel du site qui doit
-impérativement être une **vraie photographie** : une vue générée ne ressemblerait à aucun lieu
-existant, et un habitant de Meaux le verrait immédiatement.
-
-L'emplacement existe déjà sur la page `/meaux` et affiche pour l'instant un aplat de marque.
-
-### 2.3 Reprise du visuel véhicule
-
-Le visuel d'utilitaire fourni porte un logotype inventé, sans rapport avec le monogramme MS du
-site. Il a donc été **retiré** et remplacé par le chariot de matériel dans le bloc de contact.
-
-Le fichier source est conservé dans `design/references/vehicule-a-retoucher.png`. Le détail de la
-reprise attendue, avec les coordonnées exactes des deux logotypes, est dans
-[BRIEF-3-VISUELS.md](./BRIEF-3-VISUELS.md).
+La salle de réunion (`design/references/expertise-salle-reunion.jpg`) a quitté la mosaïque au profit
+du chariot de matériel : elle faisait doublon avec le visuel « bureau » des univers d'intervention.
 
 ---
 
-## 3. Point de vigilance sur le lot actuel
+## 2. Point de vigilance sur le lot actuel
 
 Les 21 visuels en place sont **générés par intelligence artificielle**. Ils sont cohérents,
 correctement cadrés et au bon format, mais ils ne montrent aucune intervention réelle de
@@ -84,7 +63,7 @@ seule matière authentique disponible.
 
 ---
 
-## 4. Règles techniques, valables pour toute nouvelle photo
+## 3. Règles techniques, valables pour toute nouvelle photo
 
 | Critère           | Consigne                                                                        |
 | ----------------- | ------------------------------------------------------------------------------- |
@@ -117,7 +96,7 @@ comparaison à moitié illustrée ne démontre rien.
 
 ---
 
-## 5. Livraison
+## 4. Livraison
 
 Déposer les fichiers dans `public/images/`, en respectant exactement les noms indiqués. Chaque
 emplacement non pourvu affiche un aplat graphique aux couleurs de la marque, jamais une image

@@ -63,8 +63,6 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
 2. La configuration Resend et DNS, section 4. **Bloquant pour le formulaire.**
 3. Le nom de domaine, section 3.
 4. Les avis et cas clients réels, section 2.
-5. Deux photos, `equipe.jpg` et `meaux.jpg`, décrites dans
-   [BRIEF-3-VISUELS.md](./BRIEF-3-VISUELS.md).
 
 ---
 
@@ -115,19 +113,12 @@ l'article L121-2 du code de la consommation qualifie de pratique commerciale tro
 
 ### Photographies
 
-**21 visuels sont en place.** Le suivi complet est dans [BRIEF-PHOTO.md](./BRIEF-PHOTO.md), et le
-document à transmettre au graphiste dans [BRIEF-3-VISUELS.md](./BRIEF-3-VISUELS.md).
+**Tous les emplacements du site sont pourvus.** Le suivi est dans [BRIEF-PHOTO.md](./BRIEF-PHOTO.md).
 
-- [ ] **`equipe.jpg`**, priorité la plus haute. Le seul visuel qui montrerait des personnes réelles.
-      Recueillir l'autorisation de droit à l'image de chaque personne reconnaissable.
-- [ ] **`meaux.jpg`** pour la page locale. Seul emplacement encore vide sur le site. Doit être une
-      vraie photographie, pas une image générée.
-- [ ] **Reprise du visuel véhicule**, retiré du site car il portait un logotype inventé.
-
-> **Les visuels en place sont générés par intelligence artificielle.** Ils illustrent correctement
-> les prestations, mais aucun ne documente une intervention réelle. Remplacer progressivement les
-> paires avant / après par de vraies photos de chantier reste l'action qui augmente le plus la
-> crédibilité du site.
+> **Les visuels en place sont générés par intelligence artificielle**, à l'exception du logo. Ils
+> illustrent correctement les prestations, mais aucun ne documente une intervention réelle.
+> Remplacer progressivement les paires avant / après par de vraies photos de chantier reste
+> l'action qui augmente le plus la crédibilité du site.
 
 ### Logo
 
