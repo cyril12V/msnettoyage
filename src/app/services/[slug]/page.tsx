@@ -55,7 +55,7 @@ export default async function Page({ params }: PageParams) {
     <>
       <PageHeader eyebrow="Prestation" title={service.title} lede={service.lede} breadcrumbs={fil}>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href="#devis" icon="arrowRight">
+          <Button href="#contact" icon="arrowRight">
             Demander un devis
           </Button>
           <Button

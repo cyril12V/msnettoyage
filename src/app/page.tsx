@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { AvantApres } from "@/components/sections/AvantApres";
+import { CasClients } from "@/components/sections/CasClients";
 import { CtaDevis } from "@/components/sections/CtaDevis";
+import { Expertise } from "@/components/sections/Expertise";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Promesse } from "@/components/sections/Promesse";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Temoignages } from "@/components/sections/Temoignages";
+import { Univers } from "@/components/sections/Univers";
 import { ZonesSection } from "@/components/sections/ZonesSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqAccueil } from "@/data/faq";
@@ -27,17 +30,31 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Page d'accueil.
+ *
+ * L'enchaînement des sections reprend celui de la maquette :
+ * accueil → expertise → univers → réalisations → cas clients → promesse →
+ * avis → contact.
+ *
+ * Trois sections y sont ajoutées — processus, zones d'intervention et FAQ.
+ * Elles portent le référencement local et le balisage `FAQPage`, qui sont
+ * l'objectif premier du site.
+ */
 export default function Page() {
   return (
     <>
       <Hero />
-      <ServicesGrid />
+      <Expertise />
+      <Univers />
+      <AvantApres />
+      <CasClients />
       <Promesse />
-      <Process />
       <Temoignages />
+      <Process />
       <ZonesSection />
       <FaqSection items={faqAccueil} />
-      <CtaDevis />
+      <CtaDevis avecVisuel />
 
       <JsonLd data={[catalogueServicesJsonLd(services), faqJsonLd(faqAccueil)]} />
     </>

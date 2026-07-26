@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { legalNav, mainNav } from "@/data/navigation";
+import { footerNav, legalNav } from "@/data/navigation";
 import { services } from "@/data/services";
 import { zones } from "@/data/zones";
 import { mailtoHref, site, telHref } from "@/lib/site";
@@ -67,12 +67,11 @@ export function Footer() {
           </div>
 
           <FooterColonne titre="Navigation">
-            {mainNav.map((lien) => (
+            {footerNav.map((lien) => (
               <FooterLien key={lien.href} href={lien.href}>
                 {lien.label}
               </FooterLien>
             ))}
-            <FooterLien href="/devis">Demander un devis</FooterLien>
           </FooterColonne>
 
           <FooterColonne titre="Nos prestations">

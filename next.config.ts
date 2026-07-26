@@ -11,6 +11,17 @@ import type { NextConfig } from "next";
  * la seule entrée utilisateur est le formulaire de devis, dont le contenu n'est
  * jamais réaffiché côté client.
  */
+const enDeveloppement = process.env.NODE_ENV === "development";
+
+/**
+ * `'unsafe-eval'` est ajouté au seul environnement de développement : React s'en
+ * sert pour reconstituer les piles d'appel dans l'overlay d'erreur. Le build de
+ * production n'appelle jamais `eval`, la directive n'y est donc pas émise.
+ */
+const scriptSrc = enDeveloppement
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+  : "script-src 'self' 'unsafe-inline'";
+
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -27,7 +38,7 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self' data:",

@@ -62,8 +62,8 @@ export function MediaSlot({
         className="absolute inset-0 [background-image:repeating-linear-gradient(115deg,var(--color-brand)_0_1px,transparent_1px_28px)] opacity-[0.13]"
       />
       {process.env.NODE_ENV === "development" ? (
-        <span className="text-brand-dark/70 absolute inset-x-4 bottom-4 text-[0.7rem] leading-snug font-semibold">
-          Photo à fournir — {alt}
+        <span className="text-brand-dark/70 absolute inset-x-3 bottom-3 line-clamp-2 text-[0.68rem] leading-snug font-semibold">
+          {alt}
         </span>
       ) : null}
     </div>

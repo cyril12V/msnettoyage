@@ -1,12 +1,15 @@
 import { DevisForm } from "@/components/forms/DevisForm";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
+import { MediaSlot } from "@/components/ui/MediaSlot";
 import { mailtoHref, site, telHref } from "@/lib/site";
 
 type CtaDevisProps = {
   titre?: string;
   sousTitre?: string;
   prestationParDefaut?: string;
+  /** Affiche le visuel du véhicule à côté du bloc de coordonnées. */
+  avecVisuel?: boolean;
 };
 
 /** Bloc de conversion : coordonnées à gauche, formulaire de devis à droite. */
@@ -14,11 +17,12 @@ export function CtaDevis({
   titre = "Besoin d'un espace impeccable ?",
   sousTitre,
   prestationParDefaut,
+  avecVisuel = false,
 }: CtaDevisProps) {
   return (
     <section
-      id="devis"
-      className="from-brand-dark via-brand to-brand-dark relative overflow-hidden bg-linear-to-br py-16 sm:py-20"
+      id="contact"
+      className="from-brand-dark via-brand to-brand-dark relative scroll-mt-20 overflow-hidden bg-linear-to-br py-16 sm:py-20"
     >
       <div
         aria-hidden="true"
@@ -35,7 +39,22 @@ export function CtaDevis({
               `Décrivez votre besoin en quelques lignes. Nous revenons vers vous sous ${site.delaiReponse} avec un devis gratuit et sans engagement.`}
           </p>
 
-          <ul className="bg-brand-deep/70 mt-2 flex flex-col gap-5 rounded-2xl p-6">
+          <div
+            className={
+              avecVisuel
+                ? "mt-2 grid items-stretch gap-5 sm:grid-cols-2"
+                : "mt-2 grid items-stretch gap-5"
+            }
+          >
+            {avecVisuel ? (
+              <MediaSlot
+                alt={`Véhicule utilitaire ${site.name}`}
+                className="hidden min-h-56 rounded-2xl sm:block"
+                sizes="(max-width: 1024px) 50vw, 25vw"
+              />
+            ) : null}
+
+            <ul className="bg-brand-deep/70 flex flex-col gap-5 rounded-2xl p-6">
             <li>
               <a href={telHref} className="flex items-center gap-3.5 text-white hover:opacity-80">
                 <Icon name="phone" className="size-5" />
@@ -74,7 +93,8 @@ export function CtaDevis({
                 ))}
               </span>
             </li>
-          </ul>
+            </ul>
+          </div>
         </div>
 
         <DevisForm

@@ -31,7 +31,7 @@ const piliers: readonly { icon: IconName; titre: string; texte: string }[] = [
 
 export function Promesse() {
   return (
-    <Section tone="white">
+    <Section tone="white" id="apropos" className="scroll-mt-20">
       <Container>
         <SectionHeading
           eyebrow="Notre promesse"

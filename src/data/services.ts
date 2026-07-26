@@ -4,6 +4,8 @@ export type Service = {
   slug: string;
   /** Libellé court utilisé dans les cartes, la navigation et le formulaire de devis. */
   shortName: string;
+  /** Intitulé complet de la prestation, tel qu'il apparaît dans la liste d'expertise. */
+  listLabel: string;
   /** Titre H1 de la page dédiée. */
   title: string;
   /**
@@ -28,6 +30,7 @@ export const services: readonly Service[] = [
   {
     slug: "entretien-regulier",
     shortName: "Entretien régulier",
+    listLabel: "Entretien régulier (quotidien, hebdomadaire, mensuel)",
     title: "Entretien régulier de locaux en Île-de-France",
     lede: "L'entretien régulier est un contrat de nettoyage récurrent — quotidien, hebdomadaire ou mensuel — assuré par la même équipe, selon un cahier des charges défini avec vous.",
     metaTitle: "Entretien régulier de locaux — Île-de-France | MS Nettoyage",
@@ -64,6 +67,7 @@ export const services: readonly Service[] = [
   {
     slug: "nettoyage-en-profondeur",
     shortName: "Nettoyage en profondeur",
+    listLabel: "Nettoyage en profondeur",
     title: "Nettoyage en profondeur (grand ménage)",
     lede: "Le nettoyage en profondeur est une intervention ponctuelle qui traite ce que l'entretien courant ne couvre pas : détartrage, dégraissage, intérieur des équipements, plinthes, encadrements et zones difficiles d'accès.",
     metaTitle: "Nettoyage en profondeur — grand ménage | MS Nettoyage",
@@ -98,6 +102,7 @@ export const services: readonly Service[] = [
   {
     slug: "remise-en-etat-apres-travaux",
     shortName: "Remise en état après travaux",
+    listLabel: "Remise en état après travaux",
     title: "Remise en état après travaux",
     lede: "La remise en état après travaux est le nettoyage final qui rend un local habitable après une rénovation : élimination des résidus de chantier, des traces de peinture, de colle et d'enduit, et des poussières fines déposées partout.",
     metaTitle: "Remise en état après travaux — Île-de-France | MS Nettoyage",
@@ -132,6 +137,7 @@ export const services: readonly Service[] = [
   {
     slug: "menage-airbnb",
     shortName: "Ménage Airbnb",
+    listLabel: "Ménage Airbnb & locations saisonnières",
     title: "Ménage Airbnb et locations saisonnières",
     lede: "Le ménage Airbnb est une prestation de rotation entre deux séjours : nettoyage complet du logement, changement du linge, réapprovisionnement des consommables et remise en configuration d'accueil.",
     metaTitle: "Ménage Airbnb et location saisonnière | MS Nettoyage",
@@ -165,6 +171,7 @@ export const services: readonly Service[] = [
   {
     slug: "bureaux-et-commerces",
     shortName: "Bureaux & commerces",
+    listLabel: "Nettoyage de bureaux et commerces",
     title: "Nettoyage de bureaux et de commerces",
     lede: "Le nettoyage de bureaux et de commerces couvre l'entretien des espaces de travail et des surfaces recevant du public, en dehors des heures d'activité, avec un niveau d'exigence adapté aux zones vues par vos clients.",
     metaTitle: "Nettoyage de bureaux et commerces — IDF | MS Nettoyage",
@@ -199,6 +206,7 @@ export const services: readonly Service[] = [
   {
     slug: "nettoyage-industriel",
     shortName: "Nettoyage industriel",
+    listLabel: "Nettoyage industriel et locaux professionnels",
     title: "Nettoyage industriel et locaux professionnels",
     lede: "Le nettoyage industriel s'applique aux entrepôts, ateliers et locaux techniques : grandes surfaces, salissures spécifiques et contraintes d'hygiène et de sécurité propres au site.",
     metaTitle: "Nettoyage industriel et locaux techniques | MS Nettoyage",
@@ -233,6 +241,7 @@ export const services: readonly Service[] = [
   {
     slug: "nettoyage-fin-de-chantier",
     shortName: "Fin de chantier",
+    listLabel: "Nettoyage de fin de chantier",
     title: "Nettoyage de fin de chantier",
     lede: "Le nettoyage de fin de chantier est la première passe réalisée juste après les travaux : évacuation des déchets résiduels, dépoussiérage grossier et dégagement des surfaces, avant la remise en état finale.",
     metaTitle: "Nettoyage de fin de chantier — Île-de-France | MS Nettoyage",

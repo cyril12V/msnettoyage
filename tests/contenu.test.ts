@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
+import { casClients } from "@/data/cas-clients";
 import { faq, faqAccueil, faqCategories } from "@/data/faq";
+import { realisationPrincipale, realisations, realisationsSecondaires } from "@/data/realisations";
 import { getService, services, serviceSlugs } from "@/data/services";
+import { temoignages } from "@/data/temoignages";
+import { univers } from "@/data/univers";
 import { getZone, zones, zoneSlugs } from "@/data/zones";
 import { absoluteUrl, site, siteUrl } from "@/lib/site";
 

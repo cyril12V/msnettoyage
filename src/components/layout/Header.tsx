@@ -11,8 +11,15 @@ import { mainNav } from "@/data/navigation";
 import { site, telHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-/** Une entrée de navigation est active sur sa page et sur ses sous-pages. */
+/**
+ * Une entrée de navigation est active sur sa page et sur ses sous-pages.
+ *
+ * Les liens vers une ancre de la page d'accueil ne sont jamais marqués actifs :
+ * ils partagent le chemin `/`, et les signaler comme tels rendrait deux entrées
+ * actives simultanément.
+ */
 function estActif(pathname: string, href: string): boolean {
+  if (href.includes("#")) return false;
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -42,11 +49,11 @@ export function Header() {
 
   return (
     <header className="border-line-soft sticky top-0 z-50 border-b bg-white/95 backdrop-blur-sm">
-      <Container className="flex h-18 items-center justify-between gap-6">
-        <Logo />
+      <Container className="flex h-20 items-center justify-between gap-6">
+        <Logo priority height={44} />
 
         <nav aria-label="Navigation principale" className="hidden lg:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-7">
             {mainNav.map((lien) => (
               <li key={lien.href}>
                 <Link

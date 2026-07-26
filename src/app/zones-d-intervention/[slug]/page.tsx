@@ -62,7 +62,7 @@ export default async function Page({ params }: PageParams) {
         breadcrumbs={fil}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href="#devis" icon="arrowRight">
+          <Button href="#contact" icon="arrowRight">
             Demander un devis
           </Button>
           <Button href={telHref} variant="secondary" icon="phone" iconPosition="left">
