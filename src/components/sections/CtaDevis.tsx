@@ -46,8 +46,8 @@ export function CtaDevis({
           >
             {avecVisuel ? (
               <MediaSlot
-                src="/images/materiel.jpg"
-                alt="Chariot de ménage professionnel équipé, prêt pour une intervention"
+                src="/images/vehicule.jpg"
+                alt={`Utilitaire ${site.name} aux couleurs de l'entreprise`}
                 className="hidden min-h-56 rounded-2xl sm:block"
                 sizes="(max-width: 1024px) 50vw, 25vw"
               />

@@ -12,7 +12,8 @@ dans **[BRIEF-PHOTO.md](../../BRIEF-PHOTO.md)**, à la racine du projet.
 | `univers-*.jpg`                 | Les 6 vignettes d'univers            | `data/univers.ts`                   |
 | `avant-apres-*-avant/apres.jpg` | Comparatifs de résultats             | `data/realisations.ts`              |
 | `cas-*.jpg`                     | Les 3 cas clients                    | `data/cas-clients.ts`               |
-| `materiel.jpg`                  | Bloc contact, à côté des coordonnées | `components/sections/CtaDevis.tsx`  |
+| `materiel.jpg`                  | Mosaïque de la section services      | `components/sections/Expertise.tsx` |
+| `vehicule.jpg`                  | Bloc contact, à côté des coordonnées | `components/sections/CtaDevis.tsx`  |
 
 ## Remplacer une image
 

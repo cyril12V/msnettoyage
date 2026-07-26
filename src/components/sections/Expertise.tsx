@@ -14,8 +14,8 @@ const visuels = [
     alt: "Chambre préparée, lit fait et serviettes disposées",
   },
   {
-    src: "/images/expertise-salle-reunion.jpg",
-    alt: "Salle de réunion entretenue, table dégagée",
+    src: "/images/materiel.jpg",
+    alt: "Chariot de ménage professionnel équipé, prêt pour une intervention",
   },
 ] as const;
 

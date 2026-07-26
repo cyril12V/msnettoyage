@@ -7,14 +7,14 @@ production. Le document à transmettre au graphiste est **[BRIEF-3-VISUELS.md](.
 
 ## 1. État des lieux
 
-**21 visuels en place. Un seul emplacement du site reste vide, celui de la page Meaux.**
+**Tous les emplacements du site sont pourvus.** 21 visuels en place.
 
 | Emplacement                | Fichier                                        | Format       | État            |
 | -------------------------- | ---------------------------------------------- | ------------ | --------------- |
 | Visuel d'accroche          | `hero-accueil.jpg`                             | Portrait 4:5 | En place        |
 | Mosaïque, vitre            | `expertise-vitre.jpg`                          | Portrait 3:4 | En place        |
 | Mosaïque, lit préparé      | `expertise-lit-prepare.jpg`                    | Portrait 3:4 | En place        |
-| Mosaïque, salle de réunion | `expertise-salle-reunion.jpg`                  | Portrait 3:4 | En place        |
+| Mosaïque, matériel         | `materiel.jpg`                                 | Paysage 4:3  | En place        |
 | Univers, appartement       | `univers-appartement.jpg`                      | Paysage 16:9 | En place        |
 | Univers, bureau            | `univers-bureau.jpg`                           | Paysage 16:9 | En place        |
 | Univers, commerce          | `univers-commerce.jpg`                         | Paysage 16:9 | En place        |
@@ -27,10 +27,10 @@ production. Le document à transmettre au graphiste est **[BRIEF-3-VISUELS.md](.
 | Cas client, Airbnb         | `cas-airbnb.jpg`                               | Portrait 3:4 | En place        |
 | Cas client, après travaux  | `cas-apres-travaux.jpg`                        | Portrait 3:4 | En place        |
 | Cas client, bureaux        | `cas-bureaux.jpg`                              | Portrait 3:4 | En place        |
-| Bloc contact, matériel     | `materiel.jpg`                                 | Paysage 4:3  | En place        |
+| Bloc contact, véhicule     | `vehicule.jpg`                                 | Paysage 4:3  | En place        |
 | Page Meaux                 | `meaux.jpg`                                    | Paysage 16:9 | **Manquant**    |
 | Sans emplacement, équipe   | `equipe.jpg`                                   | Paysage 4:3  | **Manquant**    |
-| Retiré, véhicule           | `vehicule.jpg`                                 | Paysage 4:3  | **À reprendre** |
+
 
 ---
 
