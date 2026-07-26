@@ -10,7 +10,31 @@
  * renseignés avant la mise en ligne, voir la checklist de DEPLOIEMENT.md.
  */
 
-const RAW_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.msnettoyage.fr";
+/** URL utilisée si aucune variable d'environnement n'est fournie. */
+const URL_PAR_DEFAUT = "https://www.msnettoyage.fr";
+
+/**
+ * Normalise l'URL du site.
+ *
+ * La valeur vient d'une variable d'environnement, donc d'une saisie humaine ou
+ * d'un pipe de terminal : espaces, retours chariot et slash final sont écartés.
+ * Une valeur qui reste inexploitable fait retomber sur l'URL par défaut plutôt
+ * que de faire échouer le build sur un `new URL` invalide, ce qui casserait le
+ * déploiement entier pour une coquille dans un panneau de configuration.
+ */
+function normaliserUrl(brut: string | undefined): string {
+  const nettoye = (brut ?? "").trim().replace(/\/+$/, "");
+
+  if (!nettoye) return URL_PAR_DEFAUT;
+
+  try {
+    const url = new URL(nettoye);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return URL_PAR_DEFAUT;
+    return nettoye;
+  } catch {
+    return URL_PAR_DEFAUT;
+  }
+}
 
 /**
  * Marque une mention légale qui ne s'applique pas au statut de l'entreprise,
@@ -18,8 +42,8 @@ const RAW_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.msnettoyag
  */
 export const SANS_OBJET = "Sans objet";
 
-/** URL canonique sans slash final, quel que soit le format saisi en variable d'env. */
-export const siteUrl = RAW_SITE_URL.replace(/\/+$/, "");
+/** URL canonique, sans slash final. */
+export const siteUrl = normaliserUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const site = {
   name: "MS Nettoyage",
