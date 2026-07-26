@@ -11,6 +11,23 @@ type MetadataOptions = {
 };
 
 /**
+ * Carte Open Graph du site, générée par `app/opengraph-image.tsx`.
+ *
+ * Elle est déclarée explicitement plutôt que laissée à la convention de
+ * fichier : celle-ci ne s'applique qu'au segment qui contient le fichier, donc
+ * à la seule page d'accueil. Les pages d'atterrissage et les pages légales
+ * partaient sans `og:image`, avec une carte Twitter `summary_large_image`
+ * annoncée mais vide, ce qui produit un partage sans visuel sur WhatsApp,
+ * Facebook et LinkedIn.
+ */
+const carteOpenGraph = {
+  url: absoluteUrl("/opengraph-image"),
+  width: 1200,
+  height: 630,
+  alt: `${site.name}, ${site.tagline}`,
+};
+
+/**
  * Construit les métadonnées d'une page.
  *
  * Centraliser la construction garantit qu'aucune page ne parte en production
@@ -31,11 +48,13 @@ export function buildMetadata({ title, description, path, noindex }: MetadataOpt
       siteName: site.name,
       title,
       description,
+      images: [carteOpenGraph],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [carteOpenGraph.url],
     },
     robots: noindex ? { index: false, follow: true } : undefined,
   };

@@ -80,15 +80,15 @@ villes plus tard.
 
 ### Vérifications passées
 
-| Contrôle                    | Résultat                                                    |
-| --------------------------- | ----------------------------------------------------------- |
-| `npm run verify`            | lint, types, 100 tests, build : tout au vert                 |
-| 9 URLs en production        | 200, titres et canoniques uniques et corrects                |
+| Contrôle                    | Résultat                                                      |
+| --------------------------- | ------------------------------------------------------------- |
+| `npm run verify`            | lint, types, 100 tests, build : tout au vert                  |
+| 9 URLs en production        | 200, titres et canoniques uniques et corrects                 |
 | Redirections                | `/meaux`, `/services`, `/faq`, `/devis`… en 308 vers la cible |
-| Slug inconnu                | 404, pas de page vide                                        |
-| `sitemap.xml` en production | 9 `<loc>`, 26 `<image:loc>`                                  |
-| JSON-LD en production       | 5 blocs valides sur une page de prestation                   |
-| Lighthouse mobile           | 100 en SEO, bonnes pratiques et navigation agent             |
+| Slug inconnu                | 404, pas de page vide                                         |
+| `sitemap.xml` en production | 9 `<loc>`, 26 `<image:loc>`                                   |
+| JSON-LD en production       | 5 blocs valides sur une page de prestation                    |
+| Lighthouse mobile           | 100 en SEO, bonnes pratiques et navigation agent              |
 
 ### Revue
 

@@ -16,13 +16,17 @@ export function Hero() {
       <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20">
         <div className="flex animate-[var(--animate-fade-up)] flex-col">
           {/*
+            Le H1 reprend mot pour mot la requête que vise la balise title,
+            « société de nettoyage à Meaux » : un titre et un H1 qui désignent
+            deux choses différentes obligent Google à trancher lui-même le sujet
+            de la page. L'Île-de-France suit, pour la portée plus large.
+
             « Île-de-France » ne doit jamais se couper sur ses traits d'union :
             une coupure y laisse un « Île-de- » orphelin en fin de ligne.
           */}
           <h1 className="text-ink text-[2.6rem] leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-[3.4rem]">
-            Entreprise de nettoyage en{" "}
-            <span className="text-brand whitespace-nowrap">Île-de-France</span> et à{" "}
-            {site.address.city}
+            Société de nettoyage à {site.address.city} et en{" "}
+            <span className="text-brand whitespace-nowrap">Île-de-France</span>
           </h1>
 
           {/*

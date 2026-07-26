@@ -37,8 +37,13 @@ export function PrestationsLocales() {
                 </span>
                 <span className="text-ink mt-5 text-lg font-semibold">{landing.requete}</span>
                 <span className="text-muted mt-2.5 text-sm leading-relaxed">{landing.lede}</span>
+                {/*
+                  La carte entière est le lien : son texte contient déjà la
+                  requête via le titre ci-dessus. La répéter ici alourdirait la
+                  lecture sans rien apporter au moteur.
+                */}
                 <span className="text-brand mt-5 inline-flex items-center gap-2 text-sm font-semibold">
-                  {landing.requete}
+                  Voir la prestation
                   <Icon name="arrowRight" className="size-4" />
                 </span>
               </Link>
