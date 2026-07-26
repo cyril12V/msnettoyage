@@ -60,7 +60,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang={site.lang} className={`${urbanist.variable} h-full antialiased`}>
+    // `data-scroll-behavior` demande à Next.js de neutraliser le défilement
+    // doux le temps d'une navigation, pour que le changement de page reste
+    // instantané tout en gardant le glissement sur les ancres de la page unique.
+    <html
+      lang={site.lang}
+      data-scroll-behavior="smooth"
+      className={`${urbanist.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col font-sans">
         <a
           href="#contenu"

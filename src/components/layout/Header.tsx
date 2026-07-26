@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/layout/Logo";
 import { Button } from "@/components/ui/Button";
@@ -9,23 +8,8 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { mainNav } from "@/data/navigation";
 import { site, telHref } from "@/lib/site";
-import { cn } from "@/lib/utils";
-
-/**
- * Une entrée de navigation est active sur sa page et sur ses sous-pages.
- *
- * Les liens vers une ancre de la page d'accueil ne sont jamais marqués actifs :
- * ils partagent le chemin `/`, et les signaler comme tels rendrait deux entrées
- * actives simultanément.
- */
-function estActif(pathname: string, href: string): boolean {
-  if (href.includes("#")) return false;
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
 
 export function Header() {
-  const pathname = usePathname();
   const [menuOuvert, setMenuOuvert] = useState(false);
   const fermerMenu = () => setMenuOuvert(false);
 
@@ -48,7 +32,7 @@ export function Header() {
   }, [menuOuvert]);
 
   return (
-    <header className="border-line-soft sticky top-0 z-50 border-b bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-line-soft bg-white/95 backdrop-blur-sm">
       <Container className="flex h-20 items-center justify-between gap-6">
         <Logo priority height={44} />
 
@@ -58,11 +42,7 @@ export function Header() {
               <li key={lien.href}>
                 <Link
                   href={lien.href}
-                  aria-current={estActif(pathname, lien.href) ? "page" : undefined}
-                  className={cn(
-                    "text-[0.82rem] font-semibold transition-colors",
-                    estActif(pathname, lien.href) ? "text-brand" : "text-ink-soft hover:text-brand",
-                  )}
+                  className="text-sm font-medium text-ink-soft transition-colors hover:text-brand"
                 >
                   {lien.label}
                 </Link>
@@ -74,13 +54,13 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={telHref}
-            className="text-ink-soft hover:text-brand hidden items-center gap-2 text-sm font-semibold transition-colors md:inline-flex"
+            className="hidden items-center gap-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand md:inline-flex"
           >
-            <Icon name="phone" className="text-brand size-4" />
+            <Icon name="phone" className="size-4 text-brand" />
             {site.contact.phoneDisplay}
           </a>
 
-          <Button href="/devis" className="hidden sm:inline-flex" icon="arrowRight">
+          <Button href="/#contact" className="hidden sm:inline-flex" icon="arrowRight">
             Devis gratuit
           </Button>
 
@@ -90,7 +70,7 @@ export function Header() {
             aria-expanded={menuOuvert}
             aria-controls="menu-mobile"
             aria-label={menuOuvert ? "Fermer le menu" : "Ouvrir le menu"}
-            className="border-line text-ink inline-flex size-11 items-center justify-center rounded-lg border lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-lg border border-line text-ink lg:hidden"
           >
             <Icon name={menuOuvert ? "close" : "menu"} className="size-5" />
           </button>
@@ -98,27 +78,28 @@ export function Header() {
       </Container>
 
       {menuOuvert ? (
-        <div id="menu-mobile" className="border-line-soft border-t bg-white lg:hidden">
+        <div id="menu-mobile" className="border-t border-line-soft bg-white lg:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {mainNav.map((lien) => (
               <Link
                 key={lien.href}
                 href={lien.href}
                 onClick={fermerMenu}
-                aria-current={estActif(pathname, lien.href) ? "page" : undefined}
-                className={cn(
-                  "rounded-lg px-3 py-3 text-base font-semibold transition-colors",
-                  estActif(pathname, lien.href)
-                    ? "bg-brand-soft text-brand"
-                    : "text-ink-soft hover:bg-surface",
-                )}
+                className="rounded-lg px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface"
               >
                 {lien.label}
               </Link>
             ))}
+            <Link
+              href="/meaux"
+              onClick={fermerMenu}
+              className="rounded-lg px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface"
+            >
+              Nettoyage à {site.address.city}
+            </Link>
 
-            <div className="border-line-soft mt-3 flex flex-col gap-2.5 border-t pt-4">
-              <Button href="/devis" size="lg" fullWidth icon="arrowRight" onClick={fermerMenu}>
+            <div className="mt-3 flex flex-col gap-2.5 border-t border-line-soft pt-4">
+              <Button href="/#contact" size="lg" fullWidth icon="arrowRight" onClick={fermerMenu}>
                 Demander un devis
               </Button>
               <Button
