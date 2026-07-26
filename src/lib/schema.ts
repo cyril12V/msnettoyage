@@ -1,4 +1,5 @@
 import { faq } from "@/data/faq";
+import type { Landing } from "@/data/landings";
 import { services, type Service } from "@/data/services";
 import { zones } from "@/data/zones";
 import { absoluteUrl, site } from "@/lib/site";
@@ -138,13 +139,19 @@ export function siteWebJsonLd(): JsonLdObject {
   };
 }
 
-/** Catalogue des prestations, rattaché à la fiche entreprise. */
+/**
+ * Catalogue des prestations, rattaché à la fiche entreprise.
+ *
+ * Les prestations n'ont pas de page propre : elles vivent dans la section
+ * services de la page unique. Aucune `url` n'est donc déclarée par offre, une
+ * URL inexistante dans un balisage étant pire que pas d'URL du tout.
+ */
 export function catalogueServicesJsonLd(services: readonly Service[]): JsonLdObject {
   return {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
     name: `Prestations de nettoyage, ${site.name}`,
-    url: absoluteUrl("/services"),
+    url: absoluteUrl("/#services"),
     itemListElement: services.map((service, index) => ({
       "@type": "Offer",
       position: index + 1,
@@ -152,28 +159,45 @@ export function catalogueServicesJsonLd(services: readonly Service[]): JsonLdObj
         "@type": "Service",
         name: service.title,
         description: service.lede,
-        url: absoluteUrl(`/services/${service.slug}`),
         provider: { "@id": idEntreprise },
       },
     })),
   };
 }
 
-/** Fiche d'une prestation. */
-export function serviceJsonLd(service: Service): JsonLdObject {
+/**
+ * Fiche d'une prestation locale, pour une page d'atterrissage.
+ *
+ * `areaServed` désigne la ville et non la région : c'est ce qui rattache la
+ * page à une recherche géolocalisée. `serviceType` reprend la requête visée mot
+ * pour mot, ce qui aide les moteurs génératifs à faire le rapprochement avec
+ * une question posée en langage naturel.
+ */
+export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.title,
-    description: service.lede,
-    url: absoluteUrl(`/services/${service.slug}`),
-    serviceType: service.shortName,
+    "@id": `${absoluteUrl(`/${landing.slug}`)}#prestation`,
+    name: landing.requete,
+    serviceType: landing.requete,
+    description: landing.lede,
+    url: absoluteUrl(`/${landing.slug}`),
     provider: { "@id": idEntreprise },
-    areaServed: { "@type": "AdministrativeArea", name: "Île-de-France" },
+    areaServed: {
+      "@type": "City",
+      name: site.address.city,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: site.address.city,
+        postalCode: site.address.postalCode,
+        addressRegion: site.address.region,
+        addressCountry: site.address.country,
+      },
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: `Prestations incluses : ${service.shortName}`,
-      itemListElement: service.includes.map((intitule, index) => ({
+      name: `Prestations incluses : ${landing.libelleCourt}`,
+      itemListElement: landing.inclus.map((intitule, index) => ({
         "@type": "Offer",
         position: index + 1,
         itemOffered: { "@type": "Service", name: intitule },

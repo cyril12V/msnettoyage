@@ -6,7 +6,7 @@ import { Logo } from "@/components/layout/Logo";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
-import { mainNav } from "@/data/navigation";
+import { mainNav, prestationsNav } from "@/data/navigation";
 import { site, telHref } from "@/lib/site";
 
 export function Header() {
@@ -90,13 +90,24 @@ export function Header() {
                 {lien.label}
               </Link>
             ))}
-            <Link
-              href="/meaux"
-              onClick={fermerMenu}
-              className="text-ink-soft hover:bg-surface rounded-lg px-3 py-3 text-base font-medium transition-colors"
-            >
-              Nettoyage à {site.address.city}
-            </Link>
+            {/*
+              Les pages d'atterrissage sont accessibles depuis le menu mobile :
+              sans cela, un visiteur sur téléphone, majoritaire ici, n'y accède
+              qu'en faisant défiler toute la page d'accueil.
+            */}
+            <p className="text-muted-light mt-3 px-3 pt-3 text-xs font-semibold">
+              Nos prestations à {site.address.city}
+            </p>
+            {prestationsNav.map((lien) => (
+              <Link
+                key={lien.href}
+                href={lien.href}
+                onClick={fermerMenu}
+                className="text-ink-soft hover:bg-surface rounded-lg px-3 py-2.5 text-[0.95rem] transition-colors"
+              >
+                {lien.label}
+              </Link>
+            ))}
 
             <div className="border-line-soft mt-3 flex flex-col gap-2.5 border-t pt-4">
               <Button href="/#contact" size="lg" fullWidth icon="arrowRight" onClick={fermerMenu}>

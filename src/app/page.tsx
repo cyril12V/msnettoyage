@@ -5,6 +5,7 @@ import { CtaDevis } from "@/components/sections/CtaDevis";
 import { Expertise } from "@/components/sections/Expertise";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { Hero } from "@/components/sections/Hero";
+import { PrestationsLocales } from "@/components/sections/PrestationsLocales";
 import { Process } from "@/components/sections/Process";
 import { Promesse } from "@/components/sections/Promesse";
 import { Temoignages } from "@/components/sections/Temoignages";
@@ -18,21 +19,24 @@ import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 /**
- * Titre de la page d'accueil, 54 caractères.
+ * Titre de la page d'accueil, 52 caractères.
  *
- * Il vise « entreprise de nettoyage Île-de-France » et laisse délibérément la
- * requête « nettoyage Meaux » à la page `/meaux`. Deux pages qui visent le même
- * mot-clé se cannibalisent : Google en choisit une, arbitrairement, et les deux
- * perdent en position.
+ * Il vise « société de nettoyage à Meaux », la requête la plus large que le
+ * client veut capter, et couvre au passage ses synonymes de recherche :
+ * « entreprise de nettoyage à Meaux » et « prestation de nettoyage à Meaux ».
  *
- * Sous 60 caractères, il s'affiche entier dans les résultats de recherche.
+ * La page d'accueil est toujours la page la mieux liée d'un site, donc la plus
+ * forte : c'est elle qui doit porter la requête principale. Les six requêtes
+ * spécifiques sont laissées aux pages dédiées, aucune ne se chevauche.
+ *
+ * Sous 60 caractères, le titre s'affiche entier dans les résultats de recherche.
  */
-const TITRE = `Entreprise de nettoyage en Île-de-France | ${site.name}`;
+const TITRE = `Société de nettoyage à ${site.address.city} | ${site.name}`;
 
 export const metadata: Metadata = {
   ...buildMetadata({
     title: TITRE,
-    description: `Entreprise de nettoyage basée à ${site.address.city}, intervention dans toute l'Île-de-France : entretien de locaux, grand ménage, remise en état après travaux, ménage Airbnb, bureaux et commerces. Devis gratuit sous ${site.delaiReponse}.`,
+    description: `Société de nettoyage à ${site.address.city} (${site.address.postalCode}) : nettoyage de maison et de bureau, ménage particulier, après travaux, après déménagement et Airbnb. Devis gratuit sous ${site.delaiReponse}.`,
     path: "/",
   }),
   // Le titre porte déjà le nom de la marque : sans `absolute`, le gabarit du
@@ -41,19 +45,20 @@ export const metadata: Metadata = {
 };
 
 /**
- * Page unique du site.
+ * Page d'accueil.
  *
- * Toutes les sections tiennent sur cette page et sont atteintes par ancre.
- * Seule Meaux, ville d'implantation, dispose d'une page autonome, avec les
- * pages légales.
+ * Elle sert deux rôles : vitrine complète de l'entreprise, et point de départ
+ * vers les six pages d'atterrissage locales. La section `PrestationsLocales`
+ * assure ce maillage, sans lequel ces pages resteraient orphelines.
  *
- * La FAQ est affichée en entier ici : elle n'a plus de page dédiée, et son
- * balisage `FAQPage` doit correspondre exactement au contenu visible.
+ * La FAQ est affichée en entier ici : son balisage `FAQPage` doit correspondre
+ * exactement au contenu visible.
  */
 export default function Page() {
   return (
     <>
       <Hero />
+      <PrestationsLocales />
       <Expertise />
       <Univers />
       <AvantApres />

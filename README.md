@@ -5,8 +5,10 @@
 Site vitrine de **MS Nettoyage**, entreprise de nettoyage professionnel basée à Meaux (77100) et
 intervenant dans toute l'Île-de-France.
 
-Objectif du site : être trouvé sur les recherches locales (« entreprise de nettoyage Meaux »,
-« nettoyage de bureaux Île-de-France ») et transformer la visite en demande de devis ou en appel.
+Objectif du site : sortir dans Google sur les recherches locales du type « nettoyage de maison à
+Meaux » ou « société de nettoyage à Meaux », puis transformer la visite en demande de devis ou en
+appel. L'architecture des pages découle directement de cette liste de requêtes, voir
+[Architecture de référencement](#architecture-de-référencement).
 
 ---
 
@@ -19,7 +21,7 @@ Objectif du site : être trouvé sur les recherches locales (« entreprise de ne
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`               |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                       |
 | Emails      | Resend                   | Envoi des demandes de devis, avec authentification du domaine |
-| Tests       | Vitest + Testing Library | 82 tests sur la validation, l'anti-spam et le contenu         |
+| Tests       | Vitest + Testing Library | 100 tests sur la validation, l'anti-spam et le contenu        |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus            |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
@@ -53,18 +55,58 @@ nécessite une clé Resend. Sans elle, le formulaire affiche un message invitant
 
 ---
 
+## Architecture de référencement
+
+**Une requête = une page.** C'est la seule règle qui structure le site.
+
+Le client vise huit recherches, toutes suffixées « à Meaux ». Six d'entre elles ont leur page
+dédiée ; les deux autres (« société de nettoyage » et « prestation de nettoyage ») sont génériques
+et portées par la page d'accueil, qui est de toute façon la page la plus forte du domaine.
+
+| Requête visée                     | Page                               |
+| --------------------------------- | ---------------------------------- |
+| Société de nettoyage à Meaux      | `/` (page d'accueil)               |
+| Prestation de nettoyage à Meaux   | `/` (page d'accueil)               |
+| Nettoyage de maison à Meaux       | `/nettoyage-maison-meaux`          |
+| Nettoyage de bureau à Meaux       | `/nettoyage-bureau-meaux`          |
+| Ménage particulier à Meaux        | `/menage-particulier-meaux`        |
+| Ménage après travaux à Meaux      | `/menage-apres-travaux-meaux`      |
+| Ménage après déménagement à Meaux | `/menage-apres-demenagement-meaux` |
+| Ménage Airbnb à Meaux             | `/menage-airbnb-meaux`             |
+
+Trois conséquences qui ne se devinent pas à la lecture du code :
+
+1. **Il n'y a plus de page `/meaux`.** Elle visait « nettoyage à Meaux », exactement comme la page
+   d'accueil. Deux pages sur le même mot-clé se cannibalisent : Google en retient une, au hasard, et
+   les deux reculent. Son contenu a été fondu dans la section `#zones` de l'accueil, et `/meaux`
+   redirige en 301.
+2. **Le contenu des six pages est unique, paragraphe par paragraphe.** Un chercher-remplacer sur le
+   nom de la ville produirait des pages jumelles, que Google traite comme du remplissage.
+   `tests/landings.test.ts` échoue si deux pages partagent un chapeau, une méta-description, un
+   paragraphe ou une question de FAQ.
+3. **Chaque page est atteignable depuis toutes les autres** : section `#prestations-meaux` de
+   l'accueil, colonne du pied de page et menu mobile. Le texte des liens est la requête elle-même,
+   jamais « en savoir plus » : c'est ce texte que Google lit pour qualifier la page d'arrivée.
+
+Pour couvrir une nouvelle ville, dupliquer les entrées de `src/data/landings.ts` **en réécrivant les
+paragraphes**, et ajouter la ville dans `src/data/zones.ts`. Le sitemap, le pied de page, le menu
+mobile et le JSON-LD suivent automatiquement.
+
+---
+
 ## Structure
 
-Le site tient sur **une seule page**. Seules Meaux, ville d'implantation, et les deux pages légales
-disposent d'une adresse propre. Les anciennes adresses (`/services`, `/devis`, `/faq`…) redirigent
-vers l'ancre correspondante, la règle est dans `next.config.ts`.
+Le site tient sur **une page d'accueil** qui déroule toutes les sections, plus les six pages de
+prestation ci-dessus et deux pages légales. Les anciennes adresses (`/services`, `/devis`, `/faq`,
+`/meaux`…) redirigent en 301 vers l'ancre ou la page correspondante, la règle est dans
+`next.config.ts`.
 
 ```
 src/
 ├─ app/                          Routes (App Router)
-│  ├─ layout.tsx                 Layout racine : police, header, footer, JSON-LD entreprise
-│  ├─ page.tsx                   Page unique, toutes les sections
-│  ├─ meaux/                     Page locale, seule page de zone
+│  ├─ layout.tsx                 Layout racine : police, header, footer, JSON-LD entreprise + WebSite
+│  ├─ page.tsx                   Page d'accueil, toutes les sections
+│  ├─ [prestation]/page.tsx      Les 6 pages locales, générées depuis data/landings.ts
 │  ├─ mentions-legales/          Obligations légales (LCEN)
 │  ├─ politique-de-confidentialite/  RGPD
 │  ├─ api/contact/route.ts       Réception des demandes de devis
@@ -81,7 +123,8 @@ src/
 │  └─ seo/                       JsonLd, Breadcrumbs
 │
 ├─ data/                         CONTENU ÉDITABLE, aucune logique
-│  ├─ services.ts                Les 7 prestations
+│  ├─ landings.ts                ★ Les 6 pages locales, une par requête Google
+│  ├─ services.ts                Les 7 prestations de la page d'accueil
 │  ├─ zones.ts                   Les 9 zones d'intervention
 │  ├─ univers.ts                 Les 6 univers d'intervention
 │  ├─ realisations.ts            Paires avant / après
@@ -117,34 +160,39 @@ tests/                           Suite Vitest
 | Téléphone, email, adresse, horaires | `src/lib/site.ts`                                   |
 | Mentions légales (SIRET, RCS, TVA…) | `src/lib/site.ts` → `legal`                         |
 | Réseaux sociaux                     | `src/lib/site.ts` → `social` (vide = icône masquée) |
-| Une prestation                      | `src/data/services.ts`                              |
+| Le texte d'une page de prestation   | `src/data/landings.ts`                              |
+| Une prestation de l'accueil         | `src/data/services.ts`                              |
 | Une zone d'intervention             | `src/data/zones.ts`                                 |
 | La FAQ                              | `src/data/faq.ts`                                   |
 | Les couleurs                        | `src/app/globals.css` → bloc `@theme`               |
 
-Ajouter une prestation dans `services.ts` l'ajoute automatiquement à la section services, à la
-liste du pied de page, aux options du formulaire de devis et au JSON-LD.
+Ajouter une entrée dans `landings.ts` crée la page, son URL, son entrée de sitemap, son lien dans le
+pied de page et dans le menu mobile, et son JSON-LD. Ajouter une prestation dans `services.ts`
+l'ajoute à la section services de l'accueil, aux options du formulaire de devis et au catalogue.
 
-### Sections de la page
+### Sections de la page d'accueil
 
 L'enchaînement reprend celui de la maquette d'origine (`design/maquette-v2.html`) :
 
-| Ordre | Section                    | Ancre           | Composant                   |
-| ----- | -------------------------- | --------------- | --------------------------- |
-| 1     | Accroche                   | `#accueil`      | `sections/Hero.tsx`         |
-| 2     | Nos services (accordéon)   | `#services`     | `sections/Expertise.tsx`    |
-| 3     | Nos univers d'intervention | `#univers`      | `sections/Univers.tsx`      |
-| 4     | Des résultats qui parlent  | `#realisations` | `sections/AvantApres.tsx`   |
-| 5     | Cas clients                | `#cas`          | `sections/CasClients.tsx`   |
-| 6     | Notre promesse             | `#apropos`      | `sections/Promesse.tsx`     |
-| 7     | Ils nous font confiance    |                 | `sections/Temoignages.tsx`  |
-| 8     | Comment ça se passe        |                 | `sections/Process.tsx`      |
-| 9     | Zones d'intervention       | `#zones`        | `sections/ZonesSection.tsx` |
-| 10    | Questions fréquentes       | `#faq`          | `sections/FaqSection.tsx`   |
-| 11    | Contact et devis           | `#contact`      | `sections/CtaDevis.tsx`     |
+| Ordre | Section                    | Ancre                | Composant                         |
+| ----- | -------------------------- | -------------------- | --------------------------------- |
+| 1     | Accroche                   | `#accueil`           | `sections/Hero.tsx`               |
+| 2     | Nos prestations à Meaux    | `#prestations-meaux` | `sections/PrestationsLocales.tsx` |
+| 3     | Nos services (accordéon)   | `#services`          | `sections/Expertise.tsx`          |
+| 4     | Nos univers d'intervention | `#univers`           | `sections/Univers.tsx`            |
+| 5     | Des résultats qui parlent  | `#realisations`      | `sections/AvantApres.tsx`         |
+| 6     | Cas clients                | `#cas`               | `sections/CasClients.tsx`         |
+| 7     | Notre promesse             | `#apropos`           | `sections/Promesse.tsx`           |
+| 8     | Ils nous font confiance    |                      | `sections/Temoignages.tsx`        |
+| 9     | Comment ça se passe        |                      | `sections/Process.tsx`            |
+| 10    | Zones d'intervention       | `#zones`             | `sections/ZonesSection.tsx`       |
+| 11    | Questions fréquentes       | `#faq`               | `sections/FaqSection.tsx`         |
+| 12    | Contact et devis           | `#contact`           | `sections/CtaDevis.tsx`           |
 
-Les sections 8 à 10 ne figurent pas dans la maquette : elles portent le référencement local et le
-balisage `FAQPage`, qui sont l'objectif premier du site.
+La section 2 est placée juste après l'accroche à dessein : c'est le maillage vers les six pages
+locales, et un lien haut dans la page pèse plus qu'un lien en pied de page. Les sections 9 à 11 ne
+figurent pas dans la maquette : elles portent le référencement local et le balisage `FAQPage`, qui
+sont l'objectif premier du site.
 
 ### Typographie
 
@@ -206,16 +254,28 @@ Aucune réponse d'erreur ne divulgue d'information technique : le détail part d
 ## SEO et visibilité IA
 
 - Métadonnées, URL canonique et carte Open Graph sur **chaque** page (`lib/seo.ts`).
-- JSON-LD : `LocalBusiness`, `Service`, `OfferCatalog`, `FAQPage`, `BreadcrumbList`.
-- `sitemap.xml` et `robots.txt` générés, les crawlers IA (GPTBot, ClaudeBot, PerplexityBot,
-  Google-Extended…) sont **explicitement autorisés**.
+- JSON-LD : `LocalBusiness` (22 propriétés), `WebSite`, `OfferCatalog`, `Service` avec
+  `areaServed: City` sur chaque page locale, `FAQPage`, `BreadcrumbList`.
+- `sitemap.xml` : 9 URLs indexables, avec les 20 visuels de l'accueil déclarés en balises image, ce
+  qui les rend éligibles à Google Images.
+- `robots.txt` généré : les crawlers IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…) sont
+  **explicitement autorisés**.
 - Contenu rédigé pour l'extraction : définition autonome en tête de page, questions
   conversationnelles en `h2`/`h3`, données chiffrées concrètes.
 - Le NAP provient d'un fichier unique : aucune divergence possible entre les pages, condition d'un
   bon référencement local.
+- Vérification Search Console et Bing par balise meta, via `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` et
+  `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
 
-Des tests (`tests/contenu.test.ts`) échouent si un titre dépasse 65 caractères, si une
-méta-description sort de la fourchette 110–165, ou si deux zones partagent le même texte.
+Deux fichiers de tests protègent tout cela. `tests/contenu.test.ts` échoue si un titre dépasse
+65 caractères ou si une méta-description sort de la fourchette 110–165. `tests/landings.test.ts`
+échoue si deux pages locales partagent un chapeau, une méta-description, un paragraphe ou une
+question de FAQ, si une page perd la ville dans son URL, son H1 ou son titre, ou si un lien du
+maillage interne disparaît.
+
+> **Le code ne fait pas tout.** Les deux premiers leviers de référencement local sont la fiche
+> Google Business Profile et les avis clients, tous deux hors du dépôt. La marche à suivre est dans
+> [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
 
 ---
 

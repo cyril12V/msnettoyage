@@ -67,9 +67,17 @@ const nextConfig: NextConfig = {
   },
 
   /**
-   * Le site tient sur une seule page. Ces redirections rattrapent les adresses
-   * des sections quand elles sont saisies à la main ou partagées en lien.
-   * L'ancre n'est jamais transmise au serveur : la redirection la réintroduit.
+   * Redirections permanentes.
+   *
+   * Deux familles :
+   *  - les adresses de sections, qui ramènent à l'ancre correspondante de la
+   *    page d'accueil. L'ancre n'est jamais transmise au serveur, c'est la
+   *    redirection qui la réintroduit ;
+   *  - les anciennes URLs, conservées pour ne pas casser un lien déjà partagé.
+   *
+   * `/meaux` pointe désormais sur la page d'accueil : celle-ci vise « société de
+   * nettoyage à Meaux » et deux pages ne peuvent pas viser la même requête sans
+   * se nuire mutuellement.
    */
   async redirects() {
     const versAncre = (source: string, ancre: string) => ({
@@ -79,9 +87,10 @@ const nextConfig: NextConfig = {
     });
 
     return [
-      versAncre("/services", "services"),
-      versAncre("/services/:slug", "services"),
-      versAncre("/nos-services", "services"),
+      versAncre("/services", "prestations-meaux"),
+      versAncre("/services/:slug", "prestations-meaux"),
+      versAncre("/nos-services", "prestations-meaux"),
+      versAncre("/prestations", "prestations-meaux"),
       versAncre("/univers", "univers"),
       versAncre("/realisations", "realisations"),
       versAncre("/cas-clients", "cas"),
@@ -89,9 +98,9 @@ const nextConfig: NextConfig = {
       versAncre("/faq", "faq"),
       versAncre("/devis", "contact"),
       versAncre("/contact", "contact"),
-      { source: "/zones-d-intervention", destination: "/meaux", permanent: true },
-      { source: "/zones-d-intervention/meaux", destination: "/meaux", permanent: true },
-      { source: "/zones-d-intervention/:slug", destination: "/#contact", permanent: true },
+      { source: "/meaux", destination: "/", permanent: true },
+      { source: "/zones-d-intervention", destination: "/#zones", permanent: true },
+      { source: "/zones-d-intervention/:slug", destination: "/#zones", permanent: true },
     ];
   },
 };

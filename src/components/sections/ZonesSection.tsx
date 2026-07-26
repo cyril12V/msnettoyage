@@ -1,15 +1,22 @@
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { zones } from "@/data/zones";
 import { site } from "@/lib/site";
 
+/** Repères locaux, chiffrés et vérifiables. */
+const reperes: readonly { valeur: string; libelle: string }[] = [
+  { valeur: site.address.postalCode, libelle: `Code postal de ${site.address.city}` },
+  { valeur: "0 €", libelle: "Frais de déplacement sur les communes limitrophes" },
+  { valeur: site.delaiReponse, libelle: "Délai de réponse à une demande de devis" },
+];
+
 /**
- * Zones d'intervention.
+ * Zone d'intervention.
  *
- * Le site tient sur une seule page : seule Meaux, ville d'implantation, dispose
- * d'une page dédiée. Les autres zones sont listées comme information, sans lien.
+ * Le contenu local de Meaux vit ici plutôt que sur une page séparée : une page
+ * dédiée viserait exactement la même requête que la page d'accueil, et deux
+ * pages qui se disputent un mot-clé perdent toutes les deux.
  */
 export function ZonesSection() {
   const meaux = zones.find((zone) => zone.base);
@@ -20,34 +27,39 @@ export function ZonesSection() {
       <Container>
         <SectionHeading
           title={`De ${site.address.city} à toute l'Île-de-France`}
-          description={`Basés à ${site.address.city} (${site.address.postalCode}), nous couvrons les huit départements franciliens. Les délais les plus courts sont sur ${site.address.city} et le nord de la Seine-et-Marne, sans frais de déplacement sur les communes limitrophes.`}
+          description={`${site.name} est implantée à ${site.address.city} (${site.address.postalCode}). C'est là que nos délais sont les plus courts : une demande formulée le matin peut être planifiée dans la journée ou le lendemain, y compris en urgence.`}
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
-          {meaux ? (
-            <Link
-              href="/meaux"
-              className="border-brand/30 bg-brand-soft hover:border-brand hover:shadow-card flex flex-col justify-between gap-5 rounded-xl border p-6 transition duration-200"
-            >
-              <div>
-                <span className="flex items-center gap-2.5">
-                  <Icon name="pin" className="text-brand size-5" />
-                  <span className="text-ink text-lg font-semibold">{meaux.name}</span>
-                  <span className="text-brand rounded bg-white px-1.5 py-0.5 text-[0.65rem] font-bold tracking-wide uppercase">
-                    Notre base
-                  </span>
-                </span>
-                <p className="text-ink-soft mt-3 text-sm leading-relaxed">{meaux.lede}</p>
-              </div>
-              <span className="text-brand inline-flex items-center gap-2 text-sm font-semibold">
-                Voir la page Meaux
-                <Icon name="arrowRight" className="size-4" />
-              </span>
-            </Link>
-          ) : null}
+        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          <div className="border-brand/20 bg-brand-soft rounded-xl border p-6">
+            <h3 className="text-ink flex items-center gap-2.5 text-lg font-semibold">
+              <Icon name="pin" className="text-brand size-5" />
+              Communes desservies autour de {site.address.city}
+            </h3>
+
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {(meaux?.communes ?? []).map((commune) => (
+                <li
+                  key={commune}
+                  className="border-line text-ink-soft rounded-lg border bg-white px-3 py-1.5 text-xs"
+                >
+                  {commune}
+                </li>
+              ))}
+            </ul>
+
+            <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-white/70 pt-5">
+              {reperes.map((repere) => (
+                <div key={repere.libelle} className="flex flex-col-reverse gap-1">
+                  <dt className="text-muted text-xs leading-snug">{repere.libelle}</dt>
+                  <dd className="text-brand text-xl leading-tight font-bold">{repere.valeur}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
           <div className="border-line rounded-xl border p-6">
-            <h3 className="text-ink text-sm font-semibold">Départements couverts</h3>
+            <h3 className="text-ink text-sm font-semibold">Départements également couverts</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {autresZones.map((zone) => (
                 <li
@@ -55,11 +67,6 @@ export function ZonesSection() {
                   className="bg-surface text-ink-soft inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm"
                 >
                   {zone.name}
-                  {/*
-                    `muted-light` est calibré pour le fond blanc. Sur le fond
-                    teinté de cette pastille, il retombe à 4,42:1, sous le seuil
-                    AA : on passe donc au ton `muted`, qui tient 5,03:1.
-                  */}
                   <span className="text-muted text-xs">{zone.departement}</span>
                 </li>
               ))}

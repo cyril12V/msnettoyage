@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { footerNav, legalNav } from "@/data/navigation";
-import { services } from "@/data/services";
+import { footerNav, legalNav, prestationsNav } from "@/data/navigation";
 import { zones } from "@/data/zones";
 import { mailtoHref, site, telHref } from "@/lib/site";
 
@@ -75,16 +74,23 @@ export function Footer() {
             ))}
           </FooterColonne>
 
-          <FooterColonne titre="Nos prestations">
-            {services.map((service) => (
-              <FooterLien key={service.slug} href="/#services">
-                {service.shortName}
+          {/*
+            Ces liens figurent sur toutes les pages du site : c'est ce qui
+            garantit que Google atteint chaque page d'atterrissage, quel que
+            soit le point d'entrée du visiteur.
+          */}
+          <FooterColonne titre={`Nos prestations à ${site.address.city}`}>
+            {prestationsNav.map((lien) => (
+              <FooterLien key={lien.href} href={lien.href}>
+                {lien.label}
               </FooterLien>
             ))}
           </FooterColonne>
 
           <FooterColonne titre="Zones d'intervention">
-            <FooterLien href="/meaux">{site.address.city}</FooterLien>
+            <li className="text-ink-soft text-sm font-medium">
+              {site.address.city} ({site.address.postalCode})
+            </li>
             {zones
               .filter((zone) => !zone.base)
               .map((zone) => (

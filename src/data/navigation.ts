@@ -1,3 +1,5 @@
+import { landings } from "@/data/landings";
+
 export type NavLink = {
   href: string;
   label: string;
@@ -6,27 +8,38 @@ export type NavLink = {
 /**
  * Navigation principale.
  *
- * Le site tient sur une seule page : chaque entrée pointe vers une ancre.
- * Les liens sont écrits en absolu (`/#services` et non `#services`) afin de
- * fonctionner aussi depuis la page Meaux et les pages légales.
+ * La page d'accueil concentre la vitrine, chaque entrée pointe donc vers une
+ * ancre. Les liens sont écrits en absolu (`/#services` et non `#services`) afin
+ * de fonctionner aussi depuis les pages d'atterrissage et les pages légales.
  */
 export const mainNav: readonly NavLink[] = [
-  { href: "/#accueil", label: "Accueil" },
-  { href: "/#services", label: "Nos services" },
-  { href: "/#univers", label: "Nos univers" },
+  { href: "/", label: "Accueil" },
+  { href: "/#prestations-meaux", label: "Nos prestations" },
+  { href: "/#realisations", label: "Réalisations" },
   { href: "/#apropos", label: "À propos" },
-  { href: "/#cas", label: "Cas clients" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
-/** Navigation du pied de page, complétée des pages autonomes. */
+/**
+ * Prestations locales du pied de page.
+ *
+ * Dérivées de `landings.ts` : ajouter une page d'atterrissage la fait
+ * apparaître ici automatiquement. Ces liens présents sur toutes les pages
+ * garantissent que Google atteint chacune d'elles.
+ */
+export const prestationsNav: readonly NavLink[] = landings.map((landing) => ({
+  href: `/${landing.slug}`,
+  label: landing.requete,
+}));
+
+/** Navigation générale du pied de page. */
 export const footerNav: readonly NavLink[] = [
-  { href: "/#services", label: "Nos services" },
+  { href: "/", label: "Accueil" },
   { href: "/#univers", label: "Nos univers" },
-  { href: "/#realisations", label: "Réalisations" },
   { href: "/#cas", label: "Cas clients" },
+  { href: "/#zones", label: "Zones d'intervention" },
   { href: "/#faq", label: "Questions fréquentes" },
-  { href: "/meaux", label: "Nettoyage à Meaux" },
   { href: "/#contact", label: "Demander un devis" },
 ] as const;
 

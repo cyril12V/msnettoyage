@@ -64,7 +64,8 @@ peut fournir.
 | SEO              | **100** |
 | Navigation agent | **100** |
 
-Mesuré sur la page d'accueil **et** sur la page Meaux : 57 contrôles passés chacune, aucun échec.
+Mesuré sur la page d'accueil et sur une page de prestation : 57 contrôles passés chacune, aucun
+échec.
 
 ### Performances mesurées
 
@@ -84,20 +85,23 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
 | ------------------- | ---------------------------------------- |
 | `npm run lint`      | 0 erreur, 0 avertissement                |
 | `npm run typecheck` | 0 erreur                                 |
-| `npm run test`      | 65 / 65                                  |
-| `npm run build`     | 13 routes, 12 statiques + `/api/contact` |
+| `npm run test`      | 100 / 100                                |
+| `npm run build`     | 18 routes, 17 statiques + `/api/contact` |
 
 ### Vérifications manuelles sur le serveur de production
 
 - **En-têtes de sécurité** : CSP, HSTS, Referrer-Policy, Permissions-Policy et
   X-Content-Type-Options présents. `X-Powered-By` absent. `'unsafe-eval'` bien absent en production.
 - **Aucune violation CSP** au chargement ni au défilement.
-- **Redirections** : les 13 anciennes adresses répondent en 308 vers la bonne ancre.
-- **Page inexistante** : 404 correct.
-- **JSON-LD** : 3 blocs valides, `LocalBusiness`, `OfferCatalog` et `FAQPage`.
-- **Structure** : un seul `h1`, 14 `h2`, 37 `h3`, aucune image sans texte alternatif.
-- **`sitemap.xml`** : 4 URLs canoniques. **`robots.txt`** : crawlers IA autorisés.
-- **Titres et canoniques** : uniques et corrects sur les 4 pages.
+- **Redirections** : les 14 anciennes adresses répondent en 308 vers la bonne ancre ou la bonne page.
+- **Page inexistante** : 404 correct. Un slug de prestation inconnu renvoie aussi un 404, et non une
+  page vide (`dynamicParams = false`).
+- **JSON-LD** : `LocalBusiness` et `WebSite` sur toutes les pages, `OfferCatalog` et `FAQPage` sur
+  l'accueil, `Service` + `FAQPage` + `BreadcrumbList` sur chaque page de prestation.
+- **Structure** : un seul `h1` par page, aucune image sans texte alternatif.
+- **`sitemap.xml`** : 9 URLs canoniques, avec les visuels déclarés. **`robots.txt`** : crawlers IA
+  autorisés.
+- **Titres et canoniques** : uniques et corrects sur les 9 pages, aucun nom de marque en double.
 - **Formulaire de devis** : validation, leurre anti-robot et limitation de débit vérifiés en
   conditions réelles. Renvoie 503 tant que la clé Resend n'est pas configurée, avec un message
   invitant à appeler.
@@ -196,12 +200,17 @@ les icônes du manifeste, tous dérivés du monogramme.
 Variables à créer dans Vercel → _Settings_ → _Environment Variables_, pour les environnements
 Production **et** Preview :
 
-| Variable               | Exemple                      | Rôle                                    |
-| ---------------------- | ---------------------------- | --------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://www.msnettoyage.fr` | Canonical, Open Graph, sitemap, JSON-LD |
-| `RESEND_API_KEY`       | `re_xxxxxxxx`                | Envoi des demandes de devis             |
-| `CONTACT_FROM_EMAIL`   | `devis@msnettoyage.fr`       | Expéditeur (domaine à vérifier)         |
-| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com`   | Boîte qui reçoit les demandes           |
+| Variable                               | Exemple                      | Rôle                                    |
+| -------------------------------------- | ---------------------------- | --------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`                 | `https://www.msnettoyage.fr` | Canonical, Open Graph, sitemap, JSON-LD |
+| `RESEND_API_KEY`                       | `re_xxxxxxxx`                | Envoi des demandes de devis             |
+| `CONTACT_FROM_EMAIL`                   | `devis@msnettoyage.fr`       | Expéditeur (domaine à vérifier)         |
+| `CONTACT_TO_EMAIL`                     | `msnettoyage211@gmail.com`   | Boîte qui reçoit les demandes           |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | `AbCdEf123…`                 | Validation de Google Search Console     |
+| `NEXT_PUBLIC_BING_SITE_VERIFICATION`   | `1A2B3C…`                    | Validation de Bing Webmaster Tools      |
+
+Les deux dernières sont facultatives : sans elles, aucune balise de vérification n'est émise. La
+marche à suivre est détaillée dans [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
 
 > Aucune de ces valeurs ne doit apparaître dans le dépôt Git. `.env.local` est déjà ignoré.
 
@@ -279,20 +288,28 @@ Aucune configuration particulière : Vercel détecte Next.js 16 et applique les 
 
 ## 7. Référencement local, à faire après la mise en ligne
 
-C'est l'étape qui apporte réellement des appels. Le site seul ne suffit pas.
+C'est l'étape qui apporte réellement des appels. **Le site ne représente qu'environ un tiers du
+résultat sur une recherche locale**, le reste se joue sur la fiche Google et les avis.
 
-- [ ] **Créer la fiche Google Business Profile** : c'est le levier n°1 pour « nettoyage Meaux ».
+La marche à suivre complète, avec les valeurs exactes à saisir et les textes prêts à coller, est
+dans **[SEO-HORS-CODE.md](./SEO-HORS-CODE.md)**. Résumé des étapes, par ordre d'impact :
+
+- [ ] **Créer la fiche Google Business Profile** et lancer la vérification. Le courrier de
+      validation prend une à deux semaines : c'est la toute première chose à faire.
       Le nom, l'adresse et le téléphone doivent être **rigoureusement identiques** à ceux de
       `src/lib/site.ts` : la moindre variation (« MS Nettoyage » vs « MS-Nettoyage ») dilue le
       signal local.
-- [ ] Renseigner sur la fiche : catégorie « Service de nettoyage », zone desservie, horaires,
-      photos, et le lien vers le site.
-- [ ] **Google Search Console** : ajouter la propriété, valider par DNS, soumettre le sitemap.
-- [ ] **Bing Webmaster Tools** : même opération (alimente aussi Copilot).
-- [ ] Solliciter les premiers avis Google auprès des clients existants, puis les reporter dans
-      `src/data/temoignages.ts` pour activer la section du site.
+- [ ] Y déclarer un service par requête visée, les six pages du site servant de descriptions.
+- [ ] Reporter l'adresse publique de la fiche dans `src/lib/site.ts` → `social.googleBusiness`.
+- [ ] **Obtenir 10 avis Google en trois mois**, puis 2 à 3 par mois. C'est le point faible actuel et
+      le levier le plus déterminant.
+- [ ] **Google Search Console** : ajouter la propriété, valider par la balise meta
+      (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`), soumettre le sitemap, puis demander l'indexation des
+      six pages de prestation une par une.
+- [ ] **Bing Webmaster Tools** : même opération (alimente aussi ChatGPT et Copilot).
+- [ ] Reporter les vrais avis dans `src/data/temoignages.ts` pour activer la section du site.
 - [ ] Inscrire l'entreprise sur les annuaires locaux (Pages Jaunes, annuaire de la CCI de
-      Seine-et-Marne), toujours avec le même NAP.
+      Seine-et-Marne, Apple Plans), toujours avec le même NAP.
 
 ---
 
