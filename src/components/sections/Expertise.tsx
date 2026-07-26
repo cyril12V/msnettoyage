@@ -32,37 +32,37 @@ export function Expertise() {
     <section id="services" className="scroll-mt-20 bg-white py-16 sm:py-20 lg:py-24">
       <Container className="grid items-start gap-12 lg:grid-cols-[minmax(0,54%)_minmax(0,46%)] lg:gap-14">
         <div className="flex flex-col">
-          <h2 className="text-3xl leading-[1.12] font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          <h2 className="text-ink text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl">
             Nous nettoyons tout votre <span className="text-brand">quotidien</span>
           </h2>
 
-          <p className="mt-4 max-w-xl leading-relaxed text-muted">
-            Sept prestations, du passage hebdomadaire au chantier ponctuel. Dépliez chacune pour voir
-            précisément ce qu&apos;elle comprend.
+          <p className="text-muted mt-4 max-w-xl leading-relaxed">
+            Sept prestations, du passage hebdomadaire au chantier ponctuel. Dépliez chacune pour
+            voir précisément ce qu&apos;elle comprend.
           </p>
 
-          <div className="mt-8 divide-y divide-line rounded-xl border border-line">
+          <div className="divide-line border-line mt-8 divide-y rounded-xl border">
             {services.map((service) => (
               <details key={service.slug} className="group px-4 sm:px-5">
                 <summary className="flex cursor-pointer list-none items-center gap-3 py-4 text-left [&::-webkit-details-marker]:hidden">
-                  <Icon name="checkCircle" className="size-5 shrink-0 text-brand" />
-                  <h3 className="flex-1 text-[0.95rem] font-medium text-ink-soft">
+                  <Icon name="checkCircle" className="text-brand size-5 shrink-0" />
+                  <h3 className="text-ink-soft flex-1 text-[0.95rem] font-medium">
                     {service.listLabel}
                   </h3>
                   <Icon
                     name="plus"
-                    className="size-5 shrink-0 text-brand transition-transform duration-200 group-open:rotate-45"
+                    className="text-brand size-5 shrink-0 transition-transform duration-200 group-open:rotate-45"
                   />
                 </summary>
 
                 <div className="pb-5 pl-8">
-                  <p className="text-sm leading-relaxed text-muted">{service.lede}</p>
+                  <p className="text-muted text-sm leading-relaxed">{service.lede}</p>
 
                   <ul className="mt-4 flex flex-col gap-2">
                     {service.includes.map((element) => (
                       <li key={element} className="flex items-start gap-2.5">
-                        <Icon name="check" className="mt-1 size-3.5 shrink-0 text-brand" />
-                        <span className="text-sm leading-snug text-ink-soft">{element}</span>
+                        <Icon name="check" className="text-brand mt-1 size-3.5 shrink-0" />
+                        <span className="text-ink-soft text-sm leading-snug">{element}</span>
                       </li>
                     ))}
                   </ul>
@@ -70,8 +70,8 @@ export function Expertise() {
                   <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
                     {service.facts.map((fait) => (
                       <div key={fait.label} className="flex flex-col gap-0.5">
-                        <dt className="text-xs text-muted-light">{fait.label}</dt>
-                        <dd className="text-sm font-semibold text-ink">{fait.value}</dd>
+                        <dt className="text-muted-light text-xs">{fait.label}</dt>
+                        <dd className="text-ink text-sm font-semibold">{fait.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -83,7 +83,7 @@ export function Expertise() {
 
         <div className="grid h-80 grid-cols-[1.1fr_0.9fr] grid-rows-2 gap-1.5 overflow-hidden rounded-2xl sm:h-96 lg:h-[34rem] lg:-skew-x-6 lg:rounded-none">
           <div className="relative row-span-2 overflow-hidden">
-            <div className="absolute inset-0 lg:skew-x-6 lg:scale-125">
+            <div className="absolute inset-0 lg:scale-125 lg:skew-x-6">
               <MediaSlot
                 alt={visuels[0].alt}
                 src={visuels[0].src}
@@ -94,7 +94,7 @@ export function Expertise() {
           </div>
           {visuels.slice(1).map((visuel) => (
             <div key={visuel.alt} className="relative overflow-hidden">
-              <div className="absolute inset-0 lg:skew-x-6 lg:scale-125">
+              <div className="absolute inset-0 lg:scale-125 lg:skew-x-6">
                 <MediaSlot
                   alt={visuel.alt}
                   src={visuel.src}

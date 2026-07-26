@@ -10,7 +10,9 @@ type CardProps = {
 
 /** Conteneur bordé standard : fond blanc, bord fin, coins arrondis. */
 export function Card({ children, className }: CardProps) {
-  return <div className={cn("rounded-xl border border-line bg-white p-6", className)}>{children}</div>;
+  return (
+    <div className={cn("border-line rounded-xl border bg-white p-6", className)}>{children}</div>
+  );
 }
 
 type FeatureCardProps = {
@@ -35,13 +37,13 @@ export function FeatureCard({
 }: FeatureCardProps) {
   const content = (
     <>
-      <span className="inline-flex size-11 items-center justify-center rounded-lg bg-brand-soft text-brand">
+      <span className="bg-brand-soft text-brand inline-flex size-11 items-center justify-center rounded-lg">
         <Icon name={icon} className="size-5.5" />
       </span>
-      <h3 className="mt-5 text-lg font-semibold text-ink">{title}</h3>
-      <p className="mt-2.5 text-sm leading-relaxed text-muted">{description}</p>
+      <h3 className="text-ink mt-5 text-lg font-semibold">{title}</h3>
+      <p className="text-muted mt-2.5 text-sm leading-relaxed">{description}</p>
       {href ? (
-        <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand">
+        <span className="text-brand mt-5 inline-flex items-center gap-2 text-sm font-semibold">
           {linkLabel ?? "En savoir plus"}
           <Icon name="arrowRight" className="size-4" />
         </span>
@@ -76,8 +78,8 @@ type StatProps = {
 export function Stat({ value, label, className }: StatProps) {
   return (
     <div className={cn("flex flex-col gap-1", className)}>
-      <span className="text-2xl leading-none font-bold text-brand">{value}</span>
-      <span className="text-xs text-muted-light">{label}</span>
+      <span className="text-brand text-2xl leading-none font-bold">{value}</span>
+      <span className="text-muted-light text-xs">{label}</span>
     </div>
   );
 }

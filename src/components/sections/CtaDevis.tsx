@@ -22,16 +22,16 @@ export function CtaDevis({
   return (
     <section
       id="contact"
-      className="relative scroll-mt-20 overflow-hidden bg-linear-to-br from-brand-dark via-brand to-brand-dark py-16 sm:py-20"
+      className="from-brand-dark via-brand to-brand-dark relative scroll-mt-20 overflow-hidden bg-linear-to-br py-16 sm:py-20"
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.09] [background-image:repeating-linear-gradient(115deg,#fff_0_1px,transparent_1px_46px)]"
+        className="absolute inset-0 [background-image:repeating-linear-gradient(115deg,#fff_0_1px,transparent_1px_46px)] opacity-[0.09]"
       />
 
       <Container className="relative grid gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="flex flex-col gap-6">
-          <h2 className="text-3xl leading-[1.12] font-bold tracking-tight text-white text-balance sm:text-4xl">
+          <h2 className="text-3xl leading-[1.12] font-bold tracking-tight text-balance text-white sm:text-4xl">
             {titre}
           </h2>
           <p className="max-w-md text-base leading-relaxed text-white/85">
@@ -39,7 +39,11 @@ export function CtaDevis({
               `Décrivez votre besoin en quelques lignes. Nous revenons vers vous sous ${site.delaiReponse} avec un devis gratuit et sans engagement.`}
           </p>
 
-          <div className={avecVisuel ? "mt-2 grid items-stretch gap-5 sm:grid-cols-2" : "mt-2 grid gap-5"}>
+          <div
+            className={
+              avecVisuel ? "mt-2 grid items-stretch gap-5 sm:grid-cols-2" : "mt-2 grid gap-5"
+            }
+          >
             {avecVisuel ? (
               <MediaSlot
                 alt={`Véhicule utilitaire ${site.name}`}
@@ -48,7 +52,7 @@ export function CtaDevis({
               />
             ) : null}
 
-            <ul className="flex flex-col gap-5 rounded-2xl bg-brand-deep/70 p-6">
+            <ul className="bg-brand-deep/70 flex flex-col gap-5 rounded-2xl p-6">
               <li>
                 <a href={telHref} className="flex items-center gap-3.5 text-white hover:opacity-80">
                   <Icon name="phone" className="size-5" />
@@ -58,7 +62,10 @@ export function CtaDevis({
                 </a>
               </li>
               <li>
-                <a href={mailtoHref} className="flex items-center gap-3.5 text-white hover:opacity-80">
+                <a
+                  href={mailtoHref}
+                  className="flex items-center gap-3.5 text-white hover:opacity-80"
+                >
                   <Icon name="mail" className="size-5" />
                   <span className="text-[0.95rem] break-all">{site.contact.email}</span>
                 </a>
@@ -88,7 +95,10 @@ export function CtaDevis({
           </div>
         </div>
 
-        <DevisForm prestationParDefaut={prestationParDefaut} className="shadow-[var(--shadow-float)]" />
+        <DevisForm
+          prestationParDefaut={prestationParDefaut}
+          className="shadow-[var(--shadow-float)]"
+        />
       </Container>
     </section>
   );

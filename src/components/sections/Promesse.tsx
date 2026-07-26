@@ -45,13 +45,13 @@ export function Promesse() {
               key={pilier.titre}
               className={
                 index > 0
-                  ? "flex flex-col items-center gap-3.5 px-2 text-center lg:border-l lg:border-line lg:pl-8"
+                  ? "lg:border-line flex flex-col items-center gap-3.5 px-2 text-center lg:border-l lg:pl-8"
                   : "flex flex-col items-center gap-3.5 px-2 text-center"
               }
             >
-              <Icon name={pilier.icon} className="size-8 text-brand" />
-              <h3 className="text-lg font-semibold text-ink">{pilier.titre}</h3>
-              <p className="text-sm leading-relaxed text-muted">{pilier.texte}</p>
+              <Icon name={pilier.icon} className="text-brand size-8" />
+              <h3 className="text-ink text-lg font-semibold">{pilier.titre}</h3>
+              <p className="text-muted text-sm leading-relaxed">{pilier.texte}</p>
             </li>
           ))}
         </ul>

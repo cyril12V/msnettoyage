@@ -61,11 +61,11 @@ export default function Page() {
       <Section tone="white">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-16">
           <div className="flex flex-col gap-5">
-            <h2 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+            <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
               Nos interventions à {zone.name}
             </h2>
             {zone.body.map((paragraphe) => (
-              <p key={paragraphe.slice(0, 40)} className="leading-relaxed text-muted">
+              <p key={paragraphe.slice(0, 40)} className="text-muted leading-relaxed">
                 {paragraphe}
               </p>
             ))}
@@ -78,30 +78,33 @@ export default function Page() {
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
 
-            <div className="rounded-2xl border border-line bg-surface p-6">
-              <h2 className="text-sm font-semibold text-ink">Communes desservies</h2>
+            <div className="border-line bg-surface rounded-2xl border p-6">
+              <h2 className="text-ink text-sm font-semibold">Communes desservies</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {zone.communes.map((commune) => (
                   <li
                     key={commune}
-                    className="rounded-lg border border-line bg-white px-3 py-1.5 text-xs text-ink-soft"
+                    className="border-line text-ink-soft rounded-lg border bg-white px-3 py-1.5 text-xs"
                   >
                     {commune}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-xs leading-relaxed text-muted">
+              <p className="text-muted mt-4 text-xs leading-relaxed">
                 Cette liste n&apos;est pas limitative. Appelez-nous pour toute autre commune du Pays
                 de {zone.name}.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line p-6">
-              <h2 className="text-sm font-semibold text-ink">Prestations les plus demandées</h2>
+            <div className="border-line rounded-2xl border p-6">
+              <h2 className="text-ink text-sm font-semibold">Prestations les plus demandées</h2>
               <ul className="mt-4 flex flex-col gap-2.5">
                 {servicesPhares.map((service) => (
-                  <li key={service.slug} className="flex items-center gap-2.5 text-sm text-ink-soft">
-                    <Icon name={service.icon} className="size-4 text-brand" />
+                  <li
+                    key={service.slug}
+                    className="text-ink-soft flex items-center gap-2.5 text-sm"
+                  >
+                    <Icon name={service.icon} className="text-brand size-4" />
                     {service.shortName}
                   </li>
                 ))}

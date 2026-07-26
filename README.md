@@ -12,12 +12,12 @@ Objectif du site : être trouvé sur les recherches locales (« entreprise de ne
 
 | Brique      | Choix                    | Pourquoi                                                      |
 | ----------- | ------------------------ | ------------------------------------------------------------- |
-| Framework   | Next.js 16 (App Router)  | Rendu statique, indispensable au référencement local         |
+| Framework   | Next.js 16 (App Router)  | Rendu statique, indispensable au référencement local          |
 | Langage     | TypeScript strict        | Zéro `any`, aucune erreur de compilation tolérée              |
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`               |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                       |
 | Emails      | Resend                   | Envoi des demandes de devis, avec authentification du domaine |
-| Tests       | Vitest + Testing Library | 66 tests sur la validation, l'anti-spam et le contenu         |
+| Tests       | Vitest + Testing Library | 64 tests sur la validation, l'anti-spam et le contenu         |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus            |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
@@ -127,19 +127,19 @@ liste du pied de page, aux options du formulaire de devis et au JSON-LD.
 
 L'enchaînement reprend celui de la maquette d'origine (`design/maquette-v2.html`) :
 
-| Ordre | Section                     | Ancre           | Composant                   |
-| ----- | --------------------------- | --------------- | --------------------------- |
-| 1     | Accroche                    | `#accueil`      | `sections/Hero.tsx`         |
-| 2     | Nos services (accordéon)    | `#services`     | `sections/Expertise.tsx`    |
-| 3     | Nos univers d'intervention  | `#univers`      | `sections/Univers.tsx`      |
-| 4     | Des résultats qui parlent   | `#realisations` | `sections/AvantApres.tsx`   |
-| 5     | Cas clients                 | `#cas`          | `sections/CasClients.tsx`   |
-| 6     | Notre promesse              | `#apropos`      | `sections/Promesse.tsx`     |
-| 7     | Ils nous font confiance     |                 | `sections/Temoignages.tsx`  |
-| 8     | Comment ça se passe         |                 | `sections/Process.tsx`      |
-| 9     | Zones d'intervention        | `#zones`        | `sections/ZonesSection.tsx` |
-| 10    | Questions fréquentes        | `#faq`          | `sections/FaqSection.tsx`   |
-| 11    | Contact et devis            | `#contact`      | `sections/CtaDevis.tsx`     |
+| Ordre | Section                    | Ancre           | Composant                   |
+| ----- | -------------------------- | --------------- | --------------------------- |
+| 1     | Accroche                   | `#accueil`      | `sections/Hero.tsx`         |
+| 2     | Nos services (accordéon)   | `#services`     | `sections/Expertise.tsx`    |
+| 3     | Nos univers d'intervention | `#univers`      | `sections/Univers.tsx`      |
+| 4     | Des résultats qui parlent  | `#realisations` | `sections/AvantApres.tsx`   |
+| 5     | Cas clients                | `#cas`          | `sections/CasClients.tsx`   |
+| 6     | Notre promesse             | `#apropos`      | `sections/Promesse.tsx`     |
+| 7     | Ils nous font confiance    |                 | `sections/Temoignages.tsx`  |
+| 8     | Comment ça se passe        |                 | `sections/Process.tsx`      |
+| 9     | Zones d'intervention       | `#zones`        | `sections/ZonesSection.tsx` |
+| 10    | Questions fréquentes       | `#faq`          | `sections/FaqSection.tsx`   |
+| 11    | Contact et devis           | `#contact`      | `sections/CtaDevis.tsx`     |
 
 Les sections 8 à 10 ne figurent pas dans la maquette : elles portent le référencement local et le
 balisage `FAQPage`, qui sont l'objectif premier du site.

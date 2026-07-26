@@ -69,7 +69,9 @@ function Paire({ realisation, taille }: PaireProps) {
         />
       </div>
 
-      <figcaption className="mt-3 text-sm font-medium text-ink-soft">{realisation.titre}</figcaption>
+      <figcaption className="text-ink-soft mt-3 text-sm font-medium">
+        {realisation.titre}
+      </figcaption>
     </figure>
   );
 }

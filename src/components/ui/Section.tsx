@@ -72,7 +72,11 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}
+      className={cn(
+        "flex flex-col gap-4",
+        align === "center" && "items-center text-center",
+        className,
+      )}
     >
       <Tag
         className={cn(

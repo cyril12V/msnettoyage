@@ -27,39 +27,39 @@ export function ZonesSection() {
           {meaux ? (
             <Link
               href="/meaux"
-              className="flex flex-col justify-between gap-5 rounded-xl border border-brand/30 bg-brand-soft p-6 transition duration-200 hover:border-brand hover:shadow-card"
+              className="border-brand/30 bg-brand-soft hover:border-brand hover:shadow-card flex flex-col justify-between gap-5 rounded-xl border p-6 transition duration-200"
             >
               <div>
                 <span className="flex items-center gap-2.5">
-                  <Icon name="pin" className="size-5 text-brand" />
-                  <span className="text-lg font-semibold text-ink">{meaux.name}</span>
-                  <span className="rounded bg-white px-1.5 py-0.5 text-[0.65rem] font-bold tracking-wide text-brand uppercase">
+                  <Icon name="pin" className="text-brand size-5" />
+                  <span className="text-ink text-lg font-semibold">{meaux.name}</span>
+                  <span className="text-brand rounded bg-white px-1.5 py-0.5 text-[0.65rem] font-bold tracking-wide uppercase">
                     Notre base
                   </span>
                 </span>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{meaux.lede}</p>
+                <p className="text-ink-soft mt-3 text-sm leading-relaxed">{meaux.lede}</p>
               </div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand">
+              <span className="text-brand inline-flex items-center gap-2 text-sm font-semibold">
                 Voir la page Meaux
                 <Icon name="arrowRight" className="size-4" />
               </span>
             </Link>
           ) : null}
 
-          <div className="rounded-xl border border-line p-6">
-            <h3 className="text-sm font-semibold text-ink">Départements couverts</h3>
+          <div className="border-line rounded-xl border p-6">
+            <h3 className="text-ink text-sm font-semibold">Départements couverts</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {autresZones.map((zone) => (
                 <li
                   key={zone.slug}
-                  className="inline-flex items-center gap-2 rounded-lg bg-surface px-3.5 py-2 text-sm text-ink-soft"
+                  className="bg-surface text-ink-soft inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm"
                 >
                   {zone.name}
-                  <span className="text-xs text-muted-light">{zone.departement}</span>
+                  <span className="text-muted-light text-xs">{zone.departement}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-sm leading-relaxed text-muted">
+            <p className="text-muted mt-5 text-sm leading-relaxed">
               Votre commune n&apos;est pas listée ? Appelez-nous, nous vous dirons immédiatement si
               nous pouvons intervenir chez vous et sous quel délai.
             </p>

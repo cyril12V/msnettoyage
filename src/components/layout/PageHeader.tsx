@@ -13,16 +13,16 @@ type PageHeaderProps = {
 /** En-tête commun aux pages autonomes : fil d'Ariane, titre et chapô. */
 export function PageHeader({ title, lede, breadcrumbs, children }: PageHeaderProps) {
   return (
-    <section className="border-b border-line-soft bg-surface">
+    <section className="border-line-soft bg-surface border-b">
       <Container className="py-10 sm:py-14">
         <Breadcrumbs items={breadcrumbs} />
 
-        <h1 className="mt-6 max-w-3xl text-3xl leading-[1.08] font-bold tracking-tight text-ink text-balance sm:text-4xl lg:text-5xl">
+        <h1 className="text-ink mt-6 max-w-3xl text-3xl leading-[1.08] font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
           {title}
         </h1>
 
         {lede ? (
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{lede}</p>
+          <p className="text-muted mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">{lede}</p>
         ) : null}
 
         {children ? <div className="mt-7">{children}</div> : null}

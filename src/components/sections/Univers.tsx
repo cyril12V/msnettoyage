@@ -23,7 +23,7 @@ export function Univers() {
           {univers.map((item) => (
             <li
               key={item.id}
-              className="flex flex-col overflow-hidden rounded-xl border border-line bg-white"
+              className="border-line flex flex-col overflow-hidden rounded-xl border bg-white"
             >
               <MediaSlot
                 alt={item.photo}
@@ -32,9 +32,9 @@ export function Univers() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div className="flex flex-1 flex-col gap-2.5 p-5">
-                <Icon name={item.icon} className="size-6 text-brand" />
-                <h3 className="text-lg font-semibold text-ink">{item.titre}</h3>
-                <p className="text-sm leading-relaxed text-muted">{item.accroche}</p>
+                <Icon name={item.icon} className="text-brand size-6" />
+                <h3 className="text-ink text-lg font-semibold">{item.titre}</h3>
+                <p className="text-muted text-sm leading-relaxed">{item.accroche}</p>
               </div>
             </li>
           ))}

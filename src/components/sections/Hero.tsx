@@ -12,16 +12,16 @@ const reassurances: readonly { icon: IconName; texte: string }[] = [
 
 export function Hero() {
   return (
-    <section id="accueil" className="scroll-mt-20 border-b border-line-soft bg-white">
+    <section id="accueil" className="border-line-soft scroll-mt-20 border-b bg-white">
       <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20">
         <div className="flex animate-[var(--animate-fade-up)] flex-col">
           {/*
             « Île-de-France » ne doit jamais se couper sur ses traits d'union :
             une coupure y laisse un « Île-de- » orphelin en fin de ligne.
           */}
-          <h1 className="text-[2.6rem] leading-[1.05] font-bold tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="text-ink text-[2.6rem] leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-[3.4rem]">
             Entreprise de nettoyage en{" "}
-            <span className="whitespace-nowrap text-brand">Île-de-France</span> et à{" "}
+            <span className="text-brand whitespace-nowrap">Île-de-France</span> et à{" "}
             {site.address.city}
           </h1>
 
@@ -29,11 +29,11 @@ export function Hero() {
             Paragraphe rédigé pour être cité tel quel : il définit l'entreprise,
             situe la zone et liste les prestations en une phrase autonome.
           */}
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="text-muted mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
             MS Nettoyage est une entreprise de nettoyage basée à {site.address.city} (
             {site.address.postalCode}) qui intervient dans toute l&apos;Île-de-France : entretien
-            régulier de locaux, nettoyage en profondeur, remise en état après travaux, ménage Airbnb,
-            bureaux et commerces. Devis gratuit sous {site.delaiReponse}.
+            régulier de locaux, nettoyage en profondeur, remise en état après travaux, ménage
+            Airbnb, bureaux et commerces. Devis gratuit sous {site.delaiReponse}.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -48,8 +48,8 @@ export function Hero() {
           <ul className="mt-10 grid gap-4 sm:grid-cols-3">
             {reassurances.map((item) => (
               <li key={item.texte} className="flex items-start gap-2.5">
-                <Icon name={item.icon} className="mt-0.5 size-5 text-brand" />
-                <span className="text-[0.85rem] leading-snug text-muted">{item.texte}</span>
+                <Icon name={item.icon} className="text-brand mt-0.5 size-5" />
+                <span className="text-muted text-[0.85rem] leading-snug">{item.texte}</span>
               </li>
             ))}
           </ul>
