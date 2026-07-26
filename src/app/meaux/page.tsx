@@ -93,17 +93,15 @@ export default function Page() {
               vue de ville générique, et n'ont rien à attendre d'un photographe.
             */}
             <dl className="bg-brand-soft border-brand/20 grid grid-cols-2 gap-5 rounded-2xl border p-6">
+              {/*
+                `flex-col-reverse` affiche la valeur au-dessus de son libellé
+                tout en gardant l'ordre `dt` puis `dd` dans le DOM, seul ordre
+                valide dans une liste de définitions.
+              */}
               {reperes.map((repere) => (
-                <div key={repere.libelle} className="flex flex-col gap-1">
-                  <dt className="sr-only">{repere.libelle}</dt>
-                  <dd>
-                    <span className="text-brand block text-xl leading-tight font-bold">
-                      {repere.valeur}
-                    </span>
-                    <span className="text-muted mt-1 block text-xs leading-snug">
-                      {repere.libelle}
-                    </span>
-                  </dd>
+                <div key={repere.libelle} className="flex flex-col-reverse gap-1">
+                  <dt className="text-muted text-xs leading-snug">{repere.libelle}</dt>
+                  <dd className="text-brand text-xl leading-tight font-bold">{repere.valeur}</dd>
                 </div>
               ))}
             </dl>

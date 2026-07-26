@@ -10,7 +10,7 @@ l'ouverture du site au public.
 Tout ce qui relève du code est fait. Les points restants dépendent d'informations que seul le client
 peut fournir.
 
-### Audit Lighthouse, page d'accueil, profil mobile
+### Audit Lighthouse, profil mobile
 
 | Catégorie        | Score   |
 | ---------------- | ------- |
@@ -19,7 +19,7 @@ peut fournir.
 | SEO              | **100** |
 | Navigation agent | **100** |
 
-57 contrôles passés, aucun échec.
+Mesuré sur la page d'accueil **et** sur la page Meaux : 57 contrôles passés chacune, aucun échec.
 
 ### Performances mesurées
 
