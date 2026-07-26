@@ -5,6 +5,51 @@ l'ouverture du site au public.
 
 ---
 
+## Le site est en ligne
+
+|                     |                                                   |
+| ------------------- | ------------------------------------------------- |
+| **Site**            | https://msnettoyage.vercel.app                    |
+| **Dépôt**           | https://github.com/cyril12V/msnettoyage (public)  |
+| **Tableau de bord** | https://vercel.com/cyril12vs-projects/msnettoyage |
+
+Le dépôt est connecté à Vercel : **chaque push sur `main` déclenche un déploiement**. Une branche
+autre que `main` produit une prévisualisation avec sa propre URL.
+
+### Variables d'environnement déjà configurées
+
+| Variable               | Valeur                           | Environnements        |
+| ---------------------- | -------------------------------- | --------------------- |
+| `NEXT_PUBLIC_SITE_URL` | `https://msnettoyage.vercel.app` | Production et Preview |
+| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com`       | Production et Preview |
+| `CONTACT_FROM_EMAIL`   | `onboarding@resend.dev`          | Production et Preview |
+
+### Il manque une seule variable
+
+`RESEND_API_KEY` n'est pas renseignée : le formulaire de devis répond donc par un message invitant
+à téléphoner, au lieu d'envoyer l'email. Voir la section 4 pour l'obtenir.
+
+Une fois la clé créée :
+
+```bash
+printf 'la_cle_resend' | vercel env add RESEND_API_KEY production
+printf 'la_cle_resend' | vercel env add RESEND_API_KEY preview
+vercel --prod --force
+```
+
+> Utiliser `printf` et non `echo` : `echo` ajoute un saut de ligne à la valeur, ce qui a déjà fait
+> échouer un déploiement.
+
+### Le jour où le domaine est acheté
+
+1. L'ajouter dans Vercel, onglet _Domains_ du projet.
+2. Remplacer `NEXT_PUBLIC_SITE_URL` par le domaine retenu, **sans slash final**. Sans cette étape,
+   les URL canoniques et le sitemap continuent de désigner l'adresse `vercel.app`, et Google
+   indexera celle-ci plutôt que la vôtre.
+3. Redéployer : `vercel --prod --force`.
+
+---
+
 ## 0. État technique, vérifié sur le build de production
 
 Tout ce qui relève du code est fait. Les points restants dépendent d'informations que seul le client

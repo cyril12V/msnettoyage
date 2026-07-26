@@ -1,5 +1,7 @@
 # MS Nettoyage
 
+**En ligne :** https://msnettoyage.vercel.app · **Dépôt :** https://github.com/cyril12V/msnettoyage
+
 Site vitrine de **MS Nettoyage**, entreprise de nettoyage professionnel basée à Meaux (77100) et
 intervenant dans toute l'Île-de-France.
 
@@ -17,7 +19,7 @@ Objectif du site : être trouvé sur les recherches locales (« entreprise de ne
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`               |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                       |
 | Emails      | Resend                   | Envoi des demandes de devis, avec authentification du domaine |
-| Tests       | Vitest + Testing Library | 64 tests sur la validation, l'anti-spam et le contenu         |
+| Tests       | Vitest + Testing Library | 82 tests sur la validation, l'anti-spam et le contenu         |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus            |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
