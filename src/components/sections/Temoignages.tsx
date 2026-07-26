@@ -21,7 +21,7 @@ export function Temoignages() {
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <Container>
         {afficherAvertissement ? (
-          <p className="mb-8 rounded-lg border border-danger/30 bg-danger/5 px-4 py-3 text-sm text-danger">
+          <p className="border-danger/30 bg-danger/5 text-danger mb-8 rounded-lg border px-4 py-3 text-sm">
             Avis de démonstration repris de la maquette. À remplacer par de vrais avis clients dans{" "}
             <code>src/data/temoignages.ts</code> avant la mise en ligne.
           </p>
@@ -29,8 +29,8 @@ export function Temoignages() {
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,26%)_minmax(0,74%)] lg:gap-12">
           <div className="flex flex-col gap-5">
-            <p className="text-xs font-bold tracking-[0.16em] text-brand uppercase">Avis clients</p>
-            <h2 className="text-3xl leading-[1.08] font-bold tracking-tight text-ink uppercase sm:text-4xl">
+            <p className="text-brand text-xs font-bold tracking-[0.16em] uppercase">Avis clients</p>
+            <h2 className="text-ink text-3xl leading-[1.08] font-bold tracking-tight uppercase sm:text-4xl">
               Ils nous font
               <br />
               confiance
@@ -44,18 +44,18 @@ export function Temoignages() {
             {temoignages.map((avis) => (
               <li
                 key={`${avis.auteur}-${avis.citation.slice(0, 24)}`}
-                className="flex flex-col gap-4 border-l border-line pl-6"
+                className="border-line flex flex-col gap-4 border-l pl-6"
               >
-                <Icon name="quote" className="size-7 text-brand" />
+                <Icon name="quote" className="text-brand size-7" />
 
-                <blockquote className="text-sm leading-relaxed text-ink-soft">
+                <blockquote className="text-ink-soft text-sm leading-relaxed">
                   {avis.citation}
                 </blockquote>
 
                 <div className="mt-auto">
                   {avis.note ? (
                     <p
-                      className="mb-2 flex items-center gap-0.5 text-brand"
+                      className="text-brand mb-2 flex items-center gap-0.5"
                       aria-label={`Note : ${avis.note} sur 5`}
                     >
                       {Array.from({ length: avis.note }, (_, index) => (
@@ -63,8 +63,8 @@ export function Temoignages() {
                       ))}
                     </p>
                   ) : null}
-                  <p className="text-sm font-semibold text-ink">{avis.auteur}</p>
-                  <p className="text-xs text-muted-light">
+                  <p className="text-ink text-sm font-semibold">{avis.auteur}</p>
+                  <p className="text-muted-light text-xs">
                     {avis.contexte}
                     {avis.source ? ` · ${avis.source}` : ""}
                   </p>

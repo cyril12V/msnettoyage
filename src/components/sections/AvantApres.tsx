@@ -62,7 +62,9 @@ function Paire({ realisation, taille }: PaireProps) {
         />
       </div>
 
-      <figcaption className="mt-3 text-sm font-medium text-ink-soft">{realisation.titre}</figcaption>
+      <figcaption className="text-ink-soft mt-3 text-sm font-medium">
+        {realisation.titre}
+      </figcaption>
     </figure>
   );
 }
@@ -82,15 +84,15 @@ export function AvantApres() {
     <section id="realisations" className="scroll-mt-20 bg-white py-16 sm:py-20 lg:py-24">
       <Container className="grid gap-10 lg:grid-cols-[minmax(0,26%)_minmax(0,74%)] lg:gap-12">
         <div className="flex flex-col gap-4">
-          <p className="text-xs font-bold tracking-[0.16em] text-brand uppercase">Réalisations</p>
-          <h2 className="text-3xl leading-[1.05] font-bold tracking-tight text-ink uppercase sm:text-4xl">
+          <p className="text-brand text-xs font-bold tracking-[0.16em] uppercase">Réalisations</p>
+          <h2 className="text-ink text-3xl leading-[1.05] font-bold tracking-tight uppercase sm:text-4xl">
             Des résultats
             <br />
             qui parlent
             <br />
             d&apos;eux-mêmes
           </h2>
-          <p className="leading-relaxed text-muted">
+          <p className="text-muted leading-relaxed">
             Mêmes lieux, même cadrage, avant et après notre passage.
           </p>
         </div>

@@ -126,6 +126,103 @@ describe("faq", () => {
   });
 });
 
+describe("univers d'intervention", () => {
+  it("expose six univers aux identifiants uniques", () => {
+    expect(univers).toHaveLength(6);
+    expect(new Set(univers.map((item) => item.id)).size).toBe(univers.length);
+  });
+
+  it("ne renvoie que vers des prestations existantes", () => {
+    for (const item of univers) {
+      expect(getService(item.service), `${item.id} → ${item.service}`).toBeDefined();
+    }
+  });
+
+  it("décrit la photo attendue pour chaque emplacement vide", () => {
+    for (const item of univers) {
+      if (!item.src) {
+        expect(item.photo.length, `photo non décrite : ${item.id}`).toBeGreaterThan(15);
+      }
+    }
+  });
+});
+
+describe("réalisations avant / après", () => {
+  it("n'a aucun identifiant en double", () => {
+    expect(new Set(realisations.map((item) => item.id)).size).toBe(realisations.length);
+  });
+
+  it("désigne une seule réalisation principale", () => {
+    expect(realisations.filter((item) => item.principale)).toHaveLength(1);
+    expect(realisationPrincipale).toBeDefined();
+    expect(realisationsSecondaires).toHaveLength(realisations.length - 1);
+    expect(realisationsSecondaires.map((item) => item.id)).not.toContain(realisationPrincipale?.id);
+  });
+
+  it("décrit les deux photos de chaque paire", () => {
+    for (const item of realisations) {
+      expect(item.avant.length, `avant non décrit : ${item.id}`).toBeGreaterThan(15);
+      expect(item.apres.length, `après non décrit : ${item.id}`).toBeGreaterThan(15);
+    }
+  });
+
+  it("fournit les deux photos d'une paire, ou aucune", () => {
+    for (const item of realisations) {
+      expect(
+        Boolean(item.avantSrc) === Boolean(item.apresSrc),
+        `paire incomplète : ${item.id} — une comparaison à moitié illustrée n'a pas de sens`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe("cas clients", () => {
+  it("n'a aucun identifiant en double", () => {
+    expect(new Set(casClients.map((cas) => cas.id)).size).toBe(casClients.length);
+  });
+
+  it("ne renvoie que vers des prestations existantes", () => {
+    for (const cas of casClients) {
+      expect(getService(cas.service), `${cas.id} → ${cas.service}`).toBeDefined();
+    }
+  });
+
+  it("affiche des chiffres courts et libellés", () => {
+    for (const cas of casClients) {
+      expect(cas.chiffres.length).toBeGreaterThanOrEqual(2);
+      for (const chiffre of cas.chiffres) {
+        expect(chiffre.valeur.length, `valeur trop longue : ${cas.id}`).toBeLessThanOrEqual(12);
+        expect(chiffre.libelle.length).toBeGreaterThan(3);
+      }
+    }
+  });
+});
+
+describe("témoignages", () => {
+  it("identifie chaque auteur par un prénom et une initiale, jamais un nom complet", () => {
+    for (const avis of temoignages) {
+      expect(avis.auteur, `auteur non anonymisé : ${avis.auteur}`).toMatch(
+        /^\p{Lu}[\p{L}-]+ \p{Lu}\.$/u,
+      );
+    }
+  });
+
+  it("attribue une note comprise entre 1 et 5, lorsqu'elle est renseignée", () => {
+    for (const avis of temoignages) {
+      if (avis.note !== undefined) {
+        expect(avis.note).toBeGreaterThanOrEqual(1);
+        expect(avis.note).toBeLessThanOrEqual(5);
+      }
+    }
+  });
+
+  it("situe chaque avis par une qualité et un lieu", () => {
+    for (const avis of temoignages) {
+      expect(avis.contexte).toContain("—");
+    }
+  });
+});
+
 describe("configuration du site", () => {
   it("expose un téléphone au format E.164", () => {
     expect(site.contact.phone).toMatch(/^\+33[1-9]\d{8}$/);

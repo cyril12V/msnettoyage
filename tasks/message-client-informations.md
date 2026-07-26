@@ -145,20 +145,20 @@ Bien à vous,
 
 ## Correspondance avec le code
 
-| Information demandée      | Où la saisir                                        |
-| ------------------------- | --------------------------------------------------- |
-| Forme juridique           | `src/lib/site.ts` → `legal.formeJuridique`          |
-| SIRET                     | `src/lib/site.ts` → `legal.siret`                   |
-| RCS                       | `src/lib/site.ts` → `legal.rcs`                     |
-| TVA intracommunautaire    | `src/lib/site.ts` → `legal.tvaIntracommunautaire`   |
-| Capital social            | `src/lib/site.ts` → `legal.capitalSocial`           |
-| Responsable de publication| `src/lib/site.ts` → `legal.directeurPublication`    |
-| Assurance RC pro          | `src/lib/site.ts` → `legal.assuranceRcPro`          |
-| Adresse du siège          | `src/lib/site.ts` → `address.streetAddress`         |
-| Horaires                  | `src/lib/site.ts` → `openingHours` + `openingHoursDisplay` |
-| Délai de réponse          | `src/lib/site.ts` → `delaiReponse`                  |
-| Réseaux sociaux           | `src/lib/site.ts` → `social`                        |
-| Zones à retirer           | `src/data/zones.ts`                                 |
-| Avis clients              | `src/data/temoignages.ts`                           |
-| Photos                    | `public/images/` + prop `src` des `MediaSlot`       |
-| Nom de domaine            | variable d'environnement `NEXT_PUBLIC_SITE_URL`     |
+| Information demandée       | Où la saisir                                               |
+| -------------------------- | ---------------------------------------------------------- |
+| Forme juridique            | `src/lib/site.ts` → `legal.formeJuridique`                 |
+| SIRET                      | `src/lib/site.ts` → `legal.siret`                          |
+| RCS                        | `src/lib/site.ts` → `legal.rcs`                            |
+| TVA intracommunautaire     | `src/lib/site.ts` → `legal.tvaIntracommunautaire`          |
+| Capital social             | `src/lib/site.ts` → `legal.capitalSocial`                  |
+| Responsable de publication | `src/lib/site.ts` → `legal.directeurPublication`           |
+| Assurance RC pro           | `src/lib/site.ts` → `legal.assuranceRcPro`                 |
+| Adresse du siège           | `src/lib/site.ts` → `address.streetAddress`                |
+| Horaires                   | `src/lib/site.ts` → `openingHours` + `openingHoursDisplay` |
+| Délai de réponse           | `src/lib/site.ts` → `delaiReponse`                         |
+| Réseaux sociaux            | `src/lib/site.ts` → `social`                               |
+| Zones à retirer            | `src/data/zones.ts`                                        |
+| Avis clients               | `src/data/temoignages.ts`                                  |
+| Photos                     | `public/images/` + prop `src` des `MediaSlot`              |
+| Nom de domaine             | variable d'environnement `NEXT_PUBLIC_SITE_URL`            |

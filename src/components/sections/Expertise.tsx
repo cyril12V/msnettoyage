@@ -23,9 +23,11 @@ export function Expertise() {
     <section id="services" className="scroll-mt-20 bg-white py-16 sm:py-20 lg:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-[minmax(0,42%)_minmax(0,58%)] lg:gap-16">
         <div className="flex flex-col">
-          <p className="text-xs font-bold tracking-[0.16em] text-brand uppercase">Notre expertise</p>
+          <p className="text-brand text-xs font-bold tracking-[0.16em] uppercase">
+            Notre expertise
+          </p>
 
-          <h2 className="mt-4 text-3xl leading-[1.05] font-bold tracking-tight text-ink uppercase sm:text-4xl">
+          <h2 className="text-ink mt-4 text-3xl leading-[1.05] font-bold tracking-tight uppercase sm:text-4xl">
             Nous nettoyons
             <br />
             tout votre <span className="text-brand">quotidien</span>
@@ -34,8 +36,8 @@ export function Expertise() {
           <ul className="mt-8 flex flex-col gap-3">
             {services.map((service) => (
               <li key={service.slug} className="flex items-start gap-3">
-                <Icon name="checkCircle" className="mt-0.5 size-5 shrink-0 text-brand" />
-                <span className="text-[0.95rem] leading-snug text-ink-soft">
+                <Icon name="checkCircle" className="text-brand mt-0.5 size-5 shrink-0" />
+                <span className="text-ink-soft text-[0.95rem] leading-snug">
                   {service.listLabel}
                 </span>
               </li>
@@ -51,7 +53,7 @@ export function Expertise() {
 
         <div className="grid h-80 grid-cols-[1.1fr_0.9fr] grid-rows-2 gap-1.5 overflow-hidden rounded-2xl sm:h-96 lg:h-[31rem] lg:-skew-x-6 lg:rounded-none">
           <div className="relative row-span-2 overflow-hidden">
-            <div className="absolute inset-0 lg:skew-x-6 lg:scale-125">
+            <div className="absolute inset-0 lg:scale-125 lg:skew-x-6">
               <MediaSlot
                 alt={visuels[0].alt}
                 src={visuels[0].src}
@@ -62,7 +64,7 @@ export function Expertise() {
           </div>
           {visuels.slice(1).map((visuel) => (
             <div key={visuel.alt} className="relative overflow-hidden">
-              <div className="absolute inset-0 lg:skew-x-6 lg:scale-125">
+              <div className="absolute inset-0 lg:scale-125 lg:skew-x-6">
                 <MediaSlot
                   alt={visuel.alt}
                   src={visuel.src}

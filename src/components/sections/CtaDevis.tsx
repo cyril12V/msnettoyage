@@ -55,44 +55,44 @@ export function CtaDevis({
             ) : null}
 
             <ul className="bg-brand-deep/70 flex flex-col gap-5 rounded-2xl p-6">
-            <li>
-              <a href={telHref} className="flex items-center gap-3.5 text-white hover:opacity-80">
-                <Icon name="phone" className="size-5" />
-                <span className="text-[0.95rem] font-semibold">
-                  {site.contact.phoneInternational}
-                </span>
-              </a>
-            </li>
-            <li>
-              <a
-                href={mailtoHref}
-                className="flex items-center gap-3.5 text-white hover:opacity-80"
-              >
-                <Icon name="mail" className="size-5" />
-                <span className="text-[0.95rem] break-all">{site.contact.email}</span>
-              </a>
-            </li>
-            <li className="flex items-start gap-3.5 text-white">
-              <Icon name="pin" className="mt-0.5 size-5" />
-              <span>
-                <span className="block text-[0.95rem]">
-                  {site.address.city} ({site.address.postalCode})
-                </span>
-                <span className="mt-0.5 block text-xs text-white/70">
-                  Interventions dans toute l&apos;Île-de-France
-                </span>
-              </span>
-            </li>
-            <li className="flex items-start gap-3.5 text-white">
-              <Icon name="clock" className="mt-0.5 size-5" />
-              <span className="flex flex-col gap-0.5">
-                {site.openingHoursDisplay.map((creneau) => (
-                  <span key={creneau.label} className="text-[0.95rem]">
-                    {creneau.label} : {creneau.value}
+              <li>
+                <a href={telHref} className="flex items-center gap-3.5 text-white hover:opacity-80">
+                  <Icon name="phone" className="size-5" />
+                  <span className="text-[0.95rem] font-semibold">
+                    {site.contact.phoneInternational}
                   </span>
-                ))}
-              </span>
-            </li>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={mailtoHref}
+                  className="flex items-center gap-3.5 text-white hover:opacity-80"
+                >
+                  <Icon name="mail" className="size-5" />
+                  <span className="text-[0.95rem] break-all">{site.contact.email}</span>
+                </a>
+              </li>
+              <li className="flex items-start gap-3.5 text-white">
+                <Icon name="pin" className="mt-0.5 size-5" />
+                <span>
+                  <span className="block text-[0.95rem]">
+                    {site.address.city} ({site.address.postalCode})
+                  </span>
+                  <span className="mt-0.5 block text-xs text-white/70">
+                    Interventions dans toute l&apos;Île-de-France
+                  </span>
+                </span>
+              </li>
+              <li className="flex items-start gap-3.5 text-white">
+                <Icon name="clock" className="mt-0.5 size-5" />
+                <span className="flex flex-col gap-0.5">
+                  {site.openingHoursDisplay.map((creneau) => (
+                    <span key={creneau.label} className="text-[0.95rem]">
+                      {creneau.label} : {creneau.value}
+                    </span>
+                  ))}
+                </span>
+              </li>
             </ul>
           </div>
         </div>

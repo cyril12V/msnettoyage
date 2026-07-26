@@ -17,7 +17,7 @@ Objectif du site : être trouvé sur les recherches locales (« entreprise de ne
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`               |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                       |
 | Emails      | Resend                   | Envoi des demandes de devis, avec authentification du domaine |
-| Tests       | Vitest + Testing Library | 53 tests sur la validation, l'anti-spam et le contenu         |
+| Tests       | Vitest + Testing Library | 66 tests sur la validation, l'anti-spam et le contenu         |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus            |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
@@ -66,7 +66,7 @@ src/
 │  ├─ politique-de-confidentialite/  RGPD
 │  ├─ api/contact/route.ts       Réception des demandes de devis
 │  ├─ sitemap.ts  robots.ts      SEO technique
-│  ├─ manifest.ts  icon.tsx  apple-icon.tsx  opengraph-image.tsx
+│  ├─ manifest.ts  icon.png  apple-icon.png  opengraph-image.tsx
 │  ├─ not-found.tsx  error.tsx
 │  └─ globals.css                Tokens de design (couleurs, ombres, animations)
 │
@@ -80,9 +80,12 @@ src/
 ├─ data/                         CONTENU ÉDITABLE — aucune logique
 │  ├─ services.ts                Les 7 prestations
 │  ├─ zones.ts                   Les 9 zones d'intervention
+│  ├─ univers.ts                 Les 6 univers d'intervention
+│  ├─ realisations.ts            Paires avant / après
+│  ├─ cas-clients.ts             Missions mises en avant (démo — voir plus bas)
 │  ├─ faq.ts                     Les 12 questions/réponses
-│  ├─ temoignages.ts             Avis clients (vide au lancement — voir plus bas)
-│  └─ navigation.ts              Menus
+│  ├─ temoignages.ts             Avis clients (démo — voir plus bas)
+│  └─ navigation.ts              Menus de l'en-tête et du pied de page
 │
 ├─ lib/
 │  ├─ site.ts                    ★ Source de vérité : NAP, horaires, mentions légales
@@ -133,11 +136,39 @@ l'emplacement correspondant, par exemple dans `src/components/sections/Hero.tsx`
 
 En développement, chaque emplacement vide affiche le descriptif de la photo attendue.
 
-### Avis clients
+### Sections de la page d'accueil
 
-`src/data/temoignages.ts` est **volontairement vide**. Publier des témoignages inventés est une
-pratique commerciale trompeuse (art. L121-2 du code de la consommation). La section « Avis clients »
-ne s'affiche qu'une fois de vrais avis saisis dans ce fichier.
+L'enchaînement reprend celui de la maquette d'origine (`design/maquette-v2.html`) :
+
+| Ordre | Section                            | Ancre           | Composant                   |
+| ----- | ---------------------------------- | --------------- | --------------------------- |
+| 1     | Hero                               | —               | `sections/Hero.tsx`         |
+| 2     | Notre expertise (liste + mosaïque) | `#services`     | `sections/Expertise.tsx`    |
+| 3     | Nos univers d'intervention         | `#univers`      | `sections/Univers.tsx`      |
+| 4     | Des résultats qui parlent          | `#realisations` | `sections/AvantApres.tsx`   |
+| 5     | Cas clients                        | `#cas`          | `sections/CasClients.tsx`   |
+| 6     | Notre promesse                     | `#apropos`      | `sections/Promesse.tsx`     |
+| 7     | Ils nous font confiance            | —               | `sections/Temoignages.tsx`  |
+| 8     | Comment ça se passe                | —               | `sections/Process.tsx`      |
+| 9     | Zones d'intervention               | —               | `sections/ZonesSection.tsx` |
+| 10    | Questions fréquentes               | `#faq`          | `sections/FaqSection.tsx`   |
+| 11    | Contact et devis                   | `#contact`      | `sections/CtaDevis.tsx`     |
+
+Les sections 8 à 10 ne figurent pas dans la maquette : elles portent le référencement local et le
+balisage `FAQPage`, qui sont l'objectif premier du site. Les supprimer priverait le site de ses
+principaux points d'entrée depuis Google.
+
+### Contenu de démonstration à remplacer
+
+Deux fichiers reprennent le contenu de la maquette et ne décrivent **ni missions ni avis réels** :
+
+- `src/data/temoignages.ts` — trois avis repris de la maquette. Un bandeau visible en développement
+  le rappelle tant que `temoignagesSontDeDemonstration` vaut `true`.
+- `src/data/cas-clients.ts` — trois missions aux chiffres non mesurés.
+
+Publier des témoignages ou des résultats inventés est une pratique commerciale trompeuse
+(art. L121-2 du code de la consommation). Les remplacer figure comme point **bloquant** dans
+`DEPLOIEMENT.md`.
 
 ---
 

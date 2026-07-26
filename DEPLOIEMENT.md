@@ -35,14 +35,42 @@ amende pouvant atteindre 75 000 € pour une personne morale.
 
 ## 2. Contenu à fournir
 
-- [ ] **Photographies** — voir la section « Photos » du README. Emplacements prévus : hero
-      d'accueil, une par page de prestation, une sur « À propos ».
-      Format conseillé : JPG ou WebP, 1600 px de large minimum, moins de 400 Ko après compression.
-- [ ] **Logo vectoriel** — le monogramme « MS » est actuellement dessiné en CSS
-      (`src/components/layout/Logo.tsx`, `src/app/icon.tsx`).
-- [ ] **Avis clients réels** → `src/data/temoignages.ts`.
-      Reprendre le texte mot pour mot, se limiter au prénom et à l'initiale du nom.
-      **Ne jamais inventer de témoignage** (art. L121-2 du code de la consommation).
+### Contenu de démonstration à remplacer — BLOQUANT
+
+Deux jeux de données reprennent le contenu de la maquette et ne décrivent aucune mission ni aucun
+avis réels. Les publier en l'état revient à diffuser des allégations invérifiables, ce que
+l'article L121-2 du code de la consommation qualifie de pratique commerciale trompeuse.
+
+- [ ] **Avis clients** → `src/data/temoignages.ts`
+      Remplacer les trois avis par de vrais retours (SMS, WhatsApp, avis Google), repris mot pour
+      mot, limités au prénom et à l'initiale du nom. Passer ensuite
+      `temoignagesSontDeDemonstration` à `false` : le bandeau d'avertissement affiché en
+      développement disparaît. Vider complètement le tableau masque simplement la section.
+- [ ] **Cas clients** → `src/data/cas-clients.ts`
+      Remplacer les trois missions par des interventions réellement effectuées, avec des chiffres
+      que l'entreprise peut justifier.
+
+### Photographies
+
+Chaque emplacement vide affiche, en développement, la description de la photo attendue.
+Format conseillé : JPG ou WebP, 1600 px de large minimum, moins de 400 Ko après compression.
+
+- [ ] Visuel du hero d'accueil
+- [ ] Mosaïque de la section « Notre expertise » — 3 photos
+- [ ] Les 6 univers d'intervention → `src/data/univers.ts`, champ `src`
+- [ ] Paires avant / après → `src/data/realisations.ts`, champs `avantSrc` et `apresSrc`.
+      **Même lieu, même cadrage** pour les deux prises de vue : c'est le cadrage identique qui rend
+      la comparaison crédible. Un test échoue si une paire n'est illustrée qu'à moitié.
+- [ ] Les 3 cas clients → `src/data/cas-clients.ts`, champ `src`
+- [ ] Une photo par page de prestation, une sur « À propos », le véhicule sur le bloc contact
+
+### Logo
+
+Le logo fourni est intégré (`public/logo-ms-nettoyage.png`), ainsi que le favicon, l'icône iOS et
+les icônes du manifeste, tous dérivés du monogramme.
+
+- [ ] Fournir la version vectorielle (`.svg`, `.ai` ou `.eps`) si elle existe : le rendu sera plus
+      net sur les écrans à haute densité et le fichier plus léger.
 
 ---
 
