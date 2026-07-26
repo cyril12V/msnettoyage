@@ -32,7 +32,7 @@ function InfoLegale({ label, valeur }: { label: string; valeur: string }) {
     <li>
       <span className="text-ink font-semibold">{label} :</span>{" "}
       {valeur ? (
-        <span className={sansObjet ? "text-muted-light" : undefined}>{valeur}</span>
+        <span className={sansObjet ? "text-muted" : undefined}>{valeur}</span>
       ) : (
         <span className="bg-danger/10 text-danger rounded px-1.5 py-0.5">
           Information à compléter

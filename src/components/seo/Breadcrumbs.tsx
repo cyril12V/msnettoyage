@@ -29,7 +29,7 @@ export function Breadcrumbs({ items, className, inverted = false }: BreadcrumbsP
               {index > 0 ? (
                 <Icon
                   name="arrowRight"
-                  className={cn("size-3", inverted ? "text-white/50" : "text-muted-light")}
+                  className={cn("size-3", inverted ? "text-white/50" : "text-muted")}
                 />
               ) : null}
               {dernier ? (

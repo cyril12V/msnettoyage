@@ -85,3 +85,36 @@ aux yeux de satori, alors que cela ressemble à une simple ligne de texte.
 
 **Règle.** Dans `ImageResponse` : flexbox uniquement (pas de grid), et tout élément à plus d'un
 enfant, **les fragments de texte comptent** : déclare `display: flex`.
+
+---
+
+## 2026-07-26, Un jeton de couleur conforme « sur fond blanc » est un piège
+
+**Erreur.** Le jeton `--color-muted-light` (#6c7484) avait été calibré à 4,70:1 **sur fond blanc**,
+donc conforme WCAG AA. Posé sur `--color-surface` (#f6f8fb), il retombe à 4,42:1. Lighthouse a
+sorti l'échec sur une page d'atterrissage, plusieurs semaines après que le jeton ait été « validé ».
+
+**Correction.** Suppression du jeton. Tout passe sur `--color-muted` (#646b7a), qui tient sur les
+trois fonds du site : 5,35:1 sur blanc, 5,03:1 sur `surface`, 4,63:1 sur `brand-soft`. L'écart
+visuel entre les deux valeurs était de toute façon imperceptible.
+
+**Règle.** Un jeton de couleur se valide contre **tous** les fonds sur lesquels le système de design
+permet de le poser, pas contre le blanc. Si un jeton n'est conforme que sur un fond, il ne mérite
+pas d'exister : sa seule fonction est de produire une régression le jour où quelqu'un l'utilise
+ailleurs.
+
+---
+
+## 2026-07-26, Deux pages ne peuvent pas viser la même requête
+
+**Erreur.** Le site avait une page `/meaux` visant « nettoyage à Meaux » **et** une page d'accueil
+visant la même chose. Les deux se cannibalisaient : Google en retient une, arbitrairement, et les
+deux reculent.
+
+**Correction.** `/meaux` supprimée, son contenu local fondu dans la section `#zones` de l'accueil,
+l'URL redirigée en 301. La page d'accueil vise « société de nettoyage à Meaux », les six pages
+d'atterrissage visent chacune une requête disjointe.
+
+**Règle.** Une requête = une page, et une page = une requête. Avant de créer une page, vérifier
+qu'aucune page existante ne vise déjà le même intitulé. `tests/landings.test.ts` verrouille
+l'absence de doublon de titre, de chapeau, de paragraphe et de question.

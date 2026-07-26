@@ -95,7 +95,7 @@ export function Header() {
               sans cela, un visiteur sur téléphone, majoritaire ici, n'y accède
               qu'en faisant défiler toute la page d'accueil.
             */}
-            <p className="text-muted-light mt-3 px-3 pt-3 text-xs font-semibold">
+            <p className="text-muted mt-3 px-3 pt-3 text-xs font-semibold">
               Nos prestations à {site.address.city}
             </p>
             {prestationsNav.map((lien) => (

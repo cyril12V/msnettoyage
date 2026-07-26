@@ -10,7 +10,7 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 const controlClasses =
-  "w-full rounded-md border bg-white px-3.5 text-sm text-ink transition-colors placeholder:text-muted-light focus:border-brand focus:outline-none";
+  "w-full rounded-md border bg-white px-3.5 text-sm text-ink transition-colors placeholder:text-muted focus:border-brand focus:outline-none";
 
 /** Un libellé de champ se lit en casse normale : c'est un mot, pas une étiquette décorative. */
 const labelClasses = "text-sm font-medium text-ink-soft";

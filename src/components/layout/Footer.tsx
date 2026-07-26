@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         <div className="border-line-soft mt-12 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-muted-light text-xs">
+          <p className="text-muted text-xs">
             © {anneeCourante} {site.name}, tous droits réservés.
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">

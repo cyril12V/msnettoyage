@@ -42,7 +42,7 @@ export function CasClients() {
                       <dd className="text-brand text-xl leading-none font-bold">
                         {chiffre.valeur}
                       </dd>
-                      <dt className="text-muted-light mt-1 text-xs">{chiffre.libelle}</dt>
+                      <dt className="text-muted mt-1 text-xs">{chiffre.libelle}</dt>
                     </div>
                   ))}
                 </dl>

@@ -63,7 +63,7 @@ export function Temoignages() {
                     </p>
                   ) : null}
                   <p className="text-ink text-sm font-semibold">{avis.auteur}</p>
-                  <p className="text-muted-light text-xs">
+                  <p className="text-muted text-xs">
                     {avis.contexte}
                     {avis.source ? ` · ${avis.source}` : ""}
                   </p>

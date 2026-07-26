@@ -14,15 +14,19 @@
 
   --color-ink: #0e1a3a;
   --color-ink-soft: #1e2735;
-  --color-muted: #646b7a;
   /*
-    Ton secondaire le plus clair du site. Sa valeur d'origine (#8892a4) ne
-    donnait que 3,14:1 sur fond blanc, sous le seuil WCAG AA de 4,5:1 exigé pour
-    du texte de petite taille, et c'est précisément l'usage qu'on en fait :
-    libellés de chiffres clés, mentions du pied de page, textes de contexte.
-    #6c7484 monte à 4,70:1 tout en restant distinct de --color-muted.
+    Ton secondaire, utilisé pour tout le texte de contexte : libellés de chiffres
+    clés, mentions du pied de page, textes secondaires.
+
+    Il n'existe volontairement PAS de variante plus claire. Il y en a eu une
+    (#6c7484), qui donnait 4,70:1 sur blanc mais retombait à 4,42:1 sur
+    --color-surface, sous le seuil WCAG AA de 4,5:1 exigé pour du petit texte.
+    Un jeton dont la conformité dépend du fond sur lequel on le pose est un piège :
+    il passe les contrôles tant que personne ne l'utilise sur un aplat teinté, puis
+    échoue silencieusement le jour où quelqu'un le fait. #646b7a tient partout :
+    5,35:1 sur blanc, 5,03:1 sur --color-surface, 4,63:1 sur --color-brand-soft.
   */
-  --color-muted-light: #6c7484;
+  --color-muted: #646b7a;
 
   --color-line: #e4e8ef;
   --color-line-soft: #eef1f6;

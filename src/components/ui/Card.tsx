@@ -79,7 +79,7 @@ export function Stat({ value, label, className }: StatProps) {
   return (
     <div className={cn("flex flex-col gap-1", className)}>
       <span className="text-brand text-2xl leading-none font-bold">{value}</span>
-      <span className="text-muted-light text-xs">{label}</span>
+      <span className="text-muted text-xs">{label}</span>
     </div>
   );
 }

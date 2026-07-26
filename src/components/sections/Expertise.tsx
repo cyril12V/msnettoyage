@@ -70,7 +70,7 @@ export function Expertise() {
                   <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
                     {service.facts.map((fait) => (
                       <div key={fait.label} className="flex flex-col gap-0.5">
-                        <dt className="text-muted-light text-xs">{fait.label}</dt>
+                        <dt className="text-muted text-xs">{fait.label}</dt>
                         <dd className="text-ink text-sm font-semibold">{fait.value}</dd>
                       </div>
                     ))}

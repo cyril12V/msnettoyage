@@ -21,8 +21,8 @@ type PageParams = { params: Promise<{ prestation: string }> };
  *
  * Le segment dynamique est à la racine du site : l'URL reste courte et porte le
  * mot-clé, `/nettoyage-maison-meaux` plutôt que `/services/nettoyage-maison`.
- * Next.js résout d'abord les segments statiques, donc `/meaux` et
- * `/mentions-legales` continuent de pointer sur leurs pages respectives.
+ * Next.js résout d'abord les segments statiques, donc `/mentions-legales` et
+ * `/politique-de-confidentialite` continuent de pointer sur leurs pages.
  */
 export function generateStaticParams() {
   return landingSlugs.map((prestation) => ({ prestation }));
@@ -110,7 +110,7 @@ export default async function Page({ params }: PageParams) {
             <dl className="border-line bg-surface grid grid-cols-1 gap-4 rounded-2xl border p-6">
               {landing.faits.map((fait) => (
                 <div key={fait.label} className="flex flex-col-reverse gap-0.5">
-                  <dt className="text-muted-light text-xs">{fait.label}</dt>
+                  <dt className="text-muted text-xs">{fait.label}</dt>
                   <dd className="text-ink text-base font-semibold">{fait.value}</dd>
                 </div>
               ))}
