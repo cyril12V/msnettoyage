@@ -24,15 +24,15 @@ autre que `main` produit une prévisualisation avec sa propre URL.
 
 Toutes présentes en **Production et Preview**, aucune ne manque.
 
-| Variable               | Valeur                      |
-| ---------------------- | --------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://ms-nettoyages.com` |
-| `SMTP_HOST`            | `smtp.securemail.pro`       |
-| `SMTP_PORT`            | `465`                       |
-| `SMTP_USER`            | `contact@ms-nettoyages.com` |
-| `SMTP_PASSWORD`        | secret, chiffré par Vercel  |
-| `CONTACT_FROM_EMAIL`   | `contact@ms-nettoyages.com` |
-| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com`  |
+| Variable               | Valeur                                               |
+| ---------------------- | ---------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | `https://ms-nettoyages.com`                          |
+| `SMTP_HOST`            | `smtp.securemail.pro`                                |
+| `SMTP_PORT`            | `465`                                                |
+| `SMTP_USER`            | `contact@ms-nettoyages.com`                          |
+| `SMTP_PASSWORD`        | secret, chiffré par Vercel                           |
+| `CONTACT_FROM_EMAIL`   | `contact@ms-nettoyages.com`                          |
+| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com,contact@ms-nettoyages.com` |
 
 > Pour en modifier une : `printf 'valeur' | vercel env add NOM production`, puis redéployer.
 > Utiliser `printf` et **jamais** `echo` : `echo` ajoute un saut de ligne à la valeur, ce qui a
@@ -75,7 +75,7 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
 | ------------------- | ---------------------------------------- |
 | `npm run lint`      | 0 erreur, 0 avertissement                |
 | `npm run typecheck` | 0 erreur                                 |
-| `npm run test`      | 100 / 100                                |
+| `npm run test`      | 126 / 126                                |
 | `npm run build`     | 18 routes, 17 statiques + `/api/contact` |
 
 ### Vérifications manuelles sur le serveur de production
@@ -99,7 +99,7 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
 ### Ce qui reste, et qui ne dépend pas du code
 
 1. Les informations légales, section 1 ci-dessous. **Bloquant.**
-2. Les enregistrements SPF, DKIM et DMARC, section 4. **Bloquant pour la délivrabilité.**
+2. L'enregistrement SPF, section 4. **Bloquant : Gmail rejette tout, DMARC seul n'y suffit pas.**
 3. Le nom de domaine, section 3.
 4. Les avis et cas clients réels, section 2.
 
@@ -211,50 +211,86 @@ marche à suivre est détaillée dans [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
 Le formulaire envoie par le SMTP de la messagerie du domaine, chez Amen. La configuration est
 **faite et testée** : un envoi réel a été accepté par le serveur le 27 juillet 2026.
 
-| Réglage      | Valeur                                                    |
-| ------------ | --------------------------------------------------------- |
-| Serveur      | `smtp.securemail.pro`                                     |
-| Port         | `465`, TLS dès la connexion                               |
-| Compte       | `contact@ms-nettoyages.com`                               |
-| Expéditeur   | `contact@ms-nettoyages.com`, jamais l'adresse du visiteur |
-| Destinataire | `msnettoyage211@gmail.com`                                |
-| `Reply-To`   | l'adresse du visiteur, pour répondre d'un clic            |
+| Réglage       | Valeur                                                    |
+| ------------- | --------------------------------------------------------- |
+| Serveur       | `smtp.securemail.pro`                                     |
+| Port          | `465`, TLS dès la connexion                               |
+| Compte        | `contact@ms-nettoyages.com`                               |
+| Expéditeur    | `contact@ms-nettoyages.com`, jamais l'adresse du visiteur |
+| Destinataires | `msnettoyage211@gmail.com` et `contact@ms-nettoyages.com` |
+| `Reply-To`    | l'adresse du visiteur, pour répondre d'un clic            |
 
 `smtp.amen.fr` ne répond pas depuis l'extérieur, c'est bien `smtp.securemail.pro` qu'il faut viser.
 
-### DNS à créer chez Amen (BLOQUANT pour la délivrabilité)
+### Il manque UN enregistrement SPF (BLOQUANT)
 
-Le domaine n'a **aucun enregistrement SPF, DKIM ni DMARC**. Les emails partent, mais Gmail les
-évalue sans preuve d'authenticité : ils atterrissent en indésirables ou sont retardés. Trois
-enregistrements à ajouter dans la zone DNS d'Amen :
+**Constat du 27 juillet 2026.** Aucune demande n'arrivait chez le client, pas même en indésirables.
+Les rapports de non-remise, dans la boîte `contact@ms-nettoyages.com`, donnent la cause exacte :
 
-| Type | Nom      | Valeur                                                  |
-| ---- | -------- | ------------------------------------------------------- |
-| TXT  | `@`      | `v=spf1 include:spf.amen.fr ~all`                       |
-| TXT  | `_dmarc` | `v=DMARC1; p=none; rua=mailto:msnettoyage211@gmail.com` |
+```
+550-5.7.26 Your email has been blocked because the sender is unauthenticated.
+550-5.7.26 Gmail requires all senders to authenticate with either SPF or DKIM.
+550-5.7.26  DKIM = did not pass
+550-5.7.26  SPF [ms-nettoyages.com] with ip: [81.88.54.74] = did not pass
+```
 
-`spf.amen.fr` chaîne vers `spf.webapps.net`, qui déclare les serveurs d'envoi d'Amen : c'est
-l'inclusion officielle, à préférer à une liste d'adresses IP qui deviendrait fausse sans prévenir.
+Gmail refuse, depuis 2024, tout expéditeur qui ne prouve son identité ni par SPF ni par DKIM. Ce
+n'est pas un classement en indésirables : c'est un **rejet pur et simple**, invisible côté client.
 
-Le **DKIM** s'active depuis le panneau Amen, rubrique messagerie : Amen publie alors lui-même
-l'enregistrement. Il n'y a pas de sélecteur à saisir à la main.
+État réel de la zone, lu directement sur `ns1.amenworld.com`, donc sans effet de cache :
 
-Passer le DMARC de `p=none` à `p=quarantine`, puis `p=reject`, après quelques semaines de rapports
-sans anomalie. `p=none` observe sans rien bloquer, c'est le bon point de départ.
+| Enregistrement | État                                        |
+| -------------- | ------------------------------------------- |
+| DMARC          | **publié** ✓                                |
+| SPF            | **absent** ✗ ← c'est le seul point bloquant |
+| DKIM           | absent                                      |
 
-- [ ] Ajouter le TXT SPF
-- [ ] Ajouter le TXT DMARC
-- [ ] Activer DKIM depuis le panneau Amen
-- [ ] Vérifier la propagation :
+**Un DMARC sans SPF ni DKIM ne sert à rien** : il indique comment traiter un échec
+d'authentification, il n'authentifie rien lui-même. C'est vraisemblablement la confusion à
+l'origine du problème.
+
+### L'enregistrement à créer
+
+| Type | Nom           | Valeur                            |
+| ---- | ------------- | --------------------------------- |
+| TXT  | `@` (ou vide) | `v=spf1 include:spf.amen.fr ~all` |
+
+Trois pièges qui font échouer cette saisie :
+
+1. **C'est un SECOND enregistrement TXT à la racine**, à ajouter à côté de celui de Google
+   (`google-site-verification=…`), sans le remplacer. Plusieurs TXT à la racine sont normaux ; c'est
+   d'avoir deux `v=spf1` qui serait invalide.
+2. **Le nom est la racine du domaine**, saisi `@` ou laissé vide selon le panneau, jamais `www` ni
+   `mail`.
+3. **Ne pas saisir les guillemets** : Amen les ajoute lui-même.
+
+`spf.amen.fr` renvoie vers `spf.webapps.net`, qui déclare les serveurs d'envoi d'Amen. Vérifié :
+l'adresse émettrice constatée dans le rejet, `81.88.54.74`, appartient bien à la plage
+`81.88.54.64/27` qui y figure. Cet enregistrement fera donc passer SPF.
+
+Le **DKIM** s'active ensuite depuis le panneau Amen, rubrique messagerie : Amen publie
+l'enregistrement lui-même, il n'y a pas de sélecteur à saisir. SPF suffit à débloquer la remise,
+DKIM la consolide.
+
+### Vérification, dans l'ordre
+
+- [ ] Ajouter le TXT SPF ci-dessus
+- [ ] Attendre la propagation, puis contrôler. La sortie doit contenir **deux** lignes, celle de
+      Google et celle du SPF :
   ```bash
-  nslookup -type=TXT ms-nettoyages.com
-  nslookup -type=TXT _dmarc.ms-nettoyages.com
+  nslookup -type=TXT ms-nettoyages.com ns1.amenworld.com
   ```
-- [ ] **Test réel depuis le site en production** : envoyer une demande et confirmer sa réception
-      dans `msnettoyage211@gmail.com`, y compris dans les spams.
-- [ ] Dans Gmail, ouvrir le message reçu → **Afficher l'original** → vérifier `SPF: PASS` et
-      `DKIM: PASS`. Tant que ce n'est pas le cas, la délivrabilité reste fragile.
-- [ ] Vérifier que **Répondre** adresse bien le client (en-tête `Reply-To`).
+- [ ] Envoyer une demande depuis le site, puis vérifier la réception dans `msnettoyage211@gmail.com`
+- [ ] Dans Gmail : **Afficher l'original** → `SPF: PASS` attendu
+- [ ] Activer DKIM depuis le panneau Amen, puis revérifier : `DKIM: PASS`
+- [ ] Vérifier que **Répondre** adresse bien le client (en-tête `Reply-To`)
+
+En attendant, **aucune demande n'est perdue** : chaque demande part vers deux boîtes, celle du
+client et `contact@ms-nettoyages.com`. La seconde est interne au domaine et ne dépend d'aucune
+authentification externe.
+
+Passer ensuite le DMARC de `p=none` à `p=quarantine`, puis `p=reject`, après quelques semaines de
+rapports sans anomalie.
 
 ### Sous-domaine `www` (à corriger)
 
