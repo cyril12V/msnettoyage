@@ -1,8 +1,9 @@
 import type { NextRequest } from "next/server";
+import { detecterRobot } from "@/lib/anti-spam";
 import { getMailEnv } from "@/lib/env";
 import { envoyerDemandeDevis } from "@/lib/mail";
 import { consommer, ipDepuisHeaders } from "@/lib/rate-limit";
-import { contactSchema, DELAI_MINIMAL_SOUMISSION_MS } from "@/schemas/contact";
+import { contactSchema } from "@/schemas/contact";
 
 /**
  * Réception des demandes de devis.
@@ -11,7 +12,7 @@ import { contactSchema, DELAI_MINIMAL_SOUMISSION_MS } from "@/schemas/contact";
  *  1. limitation de débit par IP ;
  *  2. rejet des corps trop volumineux ;
  *  3. validation Zod stricte, aucun champ inconnu n'est transmis plus loin ;
- *  4. leurre anti-robot (honeypot) et contrôle de vitesse de soumission.
+ *  4. détection de robot, voir `lib/anti-spam.ts`.
  *
  * Les réponses d'erreur ne divulguent jamais d'information technique : le
  * détail part dans les logs serveur, le visiteur reçoit un message actionnable.
@@ -78,18 +79,18 @@ export async function POST(request: NextRequest): Promise<Response> {
     return erreur("Certains champs sont incomplets ou invalides.", 422, champs);
   }
 
-  const { societeWeb, affichageAt, ...donnees } = resultat.data;
+  const verdict = detecterRobot(resultat.data);
 
-  // Leurre rempli : robot quasi certain. On répond 200 pour ne pas lui
-  // apprendre que la soumission a été rejetée, sans rien envoyer.
-  if (societeWeb) {
+  if (verdict.robot) {
+    // Réponse de succès factice : un rejet explicite apprendrait au robot
+    // quel signal l'a trahi. Le motif reste dans les logs, ce qui permet de
+    // vérifier qu'aucune demande légitime n'est écartée.
+    console.warn("[contact] Soumission écartée :", verdict.motif);
+
     return Response.json({ message: "Demande enregistrée." }, { status: 200 });
   }
 
-  // Formulaire soumis plus vite qu'un humain ne peut le remplir.
-  if (affichageAt !== undefined && Date.now() - affichageAt < DELAI_MINIMAL_SOUMISSION_MS) {
-    return erreur("Merci de prendre un instant pour vérifier vos informations avant l'envoi.", 422);
-  }
+  const { societeWeb: _leurre, affichageAt: _horodatage, ...donnees } = resultat.data;
 
   const env = getMailEnv();
 
@@ -105,7 +106,7 @@ export async function POST(request: NextRequest): Promise<Response> {
   const envoi = await envoyerDemandeDevis(donnees, env.env);
 
   if (!envoi.ok) {
-    console.error("[contact] Échec de l'envoi via Resend :", envoi.erreur);
+    console.error("[contact] Échec de l'envoi SMTP :", envoi.erreur);
 
     return erreur(
       "Votre demande n'a pas pu être transmise. Réessayez dans quelques minutes ou appelez-nous directement.",

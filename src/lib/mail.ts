@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import nodemailer from "nodemailer";
 import type { MailEnv } from "@/lib/env";
 import { libellePrestation, type ContactFormValues } from "@/schemas/contact";
-import { site } from "@/lib/site";
+import { site, siteUrl } from "@/lib/site";
 
 /** Échappe les caractères qui casseraient le HTML de l'email. */
 function echapperHtml(valeur: string): string {
@@ -46,7 +46,7 @@ function construireSujet(donnees: ContactFormValues): string {
 
 function construireTexte(donnees: ContactFormValues): string {
   return [
-    "Nouvelle demande de devis reçue depuis msnettoyage.fr",
+    `Nouvelle demande de devis reçue depuis ${siteUrl}`,
     "",
     `Nom          : ${donnees.nom}`,
     `Téléphone    : ${donnees.telephone}`,
@@ -190,7 +190,10 @@ export async function envoyerDemandeDevis(
     });
 
     if (info.rejected.length > 0) {
-      return { ok: false, erreur: `Destinataire refusé par le serveur : ${info.rejected.join(", ")}` };
+      return {
+        ok: false,
+        erreur: `Destinataire refusé par le serveur : ${info.rejected.join(", ")}`,
+      };
     }
 
     return { ok: true, id: info.messageId };
