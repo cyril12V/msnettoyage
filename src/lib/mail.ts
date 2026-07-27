@@ -181,7 +181,7 @@ export async function envoyerDemandeDevis(
   try {
     const info = await obtenirTransport(env).sendMail({
       from: { name: site.name, address: env.CONTACT_FROM_EMAIL },
-      to: env.CONTACT_TO_EMAIL,
+      to: [...env.CONTACT_TO_EMAIL],
       replyTo: donnees.email,
       subject: construireSujet(donnees),
       text: construireTexte(donnees),
