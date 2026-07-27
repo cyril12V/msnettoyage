@@ -90,7 +90,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     return Response.json({ message: "Demande enregistrée." }, { status: 200 });
   }
 
-  const { societeWeb: _leurre, affichageAt: _horodatage, ...donnees } = resultat.data;
+  const { societeWeb: _leurre, dureeSaisieMs: _duree, ...donnees } = resultat.data;
 
   const env = getMailEnv();
 
