@@ -118,3 +118,41 @@ d'atterrissage visent chacune une requête disjointe.
 **Règle.** Une requête = une page, et une page = une requête. Avant de créer une page, vérifier
 qu'aucune page existante ne vise déjà le même intitulé. `tests/landings.test.ts` verrouille
 l'absence de doublon de titre, de chapeau, de paragraphe et de question.
+
+---
+
+## 2026-07-27, Ne jamais mesurer une durée entre deux horloges différentes
+
+**Erreur.** Le contrôle anti-robot comparait un horodatage posé par le navigateur à l'heure du
+serveur. Un test de bout en bout sur la production a montré qu'une soumission **instantanée**
+passait le seuil de trois secondes et déclenchait un envoi.
+
+**Fausse piste.** J'ai d'abord accusé le décalage d'horloge du poste de test. Mesuré : 0,1 s. La
+vraie cause était la latence du réseau plus le démarrage à froid de la fonction serverless, qui
+s'ajoutent au délai perçu par le serveur. Un envoi instantané passait pour un remplissage de trois
+secondes dès que la fonction démarrait à froid.
+
+**Correction.** Le navigateur transmet une **durée**, calculée entre l'affichage et l'envoi sur sa
+seule horloge. La tolérance de 60 s ajoutée pour absorber le décalage a disparu avec le problème.
+
+**Règle.** Une durée se mesure toujours sur une seule horloge, et la soustraction se fait avant le
+transport. Comparer `Date.now()` serveur à un horodatage client mélange trois grandeurs sans rapport :
+le délai réel, le décalage des horloges et le temps de transport.
+
+**Règle secondaire.** Vérifier une hypothèse avant de la corriger. La tolérance d'horloge ajoutée sur
+la foi du mauvais diagnostic était une complexité inutile qui masquait le vrai défaut.
+
+---
+
+## 2026-07-27, Un champ anti-robot optionnel ne protège rien
+
+**Erreur.** Le champ `affichageAt` était `optional()` dans le schéma, et la route ne testait la
+vitesse que `if (affichageAt !== undefined)`. Un robot qui postait du JSON brut sans ce champ
+contournait donc intégralement le contrôle, sans rien avoir à deviner.
+
+**Correction.** L'absence du champ est devenue un motif de rejet à part entière. Le formulaire du
+site le calcule toujours et ne peut pas être soumis sans JavaScript : son absence prouve que la
+requête n'est pas passée par lui.
+
+**Règle.** Un contrôle de sécurité dont la donnée d'entrée est facultative se désactive tout seul à
+la demande de l'attaquant. Soit le champ est obligatoire, soit son absence est un signal.
