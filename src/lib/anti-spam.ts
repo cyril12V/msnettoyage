@@ -24,9 +24,6 @@ export type Verdict =
 
 const PAS_UN_ROBOT: Verdict = { robot: false };
 
-/** Décalage toléré entre l'horloge du visiteur et celle du serveur. */
-const TOLERANCE_HORLOGE_MS = 60_000;
-
 /** Compte les adresses web présentes dans un texte. */
 function compterLiens(texte: string): number {
   return (texte.match(/\b(?:https?:\/\/|www\.)\S+/gi) ?? []).length;
@@ -50,40 +47,30 @@ const BALISAGE_LIEN = /\[url[=\]]|\[\/url\]|<a\s|href\s*=/i;
  * L'appelant répond alors un succès factice : rejeter explicitement
  * apprendrait au robot quel signal l'a trahi, et lui permettrait d'ajuster.
  */
-export function detecterRobot(donnees: ContactInput, maintenant: number = Date.now()): Verdict {
+export function detecterRobot(donnees: ContactInput): Verdict {
   // 1. Leurre rempli. Champ masqué visuellement et aux lecteurs d'écran :
   //    aucun humain ne le voit, donc aucun humain ne le remplit.
   if (donnees.societeWeb) {
     return { robot: true, motif: "leurre rempli" };
   }
 
-  // 2. Horodatage d'affichage absent. Le formulaire du site le pose toujours,
-  //    et il ne peut pas être soumis sans JavaScript : son absence signifie que
-  //    la requête a été fabriquée hors du formulaire.
-  if (donnees.affichageAt === undefined) {
-    return { robot: true, motif: "horodatage d'affichage absent" };
+  // 2. Durée de saisie absente. Le formulaire du site la calcule toujours, et
+  //    il ne peut pas être soumis sans JavaScript : son absence signifie que la
+  //    requête a été fabriquée hors du formulaire.
+  if (donnees.dureeSaisieMs === undefined) {
+    return { robot: true, motif: "durée de saisie absente" };
   }
 
-  // 3. Horodatage franchement postérieur à la réception : horloge falsifiée
-  //    pour contourner le contrôle de vitesse.
+  // 3. Formulaire soumis plus vite qu'un humain ne peut le remplir.
   //
-  //    L'horodatage vient du navigateur, donc d'une horloge que le serveur ne
-  //    contrôle pas : un téléphone mal synchronisé avance couramment de
-  //    quelques dizaines de secondes. TOLERANCE_HORLOGE_MS absorbe ce décalage,
-  //    et se paie par un contournement possible du seul contrôle de vitesse
-  //    pour qui décale son horodatage à l'intérieur de cette fenêtre. Les
-  //    autres contrôles restent actifs, et un client écarté à tort coûte plus
-  //    cher qu'un spam reçu.
-  const ecoule = maintenant - donnees.affichageAt;
-
-  if (ecoule < -TOLERANCE_HORLOGE_MS) {
-    return { robot: true, motif: "horodatage d'affichage dans le futur" };
-  }
-
-  // 4. Formulaire soumis plus vite qu'un humain ne peut le remplir. Le contrôle
-  //    ne s'applique qu'à un délai mesurable, sans quoi une horloge en avance
-  //    produirait un délai négatif, donc un rejet.
-  if (ecoule >= 0 && ecoule < DELAI_MINIMAL_SOUMISSION_MS) {
+  //    La durée est mesurée par le navigateur entre l'affichage et l'envoi,
+  //    donc sur une seule horloge. Ni le décalage entre l'heure du visiteur et
+  //    celle du serveur, ni la latence du réseau, ni le démarrage à froid de la
+  //    fonction n'entrent dans le calcul. La version précédente comparait un
+  //    horodatage client à l'heure du serveur : un envoi instantané y passait
+  //    pour un remplissage de trois secondes dès que la fonction démarrait à
+  //    froid.
+  if (donnees.dureeSaisieMs < DELAI_MINIMAL_SOUMISSION_MS) {
     return { robot: true, motif: "soumission trop rapide" };
   }
 

@@ -81,17 +81,24 @@ export const contactSchema = z.object({
   societeWeb: z.string().optional(),
 
   /**
-   * Horodatage de l'affichage du formulaire, posé par le client. Une soumission
-   * plus rapide que `DELAI_MINIMAL_SOUMISSION_MS` est presque toujours
-   * automatisée.
+   * Temps écoulé entre l'affichage du formulaire et son envoi, mesuré PAR LE
+   * NAVIGATEUR. Une soumission plus rapide que `DELAI_MINIMAL_SOUMISSION_MS`
+   * est presque toujours automatisée.
+   *
+   * C'est une durée, et non un horodatage, pour une raison précise : comparer
+   * un horodatage posé par le client à l'heure du serveur mêle au délai réel le
+   * décalage entre les deux horloges, la latence du réseau et le démarrage à
+   * froid de la fonction. Un envoi instantané pouvait ainsi passer pour un
+   * remplissage de trois secondes. Les deux mesures viennent désormais de la
+   * même horloge, et la soustraction est faite avant l'envoi.
    */
-  affichageAt: z.number().int().positive().optional(),
+  dureeSaisieMs: z.number().int().nonnegative().optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
 /** Champs réellement saisis par l'utilisateur, hors dispositifs anti-robot. */
-export type ContactFormValues = Omit<ContactInput, "societeWeb" | "affichageAt">;
+export type ContactFormValues = Omit<ContactInput, "societeWeb" | "dureeSaisieMs">;
 
 /** Libellé lisible d'une prestation, pour l'email et les récapitulatifs. */
 export function libellePrestation(slug: string): string {

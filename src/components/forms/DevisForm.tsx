@@ -50,9 +50,13 @@ export function DevisForm({ prestationParDefaut, className, id }: DevisFormProps
   const alerteRef = useRef<HTMLDivElement>(null);
 
   /**
-   * Horodatage de l'affichage du formulaire, transmis au serveur pour écarter
-   * les soumissions instantanées. Posé après le montage : la valeur ne doit pas
-   * différer entre le rendu serveur et le rendu client.
+   * Instant d'affichage du formulaire, qui sert à calculer la durée de saisie
+   * transmise au serveur pour écarter les soumissions instantanées.
+   *
+   * Posé après le montage : la valeur ne doit pas différer entre le rendu
+   * serveur et le rendu client. C'est la DURÉE qui part sur le réseau, jamais
+   * cet instant : le serveur n'a ainsi aucune horloge étrangère à comparer à
+   * la sienne, et la latence ne fausse plus la mesure.
    */
   const affichageAtRef = useRef<number | undefined>(undefined);
   useEffect(() => {
@@ -81,7 +85,8 @@ export function DevisForm({ prestationParDefaut, className, id }: DevisFormProps
       message: String(donnees.get("message") ?? ""),
       consentement: donnees.get("consentement") === "on",
       societeWeb: String(donnees.get("societeWeb") ?? ""),
-      affichageAt: affichageAtRef.current,
+      dureeSaisieMs:
+        affichageAtRef.current === undefined ? undefined : Date.now() - affichageAtRef.current,
     };
 
     // Première passe côté client : évite un aller-retour réseau inutile.
