@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import type { MailEnv } from "@/lib/env";
 import { libellePrestation, type ContactFormValues } from "@/schemas/contact";
 import { site } from "@/lib/site";
@@ -21,16 +21,23 @@ function paragrapheHtml(valeur: string): string {
 }
 
 /**
- * Clé d'idempotence dérivée du contenu et d'un créneau de 5 minutes.
+ * Identifiant de message, dérivé du contenu et d'un créneau de 5 minutes.
  *
- * Un double-clic sur « Envoyer », ou un renvoi automatique du navigateur,
- * produit la même clé : Resend ne délivre alors qu'un seul email.
+ * Deux envois identiques rapprochés, cas d'un double-clic sur « Envoyer » ou
+ * d'un renvoi automatique du navigateur, produisent le même `Message-ID`. Les
+ * serveurs de réception, Gmail compris, écartent alors le doublon au lieu
+ * d'afficher deux fois la même demande.
+ *
+ * Le domaine de l'identifiant est celui de l'expéditeur : un `Message-ID` dont
+ * le domaine ne correspond à rien est un signal négatif pour les filtres.
  */
-function cleIdempotence(donnees: ContactFormValues, maintenant: number): string {
+function identifiantMessage(donnees: ContactFormValues, expediteur: string, maintenant: number) {
   const creneau = Math.floor(maintenant / (5 * 60 * 1000));
   const empreinte = `${donnees.email}|${donnees.telephone}|${donnees.message}|${creneau}`;
+  const condensat = createHash("sha256").update(empreinte).digest("hex").slice(0, 32);
+  const domaine = expediteur.split("@")[1] ?? "localhost";
 
-  return createHash("sha256").update(empreinte).digest("hex").slice(0, 32);
+  return `<${condensat}@${domaine}>`;
 }
 
 function construireSujet(donnees: ContactFormValues): string {
@@ -121,38 +128,75 @@ function construireHtml(donnees: ContactFormValues): string {
 export type ResultatEnvoi = { ok: true; id: string } | { ok: false; erreur: string };
 
 /**
+ * Transport SMTP, construit une fois puis réutilisé.
+ *
+ * Nodemailer garde le socket ouvert entre deux envois : sur une fonction
+ * serverless, un transport recréé à chaque requête impose une poignée de main
+ * TLS complète, soit plusieurs centaines de millisecondes pour rien.
+ */
+let transportMemorise: { cle: string; transport: nodemailer.Transporter } | undefined;
+
+function obtenirTransport(env: MailEnv): nodemailer.Transporter {
+  const cle = `${env.SMTP_HOST}:${env.SMTP_PORT}:${env.SMTP_USER}`;
+
+  if (transportMemorise?.cle === cle) return transportMemorise.transport;
+
+  const transport = nodemailer.createTransport({
+    host: env.SMTP_HOST,
+    port: env.SMTP_PORT,
+    // 465 impose TLS dès la connexion ; les autres ports négocient par STARTTLS.
+    secure: env.SMTP_PORT === 465,
+    auth: { user: env.SMTP_USER, pass: env.SMTP_PASSWORD },
+    // Sans plafond, une fonction serverless resterait bloquée jusqu'à son propre
+    // délai d'expiration et le visiteur n'aurait aucune réponse.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000,
+    // Un certificat invalide côté serveur de messagerie doit faire échouer
+    // l'envoi, jamais être ignoré : ce serait accepter un intermédiaire.
+    tls: { rejectUnauthorized: true },
+  });
+
+  transportMemorise = { cle, transport };
+
+  return transport;
+}
+
+/**
  * Transmet une demande de devis à la boîte de l'entreprise.
  *
- * `replyTo` pointe sur l'email du client : répondre depuis la boîte de
- * réception suffit, sans copier-coller d'adresse, c'est ce qui réduit le plus
- * le délai de réponse en pratique.
+ * L'expéditeur est l'adresse du domaine, jamais celle du visiteur : usurper
+ * l'adresse du client ferait échouer les contrôles SPF et DKIM du serveur de
+ * réception, et la demande finirait en indésirables.
+ *
+ * `replyTo` pointe en revanche sur l'email du client : répondre depuis la boîte
+ * de réception suffit, sans copier-coller d'adresse, c'est ce qui réduit le
+ * plus le délai de réponse en pratique.
  */
 export async function envoyerDemandeDevis(
   donnees: ContactFormValues,
   env: MailEnv,
   maintenant: number = Date.now(),
 ): Promise<ResultatEnvoi> {
-  const resend = new Resend(env.RESEND_API_KEY);
-
-  const { data, error } = await resend.emails.send(
-    {
-      from: `${site.name} <${env.CONTACT_FROM_EMAIL}>`,
+  try {
+    const info = await obtenirTransport(env).sendMail({
+      from: { name: site.name, address: env.CONTACT_FROM_EMAIL },
       to: env.CONTACT_TO_EMAIL,
       replyTo: donnees.email,
       subject: construireSujet(donnees),
       text: construireTexte(donnees),
       html: construireHtml(donnees),
-    },
-    { idempotencyKey: cleIdempotence(donnees, maintenant) },
-  );
+      messageId: identifiantMessage(donnees, env.CONTACT_FROM_EMAIL, maintenant),
+    });
 
-  if (error) {
-    return { ok: false, erreur: `${error.name}: ${error.message}` };
+    if (info.rejected.length > 0) {
+      return { ok: false, erreur: `Destinataire refusé par le serveur : ${info.rejected.join(", ")}` };
+    }
+
+    return { ok: true, id: info.messageId };
+  } catch (cause) {
+    // Le message d'erreur SMTP peut contenir l'identifiant du compte : il part
+    // dans les logs serveur, jamais dans la réponse envoyée au visiteur.
+    return { ok: false, erreur: cause instanceof Error ? cause.message : String(cause) };
   }
-
-  if (!data) {
-    return { ok: false, erreur: "Resend n'a retourné ni identifiant ni erreur." };
-  }
-
-  return { ok: true, id: data.id };
 }

@@ -14,8 +14,23 @@ import { z } from "zod";
  * tente de l'importer.
  */
 
+/**
+ * Port SMTP.
+ *
+ * Accepté sous forme de chaîne, puisque c'est ce que fournit toute plateforme
+ * d'hébergement, et converti une seule fois ici plutôt qu'à chaque usage.
+ */
+const portSchema = z
+  .string()
+  .regex(/^\d+$/, "SMTP_PORT doit être un nombre.")
+  .transform(Number)
+  .refine((port) => port > 0 && port <= 65535, "SMTP_PORT est hors plage.");
+
 const mailEnvSchema = z.object({
-  RESEND_API_KEY: z.string().min(1, "RESEND_API_KEY est vide ou absente."),
+  SMTP_HOST: z.string().min(1, "SMTP_HOST est vide ou absent."),
+  SMTP_PORT: portSchema,
+  SMTP_USER: z.string().min(1, "SMTP_USER est vide ou absent."),
+  SMTP_PASSWORD: z.string().min(1, "SMTP_PASSWORD est vide ou absent."),
   CONTACT_FROM_EMAIL: z.email("CONTACT_FROM_EMAIL n'est pas une adresse valide."),
   CONTACT_TO_EMAIL: z.email("CONTACT_TO_EMAIL n'est pas une adresse valide."),
 });
@@ -32,7 +47,12 @@ export type MailEnvResult = { ok: true; env: MailEnv } | { ok: false; erreurs: r
  */
 export function getMailEnv(): MailEnvResult {
   const parsed = mailEnvSchema.safeParse({
-    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    SMTP_HOST: process.env.SMTP_HOST,
+    // 465 par défaut : TLS dès le premier octet, sans fenêtre de négociation
+    // en clair contrairement au 587, qui chiffre après un STARTTLS.
+    SMTP_PORT: process.env.SMTP_PORT ?? "465",
+    SMTP_USER: process.env.SMTP_USER,
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
     CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
     CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL,
   });
