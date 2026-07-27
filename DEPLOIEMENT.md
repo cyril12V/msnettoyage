@@ -251,18 +251,31 @@ l'origine du problème.
 
 ### L'enregistrement à créer
 
-| Type | Nom           | Valeur                            |
-| ---- | ------------- | --------------------------------- |
-| TXT  | `@` (ou vide) | `v=spf1 include:spf.amen.fr ~all` |
+| Type | Nom                         | Valeur                            |
+| ---- | --------------------------- | --------------------------------- |
+| TXT  | **laissé entièrement vide** | `v=spf1 include:spf.amen.fr ~all` |
 
-Trois pièges qui font échouer cette saisie :
+> **Le panneau d'Amen ne comprend pas la notation `@`.** Saisi tel quel, il crée l'enregistrement
+> sur le nom littéral `@.ms-nettoyages.com`, qui n'est interrogé par personne. C'est exactement ce
+> qui s'est produit à la première tentative : la valeur était juste, le SPF restait introuvable, et
+> Gmail continuait de rejeter. Le champ « nom » ou « hôte » doit rester **vide**.
+
+Deux autres pièges :
 
 1. **C'est un SECOND enregistrement TXT à la racine**, à ajouter à côté de celui de Google
    (`google-site-verification=…`), sans le remplacer. Plusieurs TXT à la racine sont normaux ; c'est
    d'avoir deux `v=spf1` qui serait invalide.
-2. **Le nom est la racine du domaine**, saisi `@` ou laissé vide selon le panneau, jamais `www` ni
-   `mail`.
-3. **Ne pas saisir les guillemets** : Amen les ajoute lui-même.
+2. **Ne pas saisir les guillemets** : Amen les ajoute lui-même.
+
+Contrôle qui distingue les deux cas, à ne pas confondre :
+
+```bash
+# CORRECT : doit renvoyer la ligne v=spf1
+nslookup -type=TXT ms-nettoyages.com ns1.amenworld.com
+
+# PIÈGE : si c'est ici que la ligne apparaît, le nom saisi était « @ »
+nslookup -type=TXT @.ms-nettoyages.com ns1.amenworld.com
+```
 
 `spf.amen.fr` renvoie vers `spf.webapps.net`, qui déclare les serveurs d'envoi d'Amen. Vérifié :
 l'adresse émettrice constatée dans le rejet, `81.88.54.74`, appartient bien à la plage
