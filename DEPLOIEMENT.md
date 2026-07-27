@@ -9,44 +9,34 @@ l'ouverture du site au public.
 
 |                     |                                                   |
 | ------------------- | ------------------------------------------------- |
-| **Site**            | https://msnettoyage.vercel.app                    |
+| **Site**            | https://ms-nettoyages.com                         |
 | **Dépôt**           | https://github.com/cyril12V/msnettoyage (public)  |
 | **Tableau de bord** | https://vercel.com/cyril12vs-projects/msnettoyage |
+
+`msnettoyage.vercel.app` reste servi par Vercel mais n'est plus l'adresse de référence : toutes les
+balises canoniques, le sitemap et le JSON-LD désignent `ms-nettoyages.com`, ce qui indique à Google
+laquelle des deux indexer.
 
 Le dépôt est connecté à Vercel : **chaque push sur `main` déclenche un déploiement**. Une branche
 autre que `main` produit une prévisualisation avec sa propre URL.
 
-### Variables d'environnement déjà configurées
+### Variables d'environnement configurées
 
-| Variable               | Valeur                           | Environnements        |
-| ---------------------- | -------------------------------- | --------------------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://msnettoyage.vercel.app` | Production et Preview |
-| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com`       | Production et Preview |
-| `CONTACT_FROM_EMAIL`   | `onboarding@resend.dev`          | Production et Preview |
+Toutes présentes en **Production et Preview**, aucune ne manque.
 
-### Il manque une seule variable
+| Variable               | Valeur                      |
+| ---------------------- | --------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | `https://ms-nettoyages.com` |
+| `SMTP_HOST`            | `smtp.securemail.pro`       |
+| `SMTP_PORT`            | `465`                       |
+| `SMTP_USER`            | `contact@ms-nettoyages.com` |
+| `SMTP_PASSWORD`        | secret, chiffré par Vercel  |
+| `CONTACT_FROM_EMAIL`   | `contact@ms-nettoyages.com` |
+| `CONTACT_TO_EMAIL`     | `msnettoyage211@gmail.com`  |
 
-`RESEND_API_KEY` n'est pas renseignée : le formulaire de devis répond donc par un message invitant
-à téléphoner, au lieu d'envoyer l'email. Voir la section 4 pour l'obtenir.
-
-Une fois la clé créée :
-
-```bash
-printf 'la_cle_resend' | vercel env add RESEND_API_KEY production
-printf 'la_cle_resend' | vercel env add RESEND_API_KEY preview
-vercel --prod --force
-```
-
-> Utiliser `printf` et non `echo` : `echo` ajoute un saut de ligne à la valeur, ce qui a déjà fait
-> échouer un déploiement.
-
-### Le jour où le domaine est acheté
-
-1. L'ajouter dans Vercel, onglet _Domains_ du projet.
-2. Remplacer `NEXT_PUBLIC_SITE_URL` par le domaine retenu, **sans slash final**. Sans cette étape,
-   les URL canoniques et le sitemap continuent de désigner l'adresse `vercel.app`, et Google
-   indexera celle-ci plutôt que la vôtre.
-3. Redéployer : `vercel --prod --force`.
+> Pour en modifier une : `printf 'valeur' | vercel env add NOM production`, puis redéployer.
+> Utiliser `printf` et **jamais** `echo` : `echo` ajoute un saut de ligne à la valeur, ce qui a
+> déjà fait échouer un déploiement en injectant un caractère invisible dans l'URL du site.
 
 ---
 
@@ -103,13 +93,13 @@ conditions réelles. Refaire une mesure sur PageSpeed Insights après la mise en
   autorisés.
 - **Titres et canoniques** : uniques et corrects sur les 9 pages, aucun nom de marque en double.
 - **Formulaire de devis** : validation, leurre anti-robot et limitation de débit vérifiés en
-  conditions réelles. Renvoie 503 tant que la clé Resend n'est pas configurée, avec un message
+  conditions réelles. Renvoie 503 si la configuration SMTP est absente, avec un message
   invitant à appeler.
 
 ### Ce qui reste, et qui ne dépend pas du code
 
 1. Les informations légales, section 1 ci-dessous. **Bloquant.**
-2. La configuration Resend et DNS, section 4. **Bloquant pour le formulaire.**
+2. Les enregistrements SPF, DKIM et DMARC, section 4. **Bloquant pour la délivrabilité.**
 3. Le nom de domaine, section 3.
 4. Les avis et cas clients réels, section 2.
 
@@ -216,35 +206,67 @@ marche à suivre est détaillée dans [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
 
 ---
 
-## 4. Emails : Resend et authentification DNS (BLOQUANT pour le formulaire)
+## 4. Emails : SMTP Amen et authentification DNS
 
-Sans authentification du domaine, Gmail et Yahoo **rejettent ou classent en spam** les emails
-envoyés. Le formulaire semblerait fonctionner alors qu'aucune demande n'arriverait.
+Le formulaire envoie par le SMTP de la messagerie du domaine, chez Amen. La configuration est
+**faite et testée** : un envoi réel a été accepté par le serveur le 27 juillet 2026.
 
-1. [ ] Créer un compte sur [resend.com](https://resend.com) (gratuit jusqu'à 100 emails/jour).
-2. [ ] _Domains_ → _Add Domain_ → saisir `msnettoyage.fr`.
-3. [ ] Ajouter chez le registrar les enregistrements DNS affichés par Resend :
-   - **SPF** : enregistrement TXT : `v=spf1 include:_spf.resend.com ~all`
-   - **DKIM** : enregistrement TXT sur `resend._domainkey` (clé fournie par Resend)
-   - **MX** : pour le sous-domaine d'envoi, si Resend le demande
-4. [ ] Ajouter un **DMARC** en TXT sur `_dmarc` :
-       `v=DMARC1; p=none; rua=mailto:msnettoyage211@gmail.com`
-       Passer à `p=quarantine` puis `p=reject` après quelques semaines de rapports sans anomalie.
-5. [ ] Attendre le statut _Verified_ dans Resend, puis créer une clé API et la coller dans
-       `RESEND_API_KEY`.
-6. [ ] Vérifier la propagation :
-   ```bash
-   dig TXT msnettoyage.fr +short
-   dig TXT resend._domainkey.msnettoyage.fr +short
-   dig TXT _dmarc.msnettoyage.fr +short
-   ```
+| Réglage      | Valeur                                                    |
+| ------------ | --------------------------------------------------------- |
+| Serveur      | `smtp.securemail.pro`                                     |
+| Port         | `465`, TLS dès la connexion                               |
+| Compte       | `contact@ms-nettoyages.com`                               |
+| Expéditeur   | `contact@ms-nettoyages.com`, jamais l'adresse du visiteur |
+| Destinataire | `msnettoyage211@gmail.com`                                |
+| `Reply-To`   | l'adresse du visiteur, pour répondre d'un clic            |
 
-**Avant que le domaine soit vérifié**, mettre `CONTACT_FROM_EMAIL="onboarding@resend.dev"` :
-l'envoi fonctionne, mais uniquement vers l'adresse du titulaire du compte Resend.
+`smtp.amen.fr` ne répond pas depuis l'extérieur, c'est bien `smtp.securemail.pro` qu'il faut viser.
 
-- [ ] **Test réel après déploiement** : envoyer une demande depuis le site en production et
-      confirmer sa réception dans `msnettoyage211@gmail.com`, y compris dans les spams.
-- [ ] Vérifier que **Répondre** dans le mail reçu adresse bien le client (en-tête `Reply-To`).
+### DNS à créer chez Amen (BLOQUANT pour la délivrabilité)
+
+Le domaine n'a **aucun enregistrement SPF, DKIM ni DMARC**. Les emails partent, mais Gmail les
+évalue sans preuve d'authenticité : ils atterrissent en indésirables ou sont retardés. Trois
+enregistrements à ajouter dans la zone DNS d'Amen :
+
+| Type | Nom      | Valeur                                                  |
+| ---- | -------- | ------------------------------------------------------- |
+| TXT  | `@`      | `v=spf1 include:spf.amen.fr ~all`                       |
+| TXT  | `_dmarc` | `v=DMARC1; p=none; rua=mailto:msnettoyage211@gmail.com` |
+
+`spf.amen.fr` chaîne vers `spf.webapps.net`, qui déclare les serveurs d'envoi d'Amen : c'est
+l'inclusion officielle, à préférer à une liste d'adresses IP qui deviendrait fausse sans prévenir.
+
+Le **DKIM** s'active depuis le panneau Amen, rubrique messagerie : Amen publie alors lui-même
+l'enregistrement. Il n'y a pas de sélecteur à saisir à la main.
+
+Passer le DMARC de `p=none` à `p=quarantine`, puis `p=reject`, après quelques semaines de rapports
+sans anomalie. `p=none` observe sans rien bloquer, c'est le bon point de départ.
+
+- [ ] Ajouter le TXT SPF
+- [ ] Ajouter le TXT DMARC
+- [ ] Activer DKIM depuis le panneau Amen
+- [ ] Vérifier la propagation :
+  ```bash
+  nslookup -type=TXT ms-nettoyages.com
+  nslookup -type=TXT _dmarc.ms-nettoyages.com
+  ```
+- [ ] **Test réel depuis le site en production** : envoyer une demande et confirmer sa réception
+      dans `msnettoyage211@gmail.com`, y compris dans les spams.
+- [ ] Dans Gmail, ouvrir le message reçu → **Afficher l'original** → vérifier `SPF: PASS` et
+      `DKIM: PASS`. Tant que ce n'est pas le cas, la délivrabilité reste fragile.
+- [ ] Vérifier que **Répondre** adresse bien le client (en-tête `Reply-To`).
+
+### Sous-domaine `www` (à corriger)
+
+`www.ms-nettoyages.com` pointe encore sur l'hébergement Amen (`onstatic-fr.setupdns.net`) et ne
+sert donc pas le site. Le sous-domaine est déjà rattaché au projet Vercel : il ne manque que
+l'enregistrement DNS, à modifier chez Amen.
+
+| Type  | Nom   | Valeur                                 |
+| ----- | ----- | -------------------------------------- |
+| CNAME | `www` | `eacd8e73ba431b7e.vercel-dns-017.com.` |
+
+Vercel redirigera alors `www` vers le domaine sans `www`, forme canonique retenue.
 
 ---
 
@@ -315,6 +337,6 @@ dans **[SEO-HORS-CODE.md](./SEO-HORS-CODE.md)**. Résumé des étapes, par ordre
 
 ## 8. Maintenance
 
-- [ ] Vérifier une fois par trimestre : formulaire fonctionnel, quota Resend, avis Google.
+- [ ] Vérifier une fois par trimestre : formulaire fonctionnel, boîte SMTP active, avis Google.
 - [ ] Redéployer au moins une fois par an, l'année du pied de page est figée au moment du build.
 - [ ] Suivre les montées de version : `npx next upgrade` gère la migration Next.js.

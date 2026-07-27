@@ -92,8 +92,8 @@ export default function Page() {
                 formulaire.
               </li>
               <li>
-                <strong>Resend</strong> : acheminement de l&apos;email de notification vers notre
-                boîte de réception.
+                <strong>Amen</strong> : messagerie du domaine, qui achemine l&apos;email de
+                notification vers notre boîte de réception.
               </li>
             </ul>
             <p>

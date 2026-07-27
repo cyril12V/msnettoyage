@@ -1,6 +1,6 @@
 # MS Nettoyage
 
-**En ligne :** https://msnettoyage.vercel.app · **Dépôt :** https://github.com/cyril12V/msnettoyage
+**En ligne :** https://ms-nettoyages.com · **Dépôt :** https://github.com/cyril12V/msnettoyage
 
 Site vitrine de **MS Nettoyage**, entreprise de nettoyage professionnel basée à Meaux (77100) et
 intervenant dans toute l'Île-de-France.
@@ -14,15 +14,15 @@ appel. L'architecture des pages découle directement de cette liste de requêtes
 
 ## Stack
 
-| Brique      | Choix                    | Pourquoi                                                      |
-| ----------- | ------------------------ | ------------------------------------------------------------- |
-| Framework   | Next.js 16 (App Router)  | Rendu statique, indispensable au référencement local          |
-| Langage     | TypeScript strict        | Zéro `any`, aucune erreur de compilation tolérée              |
-| Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`               |
-| Validation  | Zod 4                    | Un seul schéma partagé client + serveur                       |
-| Emails      | Resend                   | Envoi des demandes de devis, avec authentification du domaine |
-| Tests       | Vitest + Testing Library | 100 tests sur la validation, l'anti-spam et le contenu        |
-| Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus            |
+| Brique      | Choix                    | Pourquoi                                                     |
+| ----------- | ------------------------ | ------------------------------------------------------------ |
+| Framework   | Next.js 16 (App Router)  | Rendu statique, indispensable au référencement local         |
+| Langage     | TypeScript strict        | Zéro `any`, aucune erreur de compilation tolérée             |
+| Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`              |
+| Validation  | Zod 4                    | Un seul schéma partagé client + serveur                      |
+| Emails      | SMTP Amen (nodemailer)   | Envoi depuis la messagerie du domaine, authentifiée SPF/DKIM |
+| Tests       | Vitest + Testing Library | 119 tests sur la validation, l'anti-spam et le contenu       |
+| Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus           |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
 
@@ -37,7 +37,7 @@ npm run dev                  # http://localhost:3000
 ```
 
 Le site fonctionne sans aucune variable d'environnement : seul l'envoi du formulaire de devis
-nécessite une clé Resend. Sans elle, le formulaire affiche un message invitant à appeler.
+nécessite les identifiants SMTP. Sans eux, le formulaire affiche un message invitant à appeler.
 
 ### Scripts
 
@@ -282,4 +282,4 @@ maillage interne disparaît.
 ## Avant la mise en ligne
 
 Voir **[DEPLOIEMENT.md](./DEPLOIEMENT.md)** : checklist complète : informations à compléter,
-configuration Resend et DNS, déploiement Vercel, référencement local.
+configuration SMTP et DNS, déploiement Vercel, référencement local.
