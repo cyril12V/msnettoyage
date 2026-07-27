@@ -302,6 +302,37 @@ En attendant, **aucune demande n'est perdue** : chaque demande part vers deux bo
 client et `contact@ms-nettoyages.com`. La seconde est interne au domaine et ne dépend d'aucune
 authentification externe.
 
+### Si le panneau Amen refuse un nom vide : faire relever la boîte par Gmail
+
+Le panneau d'Amen a refusé d'enregistrer un champ « nom » entièrement vide lors d'une modification.
+Tant que le SPF n'est pas publié à la racine, il existe une solution qui **ne dépend d'aucun
+enregistrement DNS** : Gmail va chercher les messages au lieu de les recevoir. Le sens de la
+connexion s'inverse, donc ni SPF ni DKIM ne sont interrogés.
+
+Testé le 27 juillet 2026 : l'accès POP3 fonctionne, 7 messages étaient en attente.
+
+Dans Gmail, avec le compte du client : **Paramètres** → **Voir tous les paramètres** → onglet
+**Comptes et importation** → **Consulter d'autres comptes de messagerie** → **Ajouter un compte**.
+
+| Réglage                            | Valeur                      |
+| ---------------------------------- | --------------------------- |
+| Adresse                            | `contact@ms-nettoyages.com` |
+| Nom d'utilisateur                  | `contact@ms-nettoyages.com` |
+| Serveur POP                        | `mail.securemail.pro`       |
+| Port                               | `995`                       |
+| Connexion sécurisée SSL            | à cocher                    |
+| Conserver une copie sur le serveur | à cocher                    |
+
+> `pop.securemail.pro` refuse l'authentification malgré un nom d'hôte plausible : c'est bien
+> `mail.securemail.pro` qu'il faut saisir, le même serveur qu'en IMAP.
+
+**Conserver une copie** garde le filet de sécurité intact : les demandes restent lisibles dans le
+webmail Amen même après relève.
+
+Limite à connaître : Gmail relève à son propre rythme, de quelques minutes à une heure selon
+l'activité de la boîte. C'est acceptable au regard de l'engagement de réponse sous 24 h affiché sur
+le site, mais ce n'est pas instantané. La remise directe, une fois le SPF publié, reste préférable.
+
 Passer ensuite le DMARC de `p=none` à `p=quarantine`, puis `p=reject`, après quelques semaines de
 rapports sans anomalie.
 
