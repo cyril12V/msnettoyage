@@ -17,8 +17,15 @@ import { absoluteUrl, site } from "@/lib/site";
 
 export type JsonLdObject = Record<string, unknown>;
 
-/** Identifiant stable de l'entreprise, référencé par les autres blocs. */
-const idEntreprise = `${site.url}/#entreprise`;
+/**
+ * Identifiant stable de l'entreprise, référencé par les autres blocs.
+ *
+ * `#business` est l'ancre imposée par `SCHEMA MARKUP MS NETTOYAGES.md`. Elle
+ * doit rester identique partout : c'est elle qui dit à Google que la fiche
+ * entreprise du pied de page et le `provider` de chaque service désignent la
+ * même entité, et non deux entreprises homonymes.
+ */
+const idEntreprise = `${site.url}/#business`;
 
 function adressePostale(): JsonLdObject {
   const adresse: JsonLdObject = {
@@ -54,35 +61,73 @@ function lienCarte(): string {
 }
 
 /**
+ * Les huit départements franciliens, dans l'ordre et la forme imposés par
+ * `SCHEMA MARKUP MS NETTOYAGES.md`.
+ *
+ * Paris y figure comme `AdministrativeArea` au même titre que les sept autres :
+ * c'est à la fois une commune et un département, et c'est le découpage que
+ * comprend un lecteur comme un moteur.
+ */
+const DEPARTEMENTS_IDF: readonly { name: string; areaCode: string }[] = [
+  { name: "Paris", areaCode: "75" },
+  { name: "Seine-et-Marne", areaCode: "77" },
+  { name: "Yvelines", areaCode: "78" },
+  { name: "Essonne", areaCode: "91" },
+  { name: "Hauts-de-Seine", areaCode: "92" },
+  { name: "Seine-Saint-Denis", areaCode: "93" },
+  { name: "Val-de-Marne", areaCode: "94" },
+  { name: "Val-d'Oise", areaCode: "95" },
+] as const;
+
+/**
+ * Les sept prestations déclarées au catalogue de l'entreprise.
+ *
+ * Liste et ordre repris de `SCHEMA MARKUP MS NETTOYAGES.md`. Elle distingue
+ * « ménage après travaux » et « nettoyage fin de chantier », qui sont deux
+ * intitulés de recherche distincts même si le site les traite sur une seule
+ * page : le catalogue décrit ce que l'entreprise sait faire, pas l'arborescence
+ * du site.
+ */
+const CATALOGUE_ENTREPRISE: readonly string[] = [
+  "Nettoyage de maison",
+  "Nettoyage de bureau",
+  "Ménage particulier",
+  "Ménage après travaux",
+  "Nettoyage fin de chantier",
+  "Ménage après déménagement",
+  "Ménage Airbnb",
+] as const;
+
+/**
  * Zone d'intervention publiée, du plus large au plus précis.
  *
- * L'entreprise couvre l'Île-de-France entière ; les villes nommées sont celles
- * qui disposent d'une page dédiée, c'est-à-dire celles pour lesquelles nous
- * revendiquons explicitement une présence. Déclarer trente villes sans page
- * derrière serait une revendication invérifiable, et Google traite ce genre de
- * liste comme du remplissage.
+ * Les huit départements viennent en premier, dans la forme imposée par le
+ * document de balisage. Les communes nommées ensuite sont celles qui disposent
+ * d'une page dédiée, c'est-à-dire celles pour lesquelles nous revendiquons
+ * explicitement une présence. Déclarer trente villes sans page derrière serait
+ * une revendication invérifiable, et Google traite ce genre de liste comme du
+ * remplissage.
  */
 function zoneDIntervention(): JsonLdObject[] {
-  const communes = new Map<string, JsonLdObject>();
-
-  for (const ville of villes) {
-    communes.set(ville.nom, {
-      "@type": "City",
-      name: ville.nom,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: ville.nom,
-        postalCode: ville.codePostal,
-        addressRegion: site.address.region,
-        addressCountry: site.address.country,
-      },
-    });
-  }
+  const communes = villes.map((ville) => ({
+    "@type": "City",
+    name: ville.nom,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: ville.nom,
+      postalCode: ville.codePostal,
+      addressRegion: site.address.region,
+      addressCountry: site.address.country,
+    },
+  }));
 
   return [
-    { "@type": "AdministrativeArea", name: "Île-de-France" },
-    ...zones.map((zone) => ({ "@type": "AdministrativeArea" as const, name: zone.name })),
-    ...communes.values(),
+    ...DEPARTEMENTS_IDF.map((departement) => ({
+      "@type": "AdministrativeArea",
+      name: departement.name,
+      areaCode: departement.areaCode,
+    })),
+    ...communes,
   ];
 }
 
@@ -98,7 +143,17 @@ export function entrepriseJsonLd(): JsonLdObject {
 
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    /**
+     * Double typage voulu par le document de balisage.
+     *
+     * `CleaningService` n'existe pas au vocabulaire schema.org, vérifié :
+     * https://schema.org/CleaningService renvoie une 404. Déclaré seul, il
+     * serait ignoré et l'entreprise perdrait son type. Déclaré en tableau avec
+     * `LocalBusiness`, le type valide porte le sens, l'autre est simplement
+     * ignoré par les moteurs. Le bloc reste donc valide et l'intitulé métier
+     * lisible pour les lecteurs humains du balisage.
+     */
+    "@type": ["LocalBusiness", "CleaningService"],
     "@id": idEntreprise,
     name: site.name,
     legalName: site.legalName,
@@ -137,6 +192,18 @@ export function entrepriseJsonLd(): JsonLdObject {
     // Domaines d'expertise : ce sont les intitulés que les moteurs génératifs
     // rapprochent d'une question posée en langage naturel.
     knowsAbout: services.map((service) => service.shortName),
+    // Catalogue des sept prestations, dans l'ordre imposé par le document de
+    // balisage. C'est ce bloc que Google lit pour savoir ce que vend
+    // l'entreprise, indépendamment de l'arborescence du site.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `Services de nettoyage ${site.name}`,
+      itemListElement: CATALOGUE_ENTREPRISE.map((intitule, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: { "@type": "Service", name: intitule },
+      })),
+    },
     makesOffer: services.map((service) => ({
       "@type": "Offer",
       itemOffered: {
@@ -222,7 +289,22 @@ export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
     description: landing.lede,
     url: absoluteUrl(`/${landing.slug}`),
     provider: { "@id": idEntreprise },
-    areaServed: zoneDIntervention(),
+    // La région vient en tête, dans la forme imposée par le document de
+    // balisage ; les communes qui suivent portent le signal local que la seule
+    // mention « Île-de-France » ne donne pas.
+    areaServed: [
+      { "@type": "Region", name: "Île-de-France" },
+      ...zoneDIntervention(),
+    ],
+    // Le devis est gratuit : c'est l'offre réellement faite au visiteur, et
+    // c'est ce que déclare le document de balisage. Le prix de la prestation
+    // elle-même n'est pas publié, faute de barème appliqué.
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR",
+      description: `Devis gratuit sous ${site.delaiReponse}`,
+    },
     audience: {
       "@type": "Audience",
       audienceType: landing.pourQui.join(", "),
