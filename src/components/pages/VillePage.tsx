@@ -97,7 +97,10 @@ export function VillePage({ ville }: { ville: Ville }) {
               <h2 className="text-ink text-sm font-semibold">Communes voisines couvertes</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {ville.communesProches.map((commune) => (
-                  <li key={commune} className="bg-surface text-ink-soft rounded-lg px-3 py-1.5 text-xs">
+                  <li
+                    key={commune}
+                    className="bg-surface text-ink-soft rounded-lg px-3 py-1.5 text-xs"
+                  >
                     {commune}
                   </li>
                 ))}
@@ -142,9 +145,7 @@ export function VillePage({ ville }: { ville: Ville }) {
             ))}
           </ul>
 
-          <h3 className="text-ink mt-12 text-sm font-semibold">
-            Également assuré à {ville.nom}
-          </h3>
+          <h3 className="text-ink mt-12 text-sm font-semibold">Également assuré à {ville.nom}</h3>
           <ul className="mt-5 flex flex-wrap gap-2.5">
             {autresPrestations.map((landing) => (
               <li key={landing.slug}>

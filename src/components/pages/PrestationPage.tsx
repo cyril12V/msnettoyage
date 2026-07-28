@@ -9,6 +9,7 @@ import { MediaSlot } from "@/components/ui/MediaSlot";
 import { Section } from "@/components/ui/Section";
 import { type Landing, landings } from "@/data/landings";
 import { villes } from "@/data/villes";
+import { zones } from "@/data/zones";
 import { breadcrumbJsonLd, faqJsonLd, prestationLocaleJsonLd } from "@/lib/schema";
 import { site, telHref } from "@/lib/site";
 
@@ -27,6 +28,11 @@ export function PrestationPage({ landing }: { landing: Landing }) {
   ];
 
   const autres = landings.filter((item) => item.slug !== landing.slug);
+
+  // La zone `base` de `zones.ts` est la ville de Meaux, pas un département :
+  // elle a sa propre page ville et n'a rien à faire dans une liste de
+  // départements.
+  const departements = zones.filter((zone) => !zone.base);
 
   return (
     <>
@@ -98,21 +104,56 @@ export function PrestationPage({ landing }: { landing: Landing }) {
       </Section>
 
       {/*
-        Couverture géographique.
+        Tarification.
 
-        Chaque lien porte la prestation ET la ville dans son texte : c'est
-        l'ancre qui dit à Google que cette page-ci traite « nettoyage de
-        bureaux » et que la page de destination traite « nettoyage de bureaux à
-        Créteil ». Un « voir la ville » ne dirait rien.
+        « Combien ça coûte » est la requête la plus tapée après le nom de la
+        prestation elle-même. Le H2 la reprend mot pour mot et la réponse
+        directe est placée juste dessous : c'est le format qu'un moteur
+        génératif extrait, et celui que Google remonte en position zéro.
       */}
       <Section tone="surface">
         <Container>
           <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
-            {landing.libelleCourt} : où intervenons-nous ?
+            {landing.tarification.question}
+          </h2>
+          <p className="text-ink-soft mt-4 max-w-3xl leading-relaxed">
+            {landing.tarification.reponse}
+          </p>
+
+          <h3 className="text-ink mt-10 text-sm font-semibold">Ce qui fait varier le prix</h3>
+          <dl className="border-line divide-line mt-5 divide-y rounded-xl border bg-white">
+            {landing.tarification.facteurs.map((facteur) => (
+              <div key={facteur.label} className="grid gap-1.5 px-5 py-5 sm:grid-cols-3 sm:gap-6">
+                <dt className="text-ink text-[0.95rem] font-medium">{facteur.label}</dt>
+                <dd className="text-muted text-sm leading-relaxed sm:col-span-2">
+                  {facteur.effet}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </Section>
+
+      {/*
+        Couverture géographique.
+
+        Deux niveaux, parce qu'ils répondent à deux recherches différentes : la
+        commune, pour « nettoyage de bureaux à Créteil », et le département,
+        pour « nettoyage de bureaux dans le 94 ».
+
+        Chaque lien de ville porte la prestation ET la commune dans son texte :
+        c'est l'ancre qui dit à Google que cette page-ci traite « nettoyage de
+        bureaux » et que la page de destination traite « nettoyage de bureaux à
+        Créteil ». Un « voir la ville » ne dirait rien.
+      */}
+      <Section tone="white">
+        <Container>
+          <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
+            Notre zone d&apos;intervention : Paris et toute l&apos;Île-de-France
           </h2>
           <p className="text-muted mt-4 max-w-3xl leading-relaxed">
-            {site.name} couvre l&apos;ensemble de l&apos;Île-de-France depuis {site.address.city}.
-            Les communes ci-dessous disposent d&apos;une page dédiée qui détaille les délais, les
+            {site.name} couvre les huit départements franciliens depuis {site.address.city}. Les
+            communes ci-dessous disposent d&apos;une page dédiée qui détaille les délais, les
             contraintes d&apos;accès et les prestations les plus demandées sur place.
           </p>
 
@@ -131,10 +172,31 @@ export function PrestationPage({ landing }: { landing: Landing }) {
               </li>
             ))}
           </ul>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {departements.map((zone) => (
+              <section key={zone.slug} className="border-line rounded-xl border p-6">
+                <h3 className="text-ink text-[0.95rem] font-semibold">
+                  {landing.libelleCourt} {zone.avecPreposition} ({zone.departement})
+                </h3>
+                <p className="text-muted mt-2 text-sm leading-relaxed">{zone.lede}</p>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {zone.communes.map((commune) => (
+                    <li
+                      key={commune}
+                      className="bg-surface text-ink-soft rounded-md px-2.5 py-1 text-xs"
+                    >
+                      {commune}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
         </Container>
       </Section>
 
-      <Section tone="white">
+      <Section tone="surface">
         <Container>
           <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
             Questions fréquentes
@@ -157,7 +219,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
-      <Section tone="surface" spacing="compact">
+      <Section tone="white" spacing="compact">
         <Container>
           <h2 className="text-ink text-sm font-semibold">Nos autres prestations</h2>
           <ul className="mt-6 flex flex-wrap gap-2.5">

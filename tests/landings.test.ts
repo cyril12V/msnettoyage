@@ -31,7 +31,9 @@ describe("pages de prestation", () => {
       expect(landing.slug).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
       for (const nom of nomsDeVille) {
-        expect(landing.slug.endsWith(`-${nom}`), `ville dans le slug : ${landing.slug}`).toBe(false);
+        expect(landing.slug.endsWith(`-${nom}`), `ville dans le slug : ${landing.slug}`).toBe(
+          false,
+        );
       }
     }
   });
@@ -114,6 +116,19 @@ describe("cannibalisation entre pages", () => {
     expect(new Set(paragraphes).size, "paragraphe dupliqué").toBe(paragraphes.length);
   });
 
+  it("ne recopie aucune section tarifaire d'une page à l'autre", () => {
+    const questions = landings.map((landing) => landing.tarification.question);
+    expect(new Set(questions).size, "question de prix dupliquée").toBe(landings.length);
+
+    const reponses = landings.map((landing) => landing.tarification.reponse);
+    expect(new Set(reponses).size, "réponse de prix dupliquée").toBe(landings.length);
+
+    const effets = landings.flatMap((landing) =>
+      landing.tarification.facteurs.map((facteur) => facteur.effet),
+    );
+    expect(new Set(effets).size, "facteur de prix dupliqué").toBe(effets.length);
+  });
+
   it("ne pose jamais deux fois la même question", () => {
     // Une question identique sur deux pages produit deux blocs FAQPage
     // concurrents : Google n'en retient qu'un, sans que l'on choisisse lequel.
@@ -130,6 +145,22 @@ describe("contenu des pages d'atterrissage", () => {
       expect(landing.faits.length, `faits : ${landing.slug}`).toBeGreaterThanOrEqual(2);
       expect(landing.corps.length, `corps : ${landing.slug}`).toBeGreaterThanOrEqual(3);
       expect(landing.faq.length, `faq : ${landing.slug}`).toBeGreaterThanOrEqual(3);
+      expect(
+        landing.tarification.facteurs.length,
+        `facteurs de prix : ${landing.slug}`,
+      ).toBeGreaterThanOrEqual(4);
+    }
+  });
+
+  it("répond à la question du prix, par une question posée et une réponse directe", () => {
+    // C'est la requête la plus tapée après le nom de la prestation, et celle
+    // qu'un moteur génératif extrait le plus volontiers.
+    for (const landing of landings) {
+      const { question, reponse } = landing.tarification;
+
+      expect(question.toLowerCase(), `sans « combien » : ${landing.slug}`).toContain("combien");
+      expect(question.endsWith("?"), `sans point d'interrogation : ${landing.slug}`).toBe(true);
+      expect(reponse.length, `réponse trop courte : ${landing.slug}`).toBeGreaterThanOrEqual(150);
     }
   });
 
@@ -179,6 +210,9 @@ describe("contenu des pages d'atterrissage", () => {
         ...landing.inclus,
         ...landing.pourQui,
         ...landing.corps,
+        landing.tarification.question,
+        landing.tarification.reponse,
+        ...landing.tarification.facteurs.flatMap((f) => [f.label, f.effet]),
         ...landing.faq.flatMap((item) => [item.question, item.answer]),
       ])
       .join(" ");

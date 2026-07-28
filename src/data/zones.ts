@@ -2,6 +2,15 @@ export type Zone = {
   slug: string;
   /** Nom de la zone tel qu'affiché dans les listes et le fil d'Ariane. */
   name: string;
+  /**
+   * Nom précédé de sa préposition, pour être inséré dans une phrase.
+   *
+   * Le français ne permet pas de la déduire du nom : on dit « à Paris », « en
+   * Essonne », « dans le Val-de-Marne » et « dans les Yvelines ». Concaténer
+   * « en » devant chaque nom produisait « en Paris » dans les titres de
+   * section, une faute visible par tout lecteur et par tout moteur.
+   */
+  avecPreposition: string;
   /** Numéro de département, affiché en badge. */
   departement: string;
   metaTitle: string;
@@ -22,6 +31,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "meaux",
     name: "Meaux",
+    avecPreposition: "à Meaux",
     departement: "77",
     base: true,
     metaTitle: "Entreprise de nettoyage à Meaux (77100) | MS Nettoyages",
@@ -50,6 +60,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "seine-et-marne",
     name: "Seine-et-Marne",
+    avecPreposition: "en Seine-et-Marne",
     departement: "77",
     metaTitle: "Nettoyage professionnel en Seine-et-Marne (77) | MS Nettoyages",
     metaDescription:
@@ -77,6 +88,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "paris",
     name: "Paris",
+    avecPreposition: "à Paris",
     departement: "75",
     metaTitle: "Entreprise de nettoyage à Paris (75) | MS Nettoyages",
     metaDescription:
@@ -100,6 +112,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "seine-saint-denis",
     name: "Seine-Saint-Denis",
+    avecPreposition: "en Seine-Saint-Denis",
     departement: "93",
     metaTitle: "Nettoyage professionnel en Seine-Saint-Denis (93) | MS Nettoyages",
     metaDescription:
@@ -131,6 +144,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "val-de-marne",
     name: "Val-de-Marne",
+    avecPreposition: "dans le Val-de-Marne",
     departement: "94",
     metaTitle: "Entreprise de nettoyage dans le Val-de-Marne (94) | MS Nettoyages",
     metaDescription:
@@ -158,6 +172,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "hauts-de-seine",
     name: "Hauts-de-Seine",
+    avecPreposition: "dans les Hauts-de-Seine",
     departement: "92",
     metaTitle: "Nettoyage de bureaux dans les Hauts-de-Seine (92) | MS Nettoyages",
     metaDescription:
@@ -185,6 +200,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "val-d-oise",
     name: "Val-d'Oise",
+    avecPreposition: "dans le Val-d'Oise",
     departement: "95",
     metaTitle: "Entreprise de nettoyage dans le Val-d'Oise (95) | MS Nettoyages",
     metaDescription:
@@ -212,6 +228,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "essonne",
     name: "Essonne",
+    avecPreposition: "en Essonne",
     departement: "91",
     metaTitle: "Nettoyage professionnel en Essonne (91) | MS Nettoyages",
     metaDescription:
@@ -239,6 +256,7 @@ export const zones: readonly Zone[] = [
   {
     slug: "yvelines",
     name: "Yvelines",
+    avecPreposition: "dans les Yvelines",
     departement: "78",
     metaTitle: "Entreprise de nettoyage dans les Yvelines (78) | MS Nettoyages",
     metaDescription:

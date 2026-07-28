@@ -109,6 +109,38 @@ export const landings: readonly Landing[] = [
       "Le parc francilien impose des méthodes différentes selon les secteurs. Dans Paris et la petite couronne, l'immeuble haussmannien concentre parquets à points de Hongrie, moulures, cheminées en marbre et double rideau : autant de supports qui ne tolèrent ni l'eau en excès ni les produits universels. En grande couronne, le pavillon des années 1970 à 1990 mélange carrelage au rez-de-chaussée et parquet flottant à l'étage. Un parquet flottant lavé à grande eau gonfle aux joints, et le dommage est irréversible.",
       "Nous établissons le devis à partir de la surface, du nombre de pièces d'eau et de l'état de départ, que vous pouvez nous décrire par téléphone ou nous montrer en photos. Aucun déplacement n'est facturé pour chiffrer, où que vous soyez en Île-de-France.",
     ],
+    tarification: {
+      question: "Combien coûte un nettoyage de maison à Paris et en Île-de-France ?",
+      reponse:
+        "Le nettoyage de maison se chiffre sur devis, à partir de la surface, du nombre de pièces d'eau et de l'état de départ. MS Nettoyages transmet un devis gratuit sous 24 h, établi sur description ou sur photos, sans visite obligatoire et sans frais de déplacement pour chiffrer.",
+      facteurs: [
+        {
+          label: "Surface et nombre de pièces",
+          effet:
+            "C'est la base du calcul, mais le nombre de pièces pèse davantage que les mètres carrés : quatre petites pièces prennent plus de temps qu'un plateau de même surface.",
+        },
+        {
+          label: "Nombre de pièces d'eau",
+          effet:
+            "Cuisine et salles de bains concentrent l'essentiel du temps passé. Une salle de bains supplémentaire compte plus que vingt mètres carrés de séjour.",
+        },
+        {
+          label: "État de départ",
+          effet:
+            "Un logement entretenu régulièrement se traite deux fois plus vite qu'un logement laissé plusieurs mois. C'est le facteur qui fait les plus gros écarts de devis.",
+        },
+        {
+          label: "Accès et étage",
+          effet:
+            "À Paris et en petite couronne, un étage élevé sans ascenseur allonge réellement l'intervention. Il est chiffré au devis, jamais ajouté après coup.",
+        },
+        {
+          label: "Fréquence",
+          effet:
+            "Un passage récurrent se facture moins cher qu'une intervention unique, à prestation identique : le logement reste en meilleur état d'une fois sur l'autre.",
+        },
+      ],
+    },
     faq: [
       {
         question: "Combien coûte un nettoyage de maison à Paris ou en Île-de-France ?",
@@ -168,6 +200,38 @@ export const landings: readonly Landing[] = [
       "Les immeubles de bureaux franciliens, en particulier dans le quartier central des affaires, à La Défense et sur les axes tertiaires du 92 et du 93, imposent des règles d'accès strictes : badge nominatif, enregistrement préalable des intervenants au poste de sécurité, plages horaires fixées par le gestionnaire de l'immeuble, parfois obligation de passer par le monte-charge. Nous fournissons la liste nominative de nos intervenants et leurs justificatifs au démarrage du contrat, ce qui évite de perdre une intervention sur un refus d'accès.",
       "Nous affectons les mêmes intervenants à votre site. Ils connaissent la configuration des lieux, l'alarme, les codes d'accès et les zones sensibles, ce qui réduit le temps d'intervention et rend le résultat régulier d'une semaine sur l'autre. Tous sont déclarés, et l'entreprise est couverte par une assurance responsabilité civile professionnelle.",
     ],
+    tarification: {
+      question: "Combien coûte le nettoyage de bureaux à Paris ?",
+      reponse:
+        "Un contrat de nettoyage de bureaux se chiffre au mètre carré et à la fréquence, jamais au forfait. MS Nettoyages établit le devis à partir d'un cahier des charges écrit, annexé au contrat, et le transmet gratuitement sous 24 h.",
+      facteurs: [
+        {
+          label: "Surface et configuration",
+          effet:
+            "Un open space se traite plus vite qu'un même nombre de mètres carrés découpé en bureaux individuels et en salles de réunion.",
+        },
+        {
+          label: "Fréquence des passages",
+          effet:
+            "De un à cinq passages hebdomadaires. C'est le paramètre qui pèse le plus sur le montant mensuel, et celui qui se révise le plus facilement en cours de contrat.",
+        },
+        {
+          label: "Sanitaires et restauration",
+          effet:
+            "Le nombre de sanitaires et la présence d'un espace de restauration comptent davantage que la surface : ce sont les postes traités à chaque passage sans exception.",
+        },
+        {
+          label: "Densité d'occupation",
+          effet:
+            "Trente personnes sur 200 m² salissent plus que dix. Le nombre de postes de travail est demandé au chiffrage.",
+        },
+        {
+          label: "Contraintes d'accès",
+          effet:
+            "Badge nominatif, enregistrement au poste de sécurité, plage horaire imposée par le gestionnaire : ces formalités prennent du temps et sont intégrées au prix.",
+        },
+      ],
+    },
     faq: [
       {
         question: "À quelle heure intervenez-vous dans les bureaux ?",
@@ -227,6 +291,33 @@ export const landings: readonly Landing[] = [
       "Nous venons avec notre matériel et nos produits professionnels. Si vous préférez que l'on utilise vos propres produits, pour une allergie, un label écologique ou une exigence particulière, il suffit de le préciser à la demande de devis : c'est sans supplément.",
       "Les prestations chez le particulier peuvent ouvrir droit à un avantage fiscal au titre des services à la personne, sous réserve que le prestataire soit déclaré pour cette activité. Nous vous indiquons précisément ce qu'il en est lors de l'établissement du devis, sans promesse en l'air.",
     ],
+    tarification: {
+      question: "Combien coûte un service de ménage à domicile à Paris ?",
+      reponse:
+        "Le ménage chez le particulier se facture à l'heure de présence, avec un nombre d'heures fixé à l'avance selon le logement et le rythme retenu. MS Nettoyages fournit le matériel et les produits, et le tarif reste stable pendant toute la durée du contrat.",
+      facteurs: [
+        {
+          label: "Durée du passage",
+          effet:
+            "Deux à quatre heures selon la surface et le rythme. C'est la durée, pas la surface, qui détermine le montant.",
+        },
+        {
+          label: "Rythme retenu",
+          effet:
+            "Hebdomadaire, bimensuel ou mensuel. Un rythme espacé demande plus d'heures par passage, ce qui annule souvent l'économie attendue.",
+        },
+        {
+          label: "Repassage",
+          effet:
+            "Chiffré séparément et à l'heure : il n'entre jamais dans le forfait ménage, faute de quoi c'est lui qui déborde sur le reste.",
+        },
+        {
+          label: "Statut fiscal",
+          effet:
+            "Les prestations de services à la personne peuvent ouvrir droit à un avantage fiscal, sous réserve que le prestataire soit déclaré pour cette activité. Nous précisons ce qu'il en est au devis.",
+        },
+      ],
+    },
     faq: [
       {
         question: "Quelle différence entre une femme de ménage et un service de ménage ?",
@@ -257,7 +348,7 @@ export const landings: readonly Landing[] = [
     h1: "Nettoyage de fin de chantier et après travaux à Paris et en Île-de-France",
     metaTitle: "Nettoyage fin de chantier Paris & IDF | MS Nettoyages",
     metaDescription:
-      "Nettoyage de fin de chantier à Paris et en Île-de-France : retrait des traces de peinture, colle et enduit, dépoussiérage intégral, vitrerie, sols. Devis sous 24 h.",
+      "Nettoyage fin de chantier à Paris et en Île-de-France : évacuation des résidus, dépoussiérage intégral, vitrerie et sols. Intervention possible sous 48 h.",
     lede: "Le nettoyage de fin de chantier est l'intervention qui rend un local livrable après des travaux : évacuation des résidus, retrait des traces de peinture, de colle et d'enduit, et élimination de la poussière fine déposée sur toutes les surfaces.",
     icon: "trowel",
     image: "/images/avant-apres-sejour-apres.jpg",
@@ -287,6 +378,38 @@ export const landings: readonly Landing[] = [
       "En Île-de-France, la contrainte dominante n'est pas technique mais logistique. Dans Paris intra-muros, il faut composer avec le stationnement réglementé, les autorisations de voirie déjà expirées à la fin du chantier, les cages d'escalier étroites et les copropriétés qui interdisent le passage du matériel après 18 h. Nous calons le créneau et l'accès au moment du devis, pas le matin de l'intervention.",
       "Nous intervenons une fois les corps de métier partis et le gros des gravats évacué. Quand l'évacuation reste à faire, nous regroupons et signalons : le transport de déchets de construction en déchetterie relève d'un prestataire spécialisé. Cette prestation est fréquemment commandée avant une réception de travaux ou une livraison, avec une date butoir : le créneau est confirmé par écrit et tenu.",
     ],
+    tarification: {
+      question: "Combien coûte un nettoyage de fin de chantier à Paris ?",
+      reponse:
+        "Le nettoyage de fin de chantier se chiffre au mètre carré, majoré selon l'empoussièrement et l'accessibilité du site. MS Nettoyages transmet un devis gratuit sous 24 h et confirme le créneau par écrit, une intervention sous 48 h restant possible selon nos disponibilités.",
+      facteurs: [
+        {
+          label: "Nature du chantier",
+          effet:
+            "C'est le premier facteur, loin devant la surface. Une reprise de peinture se traite deux fois plus vite qu'une dépose de cloisons, à mètres carrés égaux.",
+        },
+        {
+          label: "Nombre de passes nécessaires",
+          effet:
+            "Deux à trois passes selon l'empoussièrement. La poussière de ponçage se redépose plusieurs heures après le premier lavage : une seule passe ne tient pas la journée.",
+        },
+        {
+          label: "Surface vitrée",
+          effet:
+            "Châssis, rails et menuiseries neuves demandent un traitement mécanique long. Un local très vitré change nettement le chiffrage.",
+        },
+        {
+          label: "Accessibilité",
+          effet:
+            "Étage sans ascenseur, stationnement impossible, monte-charge à réserver : à Paris intra-muros, ces contraintes pèsent autant que la surface.",
+        },
+        {
+          label: "Délai imposé",
+          effet:
+            "Une livraison à date fixe peut demander plusieurs intervenants en parallèle. Nous l'annonçons au devis plutôt que de promettre une date intenable.",
+        },
+      ],
+    },
     faq: [
       {
         question: "Quelle est la différence entre nettoyage de fin de chantier et après travaux ?",
@@ -307,6 +430,16 @@ export const landings: readonly Landing[] = [
         question: "Intervenez-vous avant une réception de travaux ou un état des lieux ?",
         answer:
           "Oui, c'est le cas le plus fréquent. Indiquez-nous la date de la réception ou de l'état des lieux à la demande de devis : nous planifions l'intervention pour qu'elle se termine la veille, ce qui laisse le temps de traiter un éventuel point de reprise sans repousser la livraison.",
+      },
+      {
+        question: "Intervenez-vous dans tout Paris et toute l'Île-de-France ?",
+        answer:
+          "Oui, dans les 20 arrondissements de Paris et dans les huit départements franciliens. Les délais les plus courts sont sur Paris, la Seine-et-Marne et la Seine-Saint-Denis. Sur les Yvelines et l'Essonne, nous travaillons sur planification anticipée et non en intervention d'urgence, ce que nous annonçons dès la demande de devis.",
+      },
+      {
+        question: "Quand faut-il commander le nettoyage de fin de chantier ?",
+        answer:
+          "Dès que la date de fin des travaux est connue, et non le jour où elle arrive. Les créneaux de fin de semaine et de fin de mois sont les plus demandés par les entreprises du bâtiment, qui livrent toutes aux mêmes moments. Une commande passée une semaine à l'avance garantit le créneau ; une demande la veille dépend de nos disponibilités du moment.",
       },
     ],
   },
@@ -346,6 +479,33 @@ export const landings: readonly Landing[] = [
       "Les points systématiquement vérifiés par un agent lors d'un état des lieux sont toujours les mêmes : l'intérieur du four, les joints de la salle de bains, le fond des placards, les traces de meubles au sol et l'état des vitres. Nous les traitons en priorité, parce que ce sont eux qui font la décision.",
       "Si vous le souhaitez, nous vous transmettons des photos du logement à la fin de l'intervention. Elles datent l'état de propreté à notre départ, ce qui vous protège en cas de désaccord ultérieur avec le bailleur ou l'agence.",
     ],
+    tarification: {
+      question: "Combien coûte un ménage après déménagement en Île-de-France ?",
+      reponse:
+        "Le ménage après déménagement se chiffre sur la surface et l'état de départ du logement vidé. MS Nettoyages établit un devis gratuit sous 24 h et le compare volontiers au montant de la retenue qu'il évite : c'est presque toujours l'argument décisif.",
+      facteurs: [
+        {
+          label: "Surface et nombre de pièces",
+          effet:
+            "Un T3 se traite en trois à six heures. Le logement étant vide, le rendement est meilleur qu'à surface équivalente en logement meublé.",
+        },
+        {
+          label: "Électroménager laissé sur place",
+          effet:
+            "Four, plaques, réfrigérateur et hotte sont les postes les plus longs et les plus systématiquement vérifiés à l'état des lieux.",
+        },
+        {
+          label: "État des sols et des murs",
+          effet:
+            "Traces de meubles, adhésifs, marques de fixation : leur retrait relève parfois de la remise en état et non du nettoyage, ce qui est signalé avant intervention.",
+        },
+        {
+          label: "Délai avant l'état des lieux",
+          effet:
+            "Une intervention calée la veille se planifie sans surcoût. Une demande à traiter le jour même dépend de nos disponibilités.",
+        },
+      ],
+    },
     faq: [
       {
         question: "Quand faire le ménage après un déménagement ?",
@@ -405,6 +565,33 @@ export const landings: readonly Landing[] = [
       "Le compte rendu photo protège les deux parties. Il date l'état du logement à la fin de notre intervention : en cas de litige avec un voyageur sur une dégradation, vous disposez d'une preuve horodatée, et nous d'une trace de ce qui a été livré.",
       "Nous signalons systématiquement ce qui sort de l'ordinaire : ampoule grillée, joint qui moisit, stock de consommables au plus bas, équipement qui commence à fatiguer. Traiter ces détails avant qu'un voyageur ne les mentionne est exactement ce qui préserve une note élevée sur la durée, bien plus qu'un nettoyage parfait le jour J.",
     ],
+    tarification: {
+      question: "Combien coûte un ménage Airbnb à Paris ?",
+      reponse:
+        "Le ménage Airbnb se facture à la rotation, avec un tarif fixe convenu à la signature et refacturable au voyageur via les frais de ménage de l'annonce. La prestation est donc neutre financièrement pour la plupart des hôtes.",
+      facteurs: [
+        {
+          label: "Type de logement",
+          effet:
+            "Une heure trente pour un studio, deux heures pour un T2, trois heures pour un T4. Le nombre de couchages compte autant que la surface.",
+        },
+        {
+          label: "Gestion du linge",
+          effet:
+            "Le changement des draps est compris. La fourniture et le lavage du linge sont une option, chiffrée séparément et facilement comparable à un blanchisseur.",
+        },
+        {
+          label: "Fréquence des rotations",
+          effet:
+            "Un logement à forte rotation bénéficie d'un tarif plus favorable : le trajet est amorti et l'intervenant connaît déjà les lieux.",
+        },
+        {
+          label: "Contrainte horaire",
+          effet:
+            "Une rotation à caler entre un check-out à 11 h et un check-in à 15 h mobilise un créneau réservé, qui ne peut pas être partagé avec une autre intervention.",
+        },
+      ],
+    },
     faq: [
       {
         question: "Combien de temps prend une rotation Airbnb ?",

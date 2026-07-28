@@ -105,6 +105,12 @@ const nextConfig: NextConfig = {
       anciennePrestation("/menage-particulier-meaux", "/menage-particulier"),
       anciennePrestation("/menage-apres-travaux-meaux", "/nettoyage-fin-de-chantier"),
       anciennePrestation("/menage-apres-travaux", "/nettoyage-fin-de-chantier"),
+      // Variante avec la ville, proposée par la note d'optimisation du mot-clé.
+      // Elle n'a pas été retenue comme URL canonique : un slug qui contient
+      // « paris » ne peut plus remonter sur « nettoyage fin de chantier
+      // Chelles », et la géographie appartient aux pages villes. La redirection
+      // évite qu'un lien émis sous cette forme tombe sur un 404.
+      anciennePrestation("/nettoyage-fin-de-chantier-paris", "/nettoyage-fin-de-chantier"),
       anciennePrestation("/menage-apres-demenagement-meaux", "/menage-apres-demenagement"),
       anciennePrestation("/menage-airbnb-meaux", "/menage-airbnb"),
 
