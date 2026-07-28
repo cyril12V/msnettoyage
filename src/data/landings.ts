@@ -332,10 +332,10 @@ export const landings: readonly Landing[] = [
     ],
   },
   {
-    slug: "nettoyage-fin-de-chantier",
+    slug: "nettoyage-fin-de-chantier-paris",
     requete: "Nettoyage de fin de chantier à Paris et en Île-de-France",
     libelleCourt: "Fin de chantier",
-    h1: "Nettoyage de fin de chantier et après travaux à Paris et en Île-de-France",
+    h1: "Nettoyage fin de chantier à Paris et en Île-de-France",
     metaTitle: "Nettoyage fin de chantier Paris & IDF | MS Nettoyages",
     metaDescription:
       "Nettoyage fin de chantier à Paris et en Île-de-France : évacuation des résidus, dépoussiérage intégral, vitrerie et sols. Intervention possible sous 48 h.",
@@ -366,7 +366,7 @@ export const landings: readonly Landing[] = [
       "La poussière de plâtre et de ponçage est extrêmement fine : elle reste en suspension et se redépose plusieurs heures après le premier lavage. C'est la raison pour laquelle un nettoyage de fin de chantier sérieux comporte toujours plusieurs passes, du haut vers le bas, et se termine par les sols. Une seule passe donne un résultat qui se dégrade dans la journée, et c'est exactement ce que voit le client à la réception.",
       "Les traces de peinture et de colle se retirent mécaniquement, avec des grattoirs adaptés à chaque support. C'est là que se concentrent les dégâts quand l'opération est confiée à des non-professionnels : sur du verre, un mauvais geste raye la vitre définitivement ; sur une menuiserie laquée, un solvant trop agressif ternit la finition sans retour possible. Le coût du remplacement dépasse toujours celui de la prestation.",
       "En Île-de-France, la contrainte dominante n'est pas technique mais logistique. Dans Paris intra-muros, il faut composer avec le stationnement réglementé, les autorisations de voirie déjà expirées à la fin du chantier, les cages d'escalier étroites et les copropriétés qui interdisent le passage du matériel après 18 h. Nous calons le créneau et l'accès au moment du devis, pas le matin de l'intervention.",
-      "Nous intervenons une fois les corps de métier partis et le gros des gravats évacué. Quand l'évacuation reste à faire, nous regroupons et signalons : le transport de déchets de construction en déchetterie relève d'un prestataire spécialisé. Cette prestation est fréquemment commandée avant une réception de travaux ou une livraison, avec une date butoir : le créneau est confirmé par écrit et tenu.",
+      "Nous intervenons une fois les corps de métier partis. Sur un chantier lourd, la prestation commence par l'évacuation des gravats et des débris résiduels, avant tout nettoyage : laver un sol encore encombré ne sert à rien. Sur une rénovation légère, cette étape disparaît et l'intervention démarre directement au dépoussiérage. Cette prestation est fréquemment commandée avant une réception de travaux ou un état des lieux, avec une date butoir : le créneau est confirmé par écrit et tenu.",
     ],
     tarification: {
       question: "Combien coûte un nettoyage de fin de chantier à Paris ?",
@@ -402,29 +402,29 @@ export const landings: readonly Landing[] = [
     },
     faq: [
       {
-        question: "Quelle est la différence entre nettoyage de fin de chantier et après travaux ?",
+        question: "Quelle est la différence entre ménage après travaux et fin de chantier ?",
         answer:
-          "Les deux termes désignent la même famille de prestation et sont employés indifféremment par les clients. Techniquement, la fin de chantier est la première passe : elle évacue les résidus et dégage les surfaces juste après le départ des corps de métier. Le nettoyage après travaux vient ensuite et rend le local livrable : retrait des traces de peinture et de colle, dépoussiérage fin, vitrerie, lavage des sols en plusieurs passes. Nous réalisons les deux, ensemble ou séparément.",
+          "Le ménage après travaux désigne le nettoyage final d'un logement après rénovation légère (peinture, pose de carrelage). Le nettoyage fin de chantier intervient après des travaux lourds (gros œuvre, démolition) et inclut l'évacuation des gravats et débris en plus du nettoyage approfondi. MS Nettoyages réalise les deux prestations en Île-de-France.",
       },
       {
-        question: "Combien de temps faut-il pour un nettoyage après travaux ?",
+        question: "Combien de temps faut-il pour un nettoyage fin de chantier ?",
         answer:
-          "Comptez une journée complète pour un logement de 120 m². Le facteur déterminant n'est pas la surface mais l'empoussièrement : un chantier de peinture se traite plus vite qu'une dépose de cloisons, à surface égale. Pour un plateau de bureaux livré à une date fixe, nous mobilisons plusieurs intervenants en parallèle.",
+          "La durée dépend de la surface et de l'état du chantier. Pour un appartement de 50 m², comptez 4 à 6 heures. Pour un plateau de bureaux de 200 m², une journée complète avec une équipe de 2 à 3 personnes. Nous confirmons la durée estimée lors du devis.",
       },
       {
-        question: "Intervenez-vous avant une réception de travaux ou un état des lieux ?",
+        question: "Intervenez-vous avant un état des lieux ?",
         answer:
-          "Oui, c'est le cas le plus fréquent. Indiquez-nous la date de la réception ou de l'état des lieux à la demande de devis : nous planifions l'intervention pour qu'elle se termine la veille, ce qui laisse le temps de traiter un éventuel point de reprise sans repousser la livraison.",
+          "Oui. Nous sommes habitués à intervenir avec une date butoir. Le créneau est confirmé par écrit et tenu. Nous intervenons dans tout Paris et l'Île-de-France.",
       },
       {
-        question: "Intervenez-vous dans tout Paris et toute l'Île-de-France ?",
+        question: "Intervenez-vous dans tout Paris et l'Île-de-France ?",
         answer:
-          "Oui, dans les 20 arrondissements de Paris et dans les huit départements franciliens. Les délais les plus courts sont sur Paris, la Seine-et-Marne et la Seine-Saint-Denis. Sur les Yvelines et l'Essonne, nous travaillons sur planification anticipée et non en intervention d'urgence, ce que nous annonçons dès la demande de devis.",
+          "Oui, MS Nettoyages intervient dans les 20 arrondissements de Paris ainsi que dans toute l'Île-de-France : Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94) et Val-d'Oise (95).",
       },
       {
-        question: "Quand faut-il commander le nettoyage de fin de chantier ?",
+        question: "Quand commander le nettoyage fin de chantier ?",
         answer:
-          "Dès que la date de fin des travaux est connue, et non le jour où elle arrive. Les créneaux de fin de semaine et de fin de mois sont les plus demandés par les entreprises du bâtiment, qui livrent toutes aux mêmes moments. Une commande passée une semaine à l'avance garantit le créneau ; une demande la veille dépend de nos disponibilités du moment.",
+          "Idéalement 48 à 72 heures avant la date de livraison ou d'état des lieux. Nous acceptons les demandes urgentes sous 24 h selon disponibilité. Contactez-nous pour un devis gratuit.",
       },
     ],
   },

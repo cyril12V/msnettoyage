@@ -101,7 +101,7 @@ export const villes: readonly Ville[] = [
           "Paris est le premier marché européen de la location courte durée : la rotation entre check-out et check-in y est la contrainte numéro un.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "La rénovation d'appartements anciens est constante à Paris, et la livraison se fait presque toujours à date imposée.",
       },
@@ -263,7 +263,7 @@ export const villes: readonly Ville[] = [
           "Le parc pavillonnaire domine largement, avec des surfaces qui justifient un grand ménage complet plutôt qu'un passage court.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Les programmes neufs autour de la gare et les rénovations de pavillons génèrent une demande continue.",
       },
@@ -428,7 +428,7 @@ export const villes: readonly Ville[] = [
           "Les résidences en copropriété demandent un entretien régulier des parties communes autant que des logements.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Les réhabilitations de résidences des années 1980 alimentent une demande continue de remise en état.",
       },
@@ -503,7 +503,7 @@ export const villes: readonly Ville[] = [
           "Le Mont d'Est concentre des surfaces tertiaires avec cahier des charges écrit et contrôle qualité formalisé.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Les livraisons de programmes neufs autour de Noisy-Champs imposent des interventions à date fixe.",
       },
@@ -583,7 +583,7 @@ export const villes: readonly Ville[] = [
           "Agences, sociétés de production et espaces de coworking du Bas-Montreuil demandent des cahiers des charges sur mesure.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "La reconversion d'ateliers en logements et en bureaux est continue depuis vingt ans sur la commune.",
       },
@@ -662,7 +662,7 @@ export const villes: readonly Ville[] = [
         raison: "La Plaine Saint-Denis concentre le tissu de bureaux le plus dense du département.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Les livraisons de programmes tertiaires et résidentiels sur Pleyel sont continues.",
       },
@@ -905,7 +905,7 @@ export const villes: readonly Ville[] = [
           "Les appartements du centre et du Trapèze demandent des grands ménages avant emménagement ou après travaux.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Les réaménagements de plateaux de bureaux y sont fréquents et se livrent à date imposée.",
       },
@@ -980,7 +980,7 @@ export const villes: readonly Ville[] = [
           "Le pavillonnaire domine, avec des surfaces qui appellent un grand ménage complet plutôt qu'un passage court.",
       },
       {
-        slug: "nettoyage-fin-de-chantier",
+        slug: "nettoyage-fin-de-chantier-paris",
         raison:
           "Extensions, aménagements de combles et rénovations de pavillons sont continus sur la commune.",
       },

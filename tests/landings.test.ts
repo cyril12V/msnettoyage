@@ -17,6 +17,19 @@ import { site } from "@/lib/site";
  */
 
 describe("pages de prestation", () => {
+  /**
+   * Seule URL de prestation autorisée à porter un nom de ville.
+   *
+   * Décision du client, prise dans `OPTIMISATION Nettoyage fin de chantier
+   * Paris.md` : la requête visée est « nettoyage fin de chantier paris » et le
+   * mot-clé doit y figurer entier, URL comprise. La contrepartie assumée est
+   * que cette page ne remontera pas sur « nettoyage fin de chantier Chelles ».
+   *
+   * L'exception est nommée ici plutôt que la règle supprimée : c'est ce qui
+   * empêche qu'elle se généralise silencieusement aux cinq autres pages.
+   */
+  const EXCEPTION_VILLE_DANS_SLUG = "nettoyage-fin-de-chantier-paris";
+
   it("n'a aucun slug en double", () => {
     expect(new Set(landingSlugs).size).toBe(landings.length);
   });
@@ -30,12 +43,18 @@ describe("pages de prestation", () => {
     for (const landing of landings) {
       expect(landing.slug).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
+      if (landing.slug === EXCEPTION_VILLE_DANS_SLUG) continue;
+
       for (const nom of nomsDeVille) {
         expect(landing.slug.endsWith(`-${nom}`), `ville dans le slug : ${landing.slug}`).toBe(
           false,
         );
       }
     }
+  });
+
+  it("garde l'exception de slug limitée à la seule page fin de chantier", () => {
+    expect(landings.filter((landing) => landing.slug === EXCEPTION_VILLE_DANS_SLUG)).toHaveLength(1);
   });
 
   it("annonce la couverture Île-de-France dans la requête, le H1 et le titre", () => {
