@@ -16,16 +16,21 @@ export function Hero() {
       <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20">
         <div className="flex animate-[var(--animate-fade-up)] flex-col">
           {/*
-            Le H1 reprend mot pour mot la requête que vise la balise title,
-            « société de nettoyage à Meaux » : un titre et un H1 qui désignent
+            Le H1 reprend la requête que vise la balise title, « société de
+            nettoyage Paris & Île-de-France » : un titre et un H1 qui désignent
             deux choses différentes obligent Google à trancher lui-même le sujet
-            de la page. L'Île-de-France suit, pour la portée plus large.
+            de la page.
+
+            Le nom de la marque y figure explicitement. La requête « MS
+            Nettoyages » était captée par des homonymes de Besançon et de
+            Thonon : le premier levier pour la reprendre est de la nommer là où
+            elle pèse le plus, dans le H1 et dans les cent premiers mots.
 
             « Île-de-France » ne doit jamais se couper sur ses traits d'union :
             une coupure y laisse un « Île-de- » orphelin en fin de ligne.
           */}
           <h1 className="text-ink text-[2.6rem] leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-[3.4rem]">
-            Société de nettoyage à {site.address.city} et en{" "}
+            {site.name}, société de nettoyage à Paris et en{" "}
             <span className="text-brand whitespace-nowrap">Île-de-France</span>
           </h1>
 
@@ -34,10 +39,11 @@ export function Hero() {
             situe la zone et liste les prestations en une phrase autonome.
           */}
           <p className="text-muted mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
-            MS Nettoyage est une entreprise de nettoyage basée à {site.address.city} (
-            {site.address.postalCode}) qui intervient dans toute l&apos;Île-de-France : entretien
-            régulier de locaux, nettoyage en profondeur, remise en état après travaux, ménage
-            Airbnb, bureaux et commerces. Devis gratuit sous {site.delaiReponse}.
+            {site.name} est une société de nettoyage professionnel qui intervient à Paris et dans
+            toute l&apos;Île-de-France depuis sa base de {site.address.city} (
+            {site.address.postalCode}) : prestation de nettoyage régulière, nettoyage en profondeur,
+            fin de chantier, ménage Airbnb, bureaux et commerces. Devis gratuit sous{" "}
+            {site.delaiReponse}.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -61,7 +67,7 @@ export function Hero() {
 
         <MediaSlot
           src="/images/hero-accueil.jpg"
-          alt="Séjour lumineux et impeccable après le passage de MS Nettoyage"
+          alt={`Séjour lumineux et impeccable après le passage de ${site.name}`}
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="aspect-4/3 rounded-2xl lg:aspect-4/5"

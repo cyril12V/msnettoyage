@@ -2,12 +2,13 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { MediaSlot } from "@/components/ui/MediaSlot";
 import { services } from "@/data/services";
+import { site } from "@/lib/site";
 
 /** Les trois visuels de la mosaïque, du plus grand au plus petit. */
 const visuels = [
   {
     src: "/images/expertise-vitre.jpg",
-    alt: "Intervenante MS Nettoyage nettoyant une baie vitrée",
+    alt: `Intervenante ${site.name} nettoyant une baie vitrée`,
   },
   {
     src: "/images/expertise-lit-prepare.jpg",
