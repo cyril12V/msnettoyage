@@ -334,7 +334,7 @@ export const landings: readonly Landing[] = [
   {
     slug: "nettoyage-fin-de-chantier-paris",
     requete: "Nettoyage de fin de chantier à Paris et en Île-de-France",
-    libelleCourt: "Fin de chantier",
+    libelleCourt: "Nettoyage fin de chantier",
     h1: "Nettoyage fin de chantier à Paris et en Île-de-France",
     metaTitle: "Nettoyage fin de chantier Paris & IDF | MS Nettoyages",
     metaDescription:

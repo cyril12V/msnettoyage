@@ -79,7 +79,16 @@ export const site = {
     phoneDisplay: "06 20 46 07 03",
     /** Format international affiché dans les blocs de contact. */
     phoneInternational: "+33 6 20 46 07 03",
-    email: "msnettoyage211@gmail.com",
+    /**
+     * Adresse publiée, sur le domaine de l'entreprise.
+     *
+     * Imposée par `SCHEMA MARKUP MS NETTOYAGES.md`, et de toute façon
+     * préférable à une adresse Gmail : une messagerie au nom du domaine est un
+     * signal de légitimité que Google comme les clients savent lire. Les
+     * demandes de devis continuent d'arriver sur les deux boîtes, la
+     * configuration se trouve dans `CONTACT_TO_EMAIL`.
+     */
+    email: "contact@ms-nettoyages.com",
     /** Numéro sans « + » ni espaces, requis par les liens wa.me. */
     whatsapp: "33620460703",
   },

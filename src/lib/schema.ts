@@ -282,9 +282,11 @@ export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${absoluteUrl(`/${landing.slug}`)}#prestation`,
+    // Ancre `#service` imposée par le document de balisage, distincte du
+    // `#business` de l'entreprise : deux entités, deux identifiants.
+    "@id": `${absoluteUrl(`/${landing.slug}`)}#service`,
     name: landing.requete,
-    serviceType: landing.requete,
+    serviceType: landing.libelleCourt,
     description: landing.lede,
     url: absoluteUrl(`/${landing.slug}`),
     provider: { "@id": idEntreprise },
