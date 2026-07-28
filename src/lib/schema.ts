@@ -201,12 +201,16 @@ export function catalogueServicesJsonLd(services: readonly Service[]): JsonLdObj
 }
 
 /**
- * Fiche d'une prestation locale, pour une page d'atterrissage.
+ * Fiche d'une prestation, pour une page de service.
  *
- * `areaServed` désigne la ville et non la région : c'est ce qui rattache la
- * page à une recherche géolocalisée. `serviceType` reprend la requête visée mot
- * pour mot, ce qui aide les moteurs génératifs à faire le rapprochement avec
- * une question posée en langage naturel.
+ * `areaServed` couvre l'Île-de-France entière et nomme les villes qui ont une
+ * page dédiée. La version précédente désignait la seule ville de Meaux, ce qui
+ * disait à Google que la prestation s'arrêtait aux limites de la commune :
+ * c'était le verrou géographique le plus coûteux du site.
+ *
+ * `serviceType` reprend la requête visée mot pour mot, ce qui aide les moteurs
+ * génératifs à faire le rapprochement avec une question posée en langage
+ * naturel.
  */
 export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
   return {
@@ -218,16 +222,10 @@ export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
     description: landing.lede,
     url: absoluteUrl(`/${landing.slug}`),
     provider: { "@id": idEntreprise },
-    areaServed: {
-      "@type": "City",
-      name: site.address.city,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: site.address.city,
-        postalCode: site.address.postalCode,
-        addressRegion: site.address.region,
-        addressCountry: site.address.country,
-      },
+    areaServed: zoneDIntervention(),
+    audience: {
+      "@type": "Audience",
+      audienceType: landing.pourQui.join(", "),
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -237,6 +235,73 @@ export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
         position: index + 1,
         itemOffered: { "@type": "Service", name: intitule },
       })),
+    },
+  };
+}
+
+/**
+ * Fiche d'intervention sur une ville, pour une page ville.
+ *
+ * C'est le bloc qui rattache explicitement l'entreprise à une commune. Le
+ * `areaServed` est ici réduit à la seule ville, communes limitrophes comprises :
+ * l'intérêt d'une page ville est justement de dire « ici », là où les pages de
+ * prestation disent « en Île-de-France ».
+ */
+export function villeJsonLd(ville: Ville): JsonLdObject {
+  const url = absoluteUrl(`/${ville.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${url}#intervention`,
+    name: ville.requete,
+    serviceType: `Nettoyage professionnel à ${ville.nom}`,
+    description: ville.lede,
+    url,
+    provider: { "@id": idEntreprise },
+    areaServed: [
+      {
+        "@type": "City",
+        name: ville.nom,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: ville.nom,
+          postalCode: ville.codePostal,
+          addressRegion: site.address.region,
+          addressCountry: site.address.country,
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: ville.geo.latitude,
+          longitude: ville.geo.longitude,
+        },
+      },
+      ...ville.communesProches.map((commune) => ({
+        "@type": "City" as const,
+        name: commune,
+      })),
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `Prestations de nettoyage à ${ville.nom}`,
+      itemListElement: ville.prestationsPhares.flatMap((phare, index) => {
+        const landing = getLanding(phare.slug);
+        if (!landing) return [];
+
+        return [
+          {
+            "@type": "Offer",
+            position: index + 1,
+            itemOffered: {
+              "@type": "Service",
+              name: `${landing.libelleCourt} à ${ville.nom}`,
+              description: phare.raison,
+              url: absoluteUrl(`/${landing.slug}`),
+              provider: { "@id": idEntreprise },
+            },
+          },
+        ];
+      }),
     },
   };
 }
