@@ -105,7 +105,7 @@ visée** : c'est ce qui fait remonter la fiche sur la recherche correspondante.
 | Nettoyage de maison          | `/nettoyage-maison`                   |
 | Nettoyage de bureaux         | `/nettoyage-bureau`                   |
 | Ménage particulier           | `/menage-particulier`                 |
-| Nettoyage de fin de chantier | `/nettoyage-fin-de-chantier`          |
+| Nettoyage de fin de chantier | `/nettoyage-fin-de-chantier-paris`    |
 | Ménage après déménagement    | `/menage-apres-demenagement`          |
 | Ménage Airbnb                | `/menage-airbnb`                      |
 
@@ -343,7 +343,7 @@ Quatre familles, par ordre de facilité :
 4. **Conciergeries Airbnb et groupes d'hôtes.** Forums et groupes Facebook d'hôtes franciliens.
 
 Demander systématiquement que le lien pointe vers la **page de prestation concernée**, pas vers la
-page d'accueil : un lien vers `/nettoyage-fin-de-chantier` depuis le site d'un artisan est
+page d'accueil : un lien vers `/nettoyage-fin-de-chantier-paris` depuis le site d'un artisan est
 exactement le signal recherché.
 
 ---
@@ -373,7 +373,7 @@ nouvelle optimisation de balise.
 faible. C'est le seul mot-clé du secteur qui combine un vrai potentiel commercial et une
 concurrence accessible sans autorité établie.
 
-La page existe et lui est entièrement dédiée : `/nettoyage-fin-de-chantier`. Ce qui reste à faire
+La page existe et lui est entièrement dédiée : `/nettoyage-fin-de-chantier-paris`. Ce qui reste à faire
 est hors du site :
 
 1. Obtenir trois à cinq liens depuis des artisans, maîtres d'œuvre ou architectes d'intérieur

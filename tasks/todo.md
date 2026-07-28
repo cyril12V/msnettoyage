@@ -17,7 +17,7 @@ nom de marque sans « s », et l'absence de pages villes.
 - [x] 2. Élargissement géographique : titres, H1, méta-descriptions et contenu des 6 pages de
       prestation vers Paris et l'Île-de-France
 - [x] 3. URLs de prestation sans suffixe de ville, `/menage-apres-travaux-meaux` devenu
-      `/nettoyage-fin-de-chantier`, anciennes URLs redirigées en 301
+      `/nettoyage-fin-de-chantier-paris`, anciennes URLs redirigées en 301
 - [x] 4. 12 pages villes, contenu local réellement distinct, aucune duplication
 - [x] 5. Schema : `areaServed` élargi, `Service` par ville, `alternateName`, `areaServed` IDF
 - [x] 6. Maillage interne : villes ↔ prestations, pied de page, page d'accueil
@@ -54,7 +54,7 @@ nom de marque sans « s », et l'absence de pages villes.
 `OPTIMISATION Nettoyage fin de chantier Paris.md` recommandait l'URL `/nettoyage-fin-de-chantier-paris`.
 Elle n'a pas été retenue : un slug qui contient « paris » interdit à la page de remonter sur
 « nettoyage fin de chantier Chelles », et fait doublon avec `/nettoyage-paris`. La stratégie
-principale demandait d'ailleurs `/nettoyage-fin-de-chantier`, sans ville. L'URL proposée redirige
+principale demandait d'ailleurs `/nettoyage-fin-de-chantier-paris`, sans ville. L'URL proposée redirige
 en 301 pour qu'un lien émis sous cette forme ne tombe pas sur un 404.
 
 ### Reste à faire, hors dépôt

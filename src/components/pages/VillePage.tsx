@@ -51,6 +51,30 @@ export function VillePage({ ville }: { ville: Ville }) {
         </div>
       </PageHeader>
 
+      {/*
+        Résumé en tête de page, réservé à la page pilier.
+
+        Deux fonctions : donner la réponse avant le premier défilement, et
+        offrir aux moteurs génératifs un paragraphe autonome, factuel et daté,
+        qu'ils peuvent citer sans avoir lu le reste de la page. C'est le format
+        que ChatGPT, Perplexity et les AI Overviews reprennent le plus souvent.
+      */}
+      {ville.enBref ? (
+        <Section tone="white" spacing="compact">
+          <Container>
+            <section
+              aria-label="Résumé"
+              className="border-brand/20 bg-brand-soft rounded-2xl border p-6 sm:p-8"
+            >
+              <p className="text-ink-soft leading-relaxed">
+                <strong className="text-ink font-semibold">En bref : </strong>
+                {ville.enBref}
+              </p>
+            </section>
+          </Container>
+        </Section>
+      ) : null}
+
       <Section tone="white">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-16">
           <div>
@@ -109,6 +133,78 @@ export function VillePage({ ville }: { ville: Ville }) {
           </aside>
         </Container>
       </Section>
+
+      {/*
+        Catalogue détaillé, réservé à la page pilier.
+
+        Une page qui vise « entreprise de nettoyage paris » doit répondre à la
+        question « que savez-vous faire ? » sur la page elle-même, sans obliger
+        à cliquer. Chaque entrée pose un H3 descriptif, développe la prestation
+        et renvoie vers sa page dédiée.
+      */}
+      {ville.servicesDetailles ? (
+        <Section tone="surface">
+          <Container>
+            <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
+              Nos prestations de nettoyage à {ville.nom}
+            </h2>
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              {ville.servicesDetailles.map((service) => (
+                <section
+                  key={service.titre}
+                  className="border-line flex flex-col rounded-xl border bg-white p-6"
+                >
+                  <h3 className="text-ink text-lg font-semibold">{service.titre}</h3>
+                  <p className="text-muted mt-3 flex-1 text-sm leading-relaxed">{service.texte}</p>
+                  {service.lien ? (
+                    <Link
+                      href={`/${service.lien}`}
+                      className="text-brand mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+                    >
+                      {service.libelleLien}
+                      <Icon name="arrowRight" className="size-4" />
+                    </Link>
+                  ) : null}
+                </section>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {/*
+        Arguments différenciants, réservés à la page pilier.
+
+        Sur une requête large, le visiteur compare plusieurs prestataires. Ce
+        bloc répond à « pourquoi vous » avec des engagements vérifiables plutôt
+        qu'avec des adjectifs.
+      */}
+      {ville.pourquoiNous ? (
+        <Section tone="white">
+          <Container>
+            <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
+              Pourquoi choisir {site.name} à {ville.nom} ?
+            </h2>
+            <p className="text-muted mt-4 max-w-3xl leading-relaxed">
+              Le marché du nettoyage à {ville.nom} est saturé de prestataires. Voici ce qui
+              distingue concrètement notre façon de travailler.
+            </p>
+
+            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              {ville.pourquoiNous.map((argument) => (
+                <div key={argument.titre} className="border-line rounded-xl border p-6">
+                  <h3 className="text-ink flex items-start gap-2.5 text-[0.95rem] font-semibold">
+                    <Icon name="checkCircle" className="text-brand mt-0.5 size-5 shrink-0" />
+                    {argument.titre}
+                  </h3>
+                  <p className="text-muted mt-3 text-sm leading-relaxed">{argument.texte}</p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
       {/*
         Prestations les plus demandées sur la commune.
@@ -205,6 +301,37 @@ export function VillePage({ ville }: { ville: Ville }) {
       </Section>
 
       <CtaDevis titre={`Un devis pour une intervention à ${ville.nom} ?`} />
+
+      {/*
+        Sources externes.
+
+        Citer des sources vérifiables est l'un des rares signaux d'expertise
+        qu'une page commerciale peut produire sans se prétendre autre chose
+        qu'elle-même. C'est aussi ce que les moteurs génératifs recoupent quand
+        ils décident quelle page citer.
+      */}
+      {ville.sources ? (
+        <Section tone="white" spacing="compact">
+          <Container>
+            <h2 className="text-ink text-sm font-semibold">Sources utiles</h2>
+            <ul className="mt-4 flex flex-col gap-2">
+              {ville.sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted hover:text-brand inline-flex items-center gap-2 text-sm transition-colors"
+                  >
+                    <Icon name="arrowRight" className="text-brand size-3.5" />
+                    {source.titre}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+      ) : null}
 
       <JsonLd data={[villeJsonLd(ville), faqJsonLd(ville.faq), breadcrumbJsonLd(fil)]} />
     </>

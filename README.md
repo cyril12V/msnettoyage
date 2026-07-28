@@ -24,7 +24,7 @@ homonymes de Besançon et de Thonon, mieux référencés.
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`              |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                      |
 | Emails      | SMTP Amen (nodemailer)   | Envoi depuis la messagerie du domaine, authentifiée SPF/DKIM |
-| Tests       | Vitest + Testing Library | 154 tests sur la validation, l'anti-spam et le contenu       |
+| Tests       | Vitest + Testing Library | 161 tests sur la validation, l'anti-spam et le contenu       |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus           |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
@@ -65,25 +65,35 @@ nécessite les identifiants SMTP. Sans eux, le formulaire affiche un message inv
 Deux familles de pages, qui répondent à deux questions différentes et ne se marchent jamais dessus :
 les **prestations** disent _quoi_, les **villes** disent _où_.
 
-| Requête visée                               | Page                         |
-| ------------------------------------------- | ---------------------------- |
-| Société de nettoyage Paris et Île-de-France | `/` (page d'accueil)         |
-| Prestation de nettoyage                     | `/` (page d'accueil)         |
-| Nettoyage de maison Paris et IDF            | `/nettoyage-maison`          |
-| Nettoyage de bureaux Paris et IDF           | `/nettoyage-bureau`          |
-| Ménage particulier Paris et IDF             | `/menage-particulier`        |
-| Nettoyage fin de chantier Paris             | `/nettoyage-fin-de-chantier` |
-| Ménage après déménagement Paris et IDF      | `/menage-apres-demenagement` |
-| Ménage Airbnb Paris et IDF                  | `/menage-airbnb`             |
-| Entreprise de nettoyage à Paris             | `/nettoyage-paris`           |
-| Société de nettoyage à Meaux                | `/nettoyage-meaux`           |
-| … et dix autres communes                    | `/nettoyage-<commune>`       |
+| Requête visée                               | Page                               |
+| ------------------------------------------- | ---------------------------------- |
+| Société de nettoyage Paris et Île-de-France | `/` (page d'accueil)               |
+| Prestation de nettoyage                     | `/` (page d'accueil)               |
+| Nettoyage de maison Paris et IDF            | `/nettoyage-maison`                |
+| Nettoyage de bureaux Paris et IDF           | `/nettoyage-bureau`                |
+| Ménage particulier Paris et IDF             | `/menage-particulier`              |
+| Nettoyage fin de chantier Paris             | `/nettoyage-fin-de-chantier-paris` |
+| Ménage après déménagement Paris et IDF      | `/menage-apres-demenagement`       |
+| Ménage Airbnb Paris et IDF                  | `/menage-airbnb`                   |
+| Entreprise de nettoyage à Paris             | `/nettoyage-paris` (page pilier)   |
+| Société de nettoyage à Meaux                | `/nettoyage-meaux`                 |
+| … et dix autres communes                    | `/nettoyage-<commune>`             |
+
+`/nettoyage-paris` est la **page pilier** : elle vise les requêtes les plus larges du secteur
+(« entreprise de nettoyage paris », 720 recherches par mois ; « société de nettoyage paris », 590) et
+suit un gabarit plus long que les onze autres communes, avec résumé en tête, catalogue des sept
+prestations, arguments développés et sources externes. Les champs correspondants de
+`src/data/villes.ts` sont facultatifs et ne sont renseignés que sur Paris.
 
 Quatre conséquences qui ne se devinent pas à la lecture du code :
 
-1. **Aucun slug de prestation ne contient de ville.** Une URL `/nettoyage-maison-meaux` annonce
-   d'elle-même qu'elle ne parle pas de Paris, et ne remonte donc jamais dessus. Les anciennes URLs
-   redirigent en 301 depuis `next.config.ts` ; elles ne doivent pas réapparaître.
+1. **Aucun slug de prestation ne contient de ville, sauf un.** Une URL `/nettoyage-maison-meaux`
+   annonce d'elle-même qu'elle ne parle pas de Paris, et ne remonte donc jamais dessus. Les
+   anciennes URLs redirigent en 301 depuis `next.config.ts` ; elles ne doivent pas réapparaître.
+   L'exception est `/nettoyage-fin-de-chantier-paris`, décidée par le client : la requête visée est
+   « nettoyage fin de chantier paris » et le mot-clé doit figurer entier dans l'URL. La contrepartie
+   assumée est que cette page ne remontera pas sur « nettoyage fin de chantier Chelles ».
+   `tests/landings.test.ts` nomme cette exception et vérifie qu'elle reste unique.
 2. **Un seul segment dynamique à la racine**, `src/app/[slug]`, qui aiguille vers
    `PrestationPage` ou `VillePage`. Next.js n'autorise qu'un segment dynamique par niveau, et
    l'URL doit rester courte : `/nettoyage-paris`, pas `/villes/paris`.

@@ -151,10 +151,13 @@ describe("contenu des pages villes", () => {
     for (const ville of villes) {
       const texte = [
         ville.lede,
+        ville.enBref ?? "",
         ...ville.corps,
         ...ville.secteurs,
         ...ville.communesProches,
         ...ville.prestationsPhares.map((phare) => phare.raison),
+        ...(ville.servicesDetailles ?? []).flatMap((service) => [service.titre, service.texte]),
+        ...(ville.pourquoiNous ?? []).flatMap((argument) => [argument.titre, argument.texte]),
         ...ville.faq.flatMap((item) => [item.question, item.answer]),
       ].join(" ");
 
@@ -201,6 +204,58 @@ describe("contenu des pages villes", () => {
       .join(" ");
 
     expect(texte).not.toMatch(/[—–]/);
+  });
+});
+
+describe("page pilier", () => {
+  const pilier = getVille("nettoyage-paris");
+
+  it("existe et vise Paris", () => {
+    expect(pilier, "la page pilier /nettoyage-paris est introuvable").toBeDefined();
+    expect(pilier?.nom).toBe("Paris");
+  });
+
+  it("ouvre par un résumé autonome et citable", () => {
+    // C'est le paragraphe que les moteurs génératifs reprennent : il doit se
+    // comprendre seul, nommer l'entreprise et donner un fait vérifiable.
+    expect(pilier?.enBref, "résumé absent").toBeDefined();
+    expect(pilier?.enBref?.length ?? 0).toBeGreaterThanOrEqual(200);
+    expect(pilier?.enBref).toContain("MS Nettoyages");
+  });
+
+  it("détaille les sept prestations de l'entreprise", () => {
+    expect(pilier?.servicesDetailles).toHaveLength(7);
+
+    for (const service of pilier?.servicesDetailles ?? []) {
+      expect(service.texte.length, `trop court : ${service.titre}`).toBeGreaterThanOrEqual(200);
+    }
+  });
+
+  it("ne renvoie que vers des pages de prestation existantes", () => {
+    // Un lien du catalogue vers une URL supprimée produit un 404 sur la page la
+    // plus visible du site, sans qu'aucun test de contenu ne s'en aperçoive.
+    for (const service of pilier?.servicesDetailles ?? []) {
+      if (!service.lien) continue;
+      expect(getLanding(service.lien), `lien mort : ${service.lien}`).toBeDefined();
+      expect(service.libelleLien, `libellé manquant : ${service.titre}`).toBeTruthy();
+    }
+  });
+
+  it("développe quatre arguments et cite des sources externes", () => {
+    expect(pilier?.pourquoiNous).toHaveLength(4);
+    expect((pilier?.sources ?? []).length).toBeGreaterThanOrEqual(2);
+
+    for (const source of pilier?.sources ?? []) {
+      expect(source.url, `source non sécurisée : ${source.titre}`).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("reste la seule page ville au format pilier", () => {
+    // Le format long ne convient qu'aux requêtes les plus larges. Généralisé,
+    // il diluerait les pages locales, dont la force est justement d'être
+    // courtes et précises.
+    const piliers = villes.filter((ville) => ville.servicesDetailles);
+    expect(piliers.map((ville) => ville.slug)).toEqual(["nettoyage-paris"]);
   });
 });
 

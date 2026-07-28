@@ -116,6 +116,8 @@ export const villes: readonly Ville[] = [
       "Nous ne facturons pas de frais de déplacement sur Paris. Notre base est à Meaux, mais l'accès par l'A4 et le RER place l'essentiel de nos interventions parisiennes dans les créneaux du matin et de la soirée, précisément ceux que réclament les bureaux et les rotations.",
       "Les copropriétés parisiennes forment un marché à part. Beaucoup d'immeubles n'ont plus de gardien logé et confient les parties communes à un prestataire qui passe deux à trois fois par semaine : hall, escaliers, local à poubelles, sortie et rentrée des conteneurs aux jours de collecte. Le cahier des charges est établi par le syndic et voté en assemblée générale, ce qui impose un devis lisible ligne à ligne et comparable à celui d'un concurrent. Nous chiffrons sur un relevé du hall, du nombre de niveaux, de la cour et du local à poubelles, jamais au forfait.",
       "Nos délais dans la capitale dépendent du type de prestation. Une rotation de location courte durée se cale sur un calendrier de réservation connu des semaines à l'avance. Une intervention ponctuelle, grand ménage ou remise en état, se planifie sous deux à quatre jours ouvrés. Nous ne promettons pas l'intervention le jour même à Paris : entre le trajet et les contraintes d'accès, ce serait un engagement que nous ne tiendrions pas systématiquement, et un créneau annoncé puis manqué coûte plus cher qu'un délai annoncé franchement.",
+      "Nous intervenons dans tous les arrondissements de Paris, du 1er au 20e, ainsi que dans les sept départements franciliens : Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94) et Val-d'Oise (95). Parmi les villes où nous sommes régulièrement sollicités : Boulogne-Billancourt, Saint-Denis, Montreuil, Créteil, Vincennes, Noisy-le-Grand, Chelles, Lagny-sur-Marne et Meaux, notre siège. Si votre commune ne figure pas dans cette liste, contactez-nous : nous couvrons l'ensemble de la région et étudions chaque demande.",
+      "Notre base en Seine-et-Marne nous permet d'intervenir rapidement sur l'est parisien et la grande couronne, tout en desservant le cœur de Paris et la petite couronne dans des délais maîtrisés.",
     ],
     prestationsPhares: [
       {
@@ -141,24 +143,29 @@ export const villes: readonly Ville[] = [
     ],
     faq: [
       {
-        question: "Intervenez-vous dans tous les arrondissements de Paris ?",
+        question: "Intervenez-vous dans tout Paris ?",
         answer:
-          "Oui, du 1er au 20e. La densité de nos interventions est plus forte sur l'est et le centre, du 2e au 11e et du 17e au 20e, mais aucun arrondissement n'est exclu et aucun frais de déplacement n'est facturé dans Paris intra-muros.",
+          "Oui. Nous couvrons les 20 arrondissements de Paris (75) sans exception, ainsi que l'ensemble des départements d'Île-de-France (77, 78, 91, 92, 93, 94, 95). Que vous soyez dans le 16e ou dans le 20e, à Neuilly ou à Vincennes, nous pouvons intervenir dans des délais identiques.",
       },
       {
-        question: "Comment se passe l'accès à un immeuble parisien sans gardien ?",
+        question: "Proposez-vous des contrats d'entretien régulier ?",
         answer:
-          "Nous convenons du mode d'accès avant la première intervention : code de porte, boîte à clés, remise d'un jeu de clés contre décharge écrite, ou présence d'un contact sur place. Pour les contrats récurrents, la solution retenue est inscrite au contrat et les clés sont restituées à sa fin, également contre décharge.",
+          "Oui. Nous établissons des contrats d'entretien hebdomadaire ou bimensuel, aussi bien pour des particuliers que pour des professionnels : bureaux, commerces, copropriétés. La fréquence, le périmètre et les horaires sont définis avec vous dès le départ et formalisés par écrit. Vous pouvez ajuster le contrat à tout moment si vos besoins évoluent.",
       },
       {
-        question: "Combien coûte le nettoyage d'un appartement à Paris ?",
+        question: "Quels sont vos délais d'intervention ?",
         answer:
-          "Le devis dépend de la surface, du nombre de pièces d'eau, de l'état de départ et de l'accès. À surface égale, un sixième étage sans ascenseur se chiffre plus cher qu'un rez-de-chaussée : le temps de montée du matériel est réel. Le devis est gratuit, transmis sous 24 h et établi sur photos, sans visite préalable obligatoire.",
+          "Le devis est rendu sous 24 h après votre demande. L'intervention est généralement planifiable sous 48 à 72 h pour les prestations ponctuelles. Pour les urgences, état des lieux imminent ou livraison de chantier sous 24 h, contactez-nous directement par téléphone au +33 6 20 46 07 03 : nous faisons notre possible pour trouver un créneau.",
       },
       {
-        question: "Proposez-vous des contrats d'entretien pour les commerces parisiens ?",
+        question: "Fournissez-vous le matériel et les produits de nettoyage ?",
         answer:
-          "Oui, boutiques, salons, cabinets et restaurants compris. Le passage se fait avant l'ouverture, du lundi au samedi selon vos jours d'activité. La vitrine, les sanitaires accessibles au public et les zones vues par la clientèle sont traités à chaque passage : ce sont les trois points sur lesquels un client juge la propreté d'un commerce en quelques secondes.",
+          "Oui, tout est inclus. Nous arrivons avec notre propre matériel professionnel et nos produits adaptés à chaque type de surface. Vous n'avez rien à prévoir. Si vous avez des contraintes particulières, allergie à certains produits ou revêtements spécifiques, précisez-le lors de la demande de devis et nous adapterons nos produits en conséquence.",
+      },
+      {
+        question: "Travaillez-vous le week-end ?",
+        answer:
+          "Oui, selon disponibilité. Nous intervenons le samedi matin, de 8 h à 13 h, en règle générale. Pour certaines prestations urgentes ou les rotations Airbnb, des créneaux supplémentaires peuvent être organisés. Mentionnez vos contraintes horaires dans votre demande et nous trouverons une solution.",
       },
     ],
     communesProches: [
@@ -170,6 +177,89 @@ export const villes: readonly Ville[] = [
       "Le Pré-Saint-Gervais",
       "Charenton-le-Pont",
       "Ivry-sur-Seine",
+    ],
+    enBref:
+      "MS Nettoyages est une société de nettoyage basée à Meaux (77) qui intervient dans tout Paris et l'ensemble de l'Île-de-France. Particuliers, bailleurs, professionnels : nous couvrons 7 types de prestations, avec un devis gratuit rendu sous 24 h et une intervention possible dès 48 à 72 h.",
+    servicesDetailles: [
+      {
+        titre: "Nettoyage de maison et d'appartement",
+        texte:
+          "Un logement propre, c'est un quotidien plus léger. Nous intervenons dans les maisons et appartements parisiens pour un grand ménage en profondeur ou un entretien régulier : dépoussiérage complet, lavage des sols, nettoyage des sanitaires, cuisine, vitres et surfaces. Chaque intervention est réalisée avec le matériel et les produits adaptés à votre type de revêtement. Le résultat est immédiat et durable.",
+        lien: "nettoyage-maison",
+        libelleLien: "En savoir plus sur le nettoyage de maison",
+      },
+      {
+        titre: "Nettoyage de bureaux et locaux professionnels",
+        texte:
+          "Un espace de travail propre améliore la concentration et l'image renvoyée à vos clients. Nous assurons le nettoyage de bureaux à Paris et en Île-de-France : entretien des postes de travail, sols, sanitaires, espaces communs et vitrerie. Les interventions se planifient en dehors de vos heures d'activité, tôt le matin, en soirée ou le week-end, pour ne jamais perturber votre équipe.",
+        lien: "nettoyage-bureau",
+        libelleLien: "En savoir plus sur le nettoyage de bureaux",
+      },
+      {
+        titre: "Ménage pour particuliers",
+        texte:
+          "Vous manquez de temps ou souhaitez déléguer l'entretien courant de votre domicile ? Notre service de ménage pour particuliers à Paris couvre le nettoyage hebdomadaire ou bimensuel de votre appartement ou maison. Même intervenant à chaque passage, planning fixe, accès sécurisé : tout est organisé pour que vous n'ayez à vous occuper de rien.",
+        lien: "menage-particulier",
+        libelleLien: "En savoir plus sur le ménage particulier",
+      },
+      {
+        titre: "Nettoyage fin de chantier",
+        texte:
+          "La poussière de plâtre, les traces de peinture, les résidus de colle : un chantier laisse des salissures que le ménage ordinaire ne suffit pas à traiter. Notre nettoyage fin de chantier à Paris comprend l'évacuation des résidus, le dépoussiérage intégral des plafonds, gaines et menuiseries, le lavage des sols en plusieurs passes et la remise en état de la vitrerie. Nous intervenons une fois les corps de métier partis, avec un créneau confirmé par écrit.",
+        lien: "nettoyage-fin-de-chantier-paris",
+        libelleLien: "En savoir plus sur le nettoyage fin de chantier",
+      },
+      {
+        titre: "Ménage après déménagement",
+        texte:
+          "Que vous partiez ou que vous arriviez, un logement vide se nettoie différemment d'un logement meublé. Nous traitons les placards, les plinthes, les recoins oubliés, les traces de meubles sur les sols et les marques sur les murs. La prestation est calibrée pour répondre aux exigences d'un état des lieux de sortie ou préparer votre nouveau chez-vous avant l'emménagement.",
+        lien: "menage-apres-demenagement",
+        libelleLien: "En savoir plus sur le ménage après déménagement",
+      },
+      {
+        titre: "Ménage Airbnb",
+        texte:
+          "Entre deux séjours, chaque heure compte. Notre service de ménage Airbnb à Paris assure la rotation complète de votre logement : nettoyage de l'ensemble des pièces, changement du linge de lit et de bain, réapprovisionnement des consommables et remise en configuration d'accueil. Nous nous adaptons à vos horaires de check-in et check-out, y compris le week-end.",
+        lien: "menage-airbnb",
+        libelleLien: "En savoir plus sur le ménage Airbnb",
+      },
+      {
+        titre: "Nettoyage de copropriété",
+        texte:
+          "Les parties communes d'un immeuble, hall d'entrée, couloirs, escaliers, local poubelles et parking, donnent la première impression aux résidents et aux visiteurs. Nous proposons un entretien régulier des copropriétés parisiennes et franciliennes : balayage et lavage des sols, dépoussiérage des rampes et boîtes aux lettres, nettoyage des vitres et portes d'entrée. Fréquence et périmètre définis avec le syndic ou le gestionnaire.",
+      },
+    ],
+    pourquoiNous: [
+      {
+        titre: "Devis gratuit rendu sous 24 h",
+        texte:
+          "Vous décrivez votre besoin, surface, type de prestation, contraintes d'accès, et nous vous envoyons un devis détaillé le lendemain. Pas de visite obligatoire pour les prestations standard. Pour les chantiers complexes ou les grands volumes, nous pouvons nous déplacer gratuitement pour évaluer sur place. Chaque prestation de nettoyage est chiffrée de façon transparente, sans frais cachés.",
+      },
+      {
+        titre: "Le même intervenant à chaque passage",
+        texte:
+          "Nous ne travaillons pas avec une rotation anonyme d'agents. Pour les contrats d'entretien régulier, vous connaissez la personne qui vient chez vous. Elle connaît vos habitudes, vos priorités, les zones à traiter en premier. Ce point fait une différence réelle sur la qualité du résultat et sur votre tranquillité d'esprit.",
+      },
+      {
+        titre: "Matériel et produits fournis, adaptés à chaque surface",
+        texte:
+          "Nous arrivons équipés : aspirateurs professionnels, autolaveuses pour les grandes surfaces, produits dégraissants, détartrants et nettoyants adaptés aux revêtements sensibles comme le parquet, le marbre, l'inox et la vitrerie. Vous n'avez rien à prévoir ni à stocker.",
+      },
+      {
+        titre: "Intervention confirmée par écrit, créneau tenu",
+        texte:
+          "Chaque mission fait l'objet d'une confirmation écrite : date, heure, périmètre, intervenant. Nous travaillons régulièrement avant des états des lieux ou des livraisons de chantier, ce qui nous a appris à respecter les délais sans exception. Si un imprévu survient, vous êtes prévenu en amont, jamais après.",
+      },
+    ],
+    sources: [
+      {
+        titre: "Fédération des Entreprises de Propreté, chiffres du secteur",
+        url: "https://www.federationpropreteservices.fr/",
+      },
+      {
+        titre: "Ville de Paris, propreté et entretien de l'espace public",
+        url: "https://www.paris.fr/pages/la-proprete-239",
+      },
     ],
     geo: { latitude: 48.8566, longitude: 2.3522 },
   },

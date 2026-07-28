@@ -3,7 +3,6 @@ import { getLanding, type Landing } from "@/data/landings";
 import { services, type Service } from "@/data/services";
 import type { Ville } from "@/data/villes";
 import { villes } from "@/data/villes";
-import { zones } from "@/data/zones";
 import { absoluteUrl, site } from "@/lib/site";
 
 /**
