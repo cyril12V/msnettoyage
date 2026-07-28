@@ -137,7 +137,7 @@ amende pouvant atteindre 75 000 € pour une personne morale.
 ### À confirmer également
 
 - [ ] **Horaires d'ouverture** → `openingHours` et `openingHoursDisplay`
-      Valeurs actuelles : lundi-vendredi 7h-19h, samedi 8h-13h. Elles alimentent la fiche Google.
+      Valeur actuelle : 24 h/24, 7 j/7, confirmée par le client le 28 juillet 2026. Elle alimente la fiche Google.
 - [ ] **Coordonnées GPS** → `geo` (centre-ville de Meaux par défaut)
 - [ ] **Réseaux sociaux** → `social` (une valeur vide masque simplement l'icône)
 - [ ] **Engagement de réponse** → `delaiReponse` (24 h actuellement, affiché partout)

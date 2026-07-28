@@ -74,11 +74,17 @@ L'adresse reste nécessaire pour la vérification, même masquée.
 
 ### Horaires
 
-Reprendre exactement ceux du site, sinon Google détecte l'incohérence :
+Reprendre exactement ceux du site, sinon Google détecte l'incohérence.
 
-- Lundi au vendredi : **7h – 19h**
-- Samedi : **8h – 13h**
-- Dimanche : fermé
+L'entreprise est disponible **24 h/24 et 7 j/7**. Dans Google Business Profile, cocher
+**« Ouvert 24 h/24 »** pour les sept jours de la semaine, jours fériés compris.
+
+> **Attention, c'est un engagement qui se voit.** La fiche affichera « Ouvert » en permanence, y
+> compris à 3 h du matin, et Google mesure le taux d'appels sans réponse. Un client qui appelle la
+> nuit et tombe dans le vide laisse un avis négatif, et l'avis pèse plus lourd que l'horaire.
+> Si le téléphone n'est pas décroché la nuit, il vaut mieux déclarer les horaires réels du standard
+> et mettre en avant le 24 h/24 dans la description et les services, où il reste un vrai
+> différenciateur sans créer d'attente déçue.
 
 ### Description de l'établissement (750 caractères maximum)
 
@@ -273,7 +279,7 @@ Email    : contact@ms-nettoyages.com
 SIRET    : 944 486 562 00019
 Activité : Société de nettoyage, entretien de locaux, ménage à domicile
 Zone     : Paris et Île-de-France, depuis Meaux (77)
-Horaires : Lun-Ven 7h-19h, Sam 8h-13h
+Horaires : 24 h/24, 7 j/7
 ```
 
 **Le « s » de « Nettoyages » n'est pas un détail.** Trois homonymes mieux référencés captent

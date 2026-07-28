@@ -264,6 +264,41 @@ describe("configuration du site", () => {
     expect(site.contact.phone).toMatch(/^\+33[1-9]\d{8}$/);
   });
 
+  it("déclare des horaires exploitables par Google", () => {
+    // Ces valeurs partent telles quelles dans `openingHoursSpecification`, donc
+    // dans la fiche Google. Un nom de jour mal orthographié ou une heure au
+    // mauvais format ne casse aucun build : le créneau est simplement ignoré,
+    // et la fiche affiche des horaires incomplets sans que personne ne le voie.
+    const joursValides = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+
+    expect(site.openingHours.length).toBeGreaterThan(0);
+    expect(site.openingHoursDisplay.length).toBeGreaterThan(0);
+
+    for (const creneau of site.openingHours) {
+      expect(creneau.days.length, "créneau sans jour").toBeGreaterThan(0);
+
+      for (const jour of creneau.days) {
+        expect(joursValides, `jour inconnu : ${jour}`).toContain(jour);
+      }
+
+      expect(creneau.opens, `ouverture : ${creneau.opens}`).toMatch(/^([01]\d|2[0-3]):[0-5]\d$/);
+      expect(creneau.closes, `fermeture : ${creneau.closes}`).toMatch(/^([01]\d|2[0-3]):[0-5]\d$/);
+      expect(creneau.opens < creneau.closes, "fermeture avant ouverture").toBe(true);
+    }
+
+    // Un même jour déclaré deux fois produit deux créneaux concurrents.
+    const tousLesJours = site.openingHours.flatMap((creneau) => creneau.days);
+    expect(new Set(tousLesJours).size, "jour déclaré deux fois").toBe(tousLesJours.length);
+  });
+
   it("expose une URL canonique sans slash final", () => {
     expect(siteUrl.endsWith("/")).toBe(false);
     expect(siteUrl.startsWith("https://")).toBe(true);

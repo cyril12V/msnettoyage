@@ -5,6 +5,10 @@ import { MediaSlot } from "@/components/ui/MediaSlot";
 import { site, telHref } from "@/lib/site";
 
 const reassurances: readonly { icon: IconName; texte: string }[] = [
+  // La disponibilité permanente est placée en premier : c'est le seul de ces
+  // arguments qu'un concurrent ne peut pas revendiquer sans l'assumer, et celui
+  // que cherchent les bureaux, les rotations Airbnb et les urgences.
+  { icon: "clock", texte: "Disponible 24 h/24 et 7 j/7, urgences comprises" },
   { icon: "users", texte: "Équipe formée et déclarée" },
   { icon: "leaf", texte: "Produits professionnels adaptés à chaque support" },
   { icon: "shield", texte: "Satisfaction garantie ou réintervention" },
@@ -55,7 +59,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {reassurances.map((item) => (
               <li key={item.texte} className="flex items-start gap-2.5">
                 <Icon name={item.icon} className="text-brand mt-0.5 size-5" />
