@@ -46,11 +46,28 @@ export const SANS_OBJET = "Sans objet";
 export const siteUrl = normaliserUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const site = {
-  name: "MS Nettoyage",
-  legalName: "MS Nettoyage",
+  /**
+   * Nom commercial, avec le « s » final.
+   *
+   * C'est la graphie du nom de domaine (ms-nettoyages.com) et de l'adresse de
+   * contact, donc celle que tapent les clients qui cherchent l'entreprise. Le
+   * site publiait « MS Nettoyage » au singulier : la requête de marque tombait
+   * alors sur des homonymes de Besançon et de Thonon, mieux référencés.
+   */
+  name: "MS Nettoyages",
+  legalName: "MS Nettoyages",
+
+  /**
+   * Graphies alternatives, publiées en `alternateName` dans le JSON-LD.
+   *
+   * Elles rattachent à la même entité les recherches au singulier et les liens
+   * déjà émis sous l'ancienne orthographe, sans encombrer les pages.
+   */
+  alternateNames: ["MS Nettoyage", "MS Nettoyages Meaux", "MS Nettoyages Île-de-France"],
+
   tagline: "La propreté qui change votre quotidien",
   description:
-    "MS Nettoyage est une entreprise de nettoyage professionnel basée à Meaux qui intervient dans toute l'Île-de-France : entretien régulier, nettoyage en profondeur, remise en état après travaux, ménage Airbnb, bureaux et commerces.",
+    "MS Nettoyages est une société de nettoyage professionnel qui intervient à Paris et dans toute l'Île-de-France depuis sa base de Meaux : entretien régulier, nettoyage en profondeur, nettoyage de fin de chantier, ménage Airbnb, bureaux et commerces.",
   url: siteUrl,
   locale: "fr_FR",
   lang: "fr",

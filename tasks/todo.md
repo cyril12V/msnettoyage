@@ -1,105 +1,50 @@
-# Suivi, MS Nettoyage
+# Suivi, MS Nettoyages
 
-## Tâche : création du site vitrine (25 juillet 2026)
+## Tâche : exécution de la stratégie SEO Paris / Île-de-France (28 juillet 2026)
 
-### Réalisé
+**Source.** `STRATGIE SEO COMPLTE  MS NETTOYAGES.md`, audit du 28 juillet 2026.
 
-- [x] Archivage de la maquette et du flyer dans `design/`
-- [x] Initialisation Next.js 16 + TypeScript strict + Tailwind v4
-- [x] Configuration : ESLint (zéro `any`, zéro `console`), Prettier, Vitest, en-têtes de sécurité
-- [x] `src/lib/site.ts`, source unique du NAP et des mentions légales
-- [x] Données métier : 7 prestations, 9 zones d'intervention, 12 questions de FAQ
-- [x] Design system : tokens Tailwind, `Icon` (30 icônes inlinées), `Button`, `Field`, `Card`,
-      `Section`, `Container`, `MediaSlot`
-- [x] Layout : header sticky + menu mobile, footer, barre d'appel fixe mobile, lien d'évitement
-- [x] Page d'accueil : hero, prestations, promesse, processus, zones, FAQ, bloc de conversion
-- [x] 9 pages secondaires + 33 pages statiques générées au total
-- [x] `POST /api/contact` : rate limit, plafond de taille, Zod, honeypot, contrôle de vitesse, Resend
-- [x] Formulaire de devis accessible (labels, `aria-invalid`, `aria-describedby`, alerte focusable)
-- [x] SEO : métadonnées par page, canonical, JSON-LD (LocalBusiness, Service, FAQPage,
-      BreadcrumbList, OfferCatalog), sitemap, robots
-- [x] GEO : crawlers IA autorisés, définitions autonomes en tête de page, FAQ conversationnelle
-- [x] Images générées : favicon, icône Apple, carte Open Graph
-- [x] Mentions légales et politique de confidentialité (RGPD)
-- [x] 53 tests Vitest
-- [x] README + DEPLOIEMENT.md
+**Constat de départ, corrigé après lecture du code.** L'audit annonce « absence totale de schema
+markup ». C'est faux : `src/lib/schema.ts` produit déjà LocalBusiness, WebSite, Service, FAQPage,
+BreadcrumbList et OfferCatalog. L'audit a été mené sur un rendu qui n'exécutait pas le JSON-LD, ou
+avant le dernier déploiement. Les vrais défauts sont ailleurs : le géo-verrouillage sur Meaux, le
+nom de marque sans « s », et l'absence de pages villes.
 
-### Vérifications passées
+### Plan
 
-| Contrôle                             | Résultat                                               |
-| ------------------------------------ | ------------------------------------------------------ |
-| `npm run lint`                       | 0 erreur, 0 avertissement                              |
-| `npm run typecheck`                  | 0 erreur                                               |
-| `npm run test`                       | 53/53                                                  |
-| `npm run build`                      | 33 pages statiques, 1 route dynamique (`/api/contact`) |
-| Rendu réel (desktop + mobile 390 px) | Conforme, aucun message de console                     |
-| API testée en conditions réelles     | 422 / 200 silencieux / 503 / 429 conformes             |
+- [x] 1. Marque : « MS Nettoyage » → « MS Nettoyages » partout, `alternateName` sur l'ancienne
+      graphie pour ne rien perdre
+- [x] 2. Élargissement géographique : titres, H1, méta-descriptions et contenu des 6 pages de
+      prestation vers Paris et l'Île-de-France
+- [x] 3. URLs de prestation sans suffixe de ville, `/menage-apres-travaux-meaux` devenu
+      `/nettoyage-fin-de-chantier`, anciennes URLs redirigées en 301
+- [x] 4. 12 pages villes, contenu local réellement distinct, aucune duplication
+- [x] 5. Schema : `areaServed` élargi, `Service` par ville, `alternateName`, `areaServed` IDF
+- [x] 6. Maillage interne : villes ↔ prestations, pied de page, page d'accueil
+- [x] 7. Sitemap, redirections, navigation
+- [x] 8. Tests de non-régression SEO étendus aux villes
+- [x] 9. `SEO-HORS-CODE.md` : plan d'action annuaires, GBP, netlinking
 
-### Revue
+### Décisions prises et leur raison
 
-Ce qui a bien marché :
+| Décision                                                | Raison                                                                                                                                                    |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Renommer les URLs maintenant, pas au mois 3             | Le site n'a aucun classement ni backlink : c'est le moment le moins coûteux de la vie du site pour changer une URL. Attendre trois mois n'aurait rien gagné. |
+| Une seule page « fin de chantier + après travaux »      | L'intention de recherche est la même. Deux pages se cannibaliseraient. Le titre vise le mot-clé le plus cher (9,70 € de CPC).                                |
+| Page d'accueil retitrée Paris & Île-de-France           | Demandé par la stratégie. La requête « nettoyage Meaux » est récupérée par une page ville dédiée, ce qui évite de l'abandonner.                              |
+| Recréation d'une page Meaux, supprimée le 26 juillet    | La suppression valait quand l'accueil visait Meaux. L'accueil vise désormais Paris : la requête Meaux redevient orpheline sans page dédiée.                  |
+| Aucune note ni avis inventé dans le JSON-LD             | Un `AggregateRating` sans avis réel est une pratique commerciale trompeuse et un motif de pénalité manuelle Google.                                          |
 
-- Piloter tout le contenu par `src/data/*` : ajouter une prestation propage automatiquement la
-  page, le menu, l'option du formulaire, le JSON-LD et le sitemap.
-- Tester le contenu (longueur des titres, unicité des textes de zone) autant que le code : ce sont
-  les régressions SEO qui coûtent le plus cher et qui ne cassent aucun build.
-- Lire la documentation embarquée de Next.js 16 avant de coder : les `params` asynchrones et la
-  suppression de `next lint` auraient produit du code faux.
+### Vérifications
 
-Ce qui reste ouvert : voir la checklist de `DEPLOIEMENT.md`, informations légales, photos,
-avis clients, configuration DNS Resend, fiche Google Business Profile.
+| Contrôle            | Résultat                                    |
+| ------------------- | ------------------------------------------- |
+| `npm run lint`      | 0 erreur, 0 avertissement                   |
+| `npm run typecheck` | 0 erreur                                    |
+| `npm run test`      | 137/137                                     |
+| `npm run build`     | 46 pages statiques                          |
 
----
+### Reste à faire, hors dépôt
 
-## Tâche : architecture de référencement local (26 juillet 2026)
-
-**Demande.** Le client veut ressortir sur huit recherches, toutes suffixées « à Meaux » :
-nettoyage de maison, nettoyage de bureau, prestation de nettoyage, société de nettoyage, ménage
-après travaux, ménage après déménagement, ménage Airbnb, ménage particulier. Extension à d'autres
-villes plus tard.
-
-### Réalisé
-
-- [x] Cartographie requête → page. Deux requêtes génériques (« société » et « prestation de
-      nettoyage ») confiées à la page d'accueil, six requêtes spécifiques à leur page dédiée
-- [x] `src/data/landings.ts` : 6 pages, contenu intégralement distinct (chapeau, corps, FAQ, faits)
-- [x] `src/app/[prestation]/page.tsx` : segment dynamique à la racine, `dynamicParams = false`
-- [x] Suppression de `/meaux`, qui cannibalisait la page d'accueil. Contenu local absorbé par la
-      section `#zones`, URL redirigée en 301
-- [x] Page d'accueil retitrée « Société de nettoyage à Meaux », 52 caractères
-- [x] Maillage interne : section `PrestationsLocales`, colonne du pied de page, menu mobile. Texte
-      de lien = la requête, jamais « en savoir plus »
-- [x] JSON-LD : `Service` + `areaServed: City` par page, `WebSite`, `LocalBusiness` porté à
-      22 propriétés, `serviceJsonLd` mort supprimé, URLs `/services/...` devenues 404 corrigées
-- [x] Sitemap : 9 URLs, 26 visuels déclarés
-- [x] Variables de vérification Search Console et Bing dans le layout
-- [x] `tests/landings.test.ts` : 18 tests anti-duplication et anti-régression SEO
-- [x] `SEO-HORS-CODE.md` : fiche Google Business Profile, avis clients, Search Console, annuaires
-- [x] Correctif WCAG : suppression de `--color-muted-light`, non conforme sur fond teinté
-- [x] Durées corrigées à la demande du client : nettoyage en profondeur 2 à 6 h, rotation Airbnb 2 h
-
-### Vérifications passées
-
-| Contrôle                    | Résultat                                                      |
-| --------------------------- | ------------------------------------------------------------- |
-| `npm run verify`            | lint, types, 100 tests, build : tout au vert                  |
-| 9 URLs en production        | 200, titres et canoniques uniques et corrects                 |
-| Redirections                | `/meaux`, `/services`, `/faq`, `/devis`… en 308 vers la cible |
-| Slug inconnu                | 404, pas de page vide                                         |
-| `sitemap.xml` en production | 9 `<loc>`, 26 `<image:loc>`                                   |
-| JSON-LD en production       | 5 blocs valides sur une page de prestation                    |
-| Lighthouse mobile           | 100 en SEO, bonnes pratiques et navigation agent              |
-
-### Revue
-
-Ce qui a bien marché :
-
-- Partir de la liste de requêtes du client plutôt que d'une arborescence supposée : la structure du
-  site en découle mécaniquement, sans arbitrage.
-- Traiter la cannibalisation avant d'ajouter des pages. Supprimer `/meaux` était contre-intuitif,
-  c'est pourtant ce qui débloque la page d'accueil sur sa requête principale.
-- Verrouiller l'unicité du contenu par des tests : c'est la seule protection contre la tentation du
-  chercher-remplacer le jour où il faudra couvrir Chelles ou Melun.
-
-Ce qui reste ouvert : la fiche Google Business Profile et les avis clients, hors du dépôt, qui
-pèsent plus que tout le reste. Voir `SEO-HORS-CODE.md`.
+Voir `SEO-HORS-CODE.md`. Le netlinking et la fiche Google Business Profile pèsent plus que tout ce
+qui précède, et aucun code ne peut les produire.
