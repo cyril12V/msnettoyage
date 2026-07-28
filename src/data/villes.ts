@@ -57,6 +57,34 @@ export type Ville = {
   geo: { latitude: number; longitude: number };
   /** Commune d'implantation de l'entreprise. */
   base?: boolean;
+
+  /**
+   * Champs réservés à la page pilier.
+   *
+   * Seule Paris les renseigne aujourd'hui. Une page pilier vise les requêtes
+   * les plus larges du secteur (« entreprise de nettoyage paris », 720
+   * recherches par mois, « société de nettoyage paris », 590) : elle doit
+   * couvrir l'offre entière plutôt qu'un angle, ce que ne fait aucune autre
+   * page ville.
+   *
+   * Ils sont facultatifs pour que les onze autres communes gardent un gabarit
+   * court, qui est le bon format pour une requête locale.
+   */
+
+  /** Résumé autonome en tête de page, extrait tel quel par les moteurs génératifs. */
+  enBref?: string;
+  /** Catalogue détaillé, une entrée par prestation, avec lien vers sa page. */
+  servicesDetailles?: readonly {
+    titre: string;
+    texte: string;
+    /** Slug de la page de prestation, si elle existe. */
+    lien?: string;
+    libelleLien?: string;
+  }[];
+  /** Arguments différenciants, développés. */
+  pourquoiNous?: readonly { titre: string; texte: string }[];
+  /** Sources externes citées, signal d'expertise pour Google comme pour les IA. */
+  sources?: readonly { titre: string; url: string }[];
 };
 
 export const villes: readonly Ville[] = [
