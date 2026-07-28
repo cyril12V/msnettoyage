@@ -1,6 +1,8 @@
 import { faq } from "@/data/faq";
-import type { Landing } from "@/data/landings";
+import { getLanding, type Landing } from "@/data/landings";
 import { services, type Service } from "@/data/services";
+import type { Ville } from "@/data/villes";
+import { villes } from "@/data/villes";
 import { zones } from "@/data/zones";
 import { absoluteUrl, site } from "@/lib/site";
 
@@ -52,6 +54,39 @@ function lienCarte(): string {
 }
 
 /**
+ * Zone d'intervention publiée, du plus large au plus précis.
+ *
+ * L'entreprise couvre l'Île-de-France entière ; les villes nommées sont celles
+ * qui disposent d'une page dédiée, c'est-à-dire celles pour lesquelles nous
+ * revendiquons explicitement une présence. Déclarer trente villes sans page
+ * derrière serait une revendication invérifiable, et Google traite ce genre de
+ * liste comme du remplissage.
+ */
+function zoneDIntervention(): JsonLdObject[] {
+  const communes = new Map<string, JsonLdObject>();
+
+  for (const ville of villes) {
+    communes.set(ville.nom, {
+      "@type": "City",
+      name: ville.nom,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: ville.nom,
+        postalCode: ville.codePostal,
+        addressRegion: site.address.region,
+        addressCountry: site.address.country,
+      },
+    });
+  }
+
+  return [
+    { "@type": "AdministrativeArea", name: "Île-de-France" },
+    ...zones.map((zone) => ({ "@type": "AdministrativeArea" as const, name: zone.name })),
+    ...communes.values(),
+  ];
+}
+
+/**
  * Fiche entreprise, à inclure une seule fois, dans le layout racine.
  *
  * C'est le bloc que Google exploite pour le pack local et que les moteurs
@@ -67,6 +102,9 @@ export function entrepriseJsonLd(): JsonLdObject {
     "@id": idEntreprise,
     name: site.name,
     legalName: site.legalName,
+    // Rattache à la même entité les recherches au singulier, « MS Nettoyage »,
+    // et les liens déjà émis sous cette graphie.
+    alternateName: [...site.alternateNames],
     description: site.description,
     slogan: site.tagline,
     url: site.url,
@@ -95,10 +133,7 @@ export function entrepriseJsonLd(): JsonLdObject {
       latitude: site.geo.latitude,
       longitude: site.geo.longitude,
     },
-    areaServed: [
-      { "@type": "AdministrativeArea", name: "Île-de-France" },
-      ...zones.map((zone) => ({ "@type": "City" as const, name: zone.name })),
-    ],
+    areaServed: zoneDIntervention(),
     // Domaines d'expertise : ce sont les intitulés que les moteurs génératifs
     // rapprochent d'une question posée en langage naturel.
     knowsAbout: services.map((service) => service.shortName),
