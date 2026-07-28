@@ -3,10 +3,11 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { getLanding, landings, landingSlugs } from "@/data/landings";
 import { prestationsNav } from "@/data/navigation";
+import { villes } from "@/data/villes";
 import { site } from "@/lib/site";
 
 /**
- * Garde-fous des pages d'atterrissage locales.
+ * Garde-fous des pages de prestation.
  *
  * Ces pages portent le référencement du site : une requête par page, un
  * contenu propre à chacune. Les erreurs visées ici ne cassent aucun build et
@@ -15,28 +16,50 @@ import { site } from "@/lib/site";
  * d'une page à l'autre, ou deux pages qui se disputent le même mot-clé.
  */
 
-const ville = site.address.city;
-
-describe("pages d'atterrissage", () => {
+describe("pages de prestation", () => {
   it("n'a aucun slug en double", () => {
     expect(new Set(landingSlugs).size).toBe(landings.length);
   });
 
-  it("utilise des slugs en minuscules, terminés par la ville", () => {
+  it("utilise des slugs en minuscules, sans nom de ville", () => {
+    // Une URL qui contient une ville ne peut pas remonter sur une autre : elle
+    // annonce d'elle-même son périmètre. La géographie appartient aux pages
+    // villes, ces pages-ci portent la prestation.
+    const nomsDeVille = villes.map((ville) => ville.nom.toLowerCase().replace(/[^a-z]+/g, "-"));
+
     for (const landing of landings) {
       expect(landing.slug).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-      expect(landing.slug.endsWith(`-${ville.toLowerCase()}`), `sans ville : ${landing.slug}`).toBe(
-        true,
-      );
+
+      for (const nom of nomsDeVille) {
+        expect(landing.slug.endsWith(`-${nom}`), `ville dans le slug : ${landing.slug}`).toBe(false);
+      }
     }
   });
 
-  it("nomme la ville dans la requête, le H1 et le titre de balise", () => {
+  it("annonce la couverture Île-de-France dans la requête, le H1 et le titre", () => {
     for (const landing of landings) {
-      expect(landing.requete, `requête : ${landing.slug}`).toContain(ville);
-      expect(landing.h1, `H1 : ${landing.slug}`).toContain(ville);
-      expect(landing.metaTitle, `metaTitle : ${landing.slug}`).toContain(ville);
+      expect(landing.requete, `requête : ${landing.slug}`).toContain("Île-de-France");
+      expect(landing.h1, `H1 : ${landing.slug}`).toContain("Île-de-France");
+      expect(landing.metaTitle, `metaTitle : ${landing.slug}`).toMatch(/Île-de-France|IDF/);
     }
+  });
+
+  it("nomme Paris dans le H1 de chaque prestation", () => {
+    // Paris concentre l'essentiel du volume de recherche des mots-clés visés :
+    // un H1 qui ne le nomme pas laisse la requête aux concurrents.
+    for (const landing of landings) {
+      expect(landing.h1, `Paris absent du H1 : ${landing.slug}`).toContain("Paris");
+    }
+  });
+
+  it("cite la marque et Meaux quelque part dans le contenu", () => {
+    // Le site reste rattaché à une adresse réelle : c'est ce qui sépare une
+    // entreprise locale d'un agrégateur, aux yeux de Google comme des clients.
+    const texte = landings
+      .flatMap((landing) => [landing.lede, ...landing.corps, ...landing.faq.map((f) => f.answer)])
+      .join(" ");
+
+    expect(texte).toContain(site.name);
   });
 
   it("porte déjà le nom de la marque dans les titres de balise", () => {
@@ -173,7 +196,7 @@ describe("contenu des pages d'atterrissage", () => {
 });
 
 describe("maillage interne", () => {
-  it("expose chaque page d'atterrissage dans la navigation", () => {
+  it("expose chaque page de prestation dans la navigation", () => {
     // Ces liens figurent dans le pied de page de tout le site : c'est ce qui
     // garantit que chaque page reste atteignable en un clic depuis n'importe où.
     expect(prestationsNav).toHaveLength(landings.length);
@@ -184,7 +207,7 @@ describe("maillage interne", () => {
   });
 
   it("retrouve une page par slug et rend undefined sinon", () => {
-    expect(getLanding("menage-airbnb-meaux")?.libelleCourt).toBe("Ménage Airbnb");
-    expect(getLanding("menage-airbnb")).toBeUndefined();
+    expect(getLanding("menage-airbnb")?.libelleCourt).toBe("Ménage Airbnb");
+    expect(getLanding("menage-airbnb-meaux")).toBeUndefined();
   });
 });
