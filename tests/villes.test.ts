@@ -140,12 +140,26 @@ describe("contenu des pages villes", () => {
     }
   });
 
-  it("écrit au moins 400 mots de corps par ville", () => {
-    // Une page ville sous ce seuil n'a rien de local à dire : elle sera lue
-    // comme une page satellite, quel que soit le soin apporté au balisage.
+  it("publie au moins 600 mots de texte par page ville", () => {
+    // Seuil repris de la stratégie de référencement : sous 600 mots, une page
+    // ville n'a rien de local à dire et sera lue comme une page satellite,
+    // quel que soit le soin apporté au balisage.
+    //
+    // Le décompte porte sur tout le texte réellement affiché, pas sur le seul
+    // corps : les questions fréquentes et les justifications de prestation
+    // pèsent autant aux yeux d'un moteur, et davantage aux yeux d'un lecteur.
     for (const ville of villes) {
-      const mots = ville.corps.join(" ").split(/\s+/).filter(Boolean).length;
-      expect(mots, `corps trop court : ${ville.slug}`).toBeGreaterThanOrEqual(400);
+      const texte = [
+        ville.lede,
+        ...ville.corps,
+        ...ville.secteurs,
+        ...ville.communesProches,
+        ...ville.prestationsPhares.map((phare) => phare.raison),
+        ...ville.faq.flatMap((item) => [item.question, item.answer]),
+      ].join(" ");
+
+      const mots = texte.split(/\s+/).filter(Boolean).length;
+      expect(mots, `page trop courte : ${ville.slug}`).toBeGreaterThanOrEqual(600);
     }
   });
 
