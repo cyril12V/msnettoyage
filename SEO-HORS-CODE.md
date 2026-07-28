@@ -41,7 +41,7 @@ fiabilité, donc en classement.
 
 | Champ                  | Valeur exacte                                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------------------------ |
-| Nom de l'établissement | `MS Nettoyage`                                                                                   |
+| Nom de l'établissement | `MS Nettoyages`                                                                                   |
 | Adresse                | `2 square Courbet, 77100 Meaux`                                                                  |
 | Téléphone              | `06 20 46 07 03`                                                                                 |
 | Site web               | l'adresse du site en ligne                                                                       |
@@ -49,7 +49,7 @@ fiabilité, donc en classement.
 | Catégories secondaires | Entreprise de nettoyage de bureaux · Service de ménage · Service de nettoyage après construction |
 
 > **Le nom de l'établissement ne doit contenir que le nom.** La tentation est grande d'écrire
-> « MS Nettoyage Meaux 77 » pour caser des mots-clés : c'est une infraction explicite aux règles de
+> « MS Nettoyages Meaux 77 » pour caser des mots-clés : c'est une infraction explicite aux règles de
 > Google, elle est détectée automatiquement et entraîne la suspension de la fiche. Les mots-clés se
 > placent dans la description et les services, pas dans le nom.
 
@@ -59,9 +59,16 @@ Deux configurations possibles, à choisir selon la réalité de l'activité :
 
 - **Les clients viennent-ils au 2 square Courbet ?** Non, c'est une entreprise d'intervention. Il
   faut donc cocher **« Je livre des biens et des services à mes clients »** et **masquer l'adresse**.
-- Google demandera alors la **zone desservie**. Y saisir : `Meaux`, puis les communes voisines
-  (`Nanteuil-lès-Meaux`, `Villenoy`, `Trilport`, `Mareuil-lès-Meaux`, `Chauconin-Neufmontiers`,
-  `Crégy-lès-Meaux`, `Poincy`, `Varreddes`), et enfin `Seine-et-Marne`.
+- Google demandera alors la **zone desservie**. Y saisir, dans cet ordre : `Meaux`, les communes
+  voisines (`Nanteuil-lès-Meaux`, `Villenoy`, `Trilport`, `Mareuil-lès-Meaux`,
+  `Chauconin-Neufmontiers`, `Crégy-lès-Meaux`, `Poincy`, `Varreddes`), puis les villes qui ont
+  désormais une page sur le site (`Paris`, `Chelles`, `Lagny-sur-Marne`, `Torcy`,
+  `Noisy-le-Grand`, `Montreuil`, `Saint-Denis`, `Créteil`, `Vincennes`, `Boulogne-Billancourt`,
+  `Pontault-Combault`), et enfin `Île-de-France`.
+
+  Google limite la zone desservie à 20 entrées et à un rayon raisonnable autour de l'adresse. Ne
+  pas chercher à saturer la liste : une zone qui couvre visiblement plus large que l'activité
+  réelle affaiblit la fiche au lieu de l'étendre.
 
 L'adresse reste nécessaire pour la vérification, même masquée.
 
@@ -77,30 +84,34 @@ Reprendre exactement ceux du site, sinon Google détecte l'incohérence :
 
 Texte prêt à coller, calibré pour contenir les requêtes visées sans être illisible :
 
-> MS Nettoyage est une entreprise de nettoyage professionnel basée à Meaux (77100), qui intervient
-> chez les particuliers comme dans les locaux professionnels de tout le Pays de Meaux et de
-> Seine-et-Marne.
+> MS Nettoyages est une société de nettoyage professionnel basée à Meaux (77100), qui intervient à
+> Paris et dans toute l'Île-de-France, chez les particuliers comme dans les locaux professionnels.
 >
 > Nos prestations : nettoyage de maison et d'appartement, ménage chez le particulier en formule
-> régulière, nettoyage de bureaux et de locaux professionnels, ménage après travaux, ménage après
-> déménagement avant état des lieux, et rotations de ménage pour locations Airbnb.
+> régulière, nettoyage de bureaux et de locaux professionnels, nettoyage de fin de chantier et
+> après travaux, ménage après déménagement avant état des lieux, et rotations de ménage pour
+> locations Airbnb.
 >
 > Matériel et produits professionnels fournis, intervenants déclarés, devis gratuit sous 24 heures et
-> aucun frais de déplacement sur Meaux et les communes limitrophes.
+> aucun frais de déplacement sur Meaux, les communes limitrophes et Paris.
 
 ### Services à déclarer dans la fiche
 
 Google permet de lister des services, chacun avec sa description. **Créer une entrée par requête
 visée** : c'est ce qui fait remonter la fiche sur la recherche correspondante.
 
-| Service à créer           | Page du site à laquelle il correspond |
-| ------------------------- | ------------------------------------- |
-| Nettoyage de maison       | `/nettoyage-maison-meaux`             |
-| Nettoyage de bureau       | `/nettoyage-bureau-meaux`             |
-| Ménage particulier        | `/menage-particulier-meaux`           |
-| Ménage après travaux      | `/menage-apres-travaux-meaux`         |
-| Ménage après déménagement | `/menage-apres-demenagement-meaux`    |
-| Ménage Airbnb             | `/menage-airbnb-meaux`                |
+| Service à créer                  | Page du site à laquelle il correspond |
+| -------------------------------- | ------------------------------------- |
+| Nettoyage de maison              | `/nettoyage-maison`                   |
+| Nettoyage de bureaux             | `/nettoyage-bureau`                   |
+| Ménage particulier               | `/menage-particulier`                 |
+| Nettoyage de fin de chantier     | `/nettoyage-fin-de-chantier`          |
+| Ménage après déménagement        | `/menage-apres-demenagement`          |
+| Ménage Airbnb                    | `/menage-airbnb`                      |
+
+Les URLs ont changé le 28 juillet 2026 : elles ne portent plus le suffixe `-meaux`, qui empêchait
+ces pages de remonter ailleurs qu'à Meaux. Les anciennes adresses redirigent, mais **c'est la
+nouvelle qu'il faut saisir dans la fiche.**
 
 Pour la description de chaque service, reprendre le paragraphe d'introduction de la page
 correspondante du site : il est écrit pour se suffire à lui-même.
@@ -175,7 +186,7 @@ adresse du type `https://g.page/r/…/review` ouvrant directement le formulaire.
 > Voici le lien direct : [LIEN]
 >
 > Merci beaucoup,
-> Sabri, MS Nettoyage
+> Sabri, MS Nettoyages
 
 ### Ce qu'il ne faut pas faire
 
