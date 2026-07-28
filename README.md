@@ -1,14 +1,17 @@
-# MS Nettoyage
+# MS Nettoyages
 
 **En ligne :** https://ms-nettoyages.com · **Dépôt :** https://github.com/cyril12V/msnettoyage
 
-Site vitrine de **MS Nettoyage**, entreprise de nettoyage professionnel basée à Meaux (77100) et
-intervenant dans toute l'Île-de-France.
+Site vitrine de **MS Nettoyages**, société de nettoyage professionnel basée à Meaux (77100) et
+intervenant à Paris et dans toute l'Île-de-France.
 
-Objectif du site : sortir dans Google sur les recherches locales du type « nettoyage de maison à
-Meaux » ou « société de nettoyage à Meaux », puis transformer la visite en demande de devis ou en
-appel. L'architecture des pages découle directement de cette liste de requêtes, voir
-[Architecture de référencement](#architecture-de-référencement).
+Objectif du site : sortir dans Google sur les recherches du type « nettoyage fin de chantier
+Paris », « nettoyage bureau Paris » ou « entreprise de nettoyage à Créteil », puis transformer la
+visite en demande de devis ou en appel. L'architecture des pages découle directement de cette liste
+de requêtes, voir [Architecture de référencement](#architecture-de-référencement).
+
+Le nom s'écrit **avec un « s »**. La graphie au singulier renvoyait la recherche de marque vers des
+homonymes de Besançon et de Thonon, mieux référencés.
 
 ---
 
@@ -21,7 +24,7 @@ appel. L'architecture des pages découle directement de cette liste de requêtes
 | Styles      | Tailwind CSS v4          | Tokens de design centralisés dans `globals.css`              |
 | Validation  | Zod 4                    | Un seul schéma partagé client + serveur                      |
 | Emails      | SMTP Amen (nodemailer)   | Envoi depuis la messagerie du domaine, authentifiée SPF/DKIM |
-| Tests       | Vitest + Testing Library | 119 tests sur la validation, l'anti-spam et le contenu       |
+| Tests       | Vitest + Testing Library | 154 tests sur la validation, l'anti-spam et le contenu       |
 | Hébergement | Vercel                   | Déploiement statique, SSL et domaine custom inclus           |
 
 Node.js **20.9+** requis (imposé par Next.js 16).
@@ -59,54 +62,59 @@ nécessite les identifiants SMTP. Sans eux, le formulaire affiche un message inv
 
 **Une requête = une page.** C'est la seule règle qui structure le site.
 
-Le client vise huit recherches, toutes suffixées « à Meaux ». Six d'entre elles ont leur page
-dédiée ; les deux autres (« société de nettoyage » et « prestation de nettoyage ») sont génériques
-et portées par la page d'accueil, qui est de toute façon la page la plus forte du domaine.
+Deux familles de pages, qui répondent à deux questions différentes et ne se marchent jamais dessus :
+les **prestations** disent _quoi_, les **villes** disent _où_.
 
-| Requête visée                     | Page                               |
-| --------------------------------- | ---------------------------------- |
-| Société de nettoyage à Meaux      | `/` (page d'accueil)               |
-| Prestation de nettoyage à Meaux   | `/` (page d'accueil)               |
-| Nettoyage de maison à Meaux       | `/nettoyage-maison-meaux`          |
-| Nettoyage de bureau à Meaux       | `/nettoyage-bureau-meaux`          |
-| Ménage particulier à Meaux        | `/menage-particulier-meaux`        |
-| Ménage après travaux à Meaux      | `/menage-apres-travaux-meaux`      |
-| Ménage après déménagement à Meaux | `/menage-apres-demenagement-meaux` |
-| Ménage Airbnb à Meaux             | `/menage-airbnb-meaux`             |
+| Requête visée                               | Page                         |
+| ------------------------------------------- | ---------------------------- |
+| Société de nettoyage Paris et Île-de-France | `/` (page d'accueil)         |
+| Prestation de nettoyage                     | `/` (page d'accueil)         |
+| Nettoyage de maison Paris et IDF            | `/nettoyage-maison`          |
+| Nettoyage de bureaux Paris et IDF           | `/nettoyage-bureau`          |
+| Ménage particulier Paris et IDF             | `/menage-particulier`        |
+| Nettoyage fin de chantier Paris             | `/nettoyage-fin-de-chantier` |
+| Ménage après déménagement Paris et IDF      | `/menage-apres-demenagement` |
+| Ménage Airbnb Paris et IDF                  | `/menage-airbnb`             |
+| Entreprise de nettoyage à Paris             | `/nettoyage-paris`           |
+| Société de nettoyage à Meaux                | `/nettoyage-meaux`           |
+| … et dix autres communes                    | `/nettoyage-<commune>`       |
 
-Trois conséquences qui ne se devinent pas à la lecture du code :
+Quatre conséquences qui ne se devinent pas à la lecture du code :
 
-1. **Il n'y a plus de page `/meaux`.** Elle visait « nettoyage à Meaux », exactement comme la page
-   d'accueil. Deux pages sur le même mot-clé se cannibalisent : Google en retient une, au hasard, et
-   les deux reculent. Son contenu a été fondu dans la section `#zones` de l'accueil, et `/meaux`
-   redirige en 301.
-2. **Le contenu des six pages est unique, paragraphe par paragraphe.** Un chercher-remplacer sur le
-   nom de la ville produirait des pages jumelles, que Google traite comme du remplissage.
-   `tests/landings.test.ts` échoue si deux pages partagent un chapeau, une méta-description, un
-   paragraphe ou une question de FAQ.
-3. **Chaque page est atteignable depuis toutes les autres** : section `#prestations-meaux` de
-   l'accueil, colonne du pied de page et menu mobile. Le texte des liens est la requête elle-même,
-   jamais « en savoir plus » : c'est ce texte que Google lit pour qualifier la page d'arrivée.
+1. **Aucun slug de prestation ne contient de ville.** Une URL `/nettoyage-maison-meaux` annonce
+   d'elle-même qu'elle ne parle pas de Paris, et ne remonte donc jamais dessus. Les anciennes URLs
+   redirigent en 301 depuis `next.config.ts` ; elles ne doivent pas réapparaître.
+2. **Un seul segment dynamique à la racine**, `src/app/[slug]`, qui aiguille vers
+   `PrestationPage` ou `VillePage`. Next.js n'autorise qu'un segment dynamique par niveau, et
+   l'URL doit rester courte : `/nettoyage-paris`, pas `/villes/paris`.
+3. **Le contenu de chaque page est unique, paragraphe par paragraphe.** Un chercher-remplacer sur
+   le nom de la ville produirait des pages satellites, que Google désindexe.
+   `tests/landings.test.ts` et `tests/villes.test.ts` échouent si deux pages partagent un chapeau,
+   une méta-description, un paragraphe, une question ou une réponse.
+4. **Maillage croisé complet** : chaque page de prestation liste les douze communes, chaque page
+   ville liste les six prestations, et le pied de page porte les dix-huit liens sur tout le site.
+   Le texte des liens est toujours le couple prestation + commune, jamais « en savoir plus » :
+   c'est ce texte que Google lit pour qualifier la page d'arrivée.
 
-Pour couvrir une nouvelle ville, dupliquer les entrées de `src/data/landings.ts` **en réécrivant les
-paragraphes**, et ajouter la ville dans `src/data/zones.ts`. Le sitemap, le pied de page, le menu
-mobile et le JSON-LD suivent automatiquement.
+Pour couvrir une nouvelle commune, ajouter une entrée dans `src/data/villes.ts` **en écrivant son
+contenu**, jamais en dupliquant une entrée existante. Le sitemap, le pied de page, le maillage et le
+JSON-LD suivent automatiquement.
 
 ---
 
 ## Structure
 
-Le site tient sur **une page d'accueil** qui déroule toutes les sections, plus les six pages de
-prestation ci-dessus et deux pages légales. Les anciennes adresses (`/services`, `/devis`, `/faq`,
-`/meaux`…) redirigent en 301 vers l'ancre ou la page correspondante, la règle est dans
-`next.config.ts`.
+Le site tient sur **une page d'accueil** qui déroule toutes les sections, plus six pages de
+prestation, douze pages villes et deux pages légales. Les anciennes adresses (`/services`,
+`/devis`, `/faq`, `/meaux`, les slugs suffixés `-meaux`…) redirigent en 301 vers l'ancre ou la page
+correspondante, la règle est dans `next.config.ts`.
 
 ```
 src/
 ├─ app/                          Routes (App Router)
 │  ├─ layout.tsx                 Layout racine : police, header, footer, JSON-LD entreprise + WebSite
 │  ├─ page.tsx                   Page d'accueil, toutes les sections
-│  ├─ [prestation]/page.tsx      Les 6 pages locales, générées depuis data/landings.ts
+│  ├─ [slug]/page.tsx            Aiguillage : 6 pages de prestation + 12 pages villes
 │  ├─ mentions-legales/          Obligations légales (LCEN)
 │  ├─ politique-de-confidentialite/  RGPD
 │  ├─ api/contact/route.ts       Réception des demandes de devis
@@ -123,9 +131,10 @@ src/
 │  └─ seo/                       JsonLd, Breadcrumbs
 │
 ├─ data/                         CONTENU ÉDITABLE, aucune logique
-│  ├─ landings.ts                ★ Les 6 pages locales, une par requête Google
+│  ├─ landings.ts                ★ Les 6 pages de prestation, une par requête Google
+│  ├─ villes.ts                  ★ Les 12 pages villes, une par commune couverte
 │  ├─ services.ts                Les 7 prestations de la page d'accueil
-│  ├─ zones.ts                   Les 9 zones d'intervention
+│  ├─ zones.ts                   Les 9 zones d'intervention (Meaux + 8 départements)
 │  ├─ univers.ts                 Les 6 univers d'intervention
 │  ├─ realisations.ts            Paires avant / après
 │  ├─ cas-clients.ts             Missions mises en avant (démo, voir plus bas)
@@ -174,20 +183,21 @@ l'ajoute à la section services de l'accueil, aux options du formulaire de devis
 
 L'enchaînement reprend celui de la maquette d'origine (`design/maquette-v2.html`) :
 
-| Ordre | Section                    | Ancre                | Composant                         |
-| ----- | -------------------------- | -------------------- | --------------------------------- |
-| 1     | Accroche                   | `#accueil`           | `sections/Hero.tsx`               |
-| 2     | Nos prestations à Meaux    | `#prestations-meaux` | `sections/PrestationsLocales.tsx` |
-| 3     | Nos services (accordéon)   | `#services`          | `sections/Expertise.tsx`          |
-| 4     | Nos univers d'intervention | `#univers`           | `sections/Univers.tsx`            |
-| 5     | Des résultats qui parlent  | `#realisations`      | `sections/AvantApres.tsx`         |
-| 6     | Cas clients                | `#cas`               | `sections/CasClients.tsx`         |
-| 7     | Notre promesse             | `#apropos`           | `sections/Promesse.tsx`           |
-| 8     | Ils nous font confiance    |                      | `sections/Temoignages.tsx`        |
-| 9     | Comment ça se passe        |                      | `sections/Process.tsx`            |
-| 10    | Zones d'intervention       | `#zones`             | `sections/ZonesSection.tsx`       |
-| 11    | Questions fréquentes       | `#faq`               | `sections/FaqSection.tsx`         |
-| 12    | Contact et devis           | `#contact`           | `sections/CtaDevis.tsx`           |
+| Ordre | Section                    | Ancre           | Composant                         |
+| ----- | -------------------------- | --------------- | --------------------------------- |
+| 1     | Accroche                   | `#accueil`      | `sections/Hero.tsx`               |
+| 2     | Nos prestations en IDF     | `#prestations`  | `sections/PrestationsLocales.tsx` |
+| 3     | Nos services (accordéon)   | `#services`     | `sections/Expertise.tsx`          |
+| 4     | Nos univers d'intervention | `#univers`      | `sections/Univers.tsx`            |
+| 5     | Des résultats qui parlent  | `#realisations` | `sections/AvantApres.tsx`         |
+| 6     | Cas clients                | `#cas`          | `sections/CasClients.tsx`         |
+| 7     | Notre promesse             | `#apropos`      | `sections/Promesse.tsx`           |
+| 8     | Ils nous font confiance    |                 | `sections/Temoignages.tsx`        |
+| 9     | Comment ça se passe        |                 | `sections/Process.tsx`            |
+| 10    | Nos villes d'intervention  | `#villes`       | `sections/VillesSection.tsx`      |
+| 11    | Zones d'intervention       | `#zones`        | `sections/ZonesSection.tsx`       |
+| 12    | Questions fréquentes       | `#faq`          | `sections/FaqSection.tsx`         |
+| 13    | Contact et devis           | `#contact`      | `sections/CtaDevis.tsx`           |
 
 La section 2 est placée juste après l'accroche à dessein : c'est le maillage vers les six pages
 locales, et un lien haut dans la page pèse plus qu'un lien en pied de page. Les sections 9 à 11 ne

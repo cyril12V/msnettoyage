@@ -7,10 +7,13 @@ Document technique contenant 3 blocs JSON-LD Schema.org complets et prêts à co
 ## BLOC 1 — LocalBusiness (CleaningService)
 
 ### 📍 Où coller ?
+
 **À coller dans le `<head>` de TOUTES les pages du site**, avant la balise `</head>`.
 
 ### 🎯 Pourquoi ?
+
 Ce bloc définit l'identité complète de l'entreprise MS Nettoyages : localisation, coordonnées, zones d'intervention, horaires et services. Google l'utilise pour :
+
 - Enrichir les résultats de recherche avec les informations de l'entreprise
 - Afficher les horaires d'ouverture dans les SERPs
 - Générer les fiches Google My Business enrichies
@@ -175,10 +178,13 @@ Ce bloc définit l'identité complète de l'entreprise MS Nettoyages : localisat
 ## BLOC 2 — FAQPage
 
 ### 📍 Où coller ?
+
 **À coller uniquement sur la page `/nettoyage-fin-de-chantier-paris`** dans le `<head>`.
 
 ### 🎯 Pourquoi ?
+
 Ce bloc enrichit la page de service avec une FAQ structurée. Google l'utilise pour :
+
 - Afficher les questions/réponses directement dans les SERPs (rich snippets FAQ)
 - Améliorer le CTR en montrant des réponses pertinentes avant le clic
 - Augmenter le temps passé sur la page (les utilisateurs trouvent les réponses immédiatement)
@@ -242,10 +248,13 @@ Ce bloc enrichit la page de service avec une FAQ structurée. Google l'utilise p
 ## BLOC 3 — Service
 
 ### 📍 Où coller ?
+
 **À coller dans le `<head>` de chaque page de service** (exemple : `/nettoyage-fin-de-chantier-paris`).
 
 ### 🎯 Pourquoi ?
+
 Ce bloc décrit un service spécifique avec ses caractéristiques, zone d'intervention et offre. Google l'utilise pour :
+
 - Enrichir les pages de service avec des informations structurées
 - Afficher les détails du service dans les résultats locaux
 - Améliorer la compréhension du contenu par les moteurs de recherche
@@ -281,6 +290,7 @@ Ce bloc décrit un service spécifique avec ses caractéristiques, zone d'interv
 ```
 
 **Note :** Dupliquer ce bloc pour chaque page de service en adaptant :
+
 - `@id` : URL unique de la page
 - `name` : Titre du service
 - `serviceType` : Type de service
@@ -288,6 +298,7 @@ Ce bloc décrit un service spécifique avec ses caractéristiques, zone d'interv
 - `url` : URL de la page
 
 Exemples d'URLs à adapter :
+
 - `/nettoyage-maison-paris` → "Nettoyage de maison Paris"
 - `/nettoyage-bureau-paris` → "Nettoyage de bureau Paris"
 - `/menage-particulier-paris` → "Ménage particulier Paris"
@@ -300,16 +311,19 @@ Exemples d'URLs à adapter :
 ## 📚 Comment implémenter
 
 ### Étape 1 : Préparation
+
 1. Télécharger les 3 blocs JSON-LD ci-dessus
 2. Adapter les URLs et données si nécessaire (logo, adresse, email)
 3. Vérifier que les URLs sont correctes et accessibles
 
 ### Étape 2 : Intégration
+
 1. **BLOC 1 (LocalBusiness)** : Coller dans le `<head>` de **TOUTES les pages** (une seule fois, même @id)
 2. **BLOC 2 (FAQPage)** : Coller dans le `<head>` de la page `/nettoyage-fin-de-chantier-paris` uniquement
 3. **BLOC 3 (Service)** : Coller dans le `<head>` de **chaque page de service**, en adaptant les valeurs
 
 ### Étape 3 : Validation
+
 1. **Google Rich Results Test** : https://search.google.com/test/rich-results
    - Coller l'URL complète de chaque page
    - Vérifier qu'aucune erreur n'apparaît
@@ -324,6 +338,7 @@ Exemples d'URLs à adapter :
    - Consulter l'onglet "Améliorations" pour voir les rich snippets détectés
 
 ### Étape 4 : Bonnes pratiques
+
 - ✅ **Ne pas dupliquer le LocalBusiness** : utiliser le même `@id` sur toutes les pages
 - ✅ **Adapter le Service par page** : chaque service doit avoir son propre `@id` et `url`
 - ✅ **Vérifier les URLs** : s'assurer que toutes les URLs pointent vers des pages existantes
@@ -331,6 +346,7 @@ Exemples d'URLs à adapter :
 - ❌ **Éviter les doublons** : ne pas coller le même bloc plusieurs fois sur la même page
 
 ### Étape 5 : Suivi
+
 - Consulter Google Search Console chaque semaine pendant 1 mois
 - Vérifier que les impressions et clics augmentent
 - Analyser le CTR des rich snippets
@@ -339,7 +355,9 @@ Exemples d'URLs à adapter :
 ---
 
 ## 📞 Support
+
 Pour toute question sur l'implémentation, consulter :
+
 - Documentation officielle Schema.org : https://schema.org/
 - Guide Google Rich Results : https://developers.google.com/search/docs/appearance/structured-data
 - Aide Google Search Console : https://support.google.com/webmasters

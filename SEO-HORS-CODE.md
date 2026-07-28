@@ -41,7 +41,7 @@ fiabilité, donc en classement.
 
 | Champ                  | Valeur exacte                                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------------------------ |
-| Nom de l'établissement | `MS Nettoyages`                                                                                   |
+| Nom de l'établissement | `MS Nettoyages`                                                                                  |
 | Adresse                | `2 square Courbet, 77100 Meaux`                                                                  |
 | Téléphone              | `06 20 46 07 03`                                                                                 |
 | Site web               | l'adresse du site en ligne                                                                       |
@@ -100,14 +100,14 @@ Texte prêt à coller, calibré pour contenir les requêtes visées sans être i
 Google permet de lister des services, chacun avec sa description. **Créer une entrée par requête
 visée** : c'est ce qui fait remonter la fiche sur la recherche correspondante.
 
-| Service à créer                  | Page du site à laquelle il correspond |
-| -------------------------------- | ------------------------------------- |
-| Nettoyage de maison              | `/nettoyage-maison`                   |
-| Nettoyage de bureaux             | `/nettoyage-bureau`                   |
-| Ménage particulier               | `/menage-particulier`                 |
-| Nettoyage de fin de chantier     | `/nettoyage-fin-de-chantier`          |
-| Ménage après déménagement        | `/menage-apres-demenagement`          |
-| Ménage Airbnb                    | `/menage-airbnb`                      |
+| Service à créer              | Page du site à laquelle il correspond |
+| ---------------------------- | ------------------------------------- |
+| Nettoyage de maison          | `/nettoyage-maison`                   |
+| Nettoyage de bureaux         | `/nettoyage-bureau`                   |
+| Ménage particulier           | `/menage-particulier`                 |
+| Nettoyage de fin de chantier | `/nettoyage-fin-de-chantier`          |
+| Ménage après déménagement    | `/menage-apres-demenagement`          |
+| Ménage Airbnb                | `/menage-airbnb`                      |
 
 Les URLs ont changé le 28 juillet 2026 : elles ne portent plus le suffixe `-meaux`, qui empêchait
 ces pages de remonter ailleurs qu'à Meaux. Les anciennes adresses redirigent, mais **c'est la
@@ -283,32 +283,32 @@ bas.
 
 ### Semaine 1, les cinq qui comptent le plus
 
-| # | Annuaire                          | Pourquoi                                                                    |
-| - | --------------------------------- | --------------------------------------------------------------------------- |
-| 1 | **Google Business Profile**       | Voir chapitre 1. Rien ne passe avant.                                        |
-| 2 | **Pages Jaunes** (pagesjaunes.fr) | Première autorité française sur le local, encore très consultée directement. |
-| 3 | **Societe.com**                   | Fiche entreprise créée automatiquement depuis le SIRET, à revendiquer.       |
-| 4 | **Yelp France**                   | Résultat de marque solide, indexé rapidement.                                |
-| 5 | **Apple Plans** (mapsconnect)     | Indispensable sur iPhone, presque toujours oublié par les concurrents.       |
+| #   | Annuaire                          | Pourquoi                                                                     |
+| --- | --------------------------------- | ---------------------------------------------------------------------------- |
+| 1   | **Google Business Profile**       | Voir chapitre 1. Rien ne passe avant.                                        |
+| 2   | **Pages Jaunes** (pagesjaunes.fr) | Première autorité française sur le local, encore très consultée directement. |
+| 3   | **Societe.com**                   | Fiche entreprise créée automatiquement depuis le SIRET, à revendiquer.       |
+| 4   | **Yelp France**                   | Résultat de marque solide, indexé rapidement.                                |
+| 5   | **Apple Plans** (mapsconnect)     | Indispensable sur iPhone, presque toujours oublié par les concurrents.       |
 
 ### Semaine 2
 
-| # | Annuaire                      | Pourquoi                                                       |
-| - | ----------------------------- | -------------------------------------------------------------- |
-| 6 | **Kompass.com**               | Annuaire B2B, utile pour les requêtes bureaux et entreprises.   |
-| 7 | **Europages**                 | Même logique, portée européenne.                                |
-| 8 | **Hoodspot**                  | Annuaire local, bien indexé sur les requêtes ville.             |
-| 9 | **Cylex France**              | Inscription rapide, citation NAP supplémentaire.                |
-| 10| **CCI Seine-et-Marne**        | cci77.fr, lien local à forte légitimité.                        |
+| #   | Annuaire               | Pourquoi                                                      |
+| --- | ---------------------- | ------------------------------------------------------------- |
+| 6   | **Kompass.com**        | Annuaire B2B, utile pour les requêtes bureaux et entreprises. |
+| 7   | **Europages**          | Même logique, portée européenne.                              |
+| 8   | **Hoodspot**           | Annuaire local, bien indexé sur les requêtes ville.           |
+| 9   | **Cylex France**       | Inscription rapide, citation NAP supplémentaire.              |
+| 10  | **CCI Seine-et-Marne** | cci77.fr, lien local à forte légitimité.                      |
 
 ### Semaine 3, les annuaires du métier
 
-| #  | Annuaire            | Pourquoi                                                        |
-| -- | ------------------- | ---------------------------------------------------------------- |
-| 11 | **Houzz**           | Prescripteurs de la rénovation, cible directe du fin de chantier. |
-| 12 | **Habitatpresto**   | Génère des demandes de devis en plus du lien.                     |
-| 13 | **Travaux.com**     | Même logique, orienté chantier.                                   |
-| 14 | **Infogreffe**      | Fiche légale, renforce la cohérence NAP.                          |
+| #   | Annuaire          | Pourquoi                                                          |
+| --- | ----------------- | ----------------------------------------------------------------- |
+| 11  | **Houzz**         | Prescripteurs de la rénovation, cible directe du fin de chantier. |
+| 12  | **Habitatpresto** | Génère des demandes de devis en plus du lien.                     |
+| 13  | **Travaux.com**   | Même logique, orienté chantier.                                   |
+| 14  | **Infogreffe**    | Fiche légale, renforce la cohérence NAP.                          |
 
 ### Réseaux sociaux, à créer sous le nom exact
 
@@ -352,13 +352,13 @@ exactement le signal recherché.
 
 Le référencement local n'est pas instantané. Voici ce qui est réaliste :
 
-| Échéance       | Ce qui doit être visible                                                                 |
-| -------------- | ---------------------------------------------------------------------------------------- |
+| Échéance       | Ce qui doit être visible                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------- |
 | Semaine 1      | Fiche Google créée, vérification lancée, Search Console validé, sitemap envoyé, 5 annuaires |
-| Semaines 2 à 4 | Fiche en ligne, 10 à 14 annuaires, pages villes indexées, premières impressions           |
-| Mois 2 à 3     | 10 avis atteints, marque « MS Nettoyages » dans le top 5, premiers partenariats           |
-| Mois 4 à 6     | Bloc de cartes sur Meaux, premières positions sur « nettoyage fin de chantier Paris »     |
-| Mois 6 à 12    | Positions sur les requêtes ville, montée progressive sur les requêtes parisiennes larges  |
+| Semaines 2 à 4 | Fiche en ligne, 10 à 14 annuaires, pages villes indexées, premières impressions             |
+| Mois 2 à 3     | 10 avis atteints, marque « MS Nettoyages » dans le top 5, premiers partenariats             |
+| Mois 4 à 6     | Bloc de cartes sur Meaux, premières positions sur « nettoyage fin de chantier Paris »       |
+| Mois 6 à 12    | Positions sur les requêtes ville, montée progressive sur les requêtes parisiennes larges    |
 
 **Deux facteurs limitent tout le reste : les avis et les liens.** Une fiche à 15 avis récents bat
 durablement un site techniquement parfait sans aucun avis, et aucune page ne remonte sur une requête

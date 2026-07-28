@@ -22,6 +22,7 @@
 ### Pourquoi c'est le meilleur point d'entrée
 
 Le SERP montre une structure claire :
+
 - **Positions 1-3 :** Local Pack (GMB) — 3 résultats locaux
 - **Positions 4-10 :** Pages organiques — 7 résultats organiques
 
@@ -46,14 +47,14 @@ Liste des variantes à mentionner **naturellement** dans le contenu (au moins 3)
 
 ## État actuel vs recommandé
 
-| Élément | Actuel | Recommandé | Critère |
-|---|---|---|---|
-| **URL** | `/menage-apres-travaux-meaux` | `/nettoyage-fin-de-chantier-paris` | Mot-clé primaire dans l'URL |
-| **Title** | Ménage après travaux à Meaux (77100) \| MS Nettoyage | Nettoyage fin de chantier Paris & IDF \| MS Nettoyages | 55 chars, mot-clé primaire, géographie étendue |
-| **H1** | Ménage après travaux à Meaux | Nettoyage fin de chantier à Paris et en Île-de-France | Mot-clé primaire, distinct du title, couverture IDF |
-| **Meta Description** | Ménage après travaux à Meaux : retrait des traces de peinture, colle et enduit, dépoussiérage intégral, vitrerie et sols en plusieurs passes. Devis sous 24 h. | Nettoyage fin de chantier à Paris : évacuation gravats, dépoussiérage intégral, vitrerie et sols. Intervention sous 48 h. Devis gratuit. | 155 chars, mot-clé + CTA, urgence (48h) |
-| **Ciblage géo** | Meaux uniquement | Paris + IDF (8 départements) | Couverture maximale |
-| **Schema** | Service + FAQPage (existant) | Service + FAQPage + LocalBusiness | Rich snippets, signaux locaux |
+| Élément              | Actuel                                                                                                                                                         | Recommandé                                                                                                                               | Critère                                             |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| **URL**              | `/menage-apres-travaux-meaux`                                                                                                                                  | `/nettoyage-fin-de-chantier-paris`                                                                                                       | Mot-clé primaire dans l'URL                         |
+| **Title**            | Ménage après travaux à Meaux (77100) \| MS Nettoyage                                                                                                           | Nettoyage fin de chantier Paris & IDF \| MS Nettoyages                                                                                   | 55 chars, mot-clé primaire, géographie étendue      |
+| **H1**               | Ménage après travaux à Meaux                                                                                                                                   | Nettoyage fin de chantier à Paris et en Île-de-France                                                                                    | Mot-clé primaire, distinct du title, couverture IDF |
+| **Meta Description** | Ménage après travaux à Meaux : retrait des traces de peinture, colle et enduit, dépoussiérage intégral, vitrerie et sols en plusieurs passes. Devis sous 24 h. | Nettoyage fin de chantier à Paris : évacuation gravats, dépoussiérage intégral, vitrerie et sols. Intervention sous 48 h. Devis gratuit. | 155 chars, mot-clé + CTA, urgence (48h)             |
+| **Ciblage géo**      | Meaux uniquement                                                                                                                                               | Paris + IDF (8 départements)                                                                                                             | Couverture maximale                                 |
+| **Schema**           | Service + FAQPage (existant)                                                                                                                                   | Service + FAQPage + LocalBusiness                                                                                                        | Rich snippets, signaux locaux                       |
 
 ---
 

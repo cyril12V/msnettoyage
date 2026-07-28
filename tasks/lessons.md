@@ -156,3 +156,56 @@ requête n'est pas passée par lui.
 
 **Règle.** Un contrôle de sécurité dont la donnée d'entrée est facultative se désactive tout seul à
 la demande de l'attaquant. Soit le champ est obligatoire, soit son absence est un signal.
+
+---
+
+## 2026-07-28, Une décision de référencement n'est vraie que sous ses hypothèses
+
+**Contexte.** Le 26 juillet, `/meaux` a été supprimée parce qu'elle visait la même requête que la
+page d'accueil. La règle tirée alors, « une requête = une page », est juste. La décision, elle,
+dépendait d'une hypothèse : que la page d'accueil vise « société de nettoyage à Meaux ».
+
+**Ce qui a changé.** La stratégie du 28 juillet retitre l'accueil sur Paris et l'Île-de-France.
+L'hypothèse tombe, et avec elle la conclusion : « nettoyage à Meaux » n'est plus visée par aucune
+page. Maintenir la suppression aurait abandonné la seule requête sur laquelle l'entreprise est
+réellement implantée, au nom d'une règle appliquée sans sa raison.
+
+**Correction.** Page `/nettoyage-meaux` recréée, `/meaux` redirigée vers elle.
+
+**Règle.** Une décision d'architecture SEO se consigne avec l'hypothèse qui la justifie, pas
+seulement avec sa conclusion. Quand l'hypothèse change, rouvrir la décision au lieu de défendre la
+conclusion.
+
+---
+
+## 2026-07-28, Un script d'édition de contenu doit être idempotent
+
+**Erreur.** Un script Python d'insertion de contenu a été relancé par mégarde, en le concaténant à
+une autre commande. Il a inséré une seconde fois les mêmes questions de FAQ dans les douze pages
+villes.
+
+**Ce qui a sauvé la mise.** `tests/villes.test.ts` vérifie l'unicité des questions et des réponses
+sur l'ensemble des villes. Le doublon a échoué au test suivant, avant tout commit et tout
+déploiement.
+
+**Règle.** Un script qui écrit dans un fichier de contenu doit vérifier l'absence de ce qu'il
+s'apprête à insérer, ou être considéré comme jetable et exécuté une seule fois. Et le garde-fou
+utile n'est pas la prudence à l'écriture, c'est le test qui refuse le contenu dupliqué : il attrape
+aussi les erreurs qu'on n'a pas anticipées.
+
+---
+
+## 2026-07-28, Une préposition ne se déduit pas d'un nom de lieu
+
+**Erreur.** Les titres de section géographique étaient construits par concaténation :
+`` `${prestation} en ${zone.name}` ``. Cela produit « Fin de chantier en Paris », visible sur les
+six pages de prestation.
+
+**Correction.** Champ `avecPreposition` sur chaque zone : « à Paris », « en Essonne », « dans le
+Val-de-Marne », « dans les Yvelines ». Le français n'a pas de règle dérivable ici, seulement un
+usage.
+
+**Règle.** Ne jamais fabriquer un syntagme français par concaténation d'un mot grammatical et d'une
+donnée. La forme correcte se stocke avec la donnée. La faute est invisible tant qu'on ne lit que la
+liste des noms, et sautant aux yeux dès qu'on lit la page rendue : il faut regarder le rendu, pas
+seulement les données.

@@ -399,7 +399,7 @@ dans **[SEO-HORS-CODE.md](./SEO-HORS-CODE.md)**. Résumé des étapes, par ordre
 - [ ] **Créer la fiche Google Business Profile** et lancer la vérification. Le courrier de
       validation prend une à deux semaines : c'est la toute première chose à faire.
       Le nom, l'adresse et le téléphone doivent être **rigoureusement identiques** à ceux de
-      `src/lib/site.ts` : la moindre variation (« MS Nettoyage » vs « MS-Nettoyage ») dilue le
+      `src/lib/site.ts` : la moindre variation (« MS Nettoyages » vs « MS Nettoyage ») dilue le
       signal local.
 - [ ] Y déclarer un service par requête visée, les six pages du site servant de descriptions.
 - [ ] Reporter l'adresse publique de la fiche dans `src/lib/site.ts` → `social.googleBusiness`.

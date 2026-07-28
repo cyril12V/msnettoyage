@@ -129,6 +129,29 @@ describe("cannibalisation entre pages", () => {
     expect(new Set(effets).size, "facteur de prix dupliqué").toBe(effets.length);
   });
 
+  it("ne repose pas en FAQ la question déjà traitée par la section tarifaire", () => {
+    // La même question posée deux fois sur une page, en H2 puis en H3, donne
+    // deux réponses concurrentes : le lecteur en lit une au hasard et le moteur
+    // ne sait pas laquelle extraire.
+    const normaliser = (texte: string) =>
+      texte
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+
+    for (const landing of landings) {
+      const prix = normaliser(landing.tarification.question);
+
+      for (const item of landing.faq) {
+        expect(normaliser(item.question), `question de prix répétée : ${landing.slug}`).not.toBe(
+          prix,
+        );
+      }
+    }
+  });
+
   it("ne pose jamais deux fois la même question", () => {
     // Une question identique sur deux pages produit deux blocs FAQPage
     // concurrents : Google n'en retient qu'un, sans que l'on choisisse lequel.

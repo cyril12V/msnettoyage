@@ -143,11 +143,6 @@ export const landings: readonly Landing[] = [
     },
     faq: [
       {
-        question: "Combien coûte un nettoyage de maison à Paris ou en Île-de-France ?",
-        answer:
-          "Le prix dépend de la surface, du nombre de pièces d'eau et de l'état de départ. MS Nettoyages établit un devis gratuit et sans engagement sous 24 h, à partir de vos informations ou de photos. Aucun frais de déplacement n'est facturé sur Paris et la petite couronne.",
-      },
-      {
         question: "Faut-il être présent pendant le nettoyage de la maison ?",
         answer:
           "Non. Beaucoup de clients nous confient un jeu de clés ou un code d'accès. Nous convenons du créneau par écrit avant l'intervention et nous vous confirmons la fin des travaux. Vous pouvez évidemment être présent si vous le préférez.",
@@ -237,11 +232,6 @@ export const landings: readonly Landing[] = [
         question: "À quelle heure intervenez-vous dans les bureaux ?",
         answer:
           "Avant l'ouverture ou après la fermeture, selon ce qui vous arrange. Le créneau le plus courant se situe entre 18 h et 21 h : les locaux sont vides, l'intervention est plus rapide et vos équipes retrouvent des bureaux propres le lendemain matin. Un passage matinal avant 8 h est possible sur les sites qui l'imposent.",
-      },
-      {
-        question: "Combien coûte le nettoyage d'un bureau à Paris ?",
-        answer:
-          "Le chiffrage se fait au mètre carré et à la fréquence, pas au forfait : un plateau de 200 m² nettoyé cinq fois par semaine ne se compare pas à un cabinet de 60 m² nettoyé deux fois. La densité d'occupation, le nombre de sanitaires et la présence d'un espace de restauration pèsent autant que la surface. Le devis est gratuit et transmis sous 24 h.",
       },
       {
         question: "Faut-il un engagement de durée pour un contrat de bureaux ?",
@@ -415,11 +405,6 @@ export const landings: readonly Landing[] = [
         question: "Quelle est la différence entre nettoyage de fin de chantier et après travaux ?",
         answer:
           "Les deux termes désignent la même famille de prestation et sont employés indifféremment par les clients. Techniquement, la fin de chantier est la première passe : elle évacue les résidus et dégage les surfaces juste après le départ des corps de métier. Le nettoyage après travaux vient ensuite et rend le local livrable : retrait des traces de peinture et de colle, dépoussiérage fin, vitrerie, lavage des sols en plusieurs passes. Nous réalisons les deux, ensemble ou séparément.",
-      },
-      {
-        question: "Combien coûte un nettoyage de fin de chantier à Paris ?",
-        answer:
-          "Le chiffrage se fait au mètre carré, majoré selon l'empoussièrement et l'accessibilité. Le facteur déterminant n'est pas la surface mais la nature du chantier : une reprise de peinture se traite deux fois plus vite qu'une dépose de cloisons à surface égale. Un étage sans ascenseur et un stationnement impossible pèsent également sur le temps passé. Le devis est gratuit et transmis sous 24 h.",
       },
       {
         question: "Combien de temps faut-il pour un nettoyage après travaux ?",
@@ -597,11 +582,6 @@ export const landings: readonly Landing[] = [
         question: "Combien de temps prend une rotation Airbnb ?",
         answer:
           "Deux heures en moyenne pour un logement de type T2, entre le check-out et le check-in. La rotation comprend le nettoyage complet, le changement du linge, le réassort des consommables et la remise en configuration d'accueil. Un studio se traite en une heure trente, un T4 en trois heures.",
-      },
-      {
-        question: "Combien coûte un ménage Airbnb à Paris ?",
-        answer:
-          "Le tarif se fixe à la rotation, en fonction de la surface, du nombre de couchages et du linge à gérer. Il est refacturable au voyageur via les frais de ménage de l'annonce, ce qui rend la prestation neutre pour la plupart des hôtes. Le devis est gratuit et le tarif reste fixe pendant toute la durée du contrat.",
       },
       {
         question: "Gérez-vous le linge de la location ?",
