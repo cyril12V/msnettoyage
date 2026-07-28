@@ -115,22 +115,27 @@ export const site = {
   },
 
   /**
-   * Horaires d'ouverture du standard téléphonique.
-   * À valider avec le client avant mise en ligne : ils alimentent le JSON-LD
-   * `openingHoursSpecification` et donc la fiche Google.
+   * Disponibilité, confirmée par le client le 28 juillet 2026 : 24 h/24, 7 j/7.
+   *
+   * `opens: "00:00"` et `closes: "23:59"` sur les sept jours est la façon dont
+   * Google attend qu'un établissement ouvert en permanence se déclare. La fiche
+   * Google affichera « Ouvert 24 h/24 » et le site doit dire exactement la même
+   * chose, sinon l'incohérence dégrade les deux.
+   *
+   * Contrepartie assumée : un appel passé à 3 h du matin doit trouver quelqu'un
+   * au bout du fil. Si le standard n'est en réalité joignable qu'en journée, il
+   * faut revenir à des horaires téléphoniques réalistes et déplacer le 24 h/24
+   * vers `disponibiliteDisplay`, qui décrit les interventions et non le
+   * standard.
    */
   openingHours: [
     {
-      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "19:00",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59",
     },
-    { days: ["Saturday"], opens: "08:00", closes: "13:00" },
   ],
-  openingHoursDisplay: [
-    { label: "Lundi – Vendredi", value: "7h – 19h" },
-    { label: "Samedi", value: "8h – 13h" },
-  ],
+  openingHoursDisplay: [{ label: "Tous les jours", value: "24 h/24, 7 j/7" }],
 
   /**
    * Informations légales obligatoires sur les mentions légales (art. 6-III LCEN).
