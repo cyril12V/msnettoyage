@@ -127,6 +127,11 @@ export const villes: readonly Ville[] = [
         answer:
           "Le devis dépend de la surface, du nombre de pièces d'eau, de l'état de départ et de l'accès. À surface égale, un sixième étage sans ascenseur se chiffre plus cher qu'un rez-de-chaussée : le temps de montée du matériel est réel. Le devis est gratuit, transmis sous 24 h et établi sur photos, sans visite préalable obligatoire.",
       },
+      {
+        question: "Proposez-vous des contrats d'entretien pour les commerces parisiens ?",
+        answer:
+          "Oui, boutiques, salons, cabinets et restaurants compris. Le passage se fait avant l'ouverture, du lundi au samedi selon vos jours d'activité. La vitrine, les sanitaires accessibles au public et les zones vues par la clientèle sont traités à chaque passage : ce sont les trois points sur lesquels un client juge la propreté d'un commerce en quelques secondes.",
+      },
     ],
     communesProches: [
       "Levallois-Perret",
@@ -206,6 +211,11 @@ export const villes: readonly Ville[] = [
         answer:
           "C'est la zone où c'est le plus souvent possible. Une demande formulée le matin peut être planifiée dans la journée ou le lendemain selon nos disponibilités. Appelez plutôt que d'écrire si le délai est contraint : nous vous répondons immédiatement sur la faisabilité.",
       },
+      {
+        question: "Travaillez-vous avec les agences immobilières de Meaux ?",
+        answer:
+          "Oui, sur la remise en état de logements entre deux locataires et sur le nettoyage avant visite. Les agences ont besoin d'un prestataire qui tienne une date et qui documente son passage : nous confirmons le créneau par écrit et transmettons des photos horodatées en fin d'intervention, ce qui sert directement au dossier de restitution.",
+      },
     ],
     communesProches: [
       "Villenoy",
@@ -284,6 +294,11 @@ export const villes: readonly Ville[] = [
         answer:
           "Le déplacement est intégré au prix de la prestation et figure dans le devis, il n'est jamais ajouté après l'intervention. Sur Chelles, la fréquence de nos passages nous permet de rester au même niveau tarifaire que sur le nord de la Seine-et-Marne.",
       },
+      {
+        question: "Nettoyez-vous les vitres et les vérandas des pavillons chellois ?",
+        answer:
+          "Oui. Les vitres accessibles depuis le sol ou avec une perche sont comprises dans un grand ménage. Une véranda se chiffre à part : la surface vitrée y dépasse souvent celle de toutes les fenêtres du pavillon réunies, et le nettoyage de la toiture vitrée demande un accès sécurisé que nous validons avant d'accepter l'intervention.",
+      },
     ],
     communesProches: [
       "Gournay-sur-Marne",
@@ -358,6 +373,11 @@ export const villes: readonly Ville[] = [
         question: "Couvrez-vous Thorigny, Pomponne et Saint-Thibault ?",
         answer:
           "Oui, ces communes sont traitées dans la même tournée que Lagny-sur-Marne, tout comme Dampmart, Chalifert et Montévrain. Le regroupement des interventions nous permet d'y proposer des créneaux plus souples et sans majoration de déplacement.",
+      },
+      {
+        question: "Quel est le délai pour une première intervention à Lagny-sur-Marne ?",
+        answer:
+          "Comptez deux à quatre jours ouvrés pour une intervention ponctuelle et moins d'une semaine pour le premier passage d'un contrat d'entretien. Les demandes liées à un état des lieux ou à une date de remise de clés sont traitées en priorité : indiquez la date butoir dès la demande de devis, elle conditionne la planification.",
       },
     ],
     communesProches: [
@@ -434,6 +454,11 @@ export const villes: readonly Ville[] = [
         answer:
           "Oui, ces communes du Val Maubuée sont traitées dans la même tournée que Torcy, avec Émerainville et Croissy-Beaubourg. Ce regroupement rend possibles des passages courts et fréquents, y compris quotidiens, à un coût qui resterait dissuasif sur une commune isolée.",
       },
+      {
+        question: "Pouvez-vous intervenir en journée à Torcy ?",
+        answer:
+          "Oui, c'est même fréquent sur les équipements collectifs et les parties communes, où l'intervention ne gêne personne. Pour les bureaux, nous restons sur des créneaux avant 8 h ou après 18 h : nettoyer un plateau occupé prend plus de temps, dérange les équipes et donne un résultat moins régulier.",
+      },
     ],
     communesProches: [
       "Noisiel",
@@ -509,6 +534,12 @@ export const villes: readonly Ville[] = [
         answer:
           "Oui, en entretien régulier comme en intervention ponctuelle. Les demandes les plus fréquentes sur la commune sont le passage hebdomadaire chez des actifs et le grand ménage avant une vente ou une mise en location, deux prestations que nous chiffrons séparément.",
       },
+      {
+        question:
+          "Combien coûte l'entretien des parties communes d'une résidence à Noisy-le-Grand ?",
+        answer:
+          "Le devis se construit sur un relevé et non sur le nombre de logements : nombre de cages et de niveaux, surface des halls, nature des sols, local à poubelles, présence d'un ascenseur et fréquence retenue. Deux résidences de taille identique peuvent avoir des devis très différents selon la surface vitrée et le nombre d'entrées à traiter.",
+      },
     ],
     communesProches: [
       "Champs-sur-Marne",
@@ -583,6 +614,11 @@ export const villes: readonly Ville[] = [
         answer:
           "Oui, jusqu'à 21 h et au-delà si le site le demande. Les espaces partagés de Montreuil ferment souvent tard : le créneau est fixé au contrat, avec les modalités d'accès et de fermeture. Les cuisines communes et les sanitaires sont traités à chaque passage, ce sont les deux postes les plus sollicités.",
       },
+      {
+        question: "Utilisez-vous des produits écologiques à Montreuil ?",
+        answer:
+          "Oui sur demande, sans supplément. Nous travaillons par défaut avec des produits professionnels choisis pour leur efficacité sur chaque support. Si vous préférez des produits porteurs d'un écolabel, ou vos propres produits, précisez-le à la demande de devis : nous adaptons le protocole et le notons au contrat pour que tous les intervenants l'appliquent.",
+      },
     ],
     communesProches: [
       "Bagnolet",
@@ -623,8 +659,7 @@ export const villes: readonly Ville[] = [
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
-        raison:
-          "La Plaine Saint-Denis concentre le tissu de bureaux le plus dense du département.",
+        raison: "La Plaine Saint-Denis concentre le tissu de bureaux le plus dense du département.",
       },
       {
         slug: "nettoyage-fin-de-chantier",
@@ -657,6 +692,11 @@ export const villes: readonly Ville[] = [
         question: "Prenez-vous en charge des locaux d'activité et des entrepôts ?",
         answer:
           "Oui, sur visite préalable. La surface seule ne dit rien du temps réel d'intervention : la hauteur sous plafond, l'encombrement et la nature des salissures pèsent davantage. Nous partons du protocole de sécurité du site plutôt que d'imposer le nôtre, et le devis est établi après constat sur place.",
+      },
+      {
+        question: "Intervenez-vous le week-end à Saint-Denis ?",
+        answer:
+          "Le samedi oui, le dimanche uniquement sur les sites qui l'imposent et avec une majoration annoncée dans le devis. Sur les locaux tertiaires, le week-end sert surtout aux opérations lourdes qui ne peuvent pas se faire en semaine : remise à niveau des sols, vitrerie complète, nettoyage après réaménagement de plateaux.",
       },
     ],
     communesProches: [
@@ -708,8 +748,7 @@ export const villes: readonly Ville[] = [
       },
       {
         slug: "menage-apres-demenagement",
-        raison:
-          "La rotation locative est soutenue autour de l'université et de l'hôpital.",
+        raison: "La rotation locative est soutenue autour de l'université et de l'hôpital.",
       },
     ],
     faits: [
@@ -732,6 +771,11 @@ export const villes: readonly Ville[] = [
         question: "Intervenez-vous dans les parkings souterrains des résidences ?",
         answer:
           "Oui, en balayage mécanique et lavage selon la configuration. C'est une prestation à chiffrer séparément de l'entretien des parties communes : elle mobilise du matériel différent et se planifie généralement à une fréquence bien plus basse, souvent une à quatre fois par an.",
+      },
+      {
+        question: "Quelle fréquence de nettoyage pour un cabinet médical à Créteil ?",
+        answer:
+          "Un passage quotidien est la règle pour un cabinet recevant du public tous les jours, avec traitement de la salle d'attente, des salles de soins et des sanitaires. Un cabinet ouvert deux à trois jours par semaine se nettoie après chaque journée de consultation. Ce qui compte n'est pas la surface mais le nombre de passages de patients entre deux interventions.",
       },
     ],
     communesProches: [
@@ -808,6 +852,11 @@ export const villes: readonly Ville[] = [
         answer:
           "Oui, c'est le principe de nos contrats d'entretien à domicile. Le même intervenant vous est affecté et connaît votre logement, ses supports fragiles et vos habitudes. En cas de congé ou d'absence, un remplaçant est briefé sur votre dossier avant son passage, jamais envoyé à l'aveugle.",
       },
+      {
+        question: "Le ménage à domicile ouvre-t-il droit à un avantage fiscal ?",
+        answer:
+          "Les prestations de ménage chez le particulier peuvent ouvrir droit à un avantage fiscal au titre des services à la personne, sous réserve que le prestataire soit déclaré pour cette activité. Nous vous indiquons précisément ce qu'il en est au moment du devis, sans promesse en l'air : la règle dépend du statut du prestataire, pas du type de logement.",
+      },
     ],
     communesProches: [
       "Saint-Mandé",
@@ -848,8 +897,7 @@ export const villes: readonly Ville[] = [
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
-        raison:
-          "Sièges d'entreprise, médias et agences forment le tissu dominant de la commune.",
+        raison: "Sièges d'entreprise, médias et agences forment le tissu dominant de la commune.",
       },
       {
         slug: "nettoyage-maison",
@@ -882,6 +930,11 @@ export const villes: readonly Ville[] = [
         question: "Nettoyez-vous les parties communes des copropriétés du Trapèze ?",
         answer:
           "Oui, halls vitrés, coursives, ascenseurs, locaux à vélos et à poubelles compris. Ce parc récent a beaucoup de surfaces vitrées : c'est le poste qui se dégrade le plus vite visuellement et celui qui détermine, en pratique, la fréquence à retenir dans le contrat.",
+      },
+      {
+        question: "Quel préavis faut-il pour arrêter un contrat d'entretien ?",
+        answer:
+          "Un mois, et sans durée minimale d'engagement. Nous ne pratiquons pas les contrats à reconduction longue : un prestataire qui doit être retenu par une clause plutôt que par la qualité de ses passages ne tient pas la durée de toute façon. La fréquence peut aussi être révisée en cours de contrat sans repasser par une négociation complète.",
       },
     ],
     communesProches: [
@@ -957,6 +1010,11 @@ export const villes: readonly Ville[] = [
         question: "Couvrez-vous Roissy-en-Brie et Ozoir-la-Ferrière ?",
         answer:
           "Oui, ces communes sont traitées dans la même tournée que Pontault-Combault, avec Émerainville, Lésigny et Férolles-Attilly. Le regroupement permet des créneaux matinaux réguliers et évite d'appliquer un surcoût de déplacement sur des interventions courtes.",
+      },
+      {
+        question: "Pouvez-vous reprendre un contrat déjà en cours avec un autre prestataire ?",
+        answer:
+          "Oui, et c'est un cas fréquent. Nous partons du cahier des charges existant, nous relevons ce qui n'était pas tenu, et nous chiffrons sur cette base plutôt que de proposer un périmètre différent impossible à comparer. La reprise se cale sur la fin du préavis en cours pour qu'il n'y ait aucune interruption de passage.",
       },
     ],
     communesProches: [

@@ -3,7 +3,6 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { landings } from "@/data/landings";
-import { site } from "@/lib/site";
 
 /**
  * Liens vers les pages d'atterrissage locales.
