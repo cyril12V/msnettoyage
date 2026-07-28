@@ -209,3 +209,27 @@ usage.
 donnée. La forme correcte se stocke avec la donnée. La faute est invisible tant qu'on ne lit que la
 liste des noms, et sautant aux yeux dès qu'on lit la page rendue : il faut regarder le rendu, pas
 seulement les données.
+
+---
+
+## 2026-07-28, L'absence d'une balise ne prouve pas l'absence de la configuration
+
+**Erreur.** J'ai conclu que Google Search Console n'était pas configuré parce que la balise
+`<meta name="google-site-verification">` était absente du HTML servi en production. J'ai annoncé au
+client que c'était le point bloquant de l'indexation, et détaillé une procédure de validation par
+balise HTML.
+
+**La réalité.** Search Console était validé depuis le début, par **enregistrement TXT dans la zone
+DNS**. Cette méthode ne laisse strictement aucune trace dans le code source des pages. Un
+`nslookup -type=TXT ms-nettoyages.com` l'aurait montré en deux secondes.
+
+**Le coût évité de justesse.** Le client aurait pu refaire une validation déjà faite, et créer une
+seconde propriété « Préfixe d'URL » redondante avec la propriété de domaine existante.
+
+**Règle.** Un test d'absence ne vaut que si l'on a énuméré **toutes** les façons dont la chose
+pourrait être présente. Avant d'annoncer qu'une intégration externe manque, lister ses méthodes de
+mise en place et vérifier chacune : balise HTML, fichier à la racine, en-tête HTTP, enregistrement
+DNS. Ici, une seule des quatre avait été contrôlée.
+
+**Règle secondaire.** Ne pas conclure sur l'état d'un système tiers à partir du seul dépôt. Le
+client agit en dehors du code, et le dépôt ne le sait pas.

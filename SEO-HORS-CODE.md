@@ -211,21 +211,33 @@ adresse du type `https://g.page/r/…/review` ouvrant directement le formulaire.
 Sans Search Console, on ne sait pas sur quoi le site ressort, ni s'il est indexé. C'est
 l'instrumentation, elle ne fait pas monter le site mais elle dit quoi corriger.
 
-### Mise en place
+### Mise en place : FAITE, par DNS
 
-1. Aller sur https://search.google.com/search-console, se connecter avec le compte Google de
-   l'entreprise, **le même que celui de la fiche**.
-2. Ajouter une propriété de type **« Préfixe d'URL »** avec l'adresse exacte du site.
-3. Choisir la méthode **« Balise HTML »**. Google affiche une ligne du type
-   `<meta name="google-site-verification" content="AbCdEf123..." />`. **Copier uniquement le contenu
-   de `content`**, pas la balise entière.
-4. Dans Vercel → projet `msnettoyage` → Settings → Environment Variables, ajouter :
-   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` = la valeur copiée. Cocher Production et Preview.
-5. Redéployer (Deployments → Redeploy). La balise est alors présente sur toutes les pages.
-6. Revenir dans Search Console et cliquer sur **Valider**.
+**Search Console est validé depuis le 28 juillet 2026, et le sitemap est soumis.** Rien à refaire.
 
-Le code nécessaire est déjà en place dans `src/app/layout.tsx` : il n'y a que la variable à
-renseigner.
+La validation est passée par un **enregistrement TXT dans la zone DNS**, pas par la balise HTML :
+
+```
+ms-nettoyages.com  TXT  "google-site-verification=49CBcj_pqdtoTtUBe69YE7k9sB0fmBn_usfPMwRo34g"
+```
+
+> **Ne pas conclure trop vite que Search Console n'est pas configuré.** Une validation par DNS ne
+> laisse **aucune trace dans le code source des pages** : chercher la balise
+> `<meta name="google-site-verification">` dans le HTML ne prouve rien. La seule vérification fiable
+> est `nslookup -type=TXT ms-nettoyages.com`.
+
+C'est d'ailleurs la meilleure des deux méthodes : elle crée une propriété **de domaine**, qui couvre
+d'un coup `http` et `https`, `www` et non-`www`, et tous les sous-domaines. Une propriété
+« Préfixe d'URL » n'aurait couvert qu'une seule de ces variantes.
+
+La variable `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` prévue dans `src/app/layout.tsx` devient donc
+inutile. Elle est laissée en place, vide : elle ne produit aucune balise et servira si une seconde
+propriété doit un jour être validée autrement.
+
+### Reste à faire : Bing
+
+Aucun enregistrement `msvalidate.01` dans la zone DNS à ce jour. Bing alimente ChatGPT et Copilot,
+et l'inscription prend cinq minutes : voir la section Bing plus bas.
 
 ### Immédiatement après la validation
 
@@ -358,13 +370,13 @@ exactement le signal recherché.
 
 Le référencement local n'est pas instantané. Voici ce qui est réaliste :
 
-| Échéance       | Ce qui doit être visible                                                                    |
-| -------------- | ------------------------------------------------------------------------------------------- |
-| Semaine 1      | Fiche Google créée, vérification lancée, Search Console validé, sitemap envoyé, 5 annuaires |
-| Semaines 2 à 4 | Fiche en ligne, 10 à 14 annuaires, pages villes indexées, premières impressions             |
-| Mois 2 à 3     | 10 avis atteints, marque « MS Nettoyages » dans le top 5, premiers partenariats             |
-| Mois 4 à 6     | Bloc de cartes sur Meaux, premières positions sur « nettoyage fin de chantier Paris »       |
-| Mois 6 à 12    | Positions sur les requêtes ville, montée progressive sur les requêtes parisiennes larges    |
+| Échéance       | Ce qui doit être visible                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| Semaine 1      | ✅ Search Console validé et sitemap envoyé. Reste : fiche Google, Bing, 5 annuaires      |
+| Semaines 2 à 4 | Fiche en ligne, 10 à 14 annuaires, pages villes indexées, premières impressions          |
+| Mois 2 à 3     | 10 avis atteints, marque « MS Nettoyages » dans le top 5, premiers partenariats          |
+| Mois 4 à 6     | Bloc de cartes sur Meaux, premières positions sur « nettoyage fin de chantier Paris »    |
+| Mois 6 à 12    | Positions sur les requêtes ville, montée progressive sur les requêtes parisiennes larges |
 
 **Deux facteurs limitent tout le reste : les avis et les liens.** Une fiche à 15 avis récents bat
 durablement un site techniquement parfait sans aucun avis, et aucune page ne remonte sur une requête
