@@ -45,6 +45,26 @@ export type Landing = {
   faits: readonly { label: string; value: string }[];
   /** Corps de page, trois paragraphes minimum. */
   corps: readonly string[];
+  /**
+   * Section tarifaire.
+   *
+   * « Combien ça coûte » est la première question de tout visiteur et l'une des
+   * plus tapées dans Google. Une page qui ne la traite pas laisse partir le
+   * visiteur chez un concurrent qui, lui, y répond.
+   *
+   * Aucun barème n'est publié : l'entreprise chiffre sur devis, et inventer une
+   * grille tarifaire qui ne serait pas appliquée serait une annonce trompeuse.
+   * Ce qui est publié, c'est ce qui fait réellement le prix, ce qui a plus de
+   * valeur pour le lecteur qu'un « à partir de » invérifiable.
+   */
+  tarification: {
+    /** Question posée en H2, formulée comme elle est tapée. */
+    question: string;
+    /** Réponse directe et autonome, placée juste après le H2. */
+    reponse: string;
+    /** Ce qui fait varier le prix, du plus au moins déterminant. */
+    facteurs: readonly { label: string; effet: string }[];
+  };
   /** Questions propres à cette prestation, balisées en FAQPage. */
   faq: readonly { question: string; answer: string }[];
   /** Visuel de la page, si disponible. */

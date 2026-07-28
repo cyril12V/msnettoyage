@@ -248,22 +248,103 @@ réponses de ChatGPT et de Copilot : l'inscription y prend cinq minutes et vaut 
 
 ---
 
-## 4. Annuaires et cohérence des informations
+## 4. Annuaires et liens entrants : le vrai frein aujourd'hui
 
-Google recoupe les mentions de l'entreprise sur le web. Plus le nom, l'adresse et le téléphone
-apparaissent à l'identique sur des sites tiers, plus la fiche est jugée fiable.
+L'audit du 28 juillet 2026 est sans appel sur ce point : **zéro domaine référent détecté**. Aucun
+site ne pointe vers celui-ci. C'est le premier facteur qui bloque toute progression sur une requête
+parisienne, et aucune optimisation de page ne le compense.
 
-À faire dans l'ordre, en recopiant **exactement** les mêmes valeurs qu'au chapitre 1 :
+Deux effets distincts, tous deux nécessaires :
 
-1. **Pages Jaunes** (pagesjaunes.fr) : inscription gratuite, forte autorité en France.
-2. **Annuaire de la Chambre de commerce** et annuaires locaux du Pays de Meaux.
-3. **Facebook Page professionnelle** : à créer, elle sert de second point de contact et est indexée
-   par Google. Renseigner ensuite l'adresse dans `src/lib/site.ts` → `social.facebook`.
-4. **Apple Plans** (mapsconnect.apple.com) : indispensable pour les recherches faites depuis un
-   iPhone, souvent oublié par les concurrents.
+- **L'autorité.** Un lien depuis un site tiers reconnu transmet de la crédibilité. Sans aucun lien,
+  le site part de zéro face à des concurrents installés depuis des années.
+- **La citation NAP.** Google recoupe les mentions du nom, de l'adresse et du téléphone. Plus elles
+  apparaissent à l'identique sur des sites tiers, plus la fiche Google est jugée fiable, ce qui
+  joue directement sur le bloc de cartes.
 
-Éviter les annuaires payants qui promettent un référencement : leur valeur est nulle, et
-l'accumulation d'inscriptions de mauvaise qualité peut nuire.
+### Le texte à recopier partout, sans une virgule d'écart
+
+```
+Nom      : MS Nettoyages
+Adresse  : 2 square Courbet, 77100 Meaux
+Téléphone: 06 20 46 07 03
+Site     : https://ms-nettoyages.com
+Email    : contact@ms-nettoyages.com
+SIRET    : 944 486 562 00019
+Activité : Société de nettoyage, entretien de locaux, ménage à domicile
+Zone     : Paris et Île-de-France, depuis Meaux (77)
+Horaires : Lun-Ven 7h-19h, Sam 8h-13h
+```
+
+**Le « s » de « Nettoyages » n'est pas un détail.** Trois homonymes mieux référencés captent
+aujourd'hui la recherche de marque : `msnettoyages.fr` (Besançon), `ms-nettoyage74.fr` (Thonon).
+Chaque profil créé sous l'orthographe exacte est un résultat de plus qui pousse les leurs vers le
+bas.
+
+### Semaine 1, les cinq qui comptent le plus
+
+| # | Annuaire                          | Pourquoi                                                                    |
+| - | --------------------------------- | --------------------------------------------------------------------------- |
+| 1 | **Google Business Profile**       | Voir chapitre 1. Rien ne passe avant.                                        |
+| 2 | **Pages Jaunes** (pagesjaunes.fr) | Première autorité française sur le local, encore très consultée directement. |
+| 3 | **Societe.com**                   | Fiche entreprise créée automatiquement depuis le SIRET, à revendiquer.       |
+| 4 | **Yelp France**                   | Résultat de marque solide, indexé rapidement.                                |
+| 5 | **Apple Plans** (mapsconnect)     | Indispensable sur iPhone, presque toujours oublié par les concurrents.       |
+
+### Semaine 2
+
+| # | Annuaire                      | Pourquoi                                                       |
+| - | ----------------------------- | -------------------------------------------------------------- |
+| 6 | **Kompass.com**               | Annuaire B2B, utile pour les requêtes bureaux et entreprises.   |
+| 7 | **Europages**                 | Même logique, portée européenne.                                |
+| 8 | **Hoodspot**                  | Annuaire local, bien indexé sur les requêtes ville.             |
+| 9 | **Cylex France**              | Inscription rapide, citation NAP supplémentaire.                |
+| 10| **CCI Seine-et-Marne**        | cci77.fr, lien local à forte légitimité.                        |
+
+### Semaine 3, les annuaires du métier
+
+| #  | Annuaire            | Pourquoi                                                        |
+| -- | ------------------- | ---------------------------------------------------------------- |
+| 11 | **Houzz**           | Prescripteurs de la rénovation, cible directe du fin de chantier. |
+| 12 | **Habitatpresto**   | Génère des demandes de devis en plus du lien.                     |
+| 13 | **Travaux.com**     | Même logique, orienté chantier.                                   |
+| 14 | **Infogreffe**      | Fiche légale, renforce la cohérence NAP.                          |
+
+### Réseaux sociaux, à créer sous le nom exact
+
+Une page Facebook et un compte Instagram nommés `MS Nettoyages` produisent chacun un résultat de
+marque supplémentaire dans Google. Une fois créés, renseigner leurs adresses dans
+`src/lib/site.ts` → `social.facebook` et `social.instagram` : elles rejoignent automatiquement le
+balisage `sameAs` du site, ce qui relie explicitement toutes ces présences à la même entité.
+
+### Ce qu'il ne faut pas faire
+
+- **Acheter des packs de liens.** Les offres à « 200 backlinks pour 50 € » produisent des liens
+  depuis des sites sans trafic, souvent déjà pénalisés. Le risque dépasse le gain.
+- **Varier le NAP.** Écrire « MS Nettoyage » sur un annuaire et « MS Nettoyages » sur un autre
+  divise le signal au lieu de le cumuler.
+- **Multiplier les annuaires sans intérêt.** Passé la quinzaine ci-dessus, le rendement s'effondre.
+  Le temps est mieux investi dans les partenariats du chapitre 5.
+
+---
+
+## 5. Partenariats locaux : les liens qui pèsent vraiment
+
+Un lien depuis une agence immobilière de Chelles vaut plus qu'un annuaire généraliste : il est
+thématique, local, et un concurrent ne peut pas l'obtenir en s'inscrivant quelque part.
+
+Quatre familles, par ordre de facilité :
+
+1. **Agences immobilières et syndics** (Meaux, Chelles, Lagny, Créteil). Argument : vous leur livrez
+   des logements prêts pour l'état des lieux, ils vous citent dans leur page « nos partenaires ».
+2. **Entreprises de déménagement.** Complémentarité évidente avec le ménage après déménagement.
+3. **Artisans du bâtiment, peintres, maîtres d'œuvre.** Ils ont besoin d'un prestataire de fin de
+   chantier fiable ; c'est le mot-clé le plus rentable de la stratégie.
+4. **Conciergeries Airbnb et groupes d'hôtes.** Forums et groupes Facebook d'hôtes franciliens.
+
+Demander systématiquement que le lien pointe vers la **page de prestation concernée**, pas vers la
+page d'accueil : un lien vers `/nettoyage-fin-de-chantier` depuis le site d'un artisan est
+exactement le signal recherché.
 
 ---
 
@@ -271,28 +352,61 @@ l'accumulation d'inscriptions de mauvaise qualité peut nuire.
 
 Le référencement local n'est pas instantané. Voici ce qui est réaliste :
 
-| Échéance       | Ce qui doit être visible                                                             |
-| -------------- | ------------------------------------------------------------------------------------ |
-| Semaine 1      | Fiche Google créée, vérification lancée, Search Console validé, sitemap envoyé       |
-| Semaines 2 à 4 | Fiche en ligne et visible, pages indexées, premières impressions dans Search Console |
-| Mois 2 à 3     | 10 avis atteints, positions qui se stabilisent sur les requêtes longues              |
-| Mois 4 à 6     | Présence dans le bloc de cartes sur les requêtes principales à Meaux                 |
+| Échéance       | Ce qui doit être visible                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| Semaine 1      | Fiche Google créée, vérification lancée, Search Console validé, sitemap envoyé, 5 annuaires |
+| Semaines 2 à 4 | Fiche en ligne, 10 à 14 annuaires, pages villes indexées, premières impressions           |
+| Mois 2 à 3     | 10 avis atteints, marque « MS Nettoyages » dans le top 5, premiers partenariats           |
+| Mois 4 à 6     | Bloc de cartes sur Meaux, premières positions sur « nettoyage fin de chantier Paris »     |
+| Mois 6 à 12    | Positions sur les requêtes ville, montée progressive sur les requêtes parisiennes larges  |
 
-**Le facteur limitant n'est pas le site, il est les avis.** Une fiche à 15 avis récents battra
-durablement un site techniquement parfait sans aucun avis. C'est là qu'il faut mettre l'énergie.
+**Deux facteurs limitent tout le reste : les avis et les liens.** Une fiche à 15 avis récents bat
+durablement un site techniquement parfait sans aucun avis, et aucune page ne remonte sur une requête
+parisienne sans un minimum de domaines référents. C'est là qu'il faut mettre l'énergie, pas dans une
+nouvelle optimisation de balise.
 
 ---
 
-## Étendre à d'autres villes, plus tard
+## Le mot-clé à attaquer en premier
 
-Quand Meaux sera acquis, la même mécanique se réplique. **Une ville = un jeu de pages**, avec du
-contenu réellement réécrit.
+`nettoyage fin de chantier paris` : 110 recherches par mois, 9,70 € de coût par clic, difficulté
+faible. C'est le seul mot-clé du secteur qui combine un vrai potentiel commercial et une
+concurrence accessible sans autorité établie.
 
-Concrètement : dupliquer les entrées de `src/data/landings.ts` en remplaçant la ville, **puis
-réécrire les paragraphes**. Un simple chercher-remplacer produit des pages jumelles, que Google
-identifie immédiatement comme du remplissage et n'indexe pas. `tests/landings.test.ts` échoue
-d'ailleurs si deux pages partagent le même texte : le garde-fou est déjà en place.
+La page existe et lui est entièrement dédiée : `/nettoyage-fin-de-chantier`. Ce qui reste à faire
+est hors du site :
 
-Ordre suggéré, par population et proximité : Chelles, Melun, Torcy, Lagny-sur-Marne, Coulommiers.
-Ne pas viser Paris avant d'être solidement installé en Seine-et-Marne : la concurrence y est d'un
-tout autre ordre et l'effort serait perdu.
+1. Obtenir trois à cinq liens depuis des artisans, maîtres d'œuvre ou architectes d'intérieur
+   franciliens, pointant vers cette page précise.
+2. Déclarer le service « Nettoyage de fin de chantier » dans la fiche Google, avec la description
+   de la page.
+3. S'inscrire sur Houzz, Habitatpresto et Travaux.com, les trois annuaires où se trouvent les
+   prescripteurs de ce marché.
+
+---
+
+## Étendre à d'autres villes
+
+Douze villes ont désormais une page : Paris, Meaux, Chelles, Lagny-sur-Marne, Torcy,
+Noisy-le-Grand, Montreuil, Saint-Denis, Créteil, Vincennes, Boulogne-Billancourt et
+Pontault-Combault.
+
+Pour en ajouter une treizième, la règle est la même et elle n'est pas négociable : **écrire la page,
+ne pas la dupliquer.** Une entrée de `src/data/villes.ts` recopiée en remplaçant le nom de la ville
+produit une page satellite, que Google identifie et désindexe, en emportant souvent la confiance
+accordée au reste du site.
+
+Ce que doit contenir une nouvelle entrée pour valoir la peine d'exister :
+
+- un parc immobilier décrit précisément (époque de construction, type de bâti, supports courants) ;
+- un tissu économique réel (quels clients, quel type de contrat) ;
+- une contrainte d'accès ou de délai propre à la commune ;
+- quatre questions fréquentes qui ne se posent pas ailleurs.
+
+`tests/villes.test.ts` refuse tout chapeau, paragraphe, question, réponse ou justification déjà
+présent sur une autre ville, et exige 600 mots de texte publié. Le garde-fou se déclenche au premier
+`npm run test`, avant la production.
+
+Ordre suggéré pour la suite, par volume et proximité : Melun, Coulommiers, Bussy-Saint-Georges,
+Roissy-en-Brie, Champs-sur-Marne, Neuilly-sur-Marne. Ne pas dépasser une nouvelle ville par mois :
+au-delà, la qualité rédactionnelle tombe et le bénéfice s'inverse.
