@@ -293,10 +293,7 @@ export function prestationLocaleJsonLd(landing: Landing): JsonLdObject {
     // La région vient en tête, dans la forme imposée par le document de
     // balisage ; les communes qui suivent portent le signal local que la seule
     // mention « Île-de-France » ne donne pas.
-    areaServed: [
-      { "@type": "Region", name: "Île-de-France" },
-      ...zoneDIntervention(),
-    ],
+    areaServed: [{ "@type": "Region", name: "Île-de-France" }, ...zoneDIntervention()],
     // Le devis est gratuit : c'est l'offre réellement faite au visiteur, et
     // c'est ce que déclare le document de balisage. Le prix de la prestation
     // elle-même n'est pas publié, faute de barème appliqué.

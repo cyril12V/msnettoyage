@@ -54,7 +54,9 @@ describe("pages de prestation", () => {
   });
 
   it("garde l'exception de slug limitée à la seule page fin de chantier", () => {
-    expect(landings.filter((landing) => landing.slug === EXCEPTION_VILLE_DANS_SLUG)).toHaveLength(1);
+    expect(landings.filter((landing) => landing.slug === EXCEPTION_VILLE_DANS_SLUG)).toHaveLength(
+      1,
+    );
   });
 
   it("annonce la couverture Île-de-France dans la requête, le H1 et le titre", () => {
