@@ -41,7 +41,7 @@ describe("pages d'atterrissage", () => {
 
   it("porte déjà le nom de la marque dans les titres de balise", () => {
     // Les pages les publient donc en `absolute` : sinon le gabarit du layout
-    // ajoute « | MS Nettoyage » une seconde fois.
+    // ajoute « | MS Nettoyages » une seconde fois.
     for (const landing of landings) {
       expect(landing.metaTitle, `sans marque : ${landing.slug}`).toContain(site.name);
     }

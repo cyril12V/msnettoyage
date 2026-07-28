@@ -101,7 +101,7 @@ describe("zones", () => {
 
   it("porte déjà le nom de la marque dans les titres de balise", () => {
     // La page Meaux doit donc les publier en `absolute`, sinon le gabarit du
-    // layout ajoute « | MS Nettoyage » une seconde fois.
+    // layout ajoute « | MS Nettoyages » une seconde fois.
     for (const zone of zones) {
       expect(zone.metaTitle, `sans marque : ${zone.slug}`).toContain(site.name);
     }

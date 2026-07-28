@@ -10,6 +10,7 @@ import { Process } from "@/components/sections/Process";
 import { Promesse } from "@/components/sections/Promesse";
 import { Temoignages } from "@/components/sections/Temoignages";
 import { Univers } from "@/components/sections/Univers";
+import { VillesSection } from "@/components/sections/VillesSection";
 import { ZonesSection } from "@/components/sections/ZonesSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faq } from "@/data/faq";
@@ -74,6 +75,7 @@ export default function Page() {
       <Promesse />
       <Temoignages />
       <Process />
+      <VillesSection />
       <ZonesSection />
       <FaqSection items={faq} />
       <CtaDevis avecVisuel />

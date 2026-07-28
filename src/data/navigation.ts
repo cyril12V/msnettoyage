@@ -1,4 +1,5 @@
 import { landings } from "@/data/landings";
+import { villes } from "@/data/villes";
 
 export type NavLink = {
   href: string;
@@ -14,23 +15,35 @@ export type NavLink = {
  */
 export const mainNav: readonly NavLink[] = [
   { href: "/", label: "Accueil" },
-  { href: "/#prestations-meaux", label: "Nos prestations" },
+  { href: "/#prestations", label: "Nos prestations" },
+  { href: "/#villes", label: "Nos villes" },
   { href: "/#realisations", label: "Réalisations" },
-  { href: "/#apropos", label: "À propos" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
 /**
- * Prestations locales du pied de page.
+ * Prestations du pied de page.
  *
- * Dérivées de `landings.ts` : ajouter une page d'atterrissage la fait
- * apparaître ici automatiquement. Ces liens présents sur toutes les pages
- * garantissent que Google atteint chacune d'elles.
+ * Dérivées de `landings.ts` : ajouter une page de prestation la fait apparaître
+ * ici automatiquement. Ces liens présents sur toutes les pages garantissent que
+ * Google atteint chacune d'elles.
  */
 export const prestationsNav: readonly NavLink[] = landings.map((landing) => ({
   href: `/${landing.slug}`,
-  label: landing.requete,
+  label: landing.libelleCourt,
+}));
+
+/**
+ * Villes du pied de page.
+ *
+ * Même rôle que ci-dessus pour les pages villes : sans lien depuis toutes les
+ * pages, une page ville reste à deux clics de l'accueil et se fait explorer
+ * rarement. Le texte du lien est la requête visée, pas le nom de ville seul.
+ */
+export const villesNav: readonly NavLink[] = villes.map((ville) => ({
+  href: `/${ville.slug}`,
+  label: `Nettoyage à ${ville.nom}`,
 }));
 
 /** Navigation générale du pied de page. */

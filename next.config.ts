@@ -69,15 +69,22 @@ const nextConfig: NextConfig = {
   /**
    * Redirections permanentes.
    *
-   * Deux familles :
+   * Trois familles :
    *  - les adresses de sections, qui ramènent à l'ancre correspondante de la
    *    page d'accueil. L'ancre n'est jamais transmise au serveur, c'est la
    *    redirection qui la réintroduit ;
-   *  - les anciennes URLs, conservées pour ne pas casser un lien déjà partagé.
+   *  - les anciennes URLs de prestation, suffixées par la ville. Elles ont été
+   *    dégéolocalisées pour pouvoir remonter ailleurs qu'à Meaux : une URL
+   *    `/nettoyage-maison-meaux` annonce d'elle-même qu'elle ne parle pas de
+   *    Paris. Le 301 transmet à la nouvelle URL le peu d'historique acquis et
+   *    évite de casser un lien déjà partagé ;
+   *  - les anciennes adresses génériques, conservées pour la même raison.
    *
-   * `/meaux` pointe désormais sur la page d'accueil : celle-ci vise « société de
-   * nettoyage à Meaux » et deux pages ne peuvent pas viser la même requête sans
-   * se nuire mutuellement.
+   * `/meaux` pointe désormais sur `/nettoyage-meaux`. La page d'accueil visait
+   * « société de nettoyage à Meaux » et interdisait donc une page Meaux ; elle
+   * vise désormais Paris et l'Île-de-France, ce qui rend la page de ville non
+   * seulement possible mais nécessaire, faute de quoi la requête serait
+   * abandonnée.
    */
   async redirects() {
     const versAncre = (source: string, ancre: string) => ({
@@ -86,11 +93,25 @@ const nextConfig: NextConfig = {
       permanent: true,
     });
 
+    const anciennePrestation = (source: string, destination: string) => ({
+      source,
+      destination,
+      permanent: true,
+    });
+
     return [
-      versAncre("/services", "prestations-meaux"),
-      versAncre("/services/:slug", "prestations-meaux"),
-      versAncre("/nos-services", "prestations-meaux"),
-      versAncre("/prestations", "prestations-meaux"),
+      anciennePrestation("/nettoyage-maison-meaux", "/nettoyage-maison"),
+      anciennePrestation("/nettoyage-bureau-meaux", "/nettoyage-bureau"),
+      anciennePrestation("/menage-particulier-meaux", "/menage-particulier"),
+      anciennePrestation("/menage-apres-travaux-meaux", "/nettoyage-fin-de-chantier"),
+      anciennePrestation("/menage-apres-travaux", "/nettoyage-fin-de-chantier"),
+      anciennePrestation("/menage-apres-demenagement-meaux", "/menage-apres-demenagement"),
+      anciennePrestation("/menage-airbnb-meaux", "/menage-airbnb"),
+
+      versAncre("/services", "prestations"),
+      versAncre("/services/:slug", "prestations"),
+      versAncre("/nos-services", "prestations"),
+      versAncre("/prestations", "prestations"),
       versAncre("/univers", "univers"),
       versAncre("/realisations", "realisations"),
       versAncre("/cas-clients", "cas"),
@@ -98,9 +119,10 @@ const nextConfig: NextConfig = {
       versAncre("/faq", "faq"),
       versAncre("/devis", "contact"),
       versAncre("/contact", "contact"),
-      { source: "/meaux", destination: "/", permanent: true },
-      { source: "/zones-d-intervention", destination: "/#zones", permanent: true },
-      { source: "/zones-d-intervention/:slug", destination: "/#zones", permanent: true },
+      { source: "/meaux", destination: "/nettoyage-meaux", permanent: true },
+      { source: "/paris", destination: "/nettoyage-paris", permanent: true },
+      { source: "/zones-d-intervention", destination: "/#villes", permanent: true },
+      { source: "/zones-d-intervention/:slug", destination: "/#villes", permanent: true },
     ];
   },
 };

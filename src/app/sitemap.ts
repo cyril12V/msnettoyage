@@ -3,6 +3,7 @@ import { casClients } from "@/data/cas-clients";
 import { landings } from "@/data/landings";
 import { realisations } from "@/data/realisations";
 import { univers } from "@/data/univers";
+import { villes } from "@/data/villes";
 import { absoluteUrl } from "@/lib/site";
 
 /**
@@ -48,14 +49,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: imagesAccueil(),
     },
 
-    // Les pages d'atterrissage portent le référencement local : priorité haute,
-    // juste sous la page d'accueil.
+    // Les pages de prestation portent le référencement sur le « quoi » :
+    // priorité haute, juste sous la page d'accueil.
     ...landings.map((landing) => ({
       url: absoluteUrl(`/${landing.slug}`),
       lastModified: derniereModification,
       changeFrequency: "monthly" as const,
       priority: 0.9,
       ...(landing.image ? { images: [absoluteUrl(landing.image)] } : {}),
+    })),
+
+    // Les pages villes portent le « où ». Priorité légèrement inférieure : ce
+    // sont les prestations qui doivent capter en premier, les villes captent la
+    // longue traîne géographique.
+    ...villes.map((ville) => ({
+      url: absoluteUrl(`/${ville.slug}`),
+      lastModified: derniereModification,
+      changeFrequency: "monthly" as const,
+      priority: ville.base ? 0.9 : 0.8,
     })),
 
     {

@@ -24,10 +24,10 @@ export const zones: readonly Zone[] = [
     name: "Meaux",
     departement: "77",
     base: true,
-    metaTitle: "Entreprise de nettoyage à Meaux (77100) | MS Nettoyage",
+    metaTitle: "Entreprise de nettoyage à Meaux (77100) | MS Nettoyages",
     metaDescription:
-      "MS Nettoyage est basée à Meaux : entretien de locaux, grand ménage, remise en état après travaux et ménage Airbnb à Meaux et dans l'agglomération. Devis sous 24 h.",
-    lede: "MS Nettoyage est une entreprise de nettoyage basée à Meaux (77100) qui intervient dans la ville et l'ensemble du Pays de Meaux.",
+      "MS Nettoyages est basée à Meaux : entretien de locaux, grand ménage, remise en état après travaux et ménage Airbnb à Meaux et dans l'agglomération. Devis sous 24 h.",
+    lede: "MS Nettoyages est une entreprise de nettoyage basée à Meaux (77100) qui intervient dans la ville et l'ensemble du Pays de Meaux.",
     communes: [
       "Meaux",
       "Nanteuil-lès-Meaux",
@@ -51,10 +51,10 @@ export const zones: readonly Zone[] = [
     slug: "seine-et-marne",
     name: "Seine-et-Marne",
     departement: "77",
-    metaTitle: "Nettoyage professionnel en Seine-et-Marne (77) | MS Nettoyage",
+    metaTitle: "Nettoyage professionnel en Seine-et-Marne (77) | MS Nettoyages",
     metaDescription:
       "Entreprise de nettoyage en Seine-et-Marne : entretien de bureaux et commerces, grand ménage, fin de chantier et ménage Airbnb. Devis gratuit sous 24 h.",
-    lede: "MS Nettoyage couvre la Seine-et-Marne depuis Meaux, avec une présence renforcée sur le nord et le centre du département.",
+    lede: "MS Nettoyages couvre la Seine-et-Marne depuis Meaux, avec une présence renforcée sur le nord et le centre du département.",
     communes: [
       "Chelles",
       "Torcy",
@@ -78,10 +78,10 @@ export const zones: readonly Zone[] = [
     slug: "paris",
     name: "Paris",
     departement: "75",
-    metaTitle: "Entreprise de nettoyage à Paris (75) | MS Nettoyage",
+    metaTitle: "Entreprise de nettoyage à Paris (75) | MS Nettoyages",
     metaDescription:
       "Nettoyage de bureaux, commerces et logements à Paris : entretien régulier, grand ménage, remise en état après travaux et rotation Airbnb. Devis gratuit.",
-    lede: "MS Nettoyage intervient dans les 20 arrondissements de Paris, principalement sur le nettoyage de bureaux, la rotation de locations courte durée et la remise en état de logements.",
+    lede: "MS Nettoyages intervient dans les 20 arrondissements de Paris, principalement sur le nettoyage de bureaux, la rotation de locations courte durée et la remise en état de logements.",
     communes: [
       "Paris 1er au 20e arrondissement",
       "Quartier central des affaires",
@@ -101,10 +101,10 @@ export const zones: readonly Zone[] = [
     slug: "seine-saint-denis",
     name: "Seine-Saint-Denis",
     departement: "93",
-    metaTitle: "Nettoyage professionnel en Seine-Saint-Denis (93) | MS Nettoyage",
+    metaTitle: "Nettoyage professionnel en Seine-Saint-Denis (93) | MS Nettoyages",
     metaDescription:
       "Entreprise de nettoyage en Seine-Saint-Denis : bureaux, commerces, entrepôts, remise en état après travaux et parties communes. Devis gratuit sous 24 h.",
-    lede: "MS Nettoyage intervient dans toute la Seine-Saint-Denis, avec une activité concentrée sur les locaux professionnels et les entrepôts.",
+    lede: "MS Nettoyages intervient dans toute la Seine-Saint-Denis, avec une activité concentrée sur les locaux professionnels et les entrepôts.",
     communes: [
       "Saint-Denis",
       "Montreuil",
@@ -132,10 +132,10 @@ export const zones: readonly Zone[] = [
     slug: "val-de-marne",
     name: "Val-de-Marne",
     departement: "94",
-    metaTitle: "Entreprise de nettoyage dans le Val-de-Marne (94) | MS Nettoyage",
+    metaTitle: "Entreprise de nettoyage dans le Val-de-Marne (94) | MS Nettoyages",
     metaDescription:
       "Nettoyage de bureaux, commerces et logements dans le Val-de-Marne : entretien régulier, grand ménage et remise en état après travaux. Devis gratuit.",
-    lede: "MS Nettoyage couvre le Val-de-Marne, du nord du département jusqu'aux communes de la vallée de la Marne et de la Seine.",
+    lede: "MS Nettoyages couvre le Val-de-Marne, du nord du département jusqu'aux communes de la vallée de la Marne et de la Seine.",
     communes: [
       "Créteil",
       "Vitry-sur-Seine",
@@ -159,10 +159,10 @@ export const zones: readonly Zone[] = [
     slug: "hauts-de-seine",
     name: "Hauts-de-Seine",
     departement: "92",
-    metaTitle: "Nettoyage de bureaux dans les Hauts-de-Seine (92) | MS Nettoyage",
+    metaTitle: "Nettoyage de bureaux dans les Hauts-de-Seine (92) | MS Nettoyages",
     metaDescription:
       "Entretien de bureaux, commerces et logements dans les Hauts-de-Seine. Intervention hors heures d'ouverture, équipe déclarée. Devis gratuit sous 24 h.",
-    lede: "MS Nettoyage intervient dans les Hauts-de-Seine, principalement sur le nettoyage de bureaux et de surfaces tertiaires.",
+    lede: "MS Nettoyages intervient dans les Hauts-de-Seine, principalement sur le nettoyage de bureaux et de surfaces tertiaires.",
     communes: [
       "Boulogne-Billancourt",
       "Nanterre",
@@ -186,10 +186,10 @@ export const zones: readonly Zone[] = [
     slug: "val-d-oise",
     name: "Val-d'Oise",
     departement: "95",
-    metaTitle: "Entreprise de nettoyage dans le Val-d'Oise (95) | MS Nettoyage",
+    metaTitle: "Entreprise de nettoyage dans le Val-d'Oise (95) | MS Nettoyages",
     metaDescription:
       "Nettoyage professionnel dans le Val-d'Oise : entretien de locaux, fin de chantier, remise en état après travaux et ménage Airbnb. Devis gratuit sous 24 h.",
-    lede: "MS Nettoyage couvre le Val-d'Oise, avec une desserte rapide de l'est du département depuis Meaux.",
+    lede: "MS Nettoyages couvre le Val-d'Oise, avec une desserte rapide de l'est du département depuis Meaux.",
     communes: [
       "Cergy",
       "Argenteuil",
@@ -213,10 +213,10 @@ export const zones: readonly Zone[] = [
     slug: "essonne",
     name: "Essonne",
     departement: "91",
-    metaTitle: "Nettoyage professionnel en Essonne (91) | MS Nettoyage",
+    metaTitle: "Nettoyage professionnel en Essonne (91) | MS Nettoyages",
     metaDescription:
       "Entreprise de nettoyage en Essonne : entretien de bureaux et commerces, grand ménage, remise en état après travaux. Devis gratuit sous 24 h.",
-    lede: "MS Nettoyage intervient en Essonne sur programmation, principalement pour des contrats d'entretien et des remises en état.",
+    lede: "MS Nettoyages intervient en Essonne sur programmation, principalement pour des contrats d'entretien et des remises en état.",
     communes: [
       "Évry-Courcouronnes",
       "Massy",
@@ -240,10 +240,10 @@ export const zones: readonly Zone[] = [
     slug: "yvelines",
     name: "Yvelines",
     departement: "78",
-    metaTitle: "Entreprise de nettoyage dans les Yvelines (78) | MS Nettoyage",
+    metaTitle: "Entreprise de nettoyage dans les Yvelines (78) | MS Nettoyages",
     metaDescription:
       "Nettoyage professionnel dans les Yvelines : entretien de locaux, grand ménage, remise en état après travaux. Intervention sur planification. Devis gratuit.",
-    lede: "MS Nettoyage intervient dans les Yvelines sur planification, pour des prestations d'entretien régulier et de remise en état.",
+    lede: "MS Nettoyages intervient dans les Yvelines sur planification, pour des prestations d'entretien régulier et de remise en état.",
     communes: [
       "Versailles",
       "Saint-Germain-en-Laye",

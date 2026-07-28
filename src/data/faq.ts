@@ -16,15 +16,15 @@ export type FaqItem = {
 
 export const faq: readonly FaqItem[] = [
   {
-    question: "Dans quelles villes MS Nettoyage intervient-il ?",
+    question: "Dans quelles villes MS Nettoyages intervient-il ?",
     answer:
-      "MS Nettoyage est basée à Meaux (77100) et intervient dans toute l'Île-de-France : Seine-et-Marne, Paris, Seine-Saint-Denis, Val-de-Marne, Hauts-de-Seine, Val-d'Oise, Essonne et Yvelines. Les délais les plus courts sont sur Meaux et le nord de la Seine-et-Marne.",
+      "MS Nettoyages est basée à Meaux (77100) et intervient dans toute l'Île-de-France : Seine-et-Marne, Paris, Seine-Saint-Denis, Val-de-Marne, Hauts-de-Seine, Val-d'Oise, Essonne et Yvelines. Les délais les plus courts sont sur Meaux et le nord de la Seine-et-Marne.",
     categorie: "Organisation",
   },
   {
     question: "Combien coûte une prestation de nettoyage ?",
     answer:
-      "Le prix dépend de la surface, du type de prestation et de la fréquence : un entretien régulier ne se chiffre pas comme une remise en état après travaux. MS Nettoyage établit un devis gratuit et sans engagement, transmis sous 24 h après la demande. Aucun tarif n'est facturé avant acceptation écrite du devis.",
+      "Le prix dépend de la surface, du type de prestation et de la fréquence : un entretien régulier ne se chiffre pas comme une remise en état après travaux. MS Nettoyages établit un devis gratuit et sans engagement, transmis sous 24 h après la demande. Aucun tarif n'est facturé avant acceptation écrite du devis.",
     categorie: "Devis et tarifs",
   },
   {
@@ -36,7 +36,7 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Faut-il fournir les produits et le matériel ?",
     answer:
-      "Non. MS Nettoyage vient avec son propre matériel et ses produits professionnels, adaptés à chaque type de support. Si vous souhaitez que des produits spécifiques soient utilisés (allergies, label écologique, protocole interne), il suffit de le préciser lors de la demande de devis.",
+      "Non. MS Nettoyages vient avec son propre matériel et ses produits professionnels, adaptés à chaque type de support. Si vous souhaitez que des produits spécifiques soient utilisés (allergies, label écologique, protocole interne), il suffit de le préciser lors de la demande de devis.",
     categorie: "Prestations",
   },
   {
@@ -55,13 +55,13 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Le personnel est-il déclaré et assuré ?",
     answer:
-      "Oui. Tous les intervenants de MS Nettoyage sont déclarés et l'entreprise est couverte par une assurance responsabilité civile professionnelle. L'attestation d'assurance et les justificatifs de déclaration sont transmis sur simple demande.",
+      "Oui. Tous les intervenants de MS Nettoyages sont déclarés et l'entreprise est couverte par une assurance responsabilité civile professionnelle. L'attestation d'assurance et les justificatifs de déclaration sont transmis sur simple demande.",
     categorie: "Garanties",
   },
   {
     question: "Que se passe-t-il si le résultat ne me convient pas ?",
     answer:
-      "Signalez-le dans les 48 h suivant l'intervention : MS Nettoyage repasse gratuitement sur les points concernés. Cet engagement de réintervention s'applique à toutes les prestations, sans condition de montant.",
+      "Signalez-le dans les 48 h suivant l'intervention : MS Nettoyages repasse gratuitement sur les points concernés. Cet engagement de réintervention s'applique à toutes les prestations, sans condition de montant.",
     categorie: "Garanties",
   },
   {
@@ -73,7 +73,7 @@ export const faq: readonly FaqItem[] = [
   {
     question: "Intervenez-vous pour des particuliers ou uniquement pour des professionnels ?",
     answer:
-      "Les deux. MS Nettoyage travaille pour des particuliers (grand ménage, remise en état après travaux, ménage de location saisonnière) comme pour des professionnels : bureaux, commerces, copropriétés, entrepôts et locaux techniques.",
+      "Les deux. MS Nettoyages travaille pour des particuliers (grand ménage, remise en état après travaux, ménage de location saisonnière) comme pour des professionnels : bureaux, commerces, copropriétés, entrepôts et locaux techniques.",
     categorie: "Prestations",
   },
   {

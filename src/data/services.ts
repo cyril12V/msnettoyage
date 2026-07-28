@@ -33,7 +33,7 @@ export const services: readonly Service[] = [
     listLabel: "Entretien régulier (quotidien, hebdomadaire, mensuel)",
     title: "Entretien régulier de locaux en Île-de-France",
     lede: "L'entretien régulier est un contrat de nettoyage récurrent (quotidien, hebdomadaire ou mensuel) assuré par la même équipe, selon un cahier des charges défini avec vous.",
-    metaTitle: "Entretien régulier de locaux en Île-de-France | MS Nettoyage",
+    metaTitle: "Entretien régulier de locaux en Île-de-France | MS Nettoyages",
     metaDescription:
       "Contrat de nettoyage récurrent en Île-de-France : passage quotidien, hebdomadaire ou mensuel, même équipe à chaque intervention. Devis gratuit sous 24 h.",
     icon: "calendar",
@@ -70,7 +70,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage en profondeur",
     title: "Nettoyage en profondeur (grand ménage)",
     lede: "Le nettoyage en profondeur est une intervention ponctuelle qui traite ce que l'entretien courant ne couvre pas : détartrage, dégraissage, intérieur des équipements, plinthes, encadrements et zones difficiles d'accès.",
-    metaTitle: "Nettoyage en profondeur, grand ménage | MS Nettoyage",
+    metaTitle: "Nettoyage en profondeur, grand ménage | MS Nettoyages",
     metaDescription:
       "Grand ménage en Île-de-France : dégraissage cuisine, détartrage sanitaires, intérieur des placards et électroménager, plinthes et encadrements. Devis gratuit.",
     icon: "sparkle",
@@ -105,7 +105,7 @@ export const services: readonly Service[] = [
     listLabel: "Remise en état après travaux",
     title: "Remise en état après travaux",
     lede: "La remise en état après travaux est le nettoyage final qui rend un local habitable après une rénovation : élimination des résidus de chantier, des traces de peinture, de colle et d'enduit, et des poussières fines déposées partout.",
-    metaTitle: "Remise en état après travaux en Île-de-France | MS Nettoyage",
+    metaTitle: "Remise en état après travaux en Île-de-France | MS Nettoyages",
     metaDescription:
       "Nettoyage après rénovation en Île-de-France : dépose des traces de peinture, colle et enduit, dépoussiérage complet, vitrerie. Livraison prête à l'emploi.",
     icon: "trowel",
@@ -140,7 +140,7 @@ export const services: readonly Service[] = [
     listLabel: "Ménage Airbnb & locations saisonnières",
     title: "Ménage Airbnb et locations saisonnières",
     lede: "Le ménage Airbnb est une prestation de rotation entre deux séjours : nettoyage complet du logement, changement du linge, réapprovisionnement des consommables et remise en configuration d'accueil.",
-    metaTitle: "Ménage Airbnb et location saisonnière | MS Nettoyage",
+    metaTitle: "Ménage Airbnb et location saisonnière | MS Nettoyages",
     metaDescription:
       "Rotation Airbnb en Île-de-France : nettoyage entre deux séjours, changement du linge, réassort et compte rendu photo, entre le check-out et le check-in.",
     icon: "bed",
@@ -174,7 +174,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage de bureaux et commerces",
     title: "Nettoyage de bureaux et de commerces",
     lede: "Le nettoyage de bureaux et de commerces couvre l'entretien des espaces de travail et des surfaces recevant du public, en dehors des heures d'activité, avec un niveau d'exigence adapté aux zones vues par vos clients.",
-    metaTitle: "Nettoyage de bureaux et commerces en IDF | MS Nettoyage",
+    metaTitle: "Nettoyage de bureaux et commerces en IDF | MS Nettoyages",
     metaDescription:
       "Entretien de bureaux, boutiques et locaux recevant du public en Île-de-France. Intervention hors heures d'ouverture, équipe déclarée, devis gratuit sous 24 h.",
     icon: "briefcase",
@@ -209,7 +209,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage industriel et locaux professionnels",
     title: "Nettoyage industriel et locaux professionnels",
     lede: "Le nettoyage industriel s'applique aux entrepôts, ateliers et locaux techniques : grandes surfaces, salissures spécifiques et contraintes d'hygiène et de sécurité propres au site.",
-    metaTitle: "Nettoyage industriel et locaux techniques | MS Nettoyage",
+    metaTitle: "Nettoyage industriel et locaux techniques | MS Nettoyages",
     metaDescription:
       "Nettoyage d'entrepôts, ateliers et locaux techniques en Île-de-France : grandes surfaces, dégraissage, respect des consignes de sécurité du site. Devis sur mesure.",
     icon: "factory",
@@ -244,7 +244,7 @@ export const services: readonly Service[] = [
     listLabel: "Nettoyage de fin de chantier",
     title: "Nettoyage de fin de chantier",
     lede: "Le nettoyage de fin de chantier est la première passe réalisée juste après les travaux : évacuation des déchets résiduels, dépoussiérage grossier et dégagement des surfaces, avant la remise en état finale.",
-    metaTitle: "Nettoyage de fin de chantier en Île-de-France | MS Nettoyage",
+    metaTitle: "Nettoyage de fin de chantier en Île-de-France | MS Nettoyages",
     metaDescription:
       "Nettoyage de fin de chantier en Île-de-France : évacuation des résidus, dépoussiérage grossier, dégagement des surfaces avant livraison. Intervention rapide.",
     icon: "hardhat",

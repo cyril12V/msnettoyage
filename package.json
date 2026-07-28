@@ -2,7 +2,7 @@
   "name": "msnettoyage",
   "version": "1.0.0",
   "private": true,
-  "description": "Site vitrine MS Nettoyage — nettoyage professionnel en Île-de-France et à Meaux.",
+  "description": "Site vitrine MS Nettoyages — nettoyage professionnel en Île-de-France et à Meaux.",
   "engines": {
     "node": ">=20.9.0"
   },

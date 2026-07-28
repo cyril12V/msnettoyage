@@ -18,11 +18,11 @@ import { site } from "@/lib/site";
  */
 export function PrestationsLocales() {
   return (
-    <Section id="prestations-meaux" tone="surface">
+    <Section id="prestations" tone="surface">
       <Container>
         <SectionHeading
-          title={`Nos prestations de nettoyage à ${site.address.city}`}
-          description={`Chaque prestation fait l'objet d'une page dédiée : ce qu'elle comprend, à qui elle s'adresse, combien de temps elle prend et comment nous la chiffrons à ${site.address.city}.`}
+          title="Nos prestations de nettoyage en Île-de-France"
+          description="Chaque prestation fait l'objet d'une page dédiée : ce qu'elle comprend, à qui elle s'adresse, combien de temps elle prend et comment nous la chiffrons, à Paris comme en grande couronne."
         />
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

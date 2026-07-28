@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { footerNav, legalNav, prestationsNav } from "@/data/navigation";
-import { zones } from "@/data/zones";
+import { footerNav, legalNav, prestationsNav, villesNav } from "@/data/navigation";
 import { mailtoHref, site, telHref } from "@/lib/site";
 
 const reseaux: readonly { cle: keyof typeof site.social; icon: IconName; label: string }[] = [
@@ -76,10 +75,10 @@ export function Footer() {
 
           {/*
             Ces liens figurent sur toutes les pages du site : c'est ce qui
-            garantit que Google atteint chaque page d'atterrissage, quel que
-            soit le point d'entrée du visiteur.
+            garantit que Google atteint chaque page de prestation et chaque page
+            ville, quel que soit le point d'entrée du visiteur.
           */}
-          <FooterColonne titre={`Nos prestations à ${site.address.city}`}>
+          <FooterColonne titre="Nos prestations">
             {prestationsNav.map((lien) => (
               <FooterLien key={lien.href} href={lien.href}>
                 {lien.label}
@@ -87,17 +86,12 @@ export function Footer() {
             ))}
           </FooterColonne>
 
-          <FooterColonne titre="Zones d'intervention">
-            <li className="text-ink-soft text-sm font-medium">
-              {site.address.city} ({site.address.postalCode})
-            </li>
-            {zones
-              .filter((zone) => !zone.base)
-              .map((zone) => (
-                <li key={zone.slug} className="text-muted text-sm">
-                  {zone.name}
-                </li>
-              ))}
+          <FooterColonne titre="Nos villes d'intervention">
+            {villesNav.map((lien) => (
+              <FooterLien key={lien.href} href={lien.href}>
+                {lien.label}
+              </FooterLien>
+            ))}
           </FooterColonne>
         </div>
 
