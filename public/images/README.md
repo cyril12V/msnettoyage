@@ -1,7 +1,7 @@
 # Visuels du site
 
 Toutes les images affichées sur le site vivent ici. Le détail des formats et des sujets attendus est
-dans **[BRIEF-PHOTO.md](../../BRIEF-PHOTO.md)**, à la racine du projet.
+dans **[docs/brief-photo.md](../../docs/brief-photo.md)**, à la racine du projet.
 
 ## Où chaque fichier est utilisé
 

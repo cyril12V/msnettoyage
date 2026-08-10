@@ -163,7 +163,7 @@ l'article L121-2 du code de la consommation qualifie de pratique commerciale tro
 
 ### Photographies
 
-**Tous les emplacements du site sont pourvus.** Le suivi est dans [BRIEF-PHOTO.md](./BRIEF-PHOTO.md).
+**Tous les emplacements du site sont pourvus.** Le suivi est dans [docs/brief-photo.md](./brief-photo.md).
 
 > **Les visuels en place sont générés par intelligence artificielle**, à l'exception du logo. Ils
 > illustrent correctement les prestations, mais aucun ne documente une intervention réelle.
@@ -200,7 +200,7 @@ Production **et** Preview :
 | `NEXT_PUBLIC_BING_SITE_VERIFICATION`   | `1A2B3C…`                    | Validation de Bing Webmaster Tools      |
 
 Les deux dernières sont facultatives : sans elles, aucune balise de vérification n'est émise. La
-marche à suivre est détaillée dans [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
+marche à suivre est détaillée dans [docs/seo-hors-code.md](./seo-hors-code.md).
 
 > Aucune de ces valeurs ne doit apparaître dans le dépôt Git. `.env.local` est déjà ignoré.
 
@@ -394,7 +394,7 @@ C'est l'étape qui apporte réellement des appels. **Le site ne représente qu'e
 résultat sur une recherche locale**, le reste se joue sur la fiche Google et les avis.
 
 La marche à suivre complète, avec les valeurs exactes à saisir et les textes prêts à coller, est
-dans **[SEO-HORS-CODE.md](./SEO-HORS-CODE.md)**. Résumé des étapes, par ordre d'impact :
+dans **[docs/seo-hors-code.md](./seo-hors-code.md)**. Résumé des étapes, par ordre d'impact :
 
 - [ ] **Créer la fiche Google Business Profile** et lancer la vérification. Le courrier de
       validation prend une à deux semaines : c'est la toute première chose à faire.

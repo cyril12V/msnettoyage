@@ -2,13 +2,13 @@
 
 ## Où vous en êtes et ce qu'il faut faire
 
-* * *
+---
 
 ## Introduction
 
 Cet audit fait le point sur ce que nous avons déjà mis en place pour votre site, où vous en êtes aujourd'hui aux yeux de Google, et ce qu'il reste à faire pour que vos clients potentiels vous trouvent naturellement quand ils cherchent un nettoyeur en Île-de-France. Le SEO, c'est un marathon : nous vous expliquons le parcours.
 
-* * *
+---
 
 ## Ce qu'on a déjà fait pour vous
 
@@ -24,7 +24,7 @@ Cet audit fait le point sur ce que nous avons déjà mis en place pour votre sit
 
 Les fondations sont solides. Vous avez un site professionnel, bien structuré, avec du contenu qui répond aux questions de vos clients.
 
-* * *
+---
 
 ## Où vous en êtes aujourd'hui
 
@@ -36,7 +36,7 @@ Votre site est tout neuf aux yeux de Google. Il a été créé récemment, et Go
 
 **Où vous en êtes concrètement :** Votre site n'a pas encore de positions visibles dans Google. Aucun mot-clé ne vous ramène du trafic pour l'instant. Mais les fondations sont en place, et c'est ce qui compte à ce stade.
 
-* * *
+---
 
 ## Ce que Google voit de vous
 
@@ -48,7 +48,7 @@ Voici les recherches que les gens tapent chaque mois en Île-de-France pour trou
 
 Le dernier mot-clé (« nettoyage fin de chantier Paris ») est particulièrement intéressant : il y a 110 recherches par mois, mais les gens qui tapent ça sont prêts à payer. Le prix moyen d'une annonce publicitaire sur ce mot-clé est 9,70 €. Ça veut dire que les clients qui cherchent ça ont du budget.
 
-* * *
+---
 
 ## Le problème principal à régler maintenant
 
@@ -60,7 +60,7 @@ C'est pareil pour Google. Votre site est excellent, mais Google ne sait pas que 
 
 **C'est le chantier numéro 1.** Faire connaître votre site à Google en le faisant recommander par d'autres sites de confiance. C'est ce qui va vraiment changer les choses.
 
-* * *
+---
 
 ## Ce qu'on va faire ensuite
 
@@ -82,7 +82,7 @@ Une fois que Google commence à vous classer, on va voir quelles pages montent, 
 
 **Durée :** Continu, mais les premiers vrais résultats arrivent à ce stade.
 
-* * *
+---
 
 ## Ce que vous pouvez faire de votre côté
 
@@ -100,7 +100,7 @@ Facebook, LinkedIn, Instagram : partagez vos pages de services, vos avant/après
 
 Allez sur Google Maps, cherchez MS Nettoyages, et vérifiez que tout est à jour : photos, horaires, description, téléphone. Une fiche Maps bien remplie aide Google à vous classer localement.
 
-* * *
+---
 
 ## Conclusion
 

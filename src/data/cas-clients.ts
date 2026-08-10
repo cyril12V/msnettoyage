@@ -10,7 +10,7 @@
  * satisfaction » sans base mesurable est une allégation commerciale que
  * l'entreprise doit pouvoir justifier (art. L121-2 du code de la consommation).
  *
- * Voir la checklist de DEPLOIEMENT.md.
+ * Voir la checklist de docs/deploiement.md.
  */
 
 export type CasClient = {

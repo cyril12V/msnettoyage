@@ -7,7 +7,7 @@
  *
  * Les champs marqués « à compléter » sont obligatoires légalement (mentions
  * légales) ou fortement recommandés (horaires, note Google) et doivent être
- * renseignés avant la mise en ligne, voir la checklist de DEPLOIEMENT.md.
+ * renseignés avant la mise en ligne, voir la checklist de docs/deploiement.md.
  */
 
 /** URL utilisée si aucune variable d'environnement n'est fournie. */
@@ -82,7 +82,7 @@ export const site = {
     /**
      * Adresse publiée, sur le domaine de l'entreprise.
      *
-     * Imposée par `SCHEMA MARKUP MS NETTOYAGES.md`, et de toute façon
+     * Imposée par `docs/strategie-seo/03-schema-markup.md`, et de toute façon
      * préférable à une adresse Gmail : une messagerie au nom du domaine est un
      * signal de légitimité que Google comme les clients savent lire. Les
      * demandes de devis continuent d'arriver sur les deux boîtes, la

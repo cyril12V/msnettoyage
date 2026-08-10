@@ -19,7 +19,7 @@ export type JsonLdObject = Record<string, unknown>;
 /**
  * Identifiant stable de l'entreprise, référencé par les autres blocs.
  *
- * `#business` est l'ancre imposée par `SCHEMA MARKUP MS NETTOYAGES.md`. Elle
+ * `#business` est l'ancre imposée par `docs/strategie-seo/03-schema-markup.md`. Elle
  * doit rester identique partout : c'est elle qui dit à Google que la fiche
  * entreprise du pied de page et le `provider` de chaque service désignent la
  * même entité, et non deux entreprises homonymes.
@@ -61,7 +61,7 @@ function lienCarte(): string {
 
 /**
  * Les huit départements franciliens, dans l'ordre et la forme imposés par
- * `SCHEMA MARKUP MS NETTOYAGES.md`.
+ * `docs/strategie-seo/03-schema-markup.md`.
  *
  * Paris y figure comme `AdministrativeArea` au même titre que les sept autres :
  * c'est à la fois une commune et un département, et c'est le découpage que
@@ -81,7 +81,7 @@ const DEPARTEMENTS_IDF: readonly { name: string; areaCode: string }[] = [
 /**
  * Les sept prestations déclarées au catalogue de l'entreprise.
  *
- * Liste et ordre repris de `SCHEMA MARKUP MS NETTOYAGES.md`. Elle distingue
+ * Liste et ordre repris de `docs/strategie-seo/03-schema-markup.md`. Elle distingue
  * « ménage après travaux » et « nettoyage fin de chantier », qui sont deux
  * intitulés de recherche distincts même si le site les traite sur une seule
  * page : le catalogue décrit ce que l'entreprise sait faire, pas l'arborescence

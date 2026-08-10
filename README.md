@@ -228,7 +228,7 @@ marque plutôt qu'une image cassée tant que `src` n'est pas renseigné. En dév
 emplacement vide affiche le descriptif de la photo attendue.
 
 14 photos fournies par le client sont déjà câblées. Les visuels restants sont listés dans
-**[BRIEF-PHOTO.md](./BRIEF-PHOTO.md)**, avec format, cadrage et nom de fichier attendus.
+**[docs/brief-photo.md](./docs/brief-photo.md)**, avec format, cadrage et nom de fichier attendus.
 
 Pour installer une photo : la déposer dans `public/images/`, puis renseigner `src` là où le visuel
 est attendu, par exemple :
@@ -247,7 +247,7 @@ Deux fichiers reprennent le contenu de la maquette et ne décrivent **ni mission
 
 Publier des témoignages ou des résultats inventés est une pratique commerciale trompeuse
 (art. L121-2 du code de la consommation). Les remplacer figure comme point **bloquant** dans
-`DEPLOIEMENT.md`.
+`docs/deploiement.md`.
 
 ---
 
@@ -295,11 +295,11 @@ maillage interne disparaît.
 
 > **Le code ne fait pas tout.** Les deux premiers leviers de référencement local sont la fiche
 > Google Business Profile et les avis clients, tous deux hors du dépôt. La marche à suivre est dans
-> [SEO-HORS-CODE.md](./SEO-HORS-CODE.md).
+> [docs/seo-hors-code.md](./docs/seo-hors-code.md).
 
 ---
 
 ## Avant la mise en ligne
 
-Voir **[DEPLOIEMENT.md](./DEPLOIEMENT.md)** : checklist complète : informations à compléter,
+Voir **[docs/deploiement.md](./docs/deploiement.md)** : checklist complète : informations à compléter,
 configuration SMTP et DNS, déploiement Vercel, référencement local.
