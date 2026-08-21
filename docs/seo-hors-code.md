@@ -266,6 +266,32 @@ réponses de ChatGPT et de Copilot : l'inscription y prend cinq minutes et vaut 
 
 ---
 
+## Lire un audit SEO sans se tromper
+
+Trois audits successifs ont signalé des problemes qui n'existaient pas. Deux reflexes evitent de
+refaire le travail, ou pire, de le faire en double.
+
+**« Aucun schema / JSON-LD sur la page. »** Faux. La plupart des outils n'inspectent que le
+`<head>`. Le site publie ses blocs en fin de `<body>`, ce que Google accepte explicitement et ce que
+Next.js impose pour un bloc qui depend des donnees de la page. Verification en une commande :
+
+```bash
+npm run test -- schema        # 17 controles sur le contenu des blocs
+curl -s https://ms-nettoyages.com/ | grep -c 'application/ld+json'
+```
+
+**Ne jamais « ajouter » un schema signale comme manquant sans avoir verifie.** Deux blocs `FAQPage`
+sur une meme page se concurrencent : Google n'en retient qu'un, arbitrairement, et le gain espere
+devient une perte.
+
+**« loading=lazy manquant sur les images. »** Faux egalement. Next.js le pose par defaut sur toutes
+les images sauf celles marquees `priority`. Sur la page d'accueil, 20 images sur 22 sont en
+chargement differe ; les deux autres sont le logo et le visuel de tete, qui doivent justement se
+charger immediatement et sont precharges par `<link rel="preload">`. Les passer en `lazy` degraderait
+le LCP, donc le classement.
+
+---
+
 ## 4. Annuaires et liens entrants : le vrai frein aujourd'hui
 
 L'audit du 28 juillet 2026 est sans appel sur ce point : **zéro domaine référent détecté**. Aucun

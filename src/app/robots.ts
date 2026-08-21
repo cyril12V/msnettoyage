@@ -35,6 +35,9 @@ export default function robots(): MetadataRoute.Robots {
       ...crawlersIA.map((userAgent) => ({ userAgent, allow: "/", disallow: "/api/" })),
     ],
     sitemap: absoluteUrl("/sitemap.xml"),
-    host: absoluteUrl("/"),
+    // Pas de directive `host`. Elle n'est comprise que par Yandex : Google et
+    // Bing l'ignorent, et une ligne inconnue dans un robots.txt n'apporte rien
+    // qu'un doute au lecteur qui l'inspecte. Le domaine canonique est deja
+    // porte par les balises `canonical` de chaque page.
   };
 }
