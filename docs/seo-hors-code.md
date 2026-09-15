@@ -154,6 +154,72 @@ renseigner dans `src/lib/site.ts` → `social.googleBusiness`. Cela ajoute la fi
 
 ---
 
+### Attributs, publications et réponses aux avis
+
+Repris de l'audit de septembre 2026 (`strategie-seo/06-audit-complet-plan-action.md`), **corrigé
+là où il contredisait la réalité de l'entreprise.**
+
+**Attributs à cocher dans la fiche :** devis gratuit, accepte les appels, accepte les messages,
+service à domicile, paiement par virement.
+
+> **Ne pas cocher « paiement par carte bancaire »**, proposé par l'audit : le site déclare
+> aujourd'hui « virement bancaire, chèque, espèces ». Si l'entreprise accepte la carte, le dire
+> d'abord, pour que le site et la fiche soient mis à jour ensemble.
+
+**Une publication par semaine**, au minimum. Une fiche qui publie régulièrement est considérée comme
+active. Idées de sujets, dans l'ordre :
+
+| Semaine | Sujet                                           | Format                     |
+| ------- | ----------------------------------------------- | -------------------------- |
+| 1       | Un chantier livré, photo réelle                 | Photo et 100 mots          |
+| 2       | Conseil : préparer un logement Airbnb           | Texte et lien vers le site |
+| 3       | Le nettoyage de bureaux hors heures d'ouverture | Texte et bouton d'appel    |
+| 4       | Un avis client, avec son accord                 | Citation                   |
+| 5       | Astuce d'entretien d'un support fragile         | Vidéo courte               |
+| 6       | Une commune desservie                           | Texte et lien vers sa page |
+
+**Chaque photo publiée doit être une vraie photo d'intervention.** Les visuels du site sont générés
+par IA : ils peuvent illustrer, jamais servir de preuve sur la fiche.
+
+**Répondre à 100 % des avis, sous 48 h.** Modèles, à personnaliser à chaque fois :
+
+> **5 étoiles.** Merci [Prénom] pour votre confiance ! Nous sommes ravis que notre [nettoyage fin
+> de chantier / ménage Airbnb / nettoyage de bureaux] vous ait donné satisfaction. À bientôt.
+
+> **4 étoiles.** Merci pour votre retour ! Si un point pouvait être amélioré, dites-le-nous
+> directement : c'est ce qui nous fait progresser.
+
+> **3 étoiles ou moins.** Merci pour votre retour, et désolés que la prestation n'ait pas été à la
+> hauteur. Pouvez-vous nous contacter au 06 20 46 07 03 ? Nous voulons comprendre et, si le point
+> est de notre fait, repasser gratuitement.
+
+Une réponse ne se copie jamais à l'identique d'un avis à l'autre : Google comme les lecteurs
+repèrent les réponses automatiques.
+
+### Ce que l'audit propose et qu'il ne faut pas publier
+
+L'audit de septembre 2026 suggère plusieurs éléments **qu'aucune information vérifiée ne permet
+d'affirmer**. Les publier, sur le site comme sur la fiche, serait une pratique commerciale
+trompeuse au sens de l'article L121-2 du Code de la consommation.
+
+| Suggestion de l'audit                           | Pourquoi elle n'est pas publiée                                                       |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------- |
+| « 8 ans d'expérience »                          | Aucune information fournie ne l'établit. À confirmer par le client, preuve à l'appui. |
+| « 150+ propriétés Airbnb gérées »               | Aucun chiffre fourni.                                                                 |
+| « 98 % de satisfaction client »                 | Aucune enquête ni avis pour le mesurer.                                               |
+| Studio 50 € HT, T2 60 € HT, T3 75 € HT          | Ce sont les tarifs affichés par Prime Stay, un concurrent. Pas ceux de MS Nettoyages. |
+| Témoignages nommés                              | Les exemples cités sont ceux de Prime Stay. Aucun avis réel n'existe encore.          |
+| « Garantie sans réserve », « Conformité 100 % » | Engagements contractuels absolus que le client n'a pas validés.                       |
+| Certifications                                  | Aucune certification connue.                                                          |
+| Galerie avant / après                           | Les paires du site sont générées par IA et ne documentent aucun chantier réel.        |
+
+**Tout ce qui précède peut être ajouté dès que le client le confirme** : chaque chiffre, tarif ou
+témoignage réel se branche en quelques minutes. Les témoignages ont déjà leur section, masquée tant
+qu'elle est vide ; il suffit de remplir `src/data/temoignages.ts`, avec l'accord écrit de chaque
+client.
+
+---
+
 ## 2. Les avis clients : le deuxième levier, et le plus durable
 
 Aucun avis pour le moment. C'est **le** point faible face à un concurrent qui en a trente.

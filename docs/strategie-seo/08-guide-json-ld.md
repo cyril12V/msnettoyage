@@ -15,15 +15,15 @@
 
 Avant de mettre en ligne, complétez les éléments suivants :
 
-| Élément | Valeur actuelle | À remplacer par |
-|---------|-----------------|-----------------|
-| `streetAddress` | Vide | Votre adresse complète (ex: "123 Rue de la Paix") |
-| `logo` | `https://ms-nettoyages.com/logo.png` | URL réelle de votre logo (format PNG/SVG, min 112x112px) |
-| `sameAs` - Facebook | `https://www.facebook.com/msnettoyages` | Votre URL Facebook réelle |
-| `sameAs` - Instagram | `https://www.instagram.com/msnettoyages` | Votre URL Instagram réelle |
-| `sameAs` - LinkedIn | `https://www.linkedin.com/company/ms-nettoyages` | Votre URL LinkedIn réelle |
-| `sameAs` - Pages Jaunes | `https://www.pagesjaunes.fr/ms-nettoyages` | Votre URL Pages Jaunes réelle |
-| `urlTemplate` (SearchAction) | `/search?q={search_term_string}` | Adaptez selon votre système de recherche |
+| Élément                      | Valeur actuelle                                  | À remplacer par                                          |
+| ---------------------------- | ------------------------------------------------ | -------------------------------------------------------- |
+| `streetAddress`              | Vide                                             | Votre adresse complète (ex: "123 Rue de la Paix")        |
+| `logo`                       | `https://ms-nettoyages.com/logo.png`             | URL réelle de votre logo (format PNG/SVG, min 112x112px) |
+| `sameAs` - Facebook          | `https://www.facebook.com/msnettoyages`          | Votre URL Facebook réelle                                |
+| `sameAs` - Instagram         | `https://www.instagram.com/msnettoyages`         | Votre URL Instagram réelle                               |
+| `sameAs` - LinkedIn          | `https://www.linkedin.com/company/ms-nettoyages` | Votre URL LinkedIn réelle                                |
+| `sameAs` - Pages Jaunes      | `https://www.pagesjaunes.fr/ms-nettoyages`       | Votre URL Pages Jaunes réelle                            |
+| `urlTemplate` (SearchAction) | `/search?q={search_term_string}`                 | Adaptez selon votre système de recherche                 |
 
 ### 📊 Structure @graph expliquée
 
@@ -61,6 +61,7 @@ Le bloc utilise une structure `@graph` avec 4 entités interconnectées :
 ### 🌍 Couverture géographique
 
 Les 8 départements Île-de-France inclus :
+
 - Paris (75)
 - Seine-et-Marne (77)
 - Yvelines (78)

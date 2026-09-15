@@ -233,3 +233,44 @@ DNS. Ici, une seule des quatre avait été contrôlée.
 
 **Règle secondaire.** Ne pas conclure sur l'état d'un système tiers à partir du seul dépôt. Le
 client agit en dehors du code, et le dépôt ne le sait pas.
+
+---
+
+## 2026-09-15, Le compilateur de Next.js 16 mange l'espace devant une apostrophe échappée
+
+**Erreur.** La première phrase de la page d'accueil s'affichait « MS Nettoyagesest une société de
+nettoyage » depuis juillet. Même défaut dans les mentions légales, et dans la section garanties que
+je venais d'écrire : « Ce que MS Nettoyagess'engage ».
+
+**Cause.** Écrit `{site.name} s&apos;engage`, le texte JSX qui suit l'expression perd son espace de
+tête dès qu'il contient l'entité `&apos;`. Les textes sans entité, `{site.name} pour`, gardent le
+leur. Aucun outil ne le voit : le build passe, le lint passe, les tests de contenu portent sur les
+données et pas sur le HTML rendu.
+
+**Comment je l'ai trouvé.** Par hasard, en extrayant le texte d'une page pour vérifier des liens.
+Puis méthodiquement, en cherchant dans tout le HTML généré un mot collé à un commentaire React
+`<!-- -->` : 4 occurrences, toutes suivies d'une apostrophe échappée.
+
+**Correction.** Littéral de gabarit, `{`${site.name} s'engage`}`, qui ne contient aucune entité.
+`{" "}` ne suffit pas : Prettier le réécrit en espace simple dès qu'il n'est pas en fin de ligne, et
+le défaut revient au formatage suivant.
+
+**Règle.** Un défaut de rendu ne se vérifie que sur le rendu. Après toute modification de texte JSX,
+chercher dans le HTML généré les motifs qui trahissent une erreur de composition. Et quand un
+défaut est trouvé une fois, écrire le test qui le trouve partout avant de le corriger une fois :
+`tests/jsx-espaces.test.ts` a désigné exactement les 4 occurrences, sans faux positif.
+
+---
+
+## 2026-09-15, Un audit peut recommander de copier la concurrence
+
+**Constat.** L'audit de septembre 2026 recommandait d'afficher « Studio 50 € HT, T2 60 € HT, T3
+75 € HT » et trois témoignages nommés. Ce sont, mot pour mot, les tarifs et les témoignages du
+concurrent qu'il analysait. Il suggérait aussi « 8 ans d'expérience » et « 98 % de satisfaction »,
+sans aucune source.
+
+**Règle.** Avant de publier un chiffre, un tarif, un témoignage ou une garantie issus d'un document
+de recommandation, retrouver sa source. S'il vient d'un concurrent ou de nulle part, ne pas le
+publier et le signaler : une recommandation d'agence n'est pas une information sur l'entreprise.
+Les tests de `tests/landings.test.ts` et `tests/contenu.test.ts` refusent désormais ces motifs dans
+les sections éditoriales et les garanties.

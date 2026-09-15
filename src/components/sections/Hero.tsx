@@ -51,9 +51,7 @@ export function Hero() {
             rapporte.
           */}
           <p className="text-muted mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
-            {site.name} est une société de nettoyage professionnel qui intervient à Paris et dans
-            toute l&apos;Île-de-France depuis sa base de {site.address.city} (
-            {site.address.postalCode}) :{" "}
+            {`${site.name} est une société de nettoyage professionnel qui intervient à Paris et dans toute l'Île-de-France depuis sa base de ${site.address.city} (${site.address.postalCode}) : `}
             <LienContextuel href="/menage-particulier">
               prestation de nettoyage régulière
             </LienContextuel>

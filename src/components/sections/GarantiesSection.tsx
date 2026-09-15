@@ -17,8 +17,7 @@ export function GarantiesSection({ tone }: { tone: "white" | "surface" }) {
       <Container>
         <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">Nos garanties</h2>
         <p className="text-muted mt-4 max-w-3xl leading-relaxed">
-          Ce que {site.name} s&apos;engage à tenir sur chaque intervention, quelle que soit la
-          prestation et quel que soit son montant.
+          {`Ce que ${site.name} s'engage à tenir sur chaque intervention, quelle que soit la prestation et quel que soit son montant.`}
         </p>
 
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

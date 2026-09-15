@@ -109,14 +109,10 @@ export default function Page() {
 
             <h2>Responsabilité</h2>
             <p>
-              {site.legalName} s&apos;efforce d&apos;assurer l&apos;exactitude et la mise à jour des
-              informations publiées sur ce site. Les descriptions de prestations, délais et
-              modalités sont fournies à titre indicatif : seul le devis signé fait foi quant au
-              périmètre, au prix et aux délais d&apos;une intervention.
+              {`${site.legalName} s'efforce d'assurer l'exactitude et la mise à jour des informations publiées sur ce site. Les descriptions de prestations, délais et modalités sont fournies à titre indicatif : seul le devis signé fait foi quant au périmètre, au prix et aux délais d'une intervention.`}
             </p>
             <p>
-              Le site peut contenir des liens vers des sites tiers. {site.legalName} n&apos;exerce
-              aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.
+              {`Le site peut contenir des liens vers des sites tiers. ${site.legalName} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.`}
             </p>
 
             <h2>Données personnelles</h2>

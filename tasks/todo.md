@@ -100,3 +100,53 @@ l'exception et vérifie qu'elle reste unique.
 Voir `docs/seo-hors-code.md`. Le netlinking et la fiche Google Business Profile pèsent plus que tout
 ce qui précède, et aucun code ne peut les produire. L'audit du 28 juillet le confirme : 1 lien
 entrant contre 58 à 138 chez les concurrents.
+
+---
+
+## Tâche : audit SEO complet de septembre 2026 (15 septembre 2026)
+
+**Sources.** `docs/strategie-seo/06-audit-complet-plan-action.md` et ses trois pièces jointes, `07`,
+`08` et `09`.
+
+**Constat.** L'audit confirme que le frein est l'autorité : 6 domaines référents contre 20 à 50 chez
+les concurrents classés. Ce levier ne se code pas. Côté site, il demande de muscler deux pages.
+
+### Réalisé
+
+- [x] Page fin de chantier : titre et H1 de l'audit, sections « Pour quels chantiers
+      intervenons-nous ? » (texte fourni, 5 cas) et « Notre processus » (5 étapes)
+- [x] Page Airbnb : H1 de l'audit, section « Rapport photo horodaté » illustrée par 4 photos réelles
+      du client, section « Pourquoi confier votre Airbnb à MS Nettoyages ? »
+- [x] Section « Nos garanties » sur les six pages de prestation, bâtie sur des engagements déjà
+      publiés
+- [x] 5 liens contextuels depuis le chapeau de l'accueil vers les pages de prestation
+- [x] JSON-LD : `knowsLanguage` et `inLanguage` en `fr-FR`
+- [x] Correctif d'un défaut en production depuis juillet : « MS Nettoyagesest » sur la première phrase
+      de l'accueil, et trois autres mots collés. Garde-fou dans `tests/jsx-espaces.test.ts`
+- [x] Correctif : « ménage airbnb » en minuscule dans l'appel à l'action
+- [x] Garde-fous : aucun chiffre commercial, tarif, pourcentage ou « garantie sans réserve » dans les
+      sections ; photos de section limitées aux photos réelles
+- [x] Documentation : attributs, publications et réponses aux avis de la fiche Google ; liste de ce
+      qui ne doit pas être publié
+
+### Non appliqué, et pourquoi
+
+| Demande de l'audit                                | Raison                                                                                                                                                                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bloc JSON-LD de remplacement (`09`)               | Régression : adresse de rue vide, logo en 404, 4 liens sociaux inexistants, `SearchAction` vers une page de recherche absente, propriété `service` hors vocabulaire. Le balisage en place est plus complet et valide. |
+| Grille Studio 50 €, T2 60 €, T3 75 €              | Tarifs du concurrent Prime Stay, pas ceux du client.                                                                                                                                                                  |
+| Titre Airbnb « Tarifs Studio 50€ »                | Même raison. Le titre porte à la place un argument réel : la rotation en 2 h.                                                                                                                                         |
+| Témoignages nommés                                | Exemples de Prime Stay. Aucun avis réel.                                                                                                                                                                              |
+| « 8 ans », « 150+ propriétés », « 98 % »          | Aucune donnée ne les établit.                                                                                                                                                                                         |
+| « Garantie sans réserve », « Conformité 100 % »   | Engagements absolus non validés. Remplacés par les garanties réellement tenues.                                                                                                                                       |
+| Galerie avant / après fin de chantier             | Les paires disponibles sont générées par IA. Les photos réelles du client ne montrent aucun chantier.                                                                                                                 |
+| Cluster « fin de chantier Paris, Meaux, Chelles » | Trois pages prestation × ville sur la même intention se cannibaliseraient ; les pages villes jouent déjà ce rôle.                                                                                                     |
+| Google Analytics 4                                | Nécessite l'identifiant de mesure du client et un bandeau de consentement CNIL.                                                                                                                                       |
+
+### À confirmer par le client
+
+- La section types de chantiers fournie mentionne « un chef d'équipe sur site » et « une garantie de
+  résultat » pour les immeubles : à valider, c'est le client qui s'engage.
+- L'attestation d'assurance RC Pro : la FAQ et les garanties l'affirment, mais le champ
+  `assuranceRcPro` de `src/lib/site.ts` est vide et les mentions légales la signalent manquante.
+- Toujours en attente depuis juillet : l'évacuation des gravats, et qui décroche le téléphone la nuit.

@@ -254,7 +254,13 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
-      <CtaDevis titre={`Un devis pour votre ${landing.libelleCourt.toLowerCase()} ?`} />
+      {/*
+        Seule l'initiale passe en minuscule : un `toLowerCase()` sur tout le
+        libellé écrivait « ménage airbnb », avec le nom de marque en minuscule.
+      */}
+      <CtaDevis
+        titre={`Un devis pour votre ${landing.libelleCourt.charAt(0).toLowerCase()}${landing.libelleCourt.slice(1)} ?`}
+      />
 
       <JsonLd
         data={[prestationLocaleJsonLd(landing), faqJsonLd(landing.faq), breadcrumbJsonLd(fil)]}
