@@ -20,8 +20,8 @@ describe("pages de prestation", () => {
   /**
    * Seule URL de prestation autorisée à porter un nom de ville.
    *
-   * Décision du client, prise dans `OPTIMISATION Nettoyage fin de chantier
-   * Paris.md` : la requête visée est « nettoyage fin de chantier paris » et le
+   * Décision du client, prise dans
+   * `docs/strategie-seo/02-optimisation-fin-de-chantier.md` : la requête visée est « nettoyage fin de chantier paris » et le
    * mot-clé doit y figurer entier, URL comprise. La contrepartie assumée est
    * que cette page ne remontera pas sur « nettoyage fin de chantier Chelles ».
    *
@@ -59,11 +59,15 @@ describe("pages de prestation", () => {
     );
   });
 
-  it("annonce la couverture Île-de-France dans la requête, le H1 et le titre", () => {
+  it("vise Paris ou l'Île-de-France dans la requête et le titre", () => {
+    // Le H1 n'est plus tenu de nommer l'Île-de-France : l'audit de septembre
+    // 2026 y place un argument de conversion, « devis gratuit en 24 h »,
+    // « rotation en 2 h », qui compte davantage au moment du clic. La
+    // couverture régionale reste portée par la requête visée et par le
+    // contenu, et Paris reste imposé dans le H1 par le test suivant.
     for (const landing of landings) {
       expect(landing.requete, `requête : ${landing.slug}`).toContain("Île-de-France");
-      expect(landing.h1, `H1 : ${landing.slug}`).toContain("Île-de-France");
-      expect(landing.metaTitle, `metaTitle : ${landing.slug}`).toMatch(/Île-de-France|IDF/);
+      expect(landing.metaTitle, `metaTitle : ${landing.slug}`).toMatch(/Paris|Île-de-France|IDF/);
     }
   });
 
@@ -258,6 +262,13 @@ describe("contenu des pages d'atterrissage", () => {
         landing.tarification.reponse,
         ...landing.tarification.facteurs.flatMap((f) => [f.label, f.effet]),
         ...landing.faq.flatMap((item) => [item.question, item.answer]),
+        ...(landing.sectionsEditoriales ?? []).flatMap((section) => [
+          section.titre,
+          section.intro,
+          ...section.elements.flatMap((element) => [element.titre, element.texte]),
+          section.photos?.legende ?? "",
+          ...(section.photos?.images ?? []).map((image) => image.alt),
+        ]),
       ])
       .join(" ");
 
@@ -287,5 +298,88 @@ describe("maillage interne", () => {
   it("retrouve une page par slug et rend undefined sinon", () => {
     expect(getLanding("menage-airbnb")?.libelleCourt).toBe("Ménage Airbnb");
     expect(getLanding("menage-airbnb-meaux")).toBeUndefined();
+  });
+});
+
+describe("sections éditoriales", () => {
+  const toutes = landings.flatMap((landing) =>
+    (landing.sectionsEditoriales ?? []).map((section) => ({ landing, section })),
+  );
+
+  it("répond à l'audit sur les deux pages prioritaires", () => {
+    const ids = (slug: string) =>
+      (landings.find((landing) => landing.slug === slug)?.sectionsEditoriales ?? []).map(
+        (section) => section.id,
+      );
+
+    expect(ids("nettoyage-fin-de-chantier-paris")).toEqual(["types-de-chantiers", "processus"]);
+    expect(ids("menage-airbnb")).toEqual(["rapport-photo", "pourquoi-nous"]);
+  });
+
+  it("décrit un processus de nettoyage fin de chantier en cinq étapes", () => {
+    const processus = toutes.find(({ section }) => section.id === "processus")?.section;
+    expect(processus?.format).toBe("etapes");
+    expect(processus?.elements).toHaveLength(5);
+  });
+
+  it("donne à chaque élément un titre et un texte substantiel", () => {
+    for (const { landing, section } of toutes) {
+      expect(section.intro.length, `intro courte : ${section.id}`).toBeGreaterThanOrEqual(120);
+      expect(section.elements.length, `section vide : ${section.id}`).toBeGreaterThanOrEqual(3);
+
+      for (const element of section.elements) {
+        expect(element.titre.length, `titre vide : ${landing.slug}`).toBeGreaterThan(5);
+        expect(element.texte.length, `texte court : ${element.titre}`).toBeGreaterThanOrEqual(180);
+      }
+    }
+  });
+
+  it("ne recopie aucun texte, ni entre sections ni avec le corps de page", () => {
+    const textes = [
+      ...landings.flatMap((landing) => landing.corps),
+      ...toutes.flatMap(({ section }) => [
+        section.intro,
+        ...section.elements.map((element) => element.texte),
+      ]),
+    ];
+    expect(new Set(textes).size, "texte dupliqué").toBe(textes.length);
+
+    const ids = toutes.map(({ landing, section }) => `${landing.slug}#${section.id}`);
+    expect(new Set(ids).size, "ancre dupliquée").toBe(ids.length);
+  });
+
+  it("n'affiche que des photos réelles, présentes et décrites", () => {
+    // Les visuels générés par IA du site ne documentent aucune intervention :
+    // une section qui prétend montrer un résultat ne peut en utiliser aucun.
+    // Les photos réelles de l'entreprise sont nommées `rapport-photo-*`.
+    for (const { section } of toutes) {
+      for (const image of section.photos?.images ?? []) {
+        expect(image.src, `visuel non authentique : ${image.src}`).toMatch(
+          /^\/images\/rapport-photo-/,
+        );
+        expect(existsSync(join(process.cwd(), "public", image.src)), image.src).toBe(true);
+        expect(image.alt.length, `alt trop court : ${image.src}`).toBeGreaterThanOrEqual(40);
+      }
+    }
+  });
+
+  it("n'affiche aucun chiffre commercial invérifiable", () => {
+    // L'audit suggérait « 8 ans d'expérience », « 150+ propriétés », « 98 % de
+    // satisfaction », des tarifs copiés d'un concurrent et une « garantie sans
+    // réserve ». Aucun n'est confirmé : les publier serait une pratique
+    // commerciale trompeuse.
+    const texte = toutes
+      .flatMap(({ section }) => [
+        section.titre,
+        section.intro,
+        ...section.elements.flatMap((element) => [element.titre, element.texte]),
+      ])
+      .join(" ");
+
+    expect(texte).not.toMatch(/\bans d'expérience\b/);
+    expect(texte).not.toMatch(/\d+ ?%/);
+    expect(texte).not.toMatch(/\d+ ?€/);
+    expect(texte).not.toMatch(/sans réserve/i);
+    expect(texte).not.toMatch(/\+ ?(propriétés|clients|logements)/);
   });
 });

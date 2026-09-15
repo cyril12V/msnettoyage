@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { casClients } from "@/data/cas-clients";
 import { faq, faqAccueil, faqCategories } from "@/data/faq";
+import { garanties } from "@/data/garanties";
 import { realisationPrincipale, realisations, realisationsSecondaires } from "@/data/realisations";
 import { getService, services, serviceSlugs } from "@/data/services";
 import { temoignages } from "@/data/temoignages";
@@ -308,5 +309,28 @@ describe("configuration du site", () => {
     expect(absoluteUrl("/services")).toBe(`${siteUrl}/services`);
     expect(absoluteUrl("services")).toBe(`${siteUrl}/services`);
     expect(absoluteUrl()).toBe(`${siteUrl}/`);
+  });
+});
+
+describe("garanties", () => {
+  it("publie des engagements distincts et développés", () => {
+    expect(garanties.length).toBeGreaterThanOrEqual(4);
+    expect(new Set(garanties.map((garantie) => garantie.titre)).size).toBe(garanties.length);
+
+    for (const garantie of garanties) {
+      expect(garantie.texte.length, `texte court : ${garantie.titre}`).toBeGreaterThanOrEqual(150);
+    }
+  });
+
+  it("ne promet rien que le client n'a pas validé", () => {
+    // Une garantie affichée est un engagement commercial opposable. Les
+    // formulations absolues suggérées par l'audit engagent l'entreprise
+    // au-delà de ce qu'elle a confirmé.
+    const texte = garanties.flatMap((garantie) => [garantie.titre, garantie.texte]).join(" ");
+
+    expect(texte).not.toMatch(/sans réserve/i);
+    expect(texte).not.toMatch(/100 ?%/);
+    expect(texte).not.toMatch(/certifi/i);
+    expect(texte).not.toMatch(/[—–]/);
   });
 });

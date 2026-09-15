@@ -159,6 +159,9 @@ export function entrepriseJsonLd(): JsonLdObject {
     // Rattache à la même entité les recherches au singulier, « MS Nettoyage »,
     // et les liens déjà émis sous cette graphie.
     alternateName: [...site.alternateNames],
+    // Repris du bloc proposé par l'audit de septembre 2026 : c'est la seule
+    // propriété de ce bloc qui manquait ici et qui soit valide.
+    knowsLanguage: "fr-FR",
     description: site.description,
     slogan: site.tagline,
     url: site.url,
@@ -235,7 +238,9 @@ export function siteWebJsonLd(): JsonLdObject {
     name: site.name,
     alternateName: `${site.name} ${site.address.city}`,
     url: site.url,
-    inLanguage: site.lang,
+    // Code de langue complet, région comprise : le site s'adresse au marché
+    // francilien, pas à un lectorat francophone indéterminé.
+    inLanguage: "fr-FR",
     publisher: { "@id": idEntreprise },
   };
 }

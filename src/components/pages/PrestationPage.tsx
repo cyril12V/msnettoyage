@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaDevis } from "@/components/sections/CtaDevis";
+import { GarantiesSection } from "@/components/sections/GarantiesSection";
+import { SectionEditorialeBloc } from "@/components/sections/SectionEditorialeBloc";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -33,6 +35,14 @@ export function PrestationPage({ landing }: { landing: Landing }) {
   // elle a sa propre page ville et n'a rien à faire dans une liste de
   // départements.
   const departements = zones.filter((zone) => !zone.base);
+
+  // Les fonds alternent à partir de la première section qui suit le corps de
+  // page. Le rang est calculé plutôt qu'écrit en dur : le nombre de sections
+  // éditoriales varie d'une page à l'autre, et deux sections voisines sur le
+  // même fond se confondraient à l'écran.
+  const sections = landing.sectionsEditoriales ?? [];
+  const ton = (rang: number): "surface" | "white" => (rang % 2 === 0 ? "surface" : "white");
+  const rangTarifs = sections.length;
 
   return (
     <>
@@ -103,6 +113,10 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
+      {sections.map((section, index) => (
+        <SectionEditorialeBloc key={section.id} section={section} tone={ton(index)} />
+      ))}
+
       {/*
         Tarification.
 
@@ -111,7 +125,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         directe est placée juste dessous : c'est le format qu'un moteur
         génératif extrait, et celui que Google remonte en position zéro.
       */}
-      <Section tone="surface">
+      <Section tone={ton(rangTarifs)}>
         <Container>
           <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
             {landing.tarification.question}
@@ -134,6 +148,8 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
+      <GarantiesSection tone={ton(rangTarifs + 1)} />
+
       {/*
         Couverture géographique.
 
@@ -146,7 +162,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         bureaux » et que la page de destination traite « nettoyage de bureaux à
         Créteil ». Un « voir la ville » ne dirait rien.
       */}
-      <Section tone="white">
+      <Section tone={ton(rangTarifs + 2)}>
         <Container>
           <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
             Notre zone d&apos;intervention : Paris et toute l&apos;Île-de-France
@@ -196,7 +212,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
-      <Section tone="surface">
+      <Section tone={ton(rangTarifs + 3)}>
         <Container>
           <h2 className="text-ink text-2xl font-bold tracking-tight sm:text-3xl">
             Questions fréquentes
@@ -219,7 +235,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         </Container>
       </Section>
 
-      <Section tone="white" spacing="compact">
+      <Section tone={ton(rangTarifs + 4)} spacing="compact">
         <Container>
           <h2 className="text-ink text-sm font-semibold">Nos autres prestations</h2>
           <ul className="mt-6 flex flex-wrap gap-2.5">

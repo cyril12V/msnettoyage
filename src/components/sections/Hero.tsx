@@ -1,3 +1,5 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -41,13 +43,25 @@ export function Hero() {
           {/*
             Paragraphe rédigé pour être cité tel quel : il définit l'entreprise,
             situe la zone et liste les prestations en une phrase autonome.
+
+            Chaque prestation citée renvoie vers sa page. Un lien placé dans une
+            phrase, au milieu d'un texte qui parle du sujet, pèse davantage aux
+            yeux de Google qu'un lien de menu : c'est le premier paragraphe de la
+            page la plus forte du site, il transmet son autorité là où elle
+            rapporte.
           */}
           <p className="text-muted mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
             {site.name} est une société de nettoyage professionnel qui intervient à Paris et dans
             toute l&apos;Île-de-France depuis sa base de {site.address.city} (
-            {site.address.postalCode}) : prestation de nettoyage régulière, nettoyage en profondeur,
-            fin de chantier, ménage Airbnb, bureaux et commerces. Devis gratuit sous{" "}
-            {site.delaiReponse}.
+            {site.address.postalCode}) :{" "}
+            <LienContextuel href="/menage-particulier">
+              prestation de nettoyage régulière
+            </LienContextuel>
+            , <LienContextuel href="/nettoyage-maison">nettoyage en profondeur</LienContextuel>,{" "}
+            <LienContextuel href="/nettoyage-fin-de-chantier-paris">fin de chantier</LienContextuel>
+            , <LienContextuel href="/menage-airbnb">ménage Airbnb</LienContextuel>,{" "}
+            <LienContextuel href="/nettoyage-bureau">bureaux et commerces</LienContextuel>. Devis
+            gratuit sous {site.delaiReponse}.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -78,5 +92,23 @@ export function Hero() {
         />
       </Container>
     </section>
+  );
+}
+
+/**
+ * Lien placé dans le fil d'une phrase.
+ *
+ * Souligné discrètement plutôt que coloré comme un bouton : il doit se lire
+ * comme du texte, sans détourner le regard des deux boutons d'action placés
+ * juste en dessous.
+ */
+function LienContextuel({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="text-ink-soft decoration-brand/40 hover:text-brand hover:decoration-brand underline underline-offset-4 transition-colors"
+    >
+      {children}
+    </Link>
   );
 }

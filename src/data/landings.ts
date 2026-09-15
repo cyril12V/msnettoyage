@@ -24,6 +24,37 @@ import type { IconName } from "@/components/ui/Icon";
  * `next.config.ts` : elles ne doivent jamais réapparaître ici.
  */
 
+/**
+ * Section de contenu propre à une page de prestation.
+ *
+ * Elle répond à une question que se pose le visiteur avant d'appeler : « pour
+ * quel type de chantier ? », « comment ça se déroule ? », « qu'est-ce qui me
+ * prouve que c'est fait ? ». Le H2 porte la question, chaque élément devient un
+ * H3 : c'est la structure qu'extraient Google et les moteurs génératifs.
+ */
+export type SectionEditoriale = {
+  /** Ancre de la section, pour un lien direct depuis une autre page. */
+  id: string;
+  /** Titre H2, formulé comme la question que se pose le visiteur. */
+  titre: string;
+  /** Paragraphe d'introduction, autonome et citable. */
+  intro: string;
+  /**
+   * `cartes` pour des cas distincts et comparables ; `etapes` pour une
+   * séquence, numérotée à l'écran parce que l'ordre y a un sens.
+   */
+  format: "cartes" | "etapes";
+  elements: readonly { titre: string; texte: string }[];
+  /**
+   * Photos réelles, prises par l'entreprise. Jamais de visuel généré : une
+   * section qui montre un résultat doit montrer un vrai résultat.
+   */
+  photos?: {
+    legende: string;
+    images: readonly { src: string; alt: string }[];
+  };
+};
+
 export type Landing = {
   /** Slug, donc URL. Contient le mot-clé, jamais la ville. */
   slug: string;
@@ -65,6 +96,8 @@ export type Landing = {
     /** Ce qui fait varier le prix, du plus au moins déterminant. */
     facteurs: readonly { label: string; effet: string }[];
   };
+  /** Sections de contenu propres à la page, affichées après le corps. */
+  sectionsEditoriales?: readonly SectionEditoriale[];
   /** Questions propres à cette prestation, balisées en FAQPage. */
   faq: readonly { question: string; answer: string }[];
   /** Visuel de la page, si disponible. */
@@ -335,8 +368,8 @@ export const landings: readonly Landing[] = [
     slug: "nettoyage-fin-de-chantier-paris",
     requete: "Nettoyage de fin de chantier à Paris et en Île-de-France",
     libelleCourt: "Nettoyage fin de chantier",
-    h1: "Nettoyage fin de chantier à Paris et en Île-de-France",
-    metaTitle: "Nettoyage fin de chantier Paris & IDF | MS Nettoyages",
+    h1: "Nettoyage fin de chantier à Paris : devis gratuit en 24 h",
+    metaTitle: "Nettoyage fin de chantier Paris, devis 24 h | MS Nettoyages",
     metaDescription:
       "Nettoyage fin de chantier à Paris et en Île-de-France : évacuation des résidus, dépoussiérage intégral, vitrerie et sols. Intervention possible sous 48 h.",
     lede: "Le nettoyage de fin de chantier est l'intervention qui rend un local livrable après des travaux : évacuation des résidus, retrait des traces de peinture, de colle et d'enduit, et élimination de la poussière fine déposée sur toutes les surfaces.",
@@ -400,6 +433,76 @@ export const landings: readonly Landing[] = [
         },
       ],
     },
+    sectionsEditoriales: [
+      {
+        id: "types-de-chantiers",
+        titre: "Pour quels chantiers intervenons-nous ?",
+        intro:
+          "Un nettoyage fin de chantier ne se gère pas de la même façon selon que le site est un appartement neuf, un plateau de bureaux ou un entrepôt de 2 000 m². Voici les cinq types de chantiers que nous traitons le plus souvent à Paris et en Île-de-France, et ce que cela implique concrètement pour chaque intervention.",
+        format: "cartes",
+        elements: [
+          {
+            titre: "Appartements et logements neufs",
+            texte:
+              "La livraison d'un logement neuf laisse systématiquement un voile de poussière de plâtre sur toutes les surfaces : plafonds, menuiseries, vitres, sanitaires. Notre intervention couvre le dépoussiérage intégral en plusieurs passes, le retrait des protections adhésives et des étiquettes de chantier, le nettoyage des vitres et des rails, et le lavage des sols jusqu'à disparition complète du voile blanc. Le logement est rendu prêt pour l'état des lieux, dans le délai confirmé par écrit au moment du devis.",
+          },
+          {
+            titre: "Bureaux et locaux commerciaux rénovés",
+            texte:
+              "Un plateau de bureaux rénové cumule les contraintes : faux plafonds démontés et remontés, câblages apparents, cloisons vitrées neuves, revêtements de sol sensibles. En tant qu'entreprise de nettoyage de fin de chantier spécialisée dans le tertiaire, nous intervenons hors heures ouvrées pour ne pas bloquer la reprise d'activité. Chaque surface est traitée selon son matériau, moquette, résine, carrelage ou verre, sans risque de rayure ni de ternissement. Le local est opérationnel le lendemain matin.",
+          },
+          {
+            titre: "Hôtels et restaurants",
+            texte:
+              "Dans l'hôtellerie et la restauration, le nettoyage fin de chantier précède directement l'ouverture ou la réouverture au public. Les délais sont non négociables et les standards de propreté sont élevés : chaque chambre, chaque salle, chaque cuisine doit être impeccable avant l'arrivée des premiers clients. Nous traitons les surfaces inox, les équipements de cuisine neufs, les carrelages muraux et les sols en plusieurs passes. L'équipe s'adapte au planning de livraison, même en week-end ou en soirée.",
+          },
+          {
+            titre: "Entrepôts et locaux industriels",
+            texte:
+              "Les entrepôts et locaux industriels après travaux présentent des volumes importants, des sols béton ou résine souvent très encrassés, et des résidus de chantier lourds à évacuer avant tout nettoyage. La remise en état après travaux sur ce type de site demande du matériel adapté, autolaveuse, aspirateurs industriels, produits dégraissants haute concentration, et une équipe dimensionnée à la surface. Nous chiffrons au mètre carré, avec un devis gratuit sous 24 h, et nous confirmons un créneau réaliste plutôt qu'une date intenable.",
+          },
+          {
+            titre: "Immeubles en livraison",
+            texte:
+              "La livraison d'un immeuble entier, parties communes, halls, cages d'escalier, locaux techniques et parkings, est l'intervention la plus exigeante en coordination. Chaque zone a son propre niveau d'empoussièrement et ses propres contraintes d'accès. Nous intervenons corps de bâtiment par corps de bâtiment, avec une équipe structurée et un chef d'équipe sur site. Le promoteur ou le maître d'ouvrage dispose d'un interlocuteur unique, d'un planning écrit et d'une garantie de résultat avant la réception officielle.",
+          },
+        ],
+      },
+      {
+        id: "processus",
+        titre: "Notre processus de nettoyage fin de chantier",
+        intro:
+          "Un nettoyage de fin de chantier réussi tient moins à l'huile de coude qu'à l'ordre des opérations. Voici les cinq étapes que nous suivons sur chaque chantier, de la demande de devis à la remise des clés, et ce que vous recevez à chacune d'elles.",
+        format: "etapes",
+        elements: [
+          {
+            titre: "Inspection et devis sous 24 h",
+            texte:
+              "Vous nous décrivez le chantier par téléphone ou par photos : surface, nature des travaux réalisés, étage et accès, date de livraison visée. Pour un plateau de bureaux, un entrepôt ou un immeuble, nous nous déplaçons pour évaluer sur place. Le devis détaillé vous est transmis sous 24 h avec le créneau proposé, et le prix qu'il annonce est celui qui sera facturé.",
+          },
+          {
+            titre: "Enlèvement des débris",
+            texte:
+              "Avant tout lavage, nous évacuons les résidus du chantier : chutes de matériaux, emballages, protections de sol, bâches et adhésifs. Laver un sol encore encombré ne sert à rien, et des protections retirées trop tard laissent des traces de colle difficiles à reprendre. Sur une rénovation légère, cette étape se réduit au retrait des protections.",
+          },
+          {
+            titre: "Nettoyage professionnel en plusieurs passes",
+            texte:
+              "Le nettoyage suit toujours le même ordre : plafonds, gaines et luminaires d'abord, puis murs et menuiseries, puis vitrerie, et les sols en dernier. Les traces de peinture et de colle sont retirées mécaniquement, avec des outils adaptés à chaque support. Les sols sont lavés en deux ou trois passes espacées, pour laisser retomber la poussière fine, jusqu'à disparition du voile de plâtre.",
+          },
+          {
+            titre: "Inspection finale",
+            texte:
+              "Avant de partir, nous contrôlons le résultat pièce par pièce, en lumière rasante, qui révèle ce qu'un éclairage de face dissimule : voile sur les vitres, traces sur les sols, poussière sur les plinthes. Si vous êtes disponible, ce contrôle se fait avec vous. Tout point relevé est repris immédiatement, sur place, avant la remise des clés.",
+          },
+          {
+            titre: "Rapport photo de fin d'intervention",
+            texte:
+              "Nous vous transmettons des photos de chaque pièce à la fin de l'intervention. Elles datent l'état du local à notre départ : un document utile pour la réception des travaux, un état des lieux ou une livraison au client final. Si un point vous a malgré tout échappé, signalez-le dans les 48 h et nous repassons gratuitement.",
+          },
+        ],
+      },
+    ],
     faq: [
       {
         question: "Quelle est la différence entre ménage après travaux et fin de chantier ?",
@@ -518,8 +621,8 @@ export const landings: readonly Landing[] = [
     slug: "menage-airbnb",
     requete: "Ménage Airbnb à Paris et en Île-de-France",
     libelleCourt: "Ménage Airbnb",
-    h1: "Ménage Airbnb à Paris et en Île-de-France",
-    metaTitle: "Ménage Airbnb Paris & Île-de-France | MS Nettoyages",
+    h1: "Ménage Airbnb à Paris : rotation en 2 h et rapport photo horodaté",
+    metaTitle: "Ménage Airbnb Paris, rotation en 2 h | MS Nettoyages",
     metaDescription:
       "Ménage Airbnb à Paris et en Île-de-France : rotation en 2 h entre deux séjours, changement du linge, réassort des consommables et compte rendu photo horodaté.",
     lede: "Le ménage Airbnb est une prestation de rotation entre deux séjours : nettoyage complet du logement, changement du linge, réapprovisionnement des consommables et remise en configuration d'accueil.",
@@ -577,6 +680,88 @@ export const landings: readonly Landing[] = [
         },
       ],
     },
+    sectionsEditoriales: [
+      {
+        id: "rapport-photo",
+        titre: "Rapport photo horodaté après chaque rotation",
+        intro:
+          "Après chaque rotation, MS Nettoyages vous envoie un rapport photo du logement, daté et envoyé dans la foulée de l'intervention. En quelques secondes et sans vous déplacer, vous voyez dans quel état le logement attend votre prochain voyageur, et vous disposez d'une trace datée si un litige survient.",
+        format: "cartes",
+        elements: [
+          {
+            titre: "Qu'est-ce qu'un rapport photo horodaté ?",
+            texte:
+              "C'est une série de photos prises par l'intervenant à la toute fin du ménage, pièce par pièce, et envoyées immédiatement avec la date et l'heure de l'intervention. Il ne décrit pas ce qui aurait dû être fait : il montre ce qui l'a été, au moment où l'intervenant quitte le logement.",
+          },
+          {
+            titre: "Ce que contient le rapport",
+            texte:
+              "Chaque pièce est photographiée dans son ensemble : lits faits et linge disposé, salle de bains, cuisine et électroménager, sols. S'y ajoutent les points à signaler, comme un consommable bientôt épuisé, un équipement défaillant ou une dégradation constatée. Les photos ci-dessous sont de vraies photos prises par nos soins à la fin d'une intervention.",
+          },
+          {
+            titre: "Pourquoi c'est utile pour votre location",
+            texte:
+              "Face à un voyageur qui conteste l'état du logement ou signale une dégradation, la plateforme demande des preuves. Des photos datées de l'état du logement juste avant son arrivée tranchent la question. Au quotidien, le rapport vous évite aussi de vous déplacer pour vérifier : vous gérez votre location à distance, sans douter.",
+          },
+        ],
+        photos: {
+          legende:
+            "Photos réelles prises par MS Nettoyages à la fin d'une intervention : lits préparés, linge disposé, salle de bains et cuisine prêtes à accueillir.",
+          images: [
+            {
+              src: "/images/rapport-photo-chambre-double.jpg",
+              alt: "Chambre préparée par MS Nettoyages, lit double fait et serviettes roulées sur le couvre-lit",
+            },
+            {
+              src: "/images/rapport-photo-lits-superposes.jpg",
+              alt: "Chambre sous combles préparée par MS Nettoyages, lits superposés faits et serviettes disposées",
+            },
+            {
+              src: "/images/rapport-photo-salle-de-bain.jpg",
+              alt: "Salle de bains nettoyée par MS Nettoyages, tapis de bain posé, savon et papier réapprovisionnés",
+            },
+            {
+              src: "/images/rapport-photo-cuisine.jpg",
+              alt: "Cuisine nettoyée par MS Nettoyages, sol carrelé lavé et plans de travail dégagés",
+            },
+          ],
+        },
+      },
+      {
+        id: "pourquoi-nous",
+        titre: "Pourquoi confier votre Airbnb à MS Nettoyages ?",
+        intro:
+          "Le ménage de location courte durée se confie à des particuliers, à des plateformes de mise en relation ou à des entreprises de nettoyage. Voici ce que vous obtenez concrètement en confiant vos rotations à MS Nettoyages.",
+        format: "cartes",
+        elements: [
+          {
+            titre: "Disponible 24 h/24 et 7 j/7",
+            texte:
+              "Les arrivées tardives, les départs à l'aube et les réservations de dernière minute ne suivent pas les horaires de bureau. Nous intervenons tous les jours, week-ends et jours fériés compris, y compris pour une rotation décidée la veille, selon nos disponibilités.",
+          },
+          {
+            titre: "Un service direct, pas une plateforme",
+            texte:
+              "Une plateforme vous met en relation avec un intervenant différent selon les disponibilités, et s'efface en cas de problème. Avec MS Nettoyages, vous traitez avec l'entreprise qui emploie, forme et assure l'intervenant, et qui répond de son travail.",
+          },
+          {
+            titre: "Le même intervenant, qui connaît votre logement",
+            texte:
+              "Il sait où est rangé le linge de rechange, comment disposer le salon pour qu'il ressemble aux photos de l'annonce et quels équipements vérifier. Une rotation confiée à quelqu'un qui connaît les lieux est plus rapide et plus régulière d'un voyageur à l'autre.",
+          },
+          {
+            titre: "Une rotation en 2 h, calée sur vos réservations",
+            texte:
+              "Votre calendrier de réservation fixe le planning. Deux heures en moyenne suffisent pour un T2, entre un départ à 11 h et une arrivée à 15 h, pour que le logement soit prêt avant le voyageur suivant.",
+          },
+          {
+            titre: "Réintervention gratuite en cas d'oubli",
+            texte:
+              "Si un voyageur relève un oubli, signalez-le-nous dans les 48 h qui suivent la rotation : nous repassons gratuitement, sans condition. Nous vous prévenons par ailleurs nous-mêmes de tout ce qui sort de l'ordinaire, avant qu'un voyageur ne le découvre.",
+          },
+        ],
+      },
+    ],
     faq: [
       {
         question: "Combien de temps prend une rotation Airbnb ?",
