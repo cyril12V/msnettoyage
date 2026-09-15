@@ -1,0 +1,174 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://ms-nettoyages.com/#business",
+      "name": "MS Nettoyages",
+      "description": "Service de nettoyage professionnel en Île-de-France : nettoyage de maison, bureaux, fin de chantier, Airbnb, industriel et remise en état.",
+      "url": "https://ms-nettoyages.com",
+      "telephone": "+33 6 20 46 07 03",
+      "email": "contact@ms-nettoyages.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "",
+        "addressLocality": "Meaux",
+        "postalCode": "77100",
+        "addressRegion": "Île-de-France",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.9626",
+        "longitude": "2.8795"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "priceRange": "€€",
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Paris"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Seine-et-Marne"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Yvelines"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Essonne"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Hauts-de-Seine"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Seine-Saint-Denis"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Val-de-Marne"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Val-d'Oise"
+        }
+      ],
+      "service": [
+        {
+          "@type": "Service",
+          "name": "Nettoyage de maison",
+          "description": "Service de nettoyage résidentiel complet pour votre domicile"
+        },
+        {
+          "@type": "Service",
+          "name": "Nettoyage de bureaux",
+          "description": "Nettoyage professionnel des espaces de travail et bureaux"
+        },
+        {
+          "@type": "Service",
+          "name": "Nettoyage fin de chantier",
+          "description": "Nettoyage après travaux et fin de chantier"
+        },
+        {
+          "@type": "Service",
+          "name": "Ménage Airbnb",
+          "description": "Nettoyage et préparation de locations courte durée"
+        },
+        {
+          "@type": "Service",
+          "name": "Nettoyage industriel",
+          "description": "Nettoyage spécialisé pour environnements industriels"
+        },
+        {
+          "@type": "Service",
+          "name": "Remise en état après travaux",
+          "description": "Remise en état complète des locaux après rénovation"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/msnettoyages",
+        "https://www.instagram.com/msnettoyages",
+        "https://www.linkedin.com/company/ms-nettoyages",
+        "https://www.pagesjaunes.fr/ms-nettoyages"
+      ],
+      "knowsLanguage": "fr-FR",
+      "isPartOf": {
+        "@id": "https://ms-nettoyages.com/#website"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ms-nettoyages.com/#organization",
+      "name": "MS Nettoyages",
+      "url": "https://ms-nettoyages.com",
+      "logo": "https://ms-nettoyages.com/logo.png",
+      "description": "Entreprise de nettoyage professionnel en Île-de-France",
+      "telephone": "+33 6 20 46 07 03",
+      "email": "contact@ms-nettoyages.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "",
+        "addressLocality": "Meaux",
+        "postalCode": "77100",
+        "addressRegion": "Île-de-France",
+        "addressCountry": "FR"
+      },
+      "sameAs": [
+        "https://www.facebook.com/msnettoyages",
+        "https://www.instagram.com/msnettoyages",
+        "https://www.linkedin.com/company/ms-nettoyages",
+        "https://www.pagesjaunes.fr/ms-nettoyages"
+      ],
+      "knowsLanguage": "fr-FR"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ms-nettoyages.com/#website",
+      "name": "MS Nettoyages",
+      "url": "https://ms-nettoyages.com",
+      "description": "Service de nettoyage professionnel en Île-de-France",
+      "inLanguage": "fr-FR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://ms-nettoyages.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "isPartOf": {
+        "@id": "https://ms-nettoyages.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ms-nettoyages.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://ms-nettoyages.com"
+        }
+      ]
+    }
+  ]
+}
