@@ -100,6 +100,16 @@ const nextConfig: NextConfig = {
     });
 
     return [
+      // Domaine unique. www.ms-nettoyages.com répondait 200 avec une canonical
+      // vers la version sans www : le doublon était contenu mais restait
+      // explorable. Placée en tête pour que le chemin soit conservé en un saut.
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "www.ms-nettoyages.com" }],
+        destination: "https://ms-nettoyages.com/:path*",
+        permanent: true,
+      },
+
       anciennePrestation("/nettoyage-maison-meaux", "/nettoyage-maison"),
       anciennePrestation("/nettoyage-bureau-meaux", "/nettoyage-bureau"),
       anciennePrestation("/menage-particulier-meaux", "/menage-particulier"),
