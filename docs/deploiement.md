@@ -348,6 +348,10 @@ l'enregistrement DNS, à modifier chez Amen.
 
 Vercel redirigera alors `www` vers le domaine sans `www`, forme canonique retenue.
 
+> Mise à jour du 19/10/2026 : `www` est désormais servi par Vercel mais répondait 200 au lieu de
+> rediriger. La redirection 308 vers `ms-nettoyages.com` est déclarée dans `next.config.ts`, chemin
+> conservé. Procédure de publication et de retour arrière : [publication-seo.md](./publication-seo.md).
+
 ---
 
 ## 5. Déploiement Vercel
