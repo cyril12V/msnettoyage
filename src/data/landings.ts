@@ -102,6 +102,11 @@ export type Landing = {
   faq: readonly { question: string; answer: string }[];
   /** Visuel de la page, si disponible. */
   image?: string;
+  /**
+   * Sources officielles des affirmations réglementaires du corps de page. Une
+   * règle citée sans source se périme sans que personne ne s'en aperçoive.
+   */
+  sources?: readonly { titre: string; url: string }[];
 };
 
 export const landings: readonly Landing[] = [
@@ -628,6 +633,12 @@ export const landings: readonly Landing[] = [
     lede: "Le ménage Airbnb est une prestation de rotation entre deux séjours : nettoyage complet du logement, changement du linge, réapprovisionnement des consommables et remise en configuration d'accueil.",
     icon: "bed",
     image: "/images/cas-airbnb.jpg",
+    sources: [
+      {
+        titre: "Ville de Paris : location limitée à 90 jours par an (paris.fr)",
+        url: "https://www.paris.fr/pages/location-limitee-a-90-jours-paris-serre-la-vis-sur-les-meubles-touristiques-29653",
+      },
+    ],
     inclus: [
       "Nettoyage complet du logement entre deux séjours",
       "Changement des draps et du linge de toilette",
@@ -649,7 +660,7 @@ export const landings: readonly Landing[] = [
     ],
     corps: [
       "La difficulté d'une rotation n'est pas le nettoyage lui-même, c'est la fenêtre horaire. Entre un départ à 11 h et une arrivée à 15 h, tout doit être fait, vérifié et remis en ordre. Nous comptons deux heures en moyenne pour un logement de type T2, et nous planifions les rotations à partir de votre calendrier de réservation, pas l'inverse.",
-      "Paris est le premier marché européen de la location courte durée, et c'est aussi celui où la contrainte réglementaire est la plus forte : plafond de 120 jours par an pour une résidence principale, numéro d'enregistrement obligatoire, contrôles municipaux réguliers. Un prestataire régulier, qui documente chaque passage, fait partie des éléments qui rendent une exploitation défendable.",
+      "À Paris, la location courte durée est strictement encadrée : plafond de 90 jours par an pour une résidence principale depuis le 1er janvier 2025, numéro d'enregistrement obligatoire, contrôles municipaux réguliers. Un prestataire régulier, qui documente chaque passage, fait partie des éléments qui rendent une exploitation défendable.",
       "Le compte rendu photo protège les deux parties. Il date l'état du logement à la fin de notre intervention : en cas de litige avec un voyageur sur une dégradation, vous disposez d'une preuve horodatée, et nous d'une trace de ce qui a été livré.",
       "Nous signalons systématiquement ce qui sort de l'ordinaire : ampoule grillée, joint qui moisit, stock de consommables au plus bas, équipement qui commence à fatiguer. Traiter ces détails avant qu'un voyageur ne les mentionne est exactement ce qui préserve une note élevée sur la durée, bien plus qu'un nettoyage parfait le jour J.",
     ],

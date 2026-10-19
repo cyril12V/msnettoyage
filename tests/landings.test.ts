@@ -383,3 +383,23 @@ describe("sections éditoriales", () => {
     expect(texte).not.toMatch(/\+ ?(propriétés|clients|logements)/);
   });
 });
+
+describe("exactitude réglementaire", () => {
+  it("annonce le plafond parisien en vigueur et cite sa source officielle", () => {
+    // La Ville de Paris a abaissé le plafond de location d'une résidence
+    // principale en meublé de tourisme de 120 à 90 jours par an au 1er janvier
+    // 2025. La page Airbnb a longtemps affiché l'ancien chiffre.
+    const airbnb = getLanding("menage-airbnb");
+    const corps = airbnb?.corps.join(" ") ?? "";
+
+    expect(corps).toContain("90 jours par an");
+    expect(airbnb?.sources?.some((source) => source.url.startsWith("https://www.paris.fr/"))).toBe(
+      true,
+    );
+  });
+
+  it("ne mentionne plus l'ancien plafond de 120 jours nulle part", () => {
+    const texte = JSON.stringify([landings, villes]);
+    expect(texte).not.toMatch(/120 jours/);
+  });
+});

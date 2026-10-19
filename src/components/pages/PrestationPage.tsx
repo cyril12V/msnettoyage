@@ -262,6 +262,30 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         titre={`Un devis pour votre ${landing.libelleCourt.charAt(0).toLowerCase()}${landing.libelleCourt.slice(1)} ?`}
       />
 
+      {/* Sources officielles des règles citées dans le corps de page. */}
+      {landing.sources ? (
+        <Section tone="white" spacing="compact">
+          <Container>
+            <h2 className="text-ink text-sm font-semibold">Sources utiles</h2>
+            <ul className="mt-4 flex flex-col gap-2">
+              {landing.sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted hover:text-brand inline-flex items-center gap-2 text-sm transition-colors"
+                  >
+                    <Icon name="arrowRight" className="text-brand size-3.5" />
+                    {source.titre}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+      ) : null}
+
       <JsonLd
         data={[prestationLocaleJsonLd(landing), faqJsonLd(landing.faq), breadcrumbJsonLd(fil)]}
       />
