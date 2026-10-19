@@ -84,7 +84,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
           <aside className="flex flex-col gap-6">
             <MediaSlot
               src={landing.image}
-              alt={`${landing.requete}, intervention ${site.name}`}
+              alt={landing.requete}
               className="aspect-4/3 rounded-2xl"
               sizes="(max-width: 1024px) 100vw, 33vw"
             />

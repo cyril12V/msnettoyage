@@ -7,6 +7,12 @@
  *
  * Tant que `avantSrc` et `apresSrc` sont vides, les emplacements affichent un
  * aplat de marque, la section reste en place, prête à recevoir les visuels.
+ *
+ * Les paires en place sont des visuels générés (docs/brief-photo.md) : la
+ * section les présente comme des illustrations, jamais comme des chantiers de
+ * l'entreprise. La paire « séjour après travaux » a été retirée le 19/10/2026 :
+ * sa photo « après » montrait un carrelage posé sur une chape brute, un
+ * résultat de travaux et non de nettoyage.
  */
 
 export type Realisation = {
@@ -25,21 +31,13 @@ export type Realisation = {
 
 export const realisations: readonly Realisation[] = [
   {
-    id: "sejour-apres-travaux",
-    titre: "Séjour après travaux",
-    avant: "Pièce en fin de chantier, voile de plâtre sur le carrelage",
-    apres: "Même pièce livrée, sols lavés et vitres nettoyées",
-    avantSrc: "/images/avant-apres-sejour-avant.jpg",
-    apresSrc: "/images/avant-apres-sejour-apres.jpg",
-    principale: true,
-  },
-  {
     id: "cuisine",
     titre: "Cuisine",
     avant: "Crédence et hotte encrassées par la graisse de cuisson",
     apres: "Crédence et hotte dégraissées, inox remis à neuf",
     avantSrc: "/images/avant-apres-cuisine-avant.jpg",
     apresSrc: "/images/avant-apres-cuisine-apres.jpg",
+    principale: true,
   },
   {
     id: "sol-carrele",

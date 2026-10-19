@@ -25,7 +25,6 @@ function imagesAccueil(): string[] {
     "/images/expertise-vitre.jpg",
     "/images/expertise-lit-prepare.jpg",
     "/images/materiel.jpg",
-    "/images/vehicule.jpg",
   ];
 
   const depuisDonnees = [

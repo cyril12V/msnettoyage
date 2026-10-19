@@ -379,7 +379,7 @@ export const landings: readonly Landing[] = [
       "Nettoyage fin de chantier à Paris et en Île-de-France : évacuation des résidus, dépoussiérage intégral, vitrerie et sols. Intervention possible sous 48 h.",
     lede: "Le nettoyage de fin de chantier est l'intervention qui rend un local livrable après des travaux : évacuation des résidus, retrait des traces de peinture, de colle et d'enduit, et élimination de la poussière fine déposée sur toutes les surfaces.",
     icon: "trowel",
-    image: "/images/avant-apres-sejour-apres.jpg",
+    image: "/images/univers-fin-chantier.jpg",
     inclus: [
       "Retrait des traces de peinture, colle, enduit et silicone",
       "Décollage des protections, adhésifs et étiquettes de chantier",

@@ -78,7 +78,7 @@ export default function Page() {
       <VillesSection />
       <ZonesSection />
       <FaqSection items={faq} />
-      <CtaDevis avecVisuel />
+      <CtaDevis />
 
       <JsonLd data={[catalogueServicesJsonLd(services), faqJsonLd(faq)]} />
     </>

@@ -92,7 +92,7 @@ export function AvantApres() {
       <Container className="grid gap-10 lg:grid-cols-[minmax(0,28%)_minmax(0,72%)] lg:gap-12">
         <SectionHeading
           title="Des résultats qui parlent d'eux-mêmes"
-          description="Mêmes lieux, même cadrage, avant et après notre passage."
+          description="Visuels d'illustration, et non photos de nos chantiers : ce qu'un nettoyage en profondeur change sur ces surfaces."
         />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
