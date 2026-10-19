@@ -108,10 +108,15 @@ export const site = {
     country: "FR",
   },
 
-  /** Coordonnées du centre-ville de Meaux, point de référence du rayon d'intervention. */
+  /**
+   * Coordonnées de l'adresse déclarée ci-dessus, et non du centre-ville : le
+   * `geo` d'un `LocalBusiness` doit désigner l'établissement. Le centre-ville
+   * (48.9603, 2.8783) en est à 2,5 km. Source : Base Adresse Nationale,
+   * api-adresse.data.gouv.fr, 19/10/2026.
+   */
   geo: {
-    latitude: 48.9603,
-    longitude: 2.8783,
+    latitude: 48.948499,
+    longitude: 2.907627,
   },
 
   /**
