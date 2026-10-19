@@ -268,6 +268,18 @@ describe("maillage des pages villes", () => {
     }
   });
 
+  it("pose chaque lien contextuel sur un texte existant, vers une prestation existante", () => {
+    for (const ville of villes) {
+      if (!ville.lienContextuel) continue;
+      const { texte, slug } = ville.lienContextuel;
+      expect(getLanding(slug), `${ville.slug} → ${slug}`).toBeDefined();
+      expect(
+        ville.corps.some((paragraphe) => paragraphe.includes(texte)),
+        `« ${texte} » absent du corps de ${ville.slug}`,
+      ).toBe(true);
+    }
+  });
+
   it("expose chaque ville dans la navigation du pied de page", () => {
     expect(villesNav).toHaveLength(villes.length);
 

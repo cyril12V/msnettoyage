@@ -38,6 +38,13 @@ export function VillePage({ ville }: { ville: Ville }) {
 
   const autresVilles = villes.filter((autre) => autre.slug !== ville.slug);
 
+  // Seule la première occurrence porte le lien : deux liens identiques dans le
+  // même texte n'apportent rien de plus.
+  const lien = ville.lienContextuel;
+  const indexLien = lien
+    ? ville.corps.findIndex((paragraphe) => paragraphe.includes(lien.texte))
+    : -1;
+
   return (
     <>
       <PageHeader title={ville.h1} lede={ville.lede} breadcrumbs={fil}>
@@ -82,9 +89,13 @@ export function VillePage({ ville }: { ville: Ville }) {
               Le nettoyage à {ville.nom}, concrètement
             </h2>
             <div className="mt-6 flex flex-col gap-5">
-              {ville.corps.map((paragraphe) => (
+              {ville.corps.map((paragraphe, index) => (
                 <p key={paragraphe.slice(0, 40)} className="text-muted leading-relaxed">
-                  {paragraphe}
+                  {lien && index === indexLien ? (
+                    <ParagrapheAvecLien paragraphe={paragraphe} lien={lien} />
+                  ) : (
+                    paragraphe
+                  )}
                 </p>
               ))}
             </div>
@@ -336,6 +347,30 @@ export function VillePage({ ville }: { ville: Ville }) {
       ) : null}
 
       <JsonLd data={[villeJsonLd(ville), faqJsonLd(ville.faq), breadcrumbJsonLd(fil)]} />
+    </>
+  );
+}
+
+function ParagrapheAvecLien({
+  paragraphe,
+  lien,
+}: {
+  paragraphe: string;
+  lien: { texte: string; slug: string };
+}) {
+  const debut = paragraphe.indexOf(lien.texte);
+  const fin = debut + lien.texte.length;
+
+  return (
+    <>
+      {paragraphe.slice(0, debut)}
+      <Link
+        href={`/${lien.slug}`}
+        className="text-ink-soft decoration-brand/40 hover:text-brand hover:decoration-brand underline underline-offset-4 transition-colors"
+      >
+        {lien.texte}
+      </Link>
+      {paragraphe.slice(fin)}
     </>
   );
 }

@@ -45,6 +45,13 @@ export type Ville = {
   secteurs: readonly string[];
   /** Corps de page, propre à la commune. */
   corps: readonly string[];
+  /**
+   * Lien placé dans le corps de page, sur la première occurrence de `texte`,
+   * vers la page de la prestation la plus demandée sur place. Le texte existe
+   * déjà dans un paragraphe : le lien ne réécrit rien. Un lien dans une phrase
+   * qui parle du sujet pèse davantage qu'un lien de liste.
+   */
+  lienContextuel?: { texte: string; slug: string };
   /** Prestations les plus demandées ici, et la raison locale. */
   prestationsPhares: readonly { slug: string; raison: string }[];
   /** Repères pratiques, affichés en encart. */
@@ -119,6 +126,7 @@ export const villes: readonly Ville[] = [
       "Nous intervenons dans tous les arrondissements de Paris, du 1er au 20e, ainsi que dans les sept départements franciliens : Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94) et Val-d'Oise (95). Parmi les villes où nous sommes régulièrement sollicités : Boulogne-Billancourt, Saint-Denis, Montreuil, Créteil, Vincennes, Noisy-le-Grand, Chelles, Lagny-sur-Marne et Meaux, notre siège. Si votre commune ne figure pas dans cette liste, contactez-nous : nous couvrons l'ensemble de la région et étudions chaque demande.",
       "Notre base en Seine-et-Marne nous permet d'intervenir rapidement sur l'est parisien et la grande couronne, tout en desservant le cœur de Paris et la petite couronne dans des délais maîtrisés.",
     ],
+    lienContextuel: { texte: "nettoyage de bureaux", slug: "nettoyage-bureau" },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
@@ -374,6 +382,7 @@ export const villes: readonly Ville[] = [
       "L'entretien de copropriétés est le second marché de la commune. Les résidences des Coteaux de la Marne et du secteur Castermant ont des parties communes classiques : hall, cage d'escalier, local à vélos, local à poubelles, avec un espace encombrants souvent sous-dimensionné. La fréquence utile y est de deux à trois passages hebdomadaires, calés sur les jours de collecte plutôt que sur un calendrier théorique, faute de quoi les conteneurs restent sur le trottoir entre deux passages et c'est exactement ce que voient les résidents.",
       "Une demande propre à Chelles concerne les logements mis en vente. Le marché immobilier y est actif, porté par des acheteurs qui quittent Paris et la petite couronne, et un pavillon se présente d'autant mieux qu'il a été nettoyé avant les visites. Nous intervenons à ce moment précis, avant la mise en vente, aussi souvent qu'après le déménagement du vendeur. Les deux prestations n'ont pas le même périmètre : la première soigne ce qui se voit, la seconde traite ce qui est enfin accessible.",
     ],
+    lienContextuel: { texte: "grand ménage de maison", slug: "nettoyage-maison" },
     prestationsPhares: [
       {
         slug: "nettoyage-maison",
@@ -454,6 +463,7 @@ export const villes: readonly Ville[] = [
       "Les bords de Marne ajoutent une contrainte rare ailleurs : l'humidité. Les logements en rez-de-chaussée et les caves du secteur du quai de la Gourdine présentent régulièrement de la condensation et des développements de moisissures sur les joints et les angles froids. Le nettoyage traite la surface, il ne règle pas la cause, qui relève de la ventilation. Nous le disons plutôt que de laisser croire à un résultat durable qui ne tiendrait pas trois semaines.",
       "La ville accueille un centre hospitalier et plusieurs résidences pour personnes âgées. Cela alimente une demande d'entretien de logement chez des personnes âgées ou à mobilité réduite, sur des créneaux fixes et avec le même intervenant à chaque passage. C'est la condition pour que la prestation soit acceptée et non subie : entrer chez quelqu'un qui sort peu n'est pas une opération technique, et un roulement d'intervenants suffit à faire arrêter le contrat.",
     ],
+    lienContextuel: { texte: "entretien de logement", slug: "menage-particulier" },
     prestationsPhares: [
       {
         slug: "menage-particulier",
@@ -534,6 +544,7 @@ export const villes: readonly Ville[] = [
       "L'entretien des halls vitrés est le poste le plus sensible du Val Maubuée. Les résidences des années 1980 ont des entrées largement vitrées, exposées plein sud pour beaucoup d'entre elles : les traces de pluie et les projections y sont visibles en permanence, et un passage hebdomadaire ne suffit pas à donner l'impression d'un hall propre. Nous recommandons deux passages courts plutôt qu'un passage long, et le devis est construit sur cette base.",
       "Le secteur compte aussi des équipements publics et associatifs qui fonctionnent en horaires décalés : salles polyvalentes, gymnases, locaux associatifs, structures d'accueil de jeunes enfants. Ces sites imposent un nettoyage entre deux créneaux d'occupation, parfois en milieu de journée, avec un protocole de désinfection renforcé là où des enfants sont accueillis. Le créneau est fixé au contrat et ne bouge pas d'une semaine sur l'autre, car il conditionne l'ouverture du site.",
     ],
+    lienContextuel: { texte: "contrats de bureaux", slug: "nettoyage-bureau" },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
@@ -614,6 +625,10 @@ export const villes: readonly Ville[] = [
       "Le bâti des années 1980 du Pavé Neuf, dont les ensembles en béton moulé sont connus bien au-delà de la commune, demande une prudence particulière. Le béton architectonique est poreux et se marque définitivement sous un nettoyeur haute pression mal réglé : la façade blanchit par zones et l'irrégularité reste visible des années. Nous traitons ces surfaces à basse pression avec des produits neutres, ou nous renvoyons vers un ravaleur quand l'état relève du ravalement et non du nettoyage.",
       "La commune est aussi l'un des points où nous assurons le plus de rotations de logements meublés loués à des cadres en mission, du fait de la proximité immédiate du pôle tertiaire. Ces rotations ressemblent à celles d'une location courte durée, avec des séjours plus longs : le rythme est mensuel plutôt qu'hebdomadaire, mais l'exigence sur le linge, les consommables et l'état de présentation à l'arrivée est exactement la même.",
     ],
+    lienContextuel: {
+      texte: "nettoyage de fin de chantier",
+      slug: "nettoyage-fin-de-chantier-paris",
+    },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
@@ -694,6 +709,7 @@ export const villes: readonly Ville[] = [
       "Le marché des tournages et de la post-production est une particularité montreuilloise. Studios, plateaux et locaux de production alternent des périodes d'occupation intense et des périodes creuses, ce qui rend le contrat à fréquence fixe inadapté. Nous travaillons sur ces sites à la demande, avec un délai de prévenance court et un tarif convenu d'avance, plutôt qu'avec un calendrier figé que personne ne respecterait au bout d'un mois.",
       "L'entretien de locaux associatifs représente un autre volume notable sur la commune, avec des budgets contraints et des surfaces partagées entre plusieurs structures. La question n'y est pas le niveau de prestation mais son juste dimensionnement. Nous chiffrons une base réellement tenable, quitte à ce qu'elle soit modeste, plutôt qu'un cahier des charges complet qui serait abandonné au bout de trois mois faute de trésorerie.",
     ],
+    lienContextuel: { texte: "ménage à domicile", slug: "menage-particulier" },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
@@ -774,6 +790,7 @@ export const villes: readonly Ville[] = [
       "Les locaux d'activité et les entrepôts constituent notre troisième marché sur la commune. Les zones du Landy et de la Plaine mêlent logistique urbaine, ateliers et petites unités de production, avec des salissures qui ne relèvent pas de l'entretien courant : huile, poussière technique, résidus de manutention. Le dégraissant et la méthode se décident sur site, après constat, jamais sur un devis établi au téléphone.",
       "Les délais que nous annonçons à Saint-Denis intègrent un facteur que peu de prestataires chiffrent honnêtement : la circulation. L'A1 et l'A86 sont saturées sur des plages larges, et une intervention calée à 8 h peut coûter une heure de trajet de plus que le même passage à 6 h 30. Nous privilégions donc les créneaux très matinaux, qui conviennent aussi le mieux aux sites tertiaires, et nous annonçons une heure d'arrivée plutôt qu'une demi-journée.",
     ],
+    lienContextuel: { texte: "surfaces de bureaux", slug: "nettoyage-bureau" },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
@@ -853,6 +870,7 @@ export const villes: readonly Ville[] = [
       "Le renouvellement des marchés de nettoyage de copropriétés est un exercice à part. Les syndics consultent régulièrement plusieurs prestataires et comparent des devis dont les périmètres ne se recouvrent pas toujours. Nous détaillons donc systématiquement ce qui est inclus et ce qui ne l'est pas, en particulier la vitrerie, les parkings et les encombrants, pour que la comparaison porte sur les mêmes prestations et pas seulement sur un montant mensuel.",
       "La commune compte enfin un volume important de logements étudiants et de résidences services, liés à l'université et au centre hospitalier. Ces logements tournent à date fixe, en fin d'année universitaire, et concentrent la demande sur quelques semaines. Nous planifions ces campagnes à l'avance et mobilisons plusieurs intervenants en parallèle, plutôt que de les traiter au fil de l'eau au risque de faire glisser les dates de relocation.",
     ],
+    lienContextuel: { texte: "entretien à domicile", slug: "menage-particulier" },
     prestationsPhares: [
       {
         slug: "menage-particulier",
@@ -932,6 +950,7 @@ export const villes: readonly Ville[] = [
       "L'entretien de parties communes est un marché important sur la commune, très différent de celui des grands ensembles. Les immeubles vincennois comptent souvent trois à six étages, une seule cage, un escalier avec tapis ou nez de marche en laiton, et parfois une cour pavée. Les cuivres et les laitons demandent un produit dédié et un rythme espacé : un passage trop fréquent au produit acide finit par les user, un passage trop rare les laisse ternir au point qu'un rattrapage devient nécessaire.",
       "La proximité immédiate de Paris et la difficulté de stationnement pèsent sur l'organisation. Nous groupons nos interventions vincennoises sur une même demi-journée pour limiter le temps perdu à se garer, ce qui explique que nous proposions des créneaux plutôt qu'un choix libre d'horaire. En contrepartie, le créneau annoncé est tenu et le tarif n'intègre aucun surcoût de déplacement.",
     ],
+    lienContextuel: { texte: "entretien régulier à domicile", slug: "menage-particulier" },
     prestationsPhares: [
       {
         slug: "menage-particulier",
@@ -1012,6 +1031,7 @@ export const villes: readonly Ville[] = [
       "Le tissu de commerces et de restaurants du centre-ville constitue un second marché sur la commune. L'entretien y est quotidien ou pluri-hebdomadaire, avant l'ouverture, avec une exigence forte sur la vitrine, les sanitaires accessibles au public et les abords. Les établissements de restauration relèvent en plus d'un protocole d'hygiène distinct, dont le nettoyage n'est qu'une composante : nous intervenons en complément du plan de maîtrise sanitaire de l'établissement, jamais à sa place.",
       "Les copropriétés du Parchamp et du Point du Jour conservent un patrimoine architectural notable des années 1920 et 1930 : halls en pierre, ferronneries, mosaïques d'origine. Ces matériaux se dégradent sous les produits d'entretien courants, la pierre calcaire étant sensible aux acides et les ferronneries peintes au chlore. Le protocole est arrêté lors du premier passage, après identification des matériaux réellement en place, et non d'après leur aspect.",
     ],
+    lienContextuel: { texte: "contrats de bureaux", slug: "nettoyage-bureau" },
     prestationsPhares: [
       {
         slug: "nettoyage-bureau",
