@@ -8,7 +8,10 @@ import { site, telHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Page introuvable",
-  robots: { index: false, follow: true },
+  // Next.js injecte de lui-même `<meta name="robots" content="noindex">` sur
+  // toute réponse 404. `null` évite d'en émettre une seconde et empêche
+  // d'hériter du `index, follow` déclaré dans le layout.
+  robots: null,
 };
 
 export default function NotFound() {
