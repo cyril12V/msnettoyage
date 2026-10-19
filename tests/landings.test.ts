@@ -105,7 +105,7 @@ describe("pages de prestation", () => {
     }
   });
 
-  it("garde des méta-descriptions entre 110 et 165 caractères", () => {
+  it("garde des méta-descriptions entre 110 et 160 caractères", () => {
     for (const landing of landings) {
       expect(
         landing.metaDescription.length,
@@ -114,7 +114,7 @@ describe("pages de prestation", () => {
       expect(
         landing.metaDescription.length,
         `metaDescription : ${landing.slug}`,
-      ).toBeLessThanOrEqual(165);
+      ).toBeLessThanOrEqual(160);
     }
   });
 });

@@ -53,12 +53,12 @@ describe("pages villes", () => {
     }
   });
 
-  it("garde des méta-descriptions entre 110 et 165 caractères", () => {
+  it("garde des méta-descriptions entre 110 et 160 caractères", () => {
     for (const ville of villes) {
       expect(ville.metaDescription.length, `trop courte : ${ville.slug}`).toBeGreaterThanOrEqual(
         110,
       );
-      expect(ville.metaDescription.length, `trop longue : ${ville.slug}`).toBeLessThanOrEqual(165);
+      expect(ville.metaDescription.length, `trop longue : ${ville.slug}`).toBeLessThanOrEqual(160);
     }
   });
 

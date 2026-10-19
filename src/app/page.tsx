@@ -45,7 +45,7 @@ const TITRE = `Société de nettoyage Paris & Île-de-France | ${site.name}`;
 export const metadata: Metadata = {
   ...buildMetadata({
     title: TITRE,
-    description: `${site.name}, société de nettoyage à Paris et en Île-de-France : nettoyage de maison et de bureaux, ménage particulier, fin de chantier, déménagement et Airbnb. Devis sous ${site.delaiReponse}.`,
+    description: `${site.name}, société de nettoyage à Paris et en Île-de-France : maison, bureaux, ménage, fin de chantier, déménagement et Airbnb. Devis sous ${site.delaiReponse}.`,
     path: "/",
   }),
   // Le titre porte déjà le nom de la marque : sans `absolute`, le gabarit du

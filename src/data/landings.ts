@@ -204,7 +204,7 @@ export const landings: readonly Landing[] = [
     h1: "Nettoyage de bureaux à Paris et en Île-de-France",
     metaTitle: "Nettoyage de bureaux Paris & Île-de-France | MS Nettoyages",
     metaDescription:
-      "Nettoyage de bureaux à Paris et en Île-de-France : entretien hors heures d'ouverture, sanitaires, espaces de restauration et postes de travail. Devis sous 24 h.",
+      "Nettoyage de bureaux à Paris et en Île-de-France : entretien hors heures d'ouverture, sanitaires, cuisines et postes de travail. Devis sous 24 h.",
     lede: "Le nettoyage de bureaux est un contrat d'entretien récurrent réalisé en dehors des heures d'activité, afin de ne gêner ni vos équipes ni vos visiteurs. MS Nettoyages intervient dans les bureaux et locaux professionnels de Paris et de toute l'Île-de-France.",
     icon: "briefcase",
     image: "/images/univers-bureau.jpg",
