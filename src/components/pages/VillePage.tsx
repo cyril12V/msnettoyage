@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { getLanding, landings } from "@/data/landings";
-import { type Ville, villes } from "@/data/villes";
+import type { Ville } from "@/data/villes";
 import { breadcrumbJsonLd, faqJsonLd, villeJsonLd } from "@/lib/schema";
 import { site, telHref } from "@/lib/site";
 
@@ -36,7 +36,9 @@ export function VillePage({ ville }: { ville: Ville }) {
     (landing) => !ville.prestationsPhares.some((phare) => phare.slug === landing.slug),
   );
 
-  const autresVilles = villes.filter((autre) => autre.slug !== ville.slug);
+  // Pas de bloc « Nos autres villes » : le pied de page de toutes les pages
+  // liste déjà les douze villes avec la même ancre. Le doubler sur chaque page
+  // ville répétait onze liens identiques sans rien apporter.
 
   // Seule la première occurrence porte le lien : deux liens identiques dans le
   // même texte n'apportent rien de plus.
@@ -291,25 +293,6 @@ export function VillePage({ ville }: { ville: Ville }) {
               </details>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      <Section tone="surface" spacing="compact">
-        <Container>
-          <h2 className="text-ink text-sm font-semibold">Nos autres villes d&apos;intervention</h2>
-          <ul className="mt-6 flex flex-wrap gap-2.5">
-            {autresVilles.map((autre) => (
-              <li key={autre.slug}>
-                <Link
-                  href={`/${autre.slug}`}
-                  className="border-line text-ink-soft hover:border-brand/40 hover:text-brand inline-flex items-center gap-2 rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors"
-                >
-                  <Icon name="pin" className="text-brand size-4" />
-                  Nettoyage à {autre.nom}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </Container>
       </Section>
 
