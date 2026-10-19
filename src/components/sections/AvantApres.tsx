@@ -98,7 +98,13 @@ export function AvantApres() {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
           <Paire realisation={realisationPrincipale} taille="grande" />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div
+            className={
+              realisationsSecondaires.length > 1
+                ? "grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+                : "grid gap-6"
+            }
+          >
             {realisationsSecondaires.map((realisation) => (
               <Paire key={realisation.id} realisation={realisation} taille="vignette" />
             ))}
