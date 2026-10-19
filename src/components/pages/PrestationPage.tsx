@@ -157,10 +157,10 @@ export function PrestationPage({ landing }: { landing: Landing }) {
         commune, pour « nettoyage de bureaux à Créteil », et le département,
         pour « nettoyage de bureaux dans le 94 ».
 
-        Chaque lien de ville porte la prestation ET la commune dans son texte :
-        c'est l'ancre qui dit à Google que cette page-ci traite « nettoyage de
-        bureaux » et que la page de destination traite « nettoyage de bureaux à
-        Créteil ». Un « voir la ville » ne dirait rien.
+        Chaque lien de ville annonce ce que traite la page de destination :
+        le nettoyage dans cette commune, toutes prestations confondues. Une
+        ancre « Nettoyage de bureaux à Créteil » promettrait une page dédiée à
+        cette combinaison, qui n'existe pas et ne doit pas exister.
       */}
       <Section tone={ton(rangTarifs + 2)}>
         <Container>
@@ -180,9 +180,7 @@ export function PrestationPage({ landing }: { landing: Landing }) {
                   href={`/${ville.slug}`}
                   className="border-line hover:border-brand/40 hover:text-brand text-ink-soft flex items-center justify-between gap-3 rounded-lg border bg-white px-4 py-3 text-sm transition-colors"
                 >
-                  <span>
-                    {landing.libelleCourt} à {ville.nom}
-                  </span>
+                  <span>Nettoyage à {ville.nom}</span>
                   <span className="text-muted text-xs">{ville.departement}</span>
                 </Link>
               </li>

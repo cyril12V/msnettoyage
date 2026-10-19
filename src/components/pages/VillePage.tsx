@@ -209,8 +209,10 @@ export function VillePage({ ville }: { ville: Ville }) {
       {/*
         Prestations les plus demandées sur la commune.
 
-        L'ancre de chaque lien associe la prestation à la ville : c'est ce
-        couple que Google doit retenir, et c'est ce que tape l'internaute.
+        L'ancre nomme la prestation seule : la page de destination traite la
+        prestation pour toute l'Île-de-France, pas pour cette commune. Une ancre
+        « Nettoyage fin de chantier à Meaux » promettrait une page qui n'existe
+        pas. La commune est portée par le titre de la section.
       */}
       <Section tone="surface">
         <Container>
@@ -229,7 +231,7 @@ export function VillePage({ ville }: { ville: Ville }) {
                     <Icon name={landing.icon} className="size-5.5" />
                   </span>
                   <span className="text-ink mt-5 text-lg font-semibold">
-                    {landing.libelleCourt} à {ville.nom}
+                    {landing.libelleCourt}
                   </span>
                   <span className="text-muted mt-2.5 text-sm leading-relaxed">{raison}</span>
                   <span className="text-brand mt-5 inline-flex items-center gap-2 text-sm font-semibold">
@@ -250,7 +252,7 @@ export function VillePage({ ville }: { ville: Ville }) {
                   className="border-line text-ink-soft hover:border-brand/40 hover:text-brand inline-flex items-center gap-2 rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors"
                 >
                   <Icon name={landing.icon} className="text-brand size-4" />
-                  {landing.libelleCourt} à {ville.nom}
+                  {landing.libelleCourt}
                 </Link>
               </li>
             ))}

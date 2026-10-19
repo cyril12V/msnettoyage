@@ -539,7 +539,7 @@ export const landings: readonly Landing[] = [
   {
     slug: "menage-apres-demenagement",
     requete: "Ménage après déménagement à Paris et en Île-de-France",
-    libelleCourt: "Après déménagement",
+    libelleCourt: "Ménage après déménagement",
     h1: "Ménage après déménagement à Paris et en Île-de-France",
     metaTitle: "Ménage après déménagement Paris & IDF | MS Nettoyages",
     metaDescription:
