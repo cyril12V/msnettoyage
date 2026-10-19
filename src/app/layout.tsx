@@ -26,15 +26,6 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: siteUrl }],
   creator: site.name,
   publisher: site.name,
-  keywords: [
-    "entreprise de nettoyage",
-    "société de nettoyage Île-de-France",
-    "nettoyage Meaux",
-    "nettoyage de bureaux",
-    "ménage Airbnb",
-    "remise en état après travaux",
-    "nettoyage fin de chantier",
-  ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
