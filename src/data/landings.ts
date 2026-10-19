@@ -606,6 +606,11 @@ export const landings: readonly Landing[] = [
           "Une fois le logement entièrement vidé, et idéalement la veille de l'état des lieux. Un logement vide permet d'accéder aux zones habituellement masquées par les meubles et l'électroménager, là où se concentrent justement les remarques lors de l'état des lieux.",
       },
       {
+        question: "Le nettoyage de fin de bail est-il une prestation différente ?",
+        answer:
+          "Non, c'est la même prestation sous un autre nom. On parle de nettoyage de fin de bail du point de vue du locataire qui rend son logement : nettoyage complet du logement vidé, avant l'état des lieux de sortie. Tout ce qui est décrit sur cette page s'applique, que le logement soit rendu à un propriétaire ou à une agence.",
+      },
+      {
         question: "Le ménage avant l'état des lieux évite-t-il une retenue sur la caution ?",
         answer:
           "La propreté est l'un des premiers motifs de retenue sur un dépôt de garantie. Un nettoyage professionnel documenté par des photos horodatées vous place en position solide en cas de désaccord, et coûte en général moins cher que la retenue qu'il évite. En Île-de-France, où les loyers et donc les dépôts sont élevés, l'écart est encore plus net.",
