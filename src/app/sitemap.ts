@@ -38,12 +38,13 @@ function imagesAccueil(): string[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const derniereModification = new Date();
-
+  // Pas de `lastModified` : la seule date disponible était celle du build,
+  // identique sur toutes les URL et donc fausse pour la plupart. Google ignore
+  // un `lastmod` qui ne reflète pas une vraie modification du contenu, et
+  // finit par ignorer ceux du site entier.
   return [
     {
       url: absoluteUrl("/"),
-      lastModified: derniereModification,
       changeFrequency: "monthly",
       priority: 1,
       images: imagesAccueil(),
@@ -53,7 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // priorité haute, juste sous la page d'accueil.
     ...landings.map((landing) => ({
       url: absoluteUrl(`/${landing.slug}`),
-      lastModified: derniereModification,
       changeFrequency: "monthly" as const,
       priority: 0.9,
       ...(landing.image ? { images: [absoluteUrl(landing.image)] } : {}),
@@ -64,20 +64,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // longue traîne géographique.
     ...villes.map((ville) => ({
       url: absoluteUrl(`/${ville.slug}`),
-      lastModified: derniereModification,
       changeFrequency: "monthly" as const,
       priority: ville.base ? 0.9 : 0.8,
     })),
 
     {
       url: absoluteUrl("/mentions-legales"),
-      lastModified: derniereModification,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: absoluteUrl("/politique-de-confidentialite"),
-      lastModified: derniereModification,
       changeFrequency: "yearly",
       priority: 0.2,
     },
