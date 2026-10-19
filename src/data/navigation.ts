@@ -50,7 +50,6 @@ export const villesNav: readonly NavLink[] = villes.map((ville) => ({
 export const footerNav: readonly NavLink[] = [
   { href: "/", label: "Accueil" },
   { href: "/#univers", label: "Nos univers" },
-  { href: "/#cas", label: "Cas clients" },
   { href: "/#zones", label: "Zones d'intervention" },
   { href: "/#faq", label: "Questions fréquentes" },
   { href: "/#contact", label: "Demander un devis" },

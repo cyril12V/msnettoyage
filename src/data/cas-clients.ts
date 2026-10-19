@@ -24,38 +24,9 @@ export type CasClient = {
   src?: string;
 };
 
-export const casClients: readonly CasClient[] = [
-  {
-    id: "rotation-airbnb",
-    titre: "Rotation Airbnb express",
-    description: "Nettoyage complet et préparation d'un T2 entre deux locations.",
-    chiffres: [
-      { valeur: "2 h", libelle: "Délai moyen" },
-      { valeur: "5 étoiles", libelle: "Avis voyageurs" },
-    ],
-    photo: "Chambre d'un logement Airbnb prête pour l'arrivée",
-    src: "/images/cas-airbnb.jpg",
-  },
-  {
-    id: "remise-en-etat",
-    titre: "Remise en état après travaux",
-    description: "Nettoyage en profondeur après rénovation d'un appartement de 120 m².",
-    chiffres: [
-      { valeur: "1 jour", libelle: "Intervention" },
-      { valeur: "3 passes", libelle: "Lavage des sols" },
-    ],
-    photo: "Appartement rénové, livré propre",
-    src: "/images/cas-apres-travaux.jpg",
-  },
-  {
-    id: "entretien-bureaux",
-    titre: "Entretien de bureaux",
-    description: "Entretien régulier de 200 m² de bureaux, trois fois par semaine.",
-    chiffres: [
-      { valeur: "3 fois", libelle: "Par semaine" },
-      { valeur: "Après 19 h", libelle: "Créneau d'intervention" },
-    ],
-    photo: "Open space propre en fin de journée",
-    src: "/images/cas-bureaux.jpg",
-  },
-] as const;
+// Les trois cas de la maquette (rotation Airbnb en 2 h et « 5 étoiles avis
+// voyageurs », 120 m² en une journée, 200 m² de bureaux trois fois par semaine)
+// ont été retirés le 19/10/2026 : aucun ne décrivait une mission réelle et leurs
+// chiffres n'avaient pas été mesurés. Tableau vide : la section n'est pas
+// rendue. La rétablir avec des missions réellement effectuées.
+export const casClients: readonly CasClient[] = [];

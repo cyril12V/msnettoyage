@@ -31,29 +31,11 @@ export type Temoignage = {
 /** Passer à `false` dès que les avis ci-dessous sont de vrais avis clients. */
 export const temoignagesSontDeDemonstration = true;
 
-export const temoignages: readonly Temoignage[] = [
-  {
-    citation:
-      "Service irréprochable pour nos locations Airbnb. L'équipe est rapide, fiable et toujours aux petits soins.",
-    auteur: "Laura M.",
-    contexte: "Propriétaire, Paris 11ᵉ",
-    note: 5,
-  },
-  {
-    citation:
-      "Nos bureaux sont toujours impeccables. Réactivité et professionnalisme au rendez-vous.",
-    auteur: "Julien D.",
-    contexte: "Responsable administratif, Meaux",
-    note: 5,
-  },
-  {
-    citation:
-      "Après notre chantier, l'appartement était comme neuf. Travail minutieux et très sérieux.",
-    auteur: "Sophie T.",
-    contexte: "Architecte d'intérieur, Seine-et-Marne",
-    note: 5,
-  },
-] as const;
+// Les trois avis de la maquette (Laura M., Julien D., Sophie T., notés 5 sur 5)
+// ont été retirés le 19/10/2026 : ils ne provenaient pas de vrais clients et
+// étaient pourtant publiés. Tableau vide : la section n'est pas rendue. Pour
+// la rétablir, saisir ici de vrais avis selon les règles ci-dessus.
+export const temoignages: readonly Temoignage[] = [];
 
 /** Indique si la section « avis clients » doit être rendue. */
 export const hasTemoignages = temoignages.length > 0;

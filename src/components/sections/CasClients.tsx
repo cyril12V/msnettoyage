@@ -11,6 +11,8 @@ import { casClients } from "@/data/cas-clients";
  * des exemples repris de la maquette.
  */
 export function CasClients() {
+  if (casClients.length === 0) return null;
+
   return (
     <Section id="cas" tone="surface">
       <Container>
